@@ -27,4 +27,4 @@ HCI Nerdz's job is to side with the mental model when the priesthood is inverted
 
 ## Sibling note
 
-Shell language semantics and CLI flag hygiene belong to [OpenShellOrg](https://github.com/openshellorg). Graphical discoverability, dialogs, and product representation belong here. When a prompt elevates *input* to a native dialog but still writes the question to stdout for pipes and agents, that boundary product stays shell-side — because transport honesty is the point.
+Shell language semantics and CLI flag hygiene belong to [OpenShellOrg](https://github.com/openshellorg). Graphical discoverability, dialogs, and product representation belong here.

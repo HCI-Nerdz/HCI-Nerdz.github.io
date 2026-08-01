@@ -41,4 +41,4 @@ Attention-respecting design and heirloom maintainability are the same obligation
 - **OpenShellOrg** — shells and CLIs that do not force stdout to be both pipe and canvas; progressive help budgets
 - **DevCentr** — environments and toolchain management so practitioners are not drowning in accidental complexity
 
-We are not merging those orgs. We are aiming at the same disrespect from different altitudes.
+They stay separate on purpose — each one attacks a different layer of the same disrespect.

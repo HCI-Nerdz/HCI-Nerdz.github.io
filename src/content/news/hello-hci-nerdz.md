@@ -16,7 +16,7 @@ Those are not polish nits. They are **product representation** bugs: the surface
 
 Shells and CLIs already have a home: [openshellorg](https://github.com/openshellorg). That org owns SOS, structured pipelines, progressive CLI help, and entrypoint honesty.
 
-HCI Nerdz owns the **other altitude** — how humans *see and manipulate* systems. Same enemy (needless friction). Different tools.
+HCI Nerdz owns the other half of that fight — how humans *see and manipulate* systems.
 
 ## What ships next
 

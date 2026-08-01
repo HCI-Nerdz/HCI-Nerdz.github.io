@@ -31,6 +31,4 @@ If the backend can answer the question, the first-class UI should ask it.
 - Honest severity and exit codes: help is success; warnings should not look like errors.
 - Theme and preview fidelity: the surface should inherit the host contract, not ship a light island in a dark room.
 
-For the broader ethical frame — attention, cognitive overhead, heirloom software — see the [Vision](https://ryanjohnson.website/vision/) essay and our [philosophy](/philosophy/) page. For the shell-altitude sibling of progressive disclosure (help that does not dump walls of text), see [OpenShellOrg](https://openshellorg.github.io/).
-
-Same enemy. Different altitudes.
+For the broader ethical frame — attention, cognitive overhead, heirloom software — see the [Vision](https://ryanjohnson.website/vision/) essay and our [philosophy](/philosophy/) page. For progressive CLI help that does not dump walls of text, see our sibling org [OpenShellOrg](https://openshellorg.github.io/).
