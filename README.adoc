@@ -1,0 +1,22 @@
+= HCI-Nerdz.github.io
+:toc:
+
+Astro site for link:https://hci-nerdz.github.io/[HCI Nerdz].
+
+== Commands
+
+[source,shell]
+----
+pnpm install
+pnpm dev
+pnpm build
+----
+
+== Structure
+
+* Landing page, philosophy, and news feed (content collection + RSS)
+* Links to Antora docs at `https://hci-nerdz.github.io/docs/`
+
+== Changelog
+
+See link:CHANGELOG.adoc[CHANGELOG.adoc].

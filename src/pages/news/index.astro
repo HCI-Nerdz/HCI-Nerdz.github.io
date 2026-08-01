@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="News · HCI Nerdz"
+  description="HCI Nerdz news — notes on honest surfaces and lower cognitive tax."
+  active="news"
+>
+  <main class="shell page">
+    <h1>News</h1>
+    <p class="lede">Notes on HCI Nerdz — philosophy, tooling, and how the organization is taking shape.</p>
+    <ol class="feed">
+      {
+        posts.map((post) => (
+          <li>
+            <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timeZone: 'UTC',
+              })}
+            </time>
+            <a class="title" href={`/news/${post.slug}/`}>
+              {post.data.title}
+            </a>
+            <p>{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </main>
+</BaseLayout>

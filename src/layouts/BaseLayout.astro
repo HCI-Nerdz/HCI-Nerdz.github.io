@@ -1,0 +1,77 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  active?: 'home' | 'news' | 'docs' | 'philosophy';
+}
+
+const {
+  title = 'HCI Nerdz',
+  description = 'HCI and UI/UX innovation — honest surfaces, lower cognitive tax.',
+  active,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="HCI Nerdz News" href="/news/rss.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <img src="/logo-mark.svg" width="32" height="32" alt="" />
+        HCI Nerdz
+      </a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="/news/" aria-current={active === 'news' ? 'page' : undefined}>News</a>
+        <a href="https://hci-nerdz.github.io/docs/">Docs</a>
+        <a href="/philosophy/" aria-current={active === 'philosophy' ? 'page' : undefined}>Philosophy</a>
+        <a href="https://github.com/HCI-Nerdz">GitHub</a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="site-footer" aria-label="Site footer">
+      <p class="footer-related-label">Partner organizations</p>
+      <p class="footer-related-links">
+        <a href="https://openshellorg.github.io/">OpenShellOrg</a>
+        ·
+        <a href="https://openshellorg.github.io/docs/">OSO Docs</a>
+        ·
+        <a href="https://github.com/openshellorg">openshellorg</a>
+        ·
+        <a href="https://devcentr.org">DevCentr</a>
+        ·
+        <a href="https://docs.devcentr.org">DevCentr Docs</a>
+        ·
+        <a href="https://github.com/dev-centr">dev-centr</a>
+        ·
+        <a href="https://github.com/antora-supplemental">antora-supplemental</a>
+        ·
+        <a href="https://github.com/dlang-supplemental">dlang-supplemental</a>
+        ·
+        <a href="https://github.com/formatte">formatte</a>
+        ·
+        <a href="https://github.com/LinxPhotos">LinxPhotos</a>
+        ·
+        <a href="https://github.com/FoodTruckNerdz">FoodTruckNerdz</a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

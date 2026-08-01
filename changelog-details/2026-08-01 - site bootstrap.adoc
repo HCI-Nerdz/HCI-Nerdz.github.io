@@ -1,0 +1,4 @@
+= Site bootstrap
+:revdate: 2026-08-01
+
+Initial Astro site with news feed, hello-world article, philosophy page, partner footer, and GitHub Pages CI.

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const latest = posts.slice(0, 3);
+---
+
+<BaseLayout active="home">
+  <main class="shell">
+    <section class="hero">
+      <img class="mark" src="/logo-mark.svg" width="256" height="256" alt="HCI Nerdz" />
+      <h1>HCI Nerdz</h1>
+      <p class="tag">
+        Honest surfaces. Lower cognitive tax. HCI and UI/UX innovation for interfaces that respect
+        how minds work.
+      </p>
+      <div class="cta">
+        <a class="primary" href="/news/">News</a>
+        <a class="secondary" href="https://hci-nerdz.github.io/docs/">Docs</a>
+        <a class="secondary" href="/philosophy/">Philosophy</a>
+        <a class="secondary" href="https://github.com/HCI-Nerdz">GitHub</a>
+      </div>
+      <p class="note">
+        Shell and CLI standards live at
+        <a href="https://github.com/openshellorg">openshellorg</a> — sibling org, not a merge.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="principles-heading">
+      <h2 id="principles-heading">What we fight for</h2>
+      <p class="lede">
+        The bug is often discoverability and product representation — not missing backend
+        capability.
+      </p>
+      <ul class="principles">
+        <li>
+          <strong>Surfaces tell the truth</strong>
+          Severity, success, settings, and theme must match reality. Lying chrome erodes trust.
+        </li>
+        <li>
+          <strong>Human intuition over backwards convention</strong>
+          Temporary migration pain beats permanent, compounding inconvenience.
+        </li>
+        <li>
+          <strong>First-class UI for real jobs</strong>
+          Power-user search syntax is not a substitute for filters people actually use.
+        </li>
+        <li>
+          <strong>Attention is not inventory</strong>
+          Tools should be minimally invasive on attention. Heirloom software over dopamine products.
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="news-heading">
+      <h2 id="news-heading">News</h2>
+      <p class="lede">Notes as the organization takes shape.</p>
+      <ol class="feed">
+        {
+          latest.map((post) => (
+            <li>
+              <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  timeZone: 'UTC',
+                })}
+              </time>
+              <a class="title" href={`/news/${post.slug}/`}>
+                {post.data.title}
+              </a>
+              <p>{post.data.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <p><a href="/news/">All news →</a></p>
+    </section>
+
+    <section class="section" aria-labelledby="partners-heading">
+      <h2 id="partners-heading">Same enemy. Different altitudes.</h2>
+      <p class="lede">Aligned partner orgs — cross-link, do not absorb.</p>
+      <ul class="partners">
+        <li>
+          <a href="https://github.com/openshellorg">OpenShellOrg</a>
+          <span>How CLIs and shells speak and compose</span>
+        </li>
+        <li>
+          <a href="https://github.com/dev-centr">DevCentr</a>
+          <span>Environments, orchestration, toolchain management</span>
+        </li>
+        <li>
+          <a href="https://github.com/antora-supplemental">antora-supplemental</a>
+          <span>AsciiDoc / Antora publishing UX (Valentus theme)</span>
+        </li>
+        <li>
+          <a href="https://github.com/dlang-supplemental">dlang-supplemental</a>
+          <span>D libraries and native tooling</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

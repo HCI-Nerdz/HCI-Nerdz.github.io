@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="HCI Nerdz">
+  <text x="0" y="108"
+    font-family="Syne, Avenir Next, Segoe UI, sans-serif"
+    font-size="96"
+    font-weight="700"
+    letter-spacing="-2"
+    fill="#E8E4D9">HCI Nerdz</text>
+  <circle cx="668" cy="42" r="14" fill="#E8A54B"/>
+  <circle cx="698" cy="78" r="9" fill="#3D9B8F"/>
+  <line x1="668" y1="56" x2="690" y2="72" stroke="#C9D1D9" stroke-opacity=".5" stroke-width="3"/>
+</svg>

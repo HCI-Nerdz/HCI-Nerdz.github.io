@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Philosophy · HCI Nerdz"
+  description="HCI Nerdz philosophy — cognitive honesty, heirloom software, and the split from shell/CLI work."
+  active="philosophy"
+>
+  <main class="shell page article">
+    <h1>Philosophy</h1>
+    <p class="summary">
+      Interfaces that respect cognition. Surfaces that tell the truth. Complexity treated as a
+      design failure, not a badge of sophistication.
+    </p>
+
+    <div class="body">
+      <h2>Cognitive honesty</h2>
+      <p>
+        Our greatest assets are our brains. Software that spends attention for us and abuses working
+        memory is disrespectful. End-user tools should be minimally invasive on attention;
+        developer workflows should keep cognitive overhead low. Programmers are users too.
+      </p>
+      <p>
+        The question that keeps returning:
+        <em>Are we programming the computers, or are they programming us?</em>
+      </p>
+
+      <h2>Product representation</h2>
+      <p>
+        When a backend can already answer a question but the first-class UI hides it behind
+        power-user syntax, the product is lying about what counts. Discoverability is not a
+        convenience nit — it teaches users which involvement is real.
+      </p>
+      <p>
+        The same rule applies to severity chrome, exit codes, settings GUIs versus config files, and
+        previews that refuse the host theme. Honest signals build trust; false alarms and silent
+        failures burn it.
+      </p>
+
+      <h2>Human intuition over backwards convention</h2>
+      <p>
+        Consistency with existing conventions has value, but it is not absolute. When a convention
+        is fundamentally backwards from human intuition and creates compounding inconvenience, it
+        should be corrected. Migration pain is temporary; living with the inversion is permanent.
+      </p>
+
+      <h2>Heirloom software</h2>
+      <p>
+        Be kind to your future self and considerate of others' time and attention. Every developer
+        was once a user. Pass down maintainable software that a naïve reader can still understand.
+        Things that behave similarly should not be presented in vastly different ways.
+      </p>
+
+      <h2>Division of labor</h2>
+      <p>
+        <strong>HCI Nerdz</strong> owns graphical and interaction surfaces: themes, dialogs, IDE
+        chrome, desktop metaphors, attention-respecting product UX.
+      </p>
+      <p>
+        <strong>OpenShellOrg</strong> owns shells and CLIs: SOS, structured pipelines, progressive
+        help, entrypoint honesty. Boundary products that elevate input to a GUI while always writing
+        the prompt to stdout remain shell-side.
+      </p>
+      <p>
+        <strong>DevCentr</strong> owns practitioner environments and toolchain management. We
+        cross-link. We do not merge.
+      </p>
+      <p>Same enemy. Different altitudes.</p>
+
+      <h2>Further reading</h2>
+      <ul>
+        <li><a href="https://ryanjohnson.website/vision/">Vision</a> — cognitive principles and complexity</li>
+        <li><a href="https://hci-nerdz.github.io/docs/hci-nerdz/philosophy.html">Docs: Philosophy</a></li>
+        <li><a href="https://openshellorg.github.io/docs/open-shell-org/philosophy.html">OpenShellOrg philosophy</a></li>
+      </ul>
+    </div>
+  </main>
+</BaseLayout>

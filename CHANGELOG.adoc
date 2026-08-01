@@ -1,0 +1,5 @@
+= Changelog
+
+== 2026-08-01 — Site bootstrap
+
+* link:changelog-details/2026-08-01%20-%20site%20bootstrap.adoc[Details]
