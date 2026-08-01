@@ -2,7 +2,7 @@
 interface Props {
   title?: string;
   description?: string;
-  active?: 'home' | 'news' | 'docs' | 'philosophy';
+  active?: 'home' | 'news' | 'blog' | 'docs' | 'philosophy';
 }
 
 const {
@@ -21,6 +21,7 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="HCI Nerdz News" href="/news/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="HCI Nerdz Blog" href="/blog/rss.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -36,6 +37,7 @@ const {
         HCI Nerdz
       </a>
       <nav class="nav-links" aria-label="Site">
+        <a href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>Blog</a>
         <a href="/news/" aria-current={active === 'news' ? 'page' : undefined}>News</a>
         <a href="https://hci-nerdz.github.io/docs/">Docs</a>
         <a href="/philosophy/" aria-current={active === 'philosophy' ? 'page' : undefined}>Philosophy</a>

@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-01 — Blog route and essays
+
+* link:changelog-details/2026-08-01%20-%20blog%20route%20and%20essays.adoc[Details]
+
 == 2026-08-01 — Site bootstrap
 
 * link:changelog-details/2026-08-01%20-%20site%20bootstrap.adoc[Details]

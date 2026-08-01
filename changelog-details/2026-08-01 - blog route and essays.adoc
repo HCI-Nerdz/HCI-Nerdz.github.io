@@ -1,0 +1,9 @@
+= Blog route and essays
+:revdate: 2026-08-01
+
+Split essays from org news:
+
+* New `/blog/` content collection, index, RSS
+* Five essays on product representation, attention ethics, theme contracts, intuition vs convention, and non-technical product honesty
+* Cross-links to ryanjohnson.website, DevCentr docs, OpenShellOrg, and GitHub discussions
+* Nav and landing page updated so Blog and News stay distinct

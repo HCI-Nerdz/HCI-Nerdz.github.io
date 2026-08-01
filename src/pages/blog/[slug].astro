@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={`${post.data.title} · HCI Nerdz`}
+  description={post.data.description}
+  active="blog"
+>
+  <main class="shell page article">
+    <a class="back" href="/blog/">← Blog</a>
+    <header>
+      <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+        {
+          post.data.pubDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'UTC',
+          })
+        }
+      </time>
+      <h1>{post.data.title}</h1>
+      <p class="summary">{post.data.description}</p>
+    </header>
+    <div class="body">
+      <Content />
+    </div>
+  </main>
+</BaseLayout>
