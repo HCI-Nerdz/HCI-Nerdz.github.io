@@ -1,4 +1,6 @@
 ---
+import GitHubLink from '../components/GitHubLink.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -41,7 +43,7 @@ const {
         <a href="/news/" aria-current={active === 'news' ? 'page' : undefined}>News</a>
         <a href="https://hci-nerdz.github.io/docs/">Docs</a>
         <a href="/philosophy/" aria-current={active === 'philosophy' ? 'page' : undefined}>Philosophy</a>
-        <a href="https://github.com/HCI-Nerdz">GitHub</a>
+        <GitHubLink class="nav-github" />
       </nav>
     </header>
     <slot />

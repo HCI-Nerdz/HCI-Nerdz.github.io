@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GitHubLink from '../components/GitHubLink.astro';
 import { getCollection } from 'astro:content';
 
 const news = (await getCollection('news', ({ data }) => !data.draft)).sort(
@@ -26,7 +27,7 @@ const latestBlog = blog.slice(0, 3);
         <a class="secondary" href="/news/">News</a>
         <a class="secondary" href="https://hci-nerdz.github.io/docs/">Docs</a>
         <a class="secondary" href="/philosophy/">Philosophy</a>
-        <a class="secondary" href="https://github.com/HCI-Nerdz">GitHub</a>
+        <GitHubLink class="secondary cta-github" />
       </div>
       <p class="note">
         Shell and CLI standards live at our sibling org,

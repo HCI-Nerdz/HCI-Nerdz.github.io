@@ -1,0 +1,96 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+  /** Show stargazer count from the site repo when available. */
+  showStars?: boolean;
+}
+
+const {
+  href = 'https://github.com/HCI-Nerdz',
+  class: className = '',
+  showStars = true,
+} = Astro.props;
+
+let stars: number | null = null;
+if (showStars) {
+  try {
+    const res = await fetch('https://api.github.com/repos/HCI-Nerdz/HCI-Nerdz.github.io', {
+      headers: {
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'hci-nerdz-site',
+      },
+    });
+    if (res.ok) {
+      const data = (await res.json()) as { stargazers_count?: number };
+      if (typeof data.stargazers_count === 'number') {
+        stars = data.stargazers_count;
+      }
+    }
+  } catch {
+    stars = null;
+  }
+}
+---
+
+<a
+  class:list={['github-link', className]}
+  href={href}
+  aria-label={stars !== null ? `HCI Nerdz on GitHub, ${stars} stars` : 'HCI Nerdz on GitHub'}
+>
+  <svg class="github-mark" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true">
+    <path
+      fill="currentColor"
+      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+    ></path>
+  </svg>
+  {
+    stars !== null && stars > 0 && (
+      <span class="github-stars" aria-hidden="true">
+        <svg class="github-star" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25"
+          ></path>
+        </svg>
+        {stars}
+      </span>
+    )
+  }
+</a>
+
+<style>
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--paper-muted);
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .github-link:hover {
+    color: var(--paper);
+  }
+
+  .github-mark {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .github-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.9;
+  }
+
+  .github-star {
+    display: block;
+    opacity: 0.85;
+  }
+</style>
