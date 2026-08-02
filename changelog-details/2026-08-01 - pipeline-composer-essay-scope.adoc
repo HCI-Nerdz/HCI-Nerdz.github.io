@@ -1,0 +1,5 @@
+= 2026-08-01 — Pipeline composer essay scope
+
+Retitled the processing-map essay to *Sequence as the top-level: pipeline composer interfaces* and scoped the claim to the pipeline composer surface (not every screen in a product).
+
+Updated cross-links in sibling essays.

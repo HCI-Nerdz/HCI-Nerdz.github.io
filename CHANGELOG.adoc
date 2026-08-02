@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-01 — Pipeline composer essay scope
+
+* link:changelog-details/2026-08-01%20-%20pipeline-composer-essay-scope.adoc[Details]
+
 == 2026-08-02 — Prototype strategy essays
 
 * link:changelog-details/2026-08-02%20-%20prototype-strategy-essays.adoc[Details]

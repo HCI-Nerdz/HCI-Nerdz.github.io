@@ -1,6 +1,6 @@
 ---
-title: "Sequence is the top-level: pipeline composer interfaces"
-description: "When a system applies rules in order, the UI must show that order as one map — not scatter steps across settings pages until the machine contradicts itself."
+title: "Sequence as the top-level: pipeline composer interfaces"
+description: "When a system applies rules in order, the processing-map surface should show that order as one spine — not scatter steps across settings pages until the machine contradicts itself."
 pubDate: 2026-08-02
 tags: ["pipeline", "sequentiality", "processing-map", "product-representation"]
 ---
@@ -17,10 +17,12 @@ If a system applies transformations, policies, or handlers in a defined order, t
 
 Call the pattern a **pipeline composer**.
 
-- Sequence is the top-level organization.
+- Sequence as the top-level organization.
 - Parallel work is not a competing metaphor at the root. It nests *inside* a step or sub-step.
 - Users insert steps between neighbors — but only steps whose **rule type** is valid at that socket.
 - The map is the product representation of the actual pipeline, not a dashboard of unrelated cards that happen to affect the same request.
+
+This claim is scoped to the **processing-map surface** — the composer where an ordered runtime is edited — not to every pixel of a product shell. Real admin UIs still wrap that surface in navigation, hero copy, billing chrome, and unrelated settings. **Sequence as the top-level** means the spine inside the pipeline composer matches the spine the engine runs. It does not mean the login screen, sidebar, and invoice page are secretly one pipeline.
 
 This is how many of us already visualize these systems. The industry usually refuses to put that mental model on screen.
 
