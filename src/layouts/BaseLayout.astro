@@ -4,7 +4,7 @@ import GitHubLink from '../components/GitHubLink.astro';
 interface Props {
   title?: string;
   description?: string;
-  active?: 'home' | 'news' | 'blog' | 'docs' | 'philosophy';
+  active?: 'home' | 'news' | 'blog' | 'docs' | 'demos' | 'philosophy';
 }
 
 const {
@@ -40,6 +40,7 @@ const {
       </a>
       <nav class="nav-links" aria-label="Site">
         <a href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>Blog</a>
+        <a href="/demos/" aria-current={active === 'demos' ? 'page' : undefined}>Demos</a>
         <a href="/news/" aria-current={active === 'news' ? 'page' : undefined}>News</a>
         <a href="https://hci-nerdz.github.io/docs/">Docs</a>
         <a href="/philosophy/" aria-current={active === 'philosophy' ? 'page' : undefined}>Philosophy</a>

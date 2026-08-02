@@ -1,0 +1,7 @@
+= 2026-08-02 — Demos index
+
+Added `/demos/` — a categorized index of interactive prototypes.
+
+* Taxonomy lives in `src/lib/demos.ts` (categories stay listed even when empty)
+* Nav + homepage CTA link to Demos
+* Pipeline composer listed under *Processing maps*

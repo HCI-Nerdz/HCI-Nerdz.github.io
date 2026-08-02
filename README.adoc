@@ -14,10 +14,10 @@ pnpm build
 
 == Structure
 
-* Landing page, philosophy, news feed, and blog essays (separate content collections + RSS)
+* Landing page, philosophy, news feed, blog essays (separate content collections + RSS), and `/demos/` index
 * Links to Antora docs at `https://hci-nerdz.github.io/docs/`
 
-News = org updates. Blog = essays.
+News = org updates. Blog = essays. Demos = interactive prototypes by category.
 
 == Changelog
 

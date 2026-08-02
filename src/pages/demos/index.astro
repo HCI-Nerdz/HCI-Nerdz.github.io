@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { demoCategories, demoCount } from '../../lib/demos';
+
+const total = demoCount();
+---
+
+<BaseLayout
+  title="Demos · HCI Nerdz"
+  description="Interactive HCI prototypes — processing maps, product representation, and other surfaces that make the essays tangible."
+  active="demos"
+>
+  <main class="shell page">
+    <h1>Demos</h1>
+    <p class="lede">
+      Interactive experiments for patterns we argue for in the
+      <a href="/blog/">blog</a> and
+      <a href="https://hci-nerdz.github.io/docs/">docs</a>.
+      Categories below are the taxonomy — empty ones are intentional placeholders for work still to ship.
+      {total === 1 ? '1 demo live' : `${total} demos live`} so far.
+    </p>
+
+    <nav class="demo-toc" aria-label="Demo categories">
+      <ol>
+        {
+          demoCategories.map((cat) => (
+            <li>
+              <a href={`#${cat.id}`}>{cat.title}</a>
+              <span class="count">{cat.demos.length}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    {
+      demoCategories.map((cat) => (
+        <section
+          class="demo-category section"
+          id={cat.id}
+          aria-labelledby={`${cat.id}-heading`}
+        >
+          <h2 id={`${cat.id}-heading`}>{cat.title}</h2>
+          <p class="lede">{cat.description}</p>
+
+          {cat.demos.length === 0 ? (
+            <p class="empty-slot">No demos in this category yet.</p>
+          ) : (
+            <ul class="demo-list">
+              {cat.demos.map((demo) => (
+                <li>
+                  <a class="title" href={demo.href}>
+                    {demo.title}
+                  </a>
+                  <p>{demo.summary}</p>
+                  {demo.related?.length ? (
+                    <p class="related">
+                      {demo.related.map((link, i) => (
+                        <span>
+                          {i > 0 ? ' · ' : ''}
+                          <a href={link.href}>{link.label}</a>
+                        </span>
+                      ))}
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))
+    }
+  </main>
+</BaseLayout>
+
+<style>
+  .demo-toc {
+    margin: 0 0 0.5rem;
+    padding: 1rem 0 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .demo-toc ol {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .demo-toc li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .demo-toc a {
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  .demo-toc a:hover {
+    color: var(--focus);
+  }
+
+  .demo-toc .count {
+    font-size: 0.85rem;
+    color: var(--paper-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .demo-category.section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .demo-category h2 {
+    scroll-margin-top: 5rem;
+  }
+
+  .demo-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .demo-list li {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .demo-list .title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  .demo-list .title:hover {
+    color: var(--focus);
+  }
+
+  .demo-list p {
+    margin: 0;
+    max-width: 42rem;
+    color: var(--paper-muted);
+  }
+
+  .demo-list .related {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .empty-slot {
+    margin: 0;
+    padding: 0.85rem 0;
+    border-top: 1px dashed var(--line);
+    color: var(--paper-muted);
+    font-size: 0.95rem;
+  }
+</style>
