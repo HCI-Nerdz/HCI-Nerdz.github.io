@@ -115,6 +115,10 @@ We are building this as an open UI experiment in [`pipeline-composer`](https://g
 
 The first demo is intentionally narrow: prove that typed insertion, nested parallel groups, and path replay make conflicting rules obvious *before* the browser does.
 
+## Architecture note
+
+The prototype follows the HCI Nerdz strategy template: **core IR**, **headless controller**, **DOM renderer first**, **thin host wrappers** — share meaning and behavior, not auto-exported pixels. See [Share the IR, not the pixels](/blog/share-the-ir-not-the-pixels/) and [Fundamental contexts for portable UI](/blog/fundamental-contexts-for-portable-ui/).
+
 ## Sibling boundaries
 
 - **HCI Nerdz** — graphical pipeline composers, processing maps, product representation of ordered systems

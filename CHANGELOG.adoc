@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-02 — Prototype strategy essays
+
+* link:changelog-details/2026-08-02%20-%20prototype-strategy-essays.adoc[Details]
+
 == 2026-08-02 — Demos index
 
 * link:changelog-details/2026-08-02%20-%20demos-index.adoc[Details]

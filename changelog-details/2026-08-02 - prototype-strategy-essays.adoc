@@ -1,0 +1,9 @@
+= 2026-08-02 — Prototype strategy essays
+
+Published two blog essays formalizing the multi-ecosystem prototype architecture:
+
+* *Share the IR, not the pixels* — reusable strategy template (core, controller, renderers, thin wrappers)
+* *Fundamental contexts for portable UI* — exploratory discussion of sharable contexts vs native host chrome
+
+Cross-linked pipeline-composer, processing-maps, and `/demos/`.
+Updated pipeline-composer demo related links in `src/lib/demos.ts`.

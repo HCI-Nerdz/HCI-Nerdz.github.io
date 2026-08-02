@@ -37,6 +37,14 @@ export const demoCategories: DemoCategory[] = [
             href: "/blog/pipeline-composer-interfaces/",
           },
           {
+            label: "Strategy",
+            href: "/blog/share-the-ir-not-the-pixels/",
+          },
+          {
+            label: "Contexts",
+            href: "/blog/fundamental-contexts-for-portable-ui/",
+          },
+          {
             label: "Docs",
             href: "https://hci-nerdz.github.io/docs/hci-nerdz/processing-maps.html",
           },
