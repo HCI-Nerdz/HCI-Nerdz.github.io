@@ -1,0 +1,5 @@
+= 2026-08-02 — Pipeline composer essay
+
+Published the blog essay *Sequence is the top-level: pipeline composer interfaces*, arguing that ordered runtimes need a single typed processing map rather than fragmented settings pages.
+
+Also added a Prototypes section on the homepage linking the live demo at `https://hci-nerdz.github.io/pipeline-composer/` and the Antora processing-maps topic.
