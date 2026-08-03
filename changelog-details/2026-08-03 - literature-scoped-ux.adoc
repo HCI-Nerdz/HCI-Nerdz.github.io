@@ -1,0 +1,3 @@
+= 2026-08-03 — Literature link on Scoped UX essay
+
+Essay now points at the authoritative Gemini export and PDF design dump under `HCI-Nerdz/docs` `literature/scoped-ux-architecture/`, plus the docs Literature catalog.

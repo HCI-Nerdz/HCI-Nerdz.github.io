@@ -63,3 +63,12 @@ Progressive disclosure still matters on a single screen. Scoped architecture ans
 The interactive [Scoped UX desk](/demos/scoped-ux/) shows three narrow tools — Projects, Environment, Remote — under one shell, with feedforward previews before commit. Toggle “merge into one mega-tool” to feel the junk drawer return.
 
 Docs: [Scoped UX architecture](https://hci-nerdz.github.io/docs/hci-nerdz/scoped-ux-architecture.html).
+
+## Literature
+
+Authoritative sources (raw conversation / design dump — not this essay):
+
+- [Gemini export — Understanding Scoped User Experience](https://github.com/HCI-Nerdz/docs/blob/main/literature/scoped-ux-architecture/gemini-understanding-scoped-user-experience.md) (2025-10-23)
+- [Scoped UX Framework with Feed Forward design (PDF)](https://github.com/HCI-Nerdz/docs/blob/main/literature/scoped-ux-architecture/scoped-ux-framework-with-feedforward-design.pdf) (2026-08-01)
+
+Catalog: [Literature](https://hci-nerdz.github.io/docs/hci-nerdz/literature.html).

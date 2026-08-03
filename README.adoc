@@ -19,6 +19,8 @@ pnpm build
 
 News = org updates. Blog = essays. Demos = interactive prototypes by category (including instruction flows under attention / progressive disclosure).
 
+Authoritative conversation sources for concepts (e.g. Scoped UX) live in the docs repo under `literature/` — see link:https://hci-nerdz.github.io/docs/hci-nerdz/literature.html[Literature].
+
 == Changelog
 
 See link:CHANGELOG.adoc[CHANGELOG.adoc].

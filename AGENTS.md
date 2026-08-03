@@ -22,5 +22,6 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 ## Patterns
 
 - Scoped UX architecture: many small tools under one roof; feedforward is interaction-layer, not a synonym
+- Literature for Scoped UX: `HCI-Nerdz/docs` `literature/scoped-ux-architecture/` (Gemini export + PDF); catalog `/docs/hci-nerdz/literature.html`
 - Instruction flows: demo `/demos/instruction-flow/`; Antora package `@antora-supplemental/instruction-flow` (`asciidoc-interactive`)
 - Pass-through extensions: demo `/demos/pass-through-extensions/`; Windows helper `HCI-Nerdz/pass-through-extensions`

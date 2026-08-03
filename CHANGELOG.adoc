@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-03 — Literature link on Scoped UX essay
+
+* link:changelog-details/2026-08-03%20-%20literature-scoped-ux.adoc[Details]
+
 == 2026-08-03 — Restore Explorer screenshot crops
 
 * link:changelog-details/2026-08-03%20-%20restore-explorer-crops.adoc[Details]
