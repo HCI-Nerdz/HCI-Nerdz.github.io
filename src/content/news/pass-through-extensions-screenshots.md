@@ -8,9 +8,9 @@ The [pass-through extensions](/blog/when-example-files-lose-their-type/) pattern
 
 ## What you can see
 
-The [peel demo](/demos/pass-through-extensions/) leads with an HTML **Today / Pass-through** Explorer strip — layout and accents use site tokens, so it follows the dark theme instead of shipping a cream infographic with a printed color legend.
+The [peel demo](/demos/pass-through-extensions/) leads with real File Explorer screenshots in dark-mode HTML panels — labels and notes use site tokens; the cream infographic with a printed color legend is gone.
 
-Product photos of the light desktop settings UI sit below that (the app itself is light chrome):
+Product photos of the light desktop settings UI sit below that:
 
 ![Pass-through Extensions settings app](/images/pass-through-extensions/settings-app.png)
 

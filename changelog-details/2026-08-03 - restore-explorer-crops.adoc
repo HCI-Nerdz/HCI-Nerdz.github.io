@@ -1,0 +1,7 @@
+= 2026-08-03 — Restore Explorer screenshot crops
+
+Put the File Explorer windows back into the HTML compare.
+
+* Cropped `explorer-today.png` / `explorer-passthrough.png` from the original composite
+* `ExplorerCompare.astro` shows those shots inside dark-mode panels; labels/notes stay HTML
+* Removed the full cream `explorer-before-after.png` composite again

@@ -1,12 +1,16 @@
 ---
 /**
- * Dark-mode-native Explorer before/after — layout and copy live in HTML/CSS,
- * not baked into a light cream graphic with a printed palette legend.
+ * Today vs pass-through: real Explorer screenshots inside dark-mode HTML chrome.
+ * Labels, notes, and accents live in CSS — not baked into a cream infographic.
  */
 interface Props {
-  filename?: string;
+  todaySrc?: string;
+  passSrc?: string;
 }
-const { filename = 'appsettings.json.example' } = Astro.props;
+const {
+  todaySrc = '/images/pass-through-extensions/explorer-today.png',
+  passSrc = '/images/pass-through-extensions/explorer-passthrough.png',
+} = Astro.props;
 ---
 
 <section class="xcmp" aria-label="Explorer today versus pass-through">
@@ -16,25 +20,18 @@ const { filename = 'appsettings.json.example' } = Astro.props;
         <h2>Today</h2>
         <span class="xcmp-tag xcmp-tag-bad">last suffix</span>
       </header>
-      <div class="xcmp-explorer" aria-hidden="true">
-        <div class="xcmp-path">C:\app\config</div>
-        <div class="xcmp-cols">
-          <span>Name</span>
-          <span>Type</span>
-          <span>Opens with</span>
-        </div>
-        <div class="xcmp-row">
-          <span class="xcmp-name">
-            <span class="xcmp-ico xcmp-ico-blank" aria-hidden="true"></span>
-            {filename}
-          </span>
-          <span>EXAMPLE File</span>
-          <span class="xcmp-dash">—</span>
-        </div>
-      </div>
+      <figure class="xcmp-shot shot">
+        <img
+          src={todaySrc}
+          alt="File Explorer today: appsettings.json.example shown as EXAMPLE File with no Open with handler"
+          width="700"
+          height="430"
+          loading="eager"
+        />
+      </figure>
       <ul class="xcmp-notes">
         <li>
-          Files like <code>{filename}</code> appear as generic EXAMPLE files.
+          Files like <code>appsettings.json.example</code> appear as generic EXAMPLE files.
         </li>
         <li>The inner type is ignored.</li>
         <li>No useful editor association.</li>
@@ -46,24 +43,15 @@ const { filename = 'appsettings.json.example' } = Astro.props;
         <h2>Pass-through</h2>
         <span class="xcmp-tag xcmp-tag-good">peel</span>
       </header>
-      <div class="xcmp-explorer" aria-hidden="true">
-        <div class="xcmp-path">C:\app\config</div>
-        <div class="xcmp-cols">
-          <span>Name</span>
-          <span>Type</span>
-          <span>Opens with</span>
-        </div>
-        <div class="xcmp-row xcmp-row-good">
-          <span class="xcmp-name">
-            <span class="xcmp-ico xcmp-ico-json" aria-hidden="true">{'{}'}</span>
-            {filename}
-          </span>
-          <span>
-            <span class="xcmp-accent">JSON</span> file (<span class="xcmp-badge">example</span>)
-          </span>
-          <span class="xcmp-accent">JSON editor</span>
-        </div>
-      </div>
+      <figure class="xcmp-shot shot">
+        <img
+          src={passSrc}
+          alt="File Explorer with pass-through: same file as JSON with example badge, opens with JSON editor"
+          width="700"
+          height="430"
+          loading="eager"
+        />
+      </figure>
       <ul class="xcmp-notes">
         <li>Meta-suffix peels; content type passes through.</li>
         <li>
@@ -75,11 +63,12 @@ const { filename = 'appsettings.json.example' } = Astro.props;
     </article>
   </div>
   <p class="xcmp-legend">
-    Accents use site tokens —
+    Explorer windows are product screenshots (click to expand). Panel labels and notes use site
+    tokens —
     <span class="xcmp-accent">honesty / teal</span>
     for the inner type,
     <span class="xcmp-badge">focus / amber</span>
-    for the meta-badge — so this block follows dark mode with the rest of the page.
+    for the meta-badge — so the page chrome stays dark-mode native.
   </p>
 </section>
 
@@ -118,7 +107,7 @@ const { filename = 'appsettings.json.example' } = Astro.props;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
   }
 
   .xcmp-head h2 {
@@ -149,86 +138,17 @@ const { filename = 'appsettings.json.example' } = Astro.props;
     color: #7dcdc2;
   }
 
-  .xcmp-explorer {
+  .xcmp-shot {
+    margin: 0 0 0.85rem;
+  }
+
+  .xcmp-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
     border: 1px solid var(--line);
     border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 0.85rem;
     background: var(--ink-2);
-  }
-
-  .xcmp-path {
-    padding: 0.4rem 0.7rem;
-    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
-    font-size: 0.72rem;
-    color: var(--paper-muted);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .xcmp-cols,
-  .xcmp-row {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 0.9fr;
-    gap: 0.4rem;
-    padding: 0.45rem 0.7rem;
-    font-size: 0.78rem;
-  }
-
-  .xcmp-cols {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--paper-muted);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .xcmp-row {
-    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
-    color: var(--paper);
-    align-items: center;
-  }
-
-  .xcmp-row-good {
-    background: color-mix(in srgb, var(--honesty) 10%, transparent);
-  }
-
-  .xcmp-name {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .xcmp-ico {
-    flex: 0 0 auto;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 1px;
-    display: inline-grid;
-    place-items: center;
-    font-size: 0.55rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .xcmp-ico-blank {
-    border: 1px solid var(--paper-muted);
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .xcmp-ico-json {
-    background: color-mix(in srgb, var(--honesty) 35%, transparent);
-    color: var(--paper);
-    border: 1px solid color-mix(in srgb, var(--honesty) 55%, transparent);
-  }
-
-  .xcmp-dash {
-    color: var(--paper-muted);
   }
 
   .xcmp-accent {
@@ -265,6 +185,6 @@ const { filename = 'appsettings.json.example' } = Astro.props;
     margin: 0.75rem 0 0;
     font-size: 0.85rem;
     color: var(--paper-muted);
-    max-width: 42rem;
+    max-width: 44rem;
   }
 </style>
