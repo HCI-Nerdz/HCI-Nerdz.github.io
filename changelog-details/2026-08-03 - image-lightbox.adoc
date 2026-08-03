@@ -1,0 +1,7 @@
+= 2026-08-03 — Image lightbox
+
+Click-to-expand for content images across the site.
+
+* `ImageLightbox.astro` wired in `BaseLayout` — native `<dialog>`, Esc / backdrop / Close
+* Targets article body images and `.shot` product photos (skips brand/hero marks)
+* Zoom-in cursor + focus ring; figcaption carried into the viewer when present

@@ -1,0 +1,179 @@
+---
+/**
+ * Site-wide click-to-expand for content images (article body + product shots).
+ * Native <dialog>; Esc / backdrop / Close dismisses.
+ */
+---
+
+<dialog id="image-lightbox" class="image-lightbox" aria-label="Expanded image">
+  <div class="image-lightbox-frame">
+    <img class="image-lightbox-img" alt="" />
+    <p class="image-lightbox-cap" hidden></p>
+  </div>
+  <form method="dialog" class="image-lightbox-bar">
+    <button type="submit" class="image-lightbox-close" value="close">Close</button>
+  </form>
+</dialog>
+
+<script>
+  const SELECTOR = '.article .body img, .shot img, img[data-lightbox]';
+  const SKIP = '.brand img, .hero .mark, .image-lightbox img, .xcmp-ico';
+
+  const dialog = document.getElementById('image-lightbox');
+  if (!(dialog instanceof HTMLDialogElement)) {
+    // no-op
+  } else {
+    const fullImg = dialog.querySelector('.image-lightbox-img');
+    const cap = dialog.querySelector('.image-lightbox-cap');
+    if (!(fullImg instanceof HTMLImageElement) || !(cap instanceof HTMLElement)) {
+      // incomplete markup
+    } else {
+      function openFrom(img) {
+        const src = img.currentSrc || img.src;
+        if (!src) return;
+        fullImg.src = src;
+        fullImg.alt = img.alt || '';
+        const fig = img.closest('figure');
+        const caption = fig?.querySelector('figcaption')?.textContent?.trim();
+        if (caption) {
+          cap.textContent = caption;
+          cap.hidden = false;
+        } else {
+          cap.textContent = '';
+          cap.hidden = true;
+        }
+        dialog.showModal();
+      }
+
+      function enhance(img) {
+        if (!(img instanceof HTMLImageElement)) return;
+        if (img.matches(SKIP) || img.closest(SKIP)) return;
+        if (img.dataset.lightboxReady === '1') return;
+        img.dataset.lightboxReady = '1';
+        img.classList.add('is-lightboxable');
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        const label = img.alt ? `Expand image: ${img.alt}` : 'Expand image';
+        img.setAttribute('aria-label', label);
+      }
+
+      document.querySelectorAll(SELECTOR).forEach(enhance);
+
+      const mo = new MutationObserver(() => {
+        document.querySelectorAll(SELECTOR).forEach(enhance);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+
+      document.addEventListener('click', (e) => {
+        const t = e.target;
+        if (!(t instanceof Element)) return;
+        const img = t.closest(SELECTOR);
+        if (!(img instanceof HTMLImageElement)) return;
+        if (img.matches(SKIP)) return;
+        e.preventDefault();
+        openFrom(img);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const t = e.target;
+        if (!(t instanceof HTMLImageElement)) return;
+        if (!t.matches(SELECTOR) || t.matches(SKIP)) return;
+        e.preventDefault();
+        openFrom(t);
+      });
+
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    }
+  }
+</script>
+
+<style is:global>
+  img.is-lightboxable {
+    cursor: zoom-in;
+  }
+
+  .shot img.is-lightboxable {
+    transition: outline-color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .shot img.is-lightboxable:hover,
+  .shot img.is-lightboxable:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .article .body img.is-lightboxable:hover,
+  .article .body img.is-lightboxable:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .image-lightbox {
+    max-width: min(96vw, 72rem);
+    max-height: 94vh;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--ink-2);
+    color: var(--paper);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+  }
+
+  .image-lightbox::backdrop {
+    background: rgba(8, 10, 14, 0.82);
+    backdrop-filter: blur(6px);
+  }
+
+  .image-lightbox-frame {
+    padding: 0.75rem 0.75rem 0;
+    max-height: calc(94vh - 3.5rem);
+    overflow: auto;
+  }
+
+  .image-lightbox-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: calc(94vh - 5.5rem);
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .image-lightbox-cap {
+    margin: 0.65rem 0.15rem 0;
+    font-size: 0.9rem;
+    color: var(--paper-muted);
+  }
+
+  .image-lightbox-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.65rem 0.75rem 0.75rem;
+  }
+
+  .image-lightbox-close {
+    min-height: 2.4rem;
+    padding: 0.4rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .image-lightbox-close:hover {
+    color: var(--focus);
+  }
+
+  .image-lightbox-close:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+</style>
