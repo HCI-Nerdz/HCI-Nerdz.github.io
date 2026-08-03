@@ -1,0 +1,9 @@
+= 2026-08-01 — Scoped UX architecture
+
+Published the tenet *many small tools under one roof* across essay, demo, and catalog.
+
+* Blog essay: `scoped-ux-architecture.md`
+* Interactive demo at `/demos/scoped-ux/` (Scoped UX desk)
+* New demos taxonomy category *Scoped UX architecture*
+* Homepage + philosophy cross-links
+* Companion Antora topic in the docs hub

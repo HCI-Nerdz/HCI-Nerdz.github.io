@@ -57,11 +57,58 @@ export const demoCategories: DemoCategory[] = [
     ],
   },
   {
+    id: "scoped-ux-architecture",
+    title: "Scoped UX architecture",
+    description:
+      "Many small tools, each with a clear job, under one roof — hard boundaries, shared shell, room for honest feedforward.",
+    demos: [
+      {
+        id: "scoped-ux-desk",
+        title: "Scoped UX desk",
+        summary:
+          "Three narrow tools (Projects, Environment, Remote) with feedforward previews. Toggle mega-tool mode to feel the junk drawer return.",
+        href: "/demos/scoped-ux/",
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/scoped-ux-architecture/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/scoped-ux-architecture.html",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "product-representation",
     title: "Product representation",
     description:
       "First-class UI for jobs the backend already supports — filters, modes, and affordances that match real involvement.",
-    demos: [],
+    demos: [
+      {
+        id: "pass-through-extensions",
+        title: "Pass-through peel",
+        summary:
+          "Meta-suffixes like .example and .template are badges on a real type. Peel them and resolve open/icon from the stem — the way Explorer should.",
+        href: "/demos/pass-through-extensions/",
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-example-files-lose-their-type/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/pass-through-extensions.html",
+          },
+          {
+            label: "Windows helper",
+            href: "https://github.com/HCI-Nerdz/pass-through-extensions",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "selection-dialogs",
@@ -89,7 +136,29 @@ export const demoCategories: DemoCategory[] = [
     title: "Attention & progressive disclosure",
     description:
       "Budget the first screen; deepen on demand. Tools that respect cognitive load instead of spending it.",
-    demos: [],
+    demos: [
+      {
+        id: "instruction-flow",
+        title: "Instruction flow",
+        summary:
+          "Menu-style install guides: choose a path, see only the next honest steps, rewind and share the URL. Continuations nest under decisions instead of dumping every platform variant at once.",
+        href: "/demos/instruction-flow/",
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/instruction-flows/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/instruction-flows.html",
+          },
+          {
+            label: "Antora extension",
+            href: "https://github.com/antora-supplemental/asciidoc-interactive",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "feedback-severity",

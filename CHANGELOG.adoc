@@ -1,5 +1,29 @@
 = Changelog
 
+== 2026-08-03 — Pass-through screenshots
+
+* link:changelog-details/2026-08-03%20-%20pass-through-screenshots.adoc[Details]
+
+== 2026-08-02 — Pass-through extensions
+
+* link:changelog-details/2026-08-02%20-%20pass-through-extensions.adoc[Details]
+
+== 2026-08-03 — Titles as orientation
+
+* link:changelog-details/2026-08-03%20-%20titles-as-orientation.adoc[Details]
+
+== 2026-08-02 — Instruction flows news and title style
+
+* link:changelog-details/2026-08-02%20-%20instruction-flows-news-and-title-style.adoc[Details]
+
+== 2026-08-02 — Instruction flows
+
+* link:changelog-details/2026-08-02%20-%20instruction-flows.adoc[Details]
+
+== 2026-08-01 — Scoped UX architecture
+
+* link:changelog-details/2026-08-01%20-%20scoped-ux-architecture.adoc[Details]
+
 == 2026-08-01 — Pipeline composer essay scope
 
 * link:changelog-details/2026-08-01%20-%20pipeline-composer-essay-scope.adoc[Details]

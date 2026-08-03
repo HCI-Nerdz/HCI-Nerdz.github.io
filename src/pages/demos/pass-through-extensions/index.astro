@@ -1,0 +1,696 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Pass-through peel · HCI Nerdz"
+  description="Interactive demo: peel .example / .template meta-suffixes and resolve the inner file type the way Explorer should."
+  active="demos"
+>
+  <main class="shell page peel-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="peel-intro">
+      <p class="eyebrow">Demo · Pass-through extensions</p>
+      <h1>Pass-through peel</h1>
+      <p class="lede">
+        Type a filename. Watch Windows-style <em>last suffix wins</em> strand the type — then peel the
+        meta-badge and resolve the inner association the way Explorer should.
+      </p>
+      <p class="related-links">
+        <a href="/blog/when-example-files-lose-their-type/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/pass-through-extensions.html">Docs</a>
+        ·
+        <a href="https://github.com/HCI-Nerdz/pass-through-extensions">Windows app</a>
+      </p>
+    </header>
+
+    <div class="shot-board" aria-label="Product screenshots">
+      <figure class="shot">
+        <img
+          src="/images/pass-through-extensions/explorer-before-after.png"
+          alt="Side-by-side: today appsettings.json.example is an EXAMPLE File with no handler; pass-through shows JSON file with example badge opening in a JSON editor"
+          width="1600"
+          height="900"
+          loading="eager"
+        />
+        <figcaption>What Explorer should show — last-suffix vs peel.</figcaption>
+      </figure>
+      <div class="shot-row">
+        <figure class="shot">
+          <img
+            src="/images/pass-through-extensions/settings-app.png"
+            alt="Pass-through Extensions settings app with built-in meta-types including .old and Apply to Explorer"
+            width="720"
+            height="640"
+            loading="lazy"
+          />
+          <figcaption>Settings app — toggle built-ins, Apply for this user.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img
+            src="/images/pass-through-extensions/settings-app-custom.png"
+            alt="Same settings app with a custom .backup meta-type in the user list"
+            width="1200"
+            height="900"
+            loading="lazy"
+          />
+          <figcaption>Add your own meta-types (shown: .backup).</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <section class="peel-lab" aria-label="Pass-through peel demo">
+      <label class="field" for="filename">
+        <span>Filename</span>
+        <input
+          id="filename"
+          type="text"
+          spellcheck="false"
+          autocomplete="off"
+          value="appsettings.json.example"
+        />
+      </label>
+
+      <div class="samples" role="group" aria-label="Sample filenames">
+        <button type="button" data-sample="appsettings.json.example">json.example</button>
+        <button type="button" data-sample=".env.example">.env.example</button>
+        <button type="button" data-sample="nginx.conf.template">conf.template</button>
+        <button type="button" data-sample="php.ini.dist">ini.dist</button>
+        <button type="button" data-sample="docker-compose.yml.sample">yml.sample</button>
+        <button type="button" data-sample="config.yaml.old">yaml.old</button>
+        <button type="button" data-sample="notes.txt.example.bak">chained badges</button>
+        <button type="button" data-sample="archive.tar.gz">tar.gz (not passthrough)</button>
+        <button type="button" data-sample="readme.md">plain md</button>
+      </div>
+
+      <div class="compare" id="compare">
+        <article class="lane lane-today" aria-labelledby="today-h">
+          <h2 id="today-h">Last suffix <span class="tag bad">today</span></h2>
+          <dl class="facts" id="today-facts"></dl>
+          <p class="verdict" id="today-verdict"></p>
+        </article>
+        <article class="lane lane-peel" aria-labelledby="peel-h">
+          <h2 id="peel-h">Pass-through peel <span class="tag good">proposed</span></h2>
+          <dl class="facts" id="peel-facts"></dl>
+          <p class="verdict" id="peel-verdict"></p>
+        </article>
+      </div>
+
+      <div class="explorer" aria-label="Mock Explorer row">
+        <div class="explorer-chrome">
+          <span>Name</span>
+          <span>Type</span>
+          <span>Opens with</span>
+        </div>
+        <div class="explorer-row" id="explorer-today">
+          <span class="name"></span>
+          <span class="type"></span>
+          <span class="opens"></span>
+        </div>
+        <div class="explorer-row is-peel" id="explorer-peel">
+          <span class="name"></span>
+          <span class="type"></span>
+          <span class="opens"></span>
+        </div>
+      </div>
+
+      <ol class="peel-steps" id="peel-steps" aria-label="Peel steps"></ol>
+    </section>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li>
+          <strong>Meta-suffixes</strong> — <code>.example</code>, <code>.template</code>,
+          <code>.dist</code>, and friends are badges, not content types.
+        </li>
+        <li>
+          <strong>Peel, then associate</strong> — look up the inner extension; pass the <em>real</em>
+          path to that handler.
+        </li>
+        <li>
+          <strong>Not codecs</strong> — <code>.tar.gz</code> stays a compression story, not a
+          pass-through badge.
+        </li>
+        <li>
+          <strong>Ship the workaround</strong> — the
+          <a href="https://github.com/HCI-Nerdz/pass-through-extensions">Windows app</a>
+          lets you toggle built-ins, add custom meta-types, and Apply the peel for double-click
+          until the OS grows a real passthru kind.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .peel-page {
+    max-width: 52rem;
+  }
+
+  .back-row {
+    margin: 0 0 1rem;
+  }
+
+  .back {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .back:hover {
+    color: var(--amber);
+  }
+
+  .peel-intro .eyebrow {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .peel-intro h1 {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    line-height: 1.15;
+  }
+
+  .lede {
+    margin: 0 0 0.75rem;
+    color: var(--muted);
+    max-width: 40rem;
+  }
+
+  .related-links {
+    margin: 0 0 1.75rem;
+    font-size: 0.95rem;
+  }
+
+  .related-links a {
+    color: var(--teal);
+  }
+
+  .shot-board {
+    margin: 0 0 1.75rem;
+    padding: 0;
+  }
+
+  .shot-board > .shot {
+    margin: 0 0 0.85rem;
+  }
+
+  .shot-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  @media (max-width: 680px) {
+    .shot-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .shot {
+    margin: 0;
+  }
+
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  }
+
+  .shot figcaption {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .peel-lab {
+    padding: 1.25rem 0 0.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .field {
+    display: grid;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .field span {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field input {
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+    font-size: 1.05rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--paper) 88%, #fff);
+    color: var(--ink);
+  }
+
+  .field input:focus {
+    outline: 2px solid var(--amber);
+    outline-offset: 1px;
+  }
+
+  .samples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .samples button {
+    font: inherit;
+    font-size: 0.82rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .samples button:hover,
+  .samples button.is-active {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 680px) {
+    .compare {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .lane {
+    padding: 1rem 1.05rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background:
+      linear-gradient(160deg, color-mix(in srgb, var(--paper) 92%, #fff), var(--paper));
+  }
+
+  .lane h2 {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .tag.bad {
+    background: color-mix(in srgb, #b33 18%, transparent);
+    color: #8a2f2f;
+  }
+
+  .tag.good {
+    background: color-mix(in srgb, var(--teal) 22%, transparent);
+    color: color-mix(in srgb, var(--teal) 70%, #000);
+  }
+
+  .facts {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 0.75rem;
+    font-size: 0.92rem;
+  }
+
+  .facts dt {
+    color: var(--muted);
+  }
+
+  .facts dd {
+    margin: 0;
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+    font-size: 0.86rem;
+    word-break: break-all;
+  }
+
+  .verdict {
+    margin: 0.85rem 0 0;
+    font-size: 0.92rem;
+    color: var(--ink);
+  }
+
+  .lane-today .verdict {
+    color: #8a2f2f;
+  }
+
+  .lane-peel .verdict {
+    color: color-mix(in srgb, var(--teal) 55%, #000);
+  }
+
+  .explorer {
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+    font-size: 0.88rem;
+  }
+
+  .explorer-chrome,
+  .explorer-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+  }
+
+  .explorer-chrome {
+    background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .explorer-row {
+    border-top: 1px solid var(--line);
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+    font-size: 0.8rem;
+  }
+
+  .explorer-row.is-peel {
+    background: color-mix(in srgb, var(--teal) 8%, transparent);
+  }
+
+  .explorer-row .name::before {
+    content: "";
+    display: inline-block;
+    width: 0.65rem;
+    height: 0.65rem;
+    margin-right: 0.45rem;
+    border-radius: 1px;
+    background: var(--muted);
+    vertical-align: -0.05rem;
+  }
+
+  .explorer-row.is-peel .name::before {
+    background: var(--teal);
+  }
+
+  .peel-steps {
+    margin: 0 0 1.5rem;
+    padding: 0 0 0 1.2rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .peel-steps li {
+    margin-bottom: 0.35rem;
+  }
+
+  .peel-steps code {
+    font-size: 0.85em;
+    color: var(--ink);
+  }
+
+  .lesson {
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+
+  .lesson h2 {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+
+  .lesson ul {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--muted);
+  }
+
+  .lesson li {
+    margin-bottom: 0.45rem;
+  }
+
+  .lesson strong {
+    color: var(--ink);
+  }
+
+  .lesson a {
+    color: var(--teal);
+  }
+</style>
+
+<script>
+  const PASS_THROUGH = new Set([
+    "example",
+    "template",
+    "tmpl",
+    "sample",
+    "dist",
+    "default",
+    "skeleton",
+    "stub",
+    "orig",
+    "bak",
+    "old",
+  ]);
+
+  /** Compression / archive tails — content codecs, not role badges */
+  const CODEC_TAILS = new Set(["gz", "bz2", "xz", "zst", "zip", "7z", "rar"]);
+
+  const APP_GUESS = {
+    json: "JSON editor / VS Code",
+    yml: "YAML editor / VS Code",
+    yaml: "YAML editor / VS Code",
+    conf: "Text editor",
+    config: "Text editor",
+    ini: "Text editor",
+    env: "Text editor",
+    md: "Markdown app",
+    txt: "Text editor",
+    toml: "Text editor",
+    xml: "XML editor",
+    html: "Browser / editor",
+    css: "Editor",
+    js: "Editor",
+    ts: "Editor",
+    py: "Python / editor",
+    sh: "Shell / editor",
+    ps1: "PowerShell / editor",
+    dockerfile: "Editor",
+    gz: "Archive utility",
+    tar: "Archive utility",
+  };
+
+  function segments(name) {
+    const base = name.includes("/") || name.includes("\\")
+      ? name.split(/[/\\]/).pop()
+      : name;
+    if (!base || base === "." || base === "..") return { base: base || "", parts: [] };
+    // leading-dot files: ".env.example" → ["env","example"] with hidden flag
+    if (base.startsWith(".") && base.lastIndexOf(".") === 0) {
+      return { base, parts: [base.slice(1)], hiddenStem: true };
+    }
+    if (base.startsWith(".")) {
+      return { base, parts: base.slice(1).split("."), hiddenStem: true };
+    }
+    return { base, parts: base.split("."), hiddenStem: false };
+  }
+
+  function lastSuffix(parts) {
+    if (parts.length < 2) return null;
+    return parts[parts.length - 1].toLowerCase();
+  }
+
+  function peel(parts) {
+    const working = [...parts];
+    const peeled = [];
+    while (working.length >= 2) {
+      const tail = working[working.length - 1].toLowerCase();
+      if (!PASS_THROUGH.has(tail)) break;
+      peeled.push(tail);
+      working.pop();
+    }
+    return { remaining: working, peeled };
+  }
+
+  function typeLabel(ext, { passthroughBadge } = {}) {
+    if (!ext) return "File";
+    const upper = ext.toUpperCase();
+    if (passthroughBadge) return `${upper} file (${passthroughBadge} badge)`;
+    return `${upper} File`;
+  }
+
+  function opensWith(ext) {
+    if (!ext) return "Unknown";
+    return APP_GUESS[ext.toLowerCase()] || `Handler for .${ext}`;
+  }
+
+  function setFacts(dl, rows) {
+    dl.replaceChildren(
+      ...rows.flatMap(([k, v]) => {
+        const dt = document.createElement("dt");
+        dt.textContent = k;
+        const dd = document.createElement("dd");
+        dd.textContent = v;
+        return [dt, dd];
+      }),
+    );
+  }
+
+  function render() {
+    const input = document.getElementById("filename");
+    const raw = input.value.trim() || "file";
+    const { base, parts, hiddenStem } = segments(raw);
+
+    const todayExt = lastSuffix(parts);
+    const todayDead =
+      todayExt &&
+      PASS_THROUGH.has(todayExt) &&
+      parts.length >= 2;
+
+    const { remaining, peeled } = peel(parts);
+    const innerExt =
+      remaining.length >= 2
+        ? remaining[remaining.length - 1]
+        : null;
+
+    // ".env.example" → remaining ["env"] after peel — treat as .env (hidden stem only)
+    let effectiveInner = innerExt;
+    if (!effectiveInner && remaining.length === 1 && peeled.length && hiddenStem) {
+      effectiveInner = remaining[0];
+    }
+    if (!effectiveInner && remaining.length === 1 && !peeled.length) {
+      effectiveInner = remaining[0];
+    }
+
+    const codecNote =
+      todayExt && CODEC_TAILS.has(todayExt)
+        ? "Compression/archive tail — not a pass-through badge."
+        : null;
+
+    setFacts(document.getElementById("today-facts"), [
+      ["Resolved ext", todayExt ? `.${todayExt}` : "(none)"],
+      ["ProgID story", todayDead ? "HCI? none — EXAMPLE File" : todayExt ? `handler for .${todayExt}` : "untyped"],
+      ["Path passed", base],
+    ]);
+
+    const todayVerdict = document.getElementById("today-verdict");
+    if (codecNote) {
+      todayVerdict.textContent = codecNote + " Last-suffix open may still be correct for the codec.";
+    } else if (todayDead) {
+      todayVerdict.textContent =
+        "Double-click hits a meta-badge with no useful handler. Inner type ignored.";
+    } else if (!todayExt) {
+      todayVerdict.textContent = "No extension to resolve.";
+    } else {
+      todayVerdict.textContent = "Last suffix matches a real content type — no peel needed.";
+    }
+
+    const badge = peeled.length ? peeled.map((p) => `.${p}`).join("") : null;
+    setFacts(document.getElementById("peel-facts"), [
+      ["Peeled", peeled.length ? peeled.map((p) => `.${p}`).join(" → ") : "(nothing)"],
+      ["Resolved ext", effectiveInner ? `.${effectiveInner}` : "(none)"],
+      ["Path passed", base + " (unchanged)"],
+    ]);
+
+    const peelVerdict = document.getElementById("peel-verdict");
+    if (codecNote && !peeled.length) {
+      peelVerdict.textContent =
+        "Allow-list refuses to peel codec tails. Same as today for .tar.gz — on purpose.";
+    } else if (peeled.length && effectiveInner) {
+      peelVerdict.textContent = `Open with the .${effectiveInner} association; keep the badge on disk.`;
+    } else if (peeled.length && !effectiveInner) {
+      peelVerdict.textContent = "Peeled everything — no inner type left. Leave untyped or refuse.";
+    } else {
+      peelVerdict.textContent = "No pass-through suffix — identical to last-suffix resolution.";
+    }
+
+    const exToday = document.getElementById("explorer-today");
+    exToday.querySelector(".name").textContent = base;
+    exToday.querySelector(".type").textContent = typeLabel(todayExt || "");
+    exToday.querySelector(".opens").textContent = todayDead
+      ? "—"
+      : opensWith(todayExt || "");
+
+    const exPeel = document.getElementById("explorer-peel");
+    exPeel.querySelector(".name").textContent = base;
+    exPeel.querySelector(".type").textContent = effectiveInner
+      ? typeLabel(effectiveInner, {
+          passthroughBadge: peeled.length ? peeled.join("+") : undefined,
+        })
+      : typeLabel(todayExt || "");
+    exPeel.querySelector(".opens").textContent = opensWith(
+      effectiveInner || (!todayDead ? todayExt : "") || "",
+    );
+
+    const steps = document.getElementById("peel-steps");
+    const items = [];
+    items.push(`Start with <code>${base}</code>.`);
+    if (peeled.length) {
+      let cursor = parts;
+      for (const p of peeled) {
+        cursor = cursor.slice(0, -1);
+        const shown = (hiddenStem ? "." : "") + cursor.join(".");
+        items.push(
+          `Peel <code>.${p}</code> → logical stem <code>${shown}</code> (file on disk unchanged).`,
+        );
+      }
+      items.push(
+        `Associate as <code>.${effectiveInner || "?"}</code> → ${opensWith(effectiveInner || "")}.`,
+      );
+    } else if (codecNote) {
+      items.push(codecNote);
+    } else {
+      items.push("No allow-listed meta-suffix on the right — stop.");
+    }
+    steps.innerHTML = items.map((html) => `<li>${html}</li>`).join("");
+
+    document.querySelectorAll(".samples button").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.dataset.sample === raw);
+    });
+  }
+
+  const input = document.getElementById("filename");
+  input.addEventListener("input", render);
+  document.querySelectorAll(".samples button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      input.value = btn.dataset.sample;
+      input.focus();
+      render();
+    });
+  });
+  render();
+</script>

@@ -1,6 +1,6 @@
 ---
-title: "The bug is product representation"
-description: "When capability exists but the first-class UI hides it, the product is lying about what counts — and that is an HCI bug, not a power-user gap."
+title: "When the UI hides what counts"
+description: "If the engine already knows and the first-class UI does not ask, the product is lying about involvement — that is an HCI bug, not a power-user gap."
 pubDate: 2026-08-01
 tags: ["discoverability", "honesty", "product-representation"]
 ---

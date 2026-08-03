@@ -1,5 +1,5 @@
 ---
-title: "Sequence as the top-level: pipeline composer interfaces"
+title: "Sequence as top-level organization"
 description: "When a system applies rules in order, the processing-map surface should show that order as one spine — not scatter steps across settings pages until the machine contradicts itself."
 pubDate: 2026-08-02
 tags: ["pipeline", "sequentiality", "processing-map", "product-representation"]
@@ -119,7 +119,7 @@ The first demo is intentionally narrow: prove that typed insertion, nested paral
 
 ## Architecture note
 
-The prototype follows the HCI Nerdz strategy template: **core IR**, **headless controller**, **DOM renderer first**, **thin host wrappers** — share meaning and behavior, not auto-exported pixels. See [Share the IR, not the pixels](/blog/share-the-ir-not-the-pixels/) and [Fundamental contexts for portable UI](/blog/fundamental-contexts-for-portable-ui/).
+The prototype follows the HCI Nerdz strategy template: **core IR**, **headless controller**, **DOM renderer first**, **thin host wrappers** — share meaning and behavior, not auto-exported pixels. See [Sharing the IR, not the pixels](/blog/share-the-ir-not-the-pixels/) and [Fundamental contexts for portable UI](/blog/fundamental-contexts-for-portable-ui/).
 
 ## Sibling boundaries
 

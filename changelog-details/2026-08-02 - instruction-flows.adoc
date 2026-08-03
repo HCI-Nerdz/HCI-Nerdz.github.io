@@ -1,0 +1,8 @@
+= 2026-08-02 — Instruction flows
+
+Catalogued menu-style instruction flows as an HCI pattern with a live demo.
+
+* Blog essay: `instruction-flows.md`
+* Interactive demo at `/demos/instruction-flow/` (continuation-insert install guide)
+* Listed under *Attention & progressive disclosure* in `src/lib/demos.ts`
+* Homepage demos strip + docs/extension cross-links

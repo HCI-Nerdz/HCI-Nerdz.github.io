@@ -17,8 +17,12 @@ pnpm build
 * Landing page, philosophy, news feed, blog essays (separate content collections + RSS), and `/demos/` index
 * Links to Antora docs at `https://hci-nerdz.github.io/docs/`
 
-News = org updates. Blog = essays. Demos = interactive prototypes by category.
+News = org updates. Blog = essays. Demos = interactive prototypes by category (including instruction flows under attention / progressive disclosure).
 
 == Changelog
 
 See link:CHANGELOG.adoc[CHANGELOG.adoc].
+
+== Editorial style
+
+Title and headline rules: link:STYLE.adoc[STYLE.adoc]. Agent entrypoint: link:AGENTS.md[AGENTS.md].

@@ -1,0 +1,8 @@
+= 2026-08-03 — Pass-through screenshots
+
+Added product screenshots to the pass-through extensions story.
+
+* Public images under `/images/pass-through-extensions/` (Explorer comparison, settings app, custom meta-type, peel demo)
+* Demo page shot board above the interactive peel
+* Essay embeds comparison + settings shots
+* News follow-up: `pass-through-extensions-screenshots.md`

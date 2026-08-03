@@ -327,6 +327,15 @@ img {
   max-width: 42rem;
 }
 
+.article .body img {
+  display: block;
+  max-width: min(100%, 52rem);
+  height: auto;
+  margin: 1.25rem 0;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
 .back {
   display: inline-block;
   margin-bottom: 1.25rem;

@@ -1,5 +1,5 @@
 ---
-title: "Theme is a contract"
+title: "Theme as a contract"
 description: "Previews, diagrams, and chrome that refuse the host theme are not aesthetic preferences — they break immersion and trust."
 pubDate: 2026-08-01
 tags: ["theme", "preview", "accessibility"]

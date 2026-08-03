@@ -110,20 +110,20 @@ Portable UI is a **negotiation**, not a victory condition.
            (React / Solid / Vue / WC)
 ```
 
-This is the same architecture as [Share the IR, not the pixels](/blog/share-the-ir-not-the-pixels/), drawn as contexts instead of layers.
+This is the same architecture as [Sharing the IR, not the pixels](/blog/share-the-ir-not-the-pixels/), drawn as contexts instead of layers.
 
 ## Open questions
 
 - Is five contexts enough, or do we need explicit **time** (animation, async) and **persistence** (undo scope) as first-class contexts?
 - Can renderer capability profiles be shared JSON Schema, or are they always prose plus tests?
-- Where does **theme as contract** ([Theme is a contract](/blog/theme-is-a-contract/)) sit — host-native only, or a thin token map in the IR?
+- Where does **theme as contract** ([Theme as a contract](/blog/theme-is-a-contract/)) sit — host-native only, or a thin token map in the IR?
 - Do processing maps generalize to non-sequential domains without forcing a fake spine?
 
 Comments and prototypes welcome. This page will move as [`pipeline-composer`](https://github.com/HCI-Nerdz/pipeline-composer) tries DOM vs canvas on the same IR.
 
 ## Links
 
-- Strategy template: [Share the IR, not the pixels](/blog/share-the-ir-not-the-pixels/)
+- Strategy template: [Sharing the IR, not the pixels](/blog/share-the-ir-not-the-pixels/)
 - Docs: [Prototype strategy](https://hci-nerdz.github.io/docs/hci-nerdz/prototype-strategy.html) · [Fundamental contexts (stub)](https://hci-nerdz.github.io/docs/hci-nerdz/fundamental-contexts.html)
-- Processing maps: [Sequence as the top-level](/blog/pipeline-composer-interfaces/) · [Docs topic](https://hci-nerdz.github.io/docs/hci-nerdz/processing-maps.html)
+- Processing maps: [Sequence as top-level organization](/blog/pipeline-composer-interfaces/) · [Docs topic](https://hci-nerdz.github.io/docs/hci-nerdz/processing-maps.html)
 - Demo: [pipeline-composer](https://hci-nerdz.github.io/pipeline-composer/) · [Demos index](/demos/)

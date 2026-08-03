@@ -1,0 +1,647 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Instruction flow · HCI Nerdz"
+  description="Interactive demo: menu-style instruction flows that reveal steps after each decision instead of dumping every platform variant."
+  active="demos"
+>
+  <main class="shell page flow-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="flow-intro">
+      <p class="eyebrow">Demo · Attention & progressive disclosure</p>
+      <h1>Instruction flow</h1>
+      <p class="lede">
+        Install guides usually explode into every OS and package manager at once, or splinter into
+        tangent pages. This flow works like an old CLI menu: one decision at a time, then only the
+        steps that follow — with room to rewind and share the path.
+      </p>
+      <p class="related-links">
+        <a href="/blog/instruction-flows/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/instruction-flows.html">Docs</a>
+        ·
+        <a href="https://github.com/antora-supplemental/asciidoc-interactive">Antora extension</a>
+      </p>
+    </header>
+
+    <section class="flow-shell" id="flow-shell" aria-label="Instruction flow demo">
+      <div class="flow-toolbar" role="toolbar" aria-label="Flow controls">
+        <button type="button" id="btn-back" hidden>Back</button>
+        <button type="button" id="btn-reset">Start over</button>
+        <button type="button" id="btn-expand">Expand all (print mode)</button>
+      </div>
+      <p class="flow-crumb" id="flow-crumb" aria-live="polite" aria-atomic="true">
+        Path: not started
+      </p>
+      <ol class="flow-steps" id="flow-steps" aria-label="Install steps">
+        <!-- filled by script -->
+      </ol>
+    </section>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li>
+          <strong>Content as navigation</strong> — choices are buttons inside the instructions, not a
+          separate nav tree pretending to be hierarchy.
+        </li>
+        <li>
+          <strong>Continuations, not forks-away</strong> — picking an option inserts the next steps
+          under that list item instead of jumping to a tangent article.
+        </li>
+        <li>
+          <strong>Shareable path</strong> — the URL stores decisions (`?os=…&amp;method=…&amp;pm=…`) so
+          a teammate can open the same tailored guide.
+        </li>
+        <li>
+          <strong>Kitchen sink on demand</strong> — expand mode shows every branch for printing or
+          scraping; the default view stays honest about cognitive load.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .flow-page {
+    max-width: 48rem;
+  }
+
+  .back-row {
+    margin: 0 0 0.5rem;
+  }
+
+  .flow-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .flow-shell {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1.25rem 1.35rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(155deg, rgba(232, 165, 75, 0.1), transparent 42%),
+      rgba(255, 255, 255, 0.02);
+    animation: rise 0.7s ease both;
+  }
+
+  .flow-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .flow-toolbar button {
+    min-height: 2.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+
+  .flow-toolbar button:hover {
+    transform: translateY(-1px);
+    color: var(--focus);
+  }
+
+  .flow-toolbar button:focus-visible,
+  .choice:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .flow-crumb {
+    margin: 0;
+    min-height: 1.4em;
+    color: var(--paper-muted);
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .flow-steps {
+    margin: 0.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: flow;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .flow-steps > li {
+    counter-increment: flow;
+    padding: 0.85rem 0 0;
+    border-top: 1px solid var(--line);
+    animation: rise 0.45s ease both;
+  }
+
+  .flow-steps > li:first-child {
+    border-top: none;
+    padding-top: 0.15rem;
+  }
+
+  .step-head {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .step-num {
+    flex: 0 0 auto;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--focus);
+  }
+
+  .step-num::before {
+    content: counter(flow) ".";
+  }
+
+  .step-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .step-body h2 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .step-body p {
+    margin: 0 0 0.75rem;
+    color: var(--paper-muted);
+    font-size: 0.98rem;
+  }
+
+  .prompt-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.55rem;
+    margin: 0.35rem 0 0.15rem;
+  }
+
+  .prompt-line .prompt {
+    margin: 0;
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .choices {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .choice {
+    min-height: 2.4rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 0.3rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  }
+
+  .choice:hover {
+    transform: translateY(-1px);
+    border-color: var(--honesty);
+    color: var(--focus);
+  }
+
+  .choice.is-selected {
+    background: var(--honesty);
+    border-color: transparent;
+    color: #061512;
+  }
+
+  .choice:disabled {
+    opacity: 0.45;
+    cursor: default;
+    transform: none;
+  }
+
+  .continuation {
+    margin: 0.85rem 0 0;
+    padding: 0.75rem 0 0 0.85rem;
+    border-left: 3px solid rgba(61, 155, 143, 0.55);
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .continuation h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+
+  .continuation p,
+  .continuation pre {
+    margin: 0;
+  }
+
+  .continuation p {
+    color: var(--paper-muted);
+    font-size: 0.95rem;
+  }
+
+  .continuation pre {
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.35rem;
+    background: rgba(14, 18, 24, 0.65);
+    border: 1px solid var(--line);
+    overflow-x: auto;
+    font-size: 0.88rem;
+    color: var(--paper);
+  }
+
+  .hint {
+    margin: 0.35rem 0 0;
+    font-size: 0.88rem;
+    color: var(--paper-muted);
+  }
+
+  .flow-shell.is-expanded .choice:not(.is-selected) {
+    opacity: 0.7;
+  }
+
+  .lesson {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    animation: rise 0.8s ease both;
+    animation-delay: 0.12s;
+  }
+
+  .lesson h2 {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .lesson ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .lesson li {
+    max-width: 42rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+    color: var(--paper-muted);
+  }
+
+  .lesson strong {
+    color: var(--focus);
+    font-family: var(--font-display);
+  }
+
+  @media print {
+    .flow-toolbar,
+    .back-row,
+    .related-links,
+    .lesson {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  type Choice = { id: string; label: string; hint?: string };
+
+  interface DecisionStep {
+    kind: 'decision';
+    id: string;
+    title: string;
+    prompt: string;
+    blurb: string;
+    param: string;
+    choices: Choice[];
+    /** After a choice, either show content or nest another decision */
+    next: Record<string, ContentBlock[] | DecisionStep>;
+  }
+
+  interface ContentBlock {
+    kind: 'content';
+    title: string;
+    html: string;
+  }
+
+  type Node = DecisionStep | ContentBlock;
+
+  const flow: DecisionStep = {
+    kind: 'decision',
+    id: 'os',
+    title: 'Operating environment',
+    prompt: 'Which OS are you on?',
+    blurb: 'You already decided this before opening the guide — still ask once so the rest of the path stays honest.',
+    param: 'os',
+    choices: [
+      { id: 'linux', label: 'Linux', hint: 'Including WSL' },
+      { id: 'macos', label: 'macOS' },
+      { id: 'windows', label: 'Windows' },
+    ],
+    next: {
+      linux: methodDecision('Linux'),
+      macos: methodDecision('macOS'),
+      windows: methodDecision('Windows'),
+    },
+  };
+
+  function methodDecision(osLabel: string): DecisionStep {
+    return {
+      kind: 'decision',
+      id: 'method',
+      title: 'Install method',
+      prompt: 'How do you want to install?',
+      blurb: `${osLabel}: pick where Antora lives. Docker is a first-class branch here — not a footnote link to another article.`,
+      param: 'method',
+      choices: [
+        { id: 'global', label: 'Global CLI', hint: 'Bare metal / user PATH' },
+        { id: 'project', label: 'Project local', hint: 'Dev dependency in the playbook repo' },
+        { id: 'docker', label: 'Docker', hint: 'Containerized CLI' },
+      ],
+      next: {
+        global: pmDecision('global'),
+        project: pmDecision('project'),
+        docker: [
+          {
+            kind: 'content',
+            title: 'Pull and run',
+            html:
+              '<p>Docker skips host Node entirely. Run the image against your playbook directory:</p>' +
+              '<pre><code>docker run --rm -v "$PWD:/antora" antora/antora antora-playbook.yml</code></pre>' +
+              '<p>On Windows PowerShell, mount with <code>${PWD}</code> or an absolute path.</p>',
+          },
+          {
+            kind: 'content',
+            title: 'Next: playbook',
+            html: '<p>Point the container at your playbook, then open the generated site. CI/CD wiring is the same mental model — one command, mounted workspace.</p>',
+          },
+        ],
+      },
+    };
+  }
+
+  function pmDecision(method: 'global' | 'project'): DecisionStep {
+    const scope = method === 'global' ? 'globally' : 'in the project';
+    return {
+      kind: 'decision',
+      id: 'pm',
+      title: 'Package manager',
+      prompt: 'Which package manager are you using?',
+      blurb: 'Orthogonal to OS. Inline buttons keep this questionnaire-shaped instead of four parallel sections.',
+      param: 'pm',
+      choices: [
+        { id: 'npm', label: 'npm' },
+        { id: 'pnpm', label: 'pnpm' },
+        { id: 'yarn', label: 'Yarn' },
+        { id: 'bun', label: 'Bun' },
+      ],
+      next: {
+        npm: installContent('npm', scope, method),
+        pnpm: installContent('pnpm', scope, method),
+        yarn: installContent('yarn', scope, method),
+        bun: installContent('bun', scope, method),
+      },
+    };
+  }
+
+  function installContent(pm: string, scope: string, method: 'global' | 'project'): ContentBlock[] {
+    const cmds: Record<string, { global: string; project: string }> = {
+      npm: { global: 'npm i -g @antora/cli @antora/site-generator', project: 'npm i -D @antora/cli @antora/site-generator' },
+      pnpm: { global: 'pnpm add -g @antora/cli @antora/site-generator', project: 'pnpm add -D @antora/cli @antora/site-generator' },
+      yarn: { global: 'yarn global add @antora/cli @antora/site-generator', project: 'yarn add -D @antora/cli @antora/site-generator' },
+      bun: { global: 'bun add -g @antora/cli @antora/site-generator', project: 'bun add -d @antora/cli @antora/site-generator' },
+    };
+    const cmd = cmds[pm][method];
+    return [
+      {
+        kind: 'content',
+        title: `Install ${scope}`,
+        html: `<p>Install Antora with <strong>${pm}</strong> ${scope}:</p><pre><code>${cmd}</code></pre>`,
+      },
+      {
+        kind: 'content',
+        title: 'Run Antora',
+        html: '<p>From your docs repo:</p><pre><code>antora antora-playbook.yml</code></pre><p>Open the output directory from the playbook. Custom UI bundles and CI hooks belong in a follow-on flow — not dumped before you can run once.</p>',
+      },
+    ];
+  }
+
+  interface State {
+    /** param -> choice id */
+    picks: Record<string, string>;
+    expanded: boolean;
+  }
+
+  const state: State = { picks: {}, expanded: false };
+
+  const stepsEl = document.getElementById('flow-steps')!;
+  const crumbEl = document.getElementById('flow-crumb')!;
+  const backBtn = document.getElementById('btn-back') as HTMLButtonElement;
+  const resetBtn = document.getElementById('btn-reset') as HTMLButtonElement;
+  const expandBtn = document.getElementById('btn-expand') as HTMLButtonElement;
+  const shell = document.getElementById('flow-shell')!;
+
+  function escapeHtml(value: string) {
+    return value
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;');
+  }
+
+  function readUrl() {
+    const u = new URL(window.location.href);
+    for (const key of ['os', 'method', 'pm']) {
+      const v = u.searchParams.get(key);
+      if (v) state.picks[key] = v;
+    }
+  }
+
+  function writeUrl() {
+    const u = new URL(window.location.href);
+    for (const key of ['os', 'method', 'pm']) {
+      if (state.picks[key]) u.searchParams.set(key, state.picks[key]);
+      else u.searchParams.delete(key);
+    }
+    window.history.replaceState({}, '', u.toString());
+  }
+
+  function pathLabels(): string[] {
+    const labels: string[] = [];
+    let node: DecisionStep | undefined = flow;
+    while (node) {
+      const pick = state.picks[node.param];
+      if (!pick) break;
+      const choice = node.choices.find((c) => c.id === pick);
+      labels.push(choice?.label || pick);
+      const next = node.next[pick];
+      if (!next || Array.isArray(next)) break;
+      node = next;
+    }
+    return labels;
+  }
+
+  function pickStack(): string[] {
+    const stack: string[] = [];
+    let node: DecisionStep | undefined = flow;
+    while (node) {
+      const pick = state.picks[node.param];
+      if (!pick) break;
+      stack.push(node.param);
+      const next = node.next[pick];
+      if (!next || Array.isArray(next)) break;
+      node = next;
+    }
+    return stack;
+  }
+
+  function renderContentBlocks(blocks: ContentBlock[]): string {
+    return blocks
+      .map(
+        (b) => `
+      <div class="continuation-block">
+        <h3>${escapeHtml(b.title)}</h3>
+        ${b.html}
+      </div>`,
+      )
+      .join('');
+  }
+
+  function renderDecision(node: DecisionStep, depth: number): string {
+    const selected = state.picks[node.param];
+    const choices = node.choices
+      .map((c) => {
+        const isSel = selected === c.id;
+        const disabled = Boolean(selected) && !state.expanded && !isSel;
+        return `<button type="button" class="choice${isSel ? ' is-selected' : ''}" data-param="${escapeHtml(node.param)}" data-choice="${escapeHtml(c.id)}"${c.hint ? ` title="${escapeHtml(c.hint)}"` : ''}${disabled ? ' disabled' : ''}>${escapeHtml(c.label)}</button>`;
+      })
+      .join('');
+
+    let continuation = '';
+    if (state.expanded) {
+      continuation = node.choices
+        .map((c) => {
+          const next = node.next[c.id];
+          if (!next) return '';
+          const inner = Array.isArray(next)
+            ? renderContentBlocks(next)
+            : renderDecision(next, depth + 1);
+          return `<div class="continuation" data-branch="${escapeHtml(c.id)}"><p class="hint">Branch: ${escapeHtml(c.label)}</p>${inner}</div>`;
+        })
+        .join('');
+    } else if (selected && node.next[selected]) {
+      const next = node.next[selected];
+      if (Array.isArray(next)) {
+        continuation = `<div class="continuation" data-depth="${depth}">${renderContentBlocks(next)}</div>`;
+      } else {
+        continuation = `<div class="continuation" data-depth="${depth}">${renderDecision(next, depth + 1)}</div>`;
+      }
+    }
+
+    return `
+      <div class="decision" data-node="${escapeHtml(node.id)}">
+        <h2>${escapeHtml(node.title)}</h2>
+        <p>${escapeHtml(node.blurb)}</p>
+        <div class="prompt-line">
+          <p class="prompt">${escapeHtml(node.prompt)}</p>
+          <div class="choices" role="radiogroup" aria-label="${escapeHtml(node.prompt)}">${choices}</div>
+        </div>
+        ${continuation}
+      </div>
+    `;
+  }
+
+  function collectTopSteps(): Node[] {
+    // Always show root decision as step 1; nesting happens as continuations.
+    return [flow];
+  }
+
+  function render() {
+    const labels = pathLabels();
+    crumbEl.textContent = labels.length ? `Path: ${labels.join(' → ')}` : 'Path: not started';
+    backBtn.hidden = pickStack().length === 0 || state.expanded;
+    shell.classList.toggle('is-expanded', state.expanded);
+    expandBtn.textContent = state.expanded ? 'Collapse to path' : 'Expand all (print mode)';
+
+    const top = collectTopSteps();
+    stepsEl.innerHTML = top
+      .map((node) => {
+        if (node.kind !== 'decision') return '';
+        return `<li><div class="step-head"><span class="step-num" aria-hidden="true"></span><div class="step-body">${renderDecision(node, 0)}</div></div></li>`;
+      })
+      .join('');
+
+    writeUrl();
+  }
+
+  stepsEl.addEventListener('click', (event) => {
+    const btn = (event.target as HTMLElement).closest<HTMLButtonElement>('.choice');
+    if (!btn || btn.disabled) return;
+    const param = btn.dataset.param!;
+    const choice = btn.dataset.choice!;
+    // Choosing at a level clears deeper picks
+    const order = ['os', 'method', 'pm'];
+    const idx = order.indexOf(param);
+    for (const key of order.slice(idx + 1)) delete state.picks[key];
+    state.picks[param] = choice;
+    state.expanded = false;
+    render();
+  });
+
+  backBtn.addEventListener('click', () => {
+    const stack = pickStack();
+    const last = stack[stack.length - 1];
+    if (last) delete state.picks[last];
+    render();
+  });
+
+  resetBtn.addEventListener('click', () => {
+    state.picks = {};
+    state.expanded = false;
+    render();
+  });
+
+  expandBtn.addEventListener('click', () => {
+    state.expanded = !state.expanded;
+    render();
+  });
+
+  readUrl();
+  render();
+</script>

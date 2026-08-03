@@ -1,0 +1,9 @@
+= 2026-08-02 — Pass-through extensions
+
+Published the pass-through extensions pattern for File Explorer meta-suffixes.
+
+* Essay: `when-example-files-lose-their-type.md`
+* News: `pass-through-extensions-join-repertoire.md`
+* Demo: `/demos/pass-through-extensions/`
+* Demos catalog entry under product representation
+* Points at docs topic and `HCI-Nerdz/pass-through-extensions` helper

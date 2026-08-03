@@ -1,5 +1,5 @@
 ---
-title: "Share the IR, not the pixels: a strategy for multi-ecosystem UI prototypes"
+title: "Sharing the IR, not the pixels: a strategy for multi-ecosystem UI prototypes"
 description: "For interaction-heavy prototypes, share meaning and behavior — domain IR plus a headless controller — and hand-write thin views per ecosystem. Do not aim to auto-convert full UI."
 pubDate: 2026-08-02
 tags: ["prototype-strategy", "pipeline", "architecture", "portability"]
@@ -119,6 +119,6 @@ Skip the split for static marketing pages and one-off demos with no reuse story.
 - Demo: [hci-nerdz.github.io/pipeline-composer](https://hci-nerdz.github.io/pipeline-composer/)
 - Repository: [github.com/HCI-Nerdz/pipeline-composer](https://github.com/HCI-Nerdz/pipeline-composer)
 - Docs template: [Prototype strategy: core, controller, renderers](https://hci-nerdz.github.io/docs/hci-nerdz/prototype-strategy.html)
-- Sibling essay: [Sequence as the top-level](/blog/pipeline-composer-interfaces/)
+- Sibling essay: [Sequence as top-level organization](/blog/pipeline-composer-interfaces/)
 - Discussion: [Fundamental contexts for portable UI](/blog/fundamental-contexts-for-portable-ui/)
 - Demos index: [/demos/](/demos/)

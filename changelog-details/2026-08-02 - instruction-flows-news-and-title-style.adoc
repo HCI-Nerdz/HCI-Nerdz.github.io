@@ -1,0 +1,5 @@
+= 2026-08-02 — Instruction flows news and title style
+
+* News post: HCI Nerdz adds instruction flows to the repertoire
+* Retitled essay to `Navigating by the content` (implied-[On] action title)
+* Added `STYLE.adoc`, `AGENTS.md`, and `.cursor/rules/editorial-titles.mdc`

@@ -1,0 +1,773 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Scoped UX desk · HCI Nerdz"
+  description="Interactive demo: many small tools under one roof, with feedforward previews before you commit."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Scoped UX architecture</p>
+      <h1>Scoped UX desk</h1>
+      <p class="lede">
+        Three narrow tools under one shell. Each tool has one job. Feedforward shows what will happen
+        <em>before</em> you commit. Toggle the mega-tool to feel the junk drawer return.
+      </p>
+      <p class="related-links">
+        <a href="/blog/scoped-ux-architecture/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/scoped-ux-architecture.html">Docs</a>
+      </p>
+    </header>
+
+    <section class="desk" id="desk" aria-label="Scoped UX desk demo">
+      <div class="shell-bar">
+        <div class="shell-identity">
+          <span class="shell-label">Shell</span>
+          <strong id="project-name">No project yet</strong>
+          <span class="phase" id="phase-label">Phase: idle</span>
+        </div>
+        <label class="mode-toggle">
+          <input type="checkbox" id="mega-mode" />
+          <span>Merge into one mega-tool</span>
+        </label>
+      </div>
+
+      <p class="feedforward" id="feedforward" role="status" aria-live="polite">
+        Hover or focus an action to preview its outcome.
+      </p>
+
+      <div class="tool-rail" id="tool-rail" role="tablist" aria-label="Scoped tools">
+        <button type="button" class="tool-tab is-active" role="tab" aria-selected="true" data-tool="projects">
+          Projects
+          <small>identity only</small>
+        </button>
+        <button type="button" class="tool-tab" role="tab" aria-selected="false" data-tool="environment">
+          Environment
+          <small>runtime only</small>
+        </button>
+        <button type="button" class="tool-tab" role="tab" aria-selected="false" data-tool="remote">
+          Remote
+          <small>sync only</small>
+        </button>
+      </div>
+
+      <div class="tool-stage" id="tool-stage">
+        <!-- filled by script -->
+      </div>
+
+      <ol class="workflow" id="workflow" aria-label="Workflow progress">
+        <li data-step="project" class="is-todo">Pick project</li>
+        <li data-step="env" class="is-todo">Set environment</li>
+        <li data-step="remote" class="is-todo">Connect remote</li>
+      </ol>
+    </section>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li>
+          <strong>Scoped tools</strong> — Projects never manages remotes; Environment never creates
+          repos; Remote never picks runtimes.
+        </li>
+        <li>
+          <strong>Shared shell</strong> — project name and phase stay visible so the tools feel like
+          one product.
+        </li>
+        <li>
+          <strong>Feedforward</strong> — the preview strip answers “what happens if I do this?”
+          before commit.
+        </li>
+        <li>
+          <strong>Mega-tool contrast</strong> — merging scopes recreates the junk drawer the
+          architecture exists to prevent.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .desk-page {
+    max-width: 52rem;
+  }
+
+  .back-row {
+    margin: 0 0 0.5rem;
+  }
+
+  .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .desk {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
+      rgba(255, 255, 255, 0.02);
+    animation: rise 0.7s ease both;
+  }
+
+  .shell-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .shell-identity {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .shell-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper-muted);
+  }
+
+  .shell-identity strong {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+
+  .phase {
+    color: var(--focus);
+    font-size: 0.9rem;
+  }
+
+  .mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--paper-muted);
+    cursor: pointer;
+  }
+
+  .mode-toggle input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--focus);
+  }
+
+  .feedforward {
+    margin: 0;
+    min-height: 3.2rem;
+    padding: 0.85rem 1rem;
+    border-left: 3px solid var(--honesty);
+    background: rgba(61, 155, 143, 0.1);
+    color: var(--paper);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .feedforward.is-ready {
+    border-left-color: var(--focus);
+    background: rgba(232, 165, 75, 0.12);
+  }
+
+  .feedforward.is-warn {
+    border-left-color: #d97b6c;
+    background: rgba(217, 123, 108, 0.12);
+  }
+
+  .tool-rail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .tool-tab {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.75rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--paper-muted);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+
+  .tool-tab small {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .tool-tab:hover {
+    color: var(--paper);
+    transform: translateY(-1px);
+  }
+
+  .tool-tab.is-active {
+    color: var(--ink);
+    background: var(--focus);
+    border-color: transparent;
+  }
+
+  .tool-tab:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .tool-stage {
+    min-height: 14rem;
+    padding: 1rem 0 0.25rem;
+  }
+
+  .tool-panel h2 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+  }
+
+  .tool-panel .job {
+    margin: 0 0 1rem;
+    color: var(--paper-muted);
+    font-size: 0.98rem;
+  }
+
+  .tool-panel .refuses {
+    margin: 0 0 1.1rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px dashed var(--line);
+    border-radius: 0.35rem;
+    color: var(--paper-muted);
+    font-size: 0.9rem;
+  }
+
+  .field-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .field-row input,
+  .field-row select {
+    flex: 1 1 12rem;
+    min-height: 2.6rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(14, 18, 24, 0.65);
+    color: var(--paper);
+    font: inherit;
+  }
+
+  .field-row input:focus,
+  .field-row select:focus,
+  .actions button:focus-visible,
+  .tool-tab:focus-visible,
+  .mode-toggle input:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .actions button {
+    min-height: 2.6rem;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .actions button.primary {
+    background: var(--honesty);
+    border-color: transparent;
+    color: #061512;
+  }
+
+  .actions button:hover {
+    transform: translateY(-1px);
+    color: var(--focus);
+  }
+
+  .actions button.primary:hover {
+    color: #061512;
+    background: #4eb3a6;
+  }
+
+  .mega-grid {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .mega-grid .blob {
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(217, 123, 108, 0.08);
+  }
+
+  .mega-grid .blob h3 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+
+  .mega-grid .blob p {
+    margin: 0;
+    color: var(--paper-muted);
+    font-size: 0.9rem;
+  }
+
+  .workflow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0.25rem 0 0;
+    padding: 0.85rem 0 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .workflow li {
+    padding: 0.55rem 0.65rem;
+    border-radius: 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--paper-muted);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+  }
+
+  .workflow li.is-done {
+    color: #061512;
+    background: var(--honesty);
+  }
+
+  .workflow li.is-current {
+    color: var(--ink);
+    background: var(--focus);
+  }
+
+  .lesson {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    animation: rise 0.8s ease both;
+    animation-delay: 0.12s;
+  }
+
+  .lesson h2 {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .lesson ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .lesson li {
+    max-width: 42rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+    color: var(--paper-muted);
+  }
+
+  .lesson strong {
+    color: var(--focus);
+    font-family: var(--font-display);
+  }
+
+  @media (max-width: 640px) {
+    .tool-rail,
+    .workflow {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  type ToolId = 'projects' | 'environment' | 'remote';
+
+  interface State {
+    mega: boolean;
+    tool: ToolId;
+    project: string;
+    env: string;
+    remote: string;
+    draftProject: string;
+    draftEnv: string;
+    draftRemote: string;
+  }
+
+  const state: State = {
+    mega: false,
+    tool: 'projects',
+    project: '',
+    env: '',
+    remote: '',
+    draftProject: 'atlas-api',
+    draftEnv: 'node-22',
+    draftRemote: 'github.com/hci-nerdz/atlas-api',
+  };
+
+  const stage = document.getElementById('tool-stage')!;
+  const feedforward = document.getElementById('feedforward')!;
+  const projectName = document.getElementById('project-name')!;
+  const phaseLabel = document.getElementById('phase-label')!;
+  const megaMode = document.getElementById('mega-mode') as HTMLInputElement;
+  const toolRail = document.getElementById('tool-rail')!;
+  const workflow = document.getElementById('workflow')!;
+
+  const envLabels: Record<string, string> = {
+    'node-22': 'Node 22 LTS',
+    'python-3.13': 'Python 3.13',
+    'go-1.24': 'Go 1.24',
+  };
+
+  function phase(): string {
+    if (!state.project) return 'idle';
+    if (!state.env) return 'project chosen · need environment';
+    if (!state.remote) return 'environment ready · need remote';
+    return 'ready to coordinate';
+  }
+
+  function setFeedforward(text: string, tone: 'idle' | 'ready' | 'warn' = 'idle') {
+    feedforward.textContent = text;
+    feedforward.classList.toggle('is-ready', tone === 'ready');
+    feedforward.classList.toggle('is-warn', tone === 'warn');
+  }
+
+  function previewFor(action: string) {
+    const previews: Record<string, { text: string; tone: 'idle' | 'ready' | 'warn' }> = {
+      'create-project': {
+        text: `Will create local project “${state.draftProject || 'untitled'}” and leave Environment / Remote untouched.`,
+        tone: 'ready',
+      },
+      'set-env': {
+        text: state.project
+          ? `Will pin ${envLabels[state.draftEnv] || state.draftEnv} for “${state.project}” only — no remotes, no file trees.`
+          : 'Needs a project first. Projects tool owns identity; this tool only pins a runtime.',
+        tone: state.project ? 'ready' : 'warn',
+      },
+      'connect-remote': {
+        text: state.project && state.env
+          ? `Will link ${state.draftRemote || 'a remote'} to “${state.project}”. Will not change the local runtime.`
+          : 'Needs project + environment first. Remote only syncs — it refuses to invent a stack.',
+        tone: state.project && state.env ? 'ready' : 'warn',
+      },
+      'mega-create': {
+        text: 'Mega-tool mode: one form also offers remotes, runtimes, issues, and deploy — outcome is no longer previewable as one honest sentence.',
+        tone: 'warn',
+      },
+      'mega-everything': {
+        text: 'This control claims to create a project, install a runtime, open issues, and push — feedforward cannot tell the truth here.',
+        tone: 'warn',
+      },
+    };
+    const hit = previews[action];
+    if (hit) setFeedforward(hit.text, hit.tone);
+  }
+
+  function bindPreview(root: ParentNode) {
+    root.querySelectorAll<HTMLElement>('[data-preview]').forEach((el) => {
+      const action = el.dataset.preview!;
+      const show = () => previewFor(action);
+      el.addEventListener('mouseenter', show);
+      el.addEventListener('focus', show);
+    });
+  }
+
+  function renderWorkflow() {
+    const steps = {
+      project: Boolean(state.project),
+      env: Boolean(state.env),
+      remote: Boolean(state.remote),
+    };
+    workflow.querySelectorAll<HTMLElement>('li').forEach((li) => {
+      const key = li.dataset.step as keyof typeof steps;
+      li.classList.remove('is-done', 'is-current', 'is-todo');
+      if (steps[key]) {
+        li.classList.add('is-done');
+      } else if (
+        (key === 'project' && !steps.project) ||
+        (key === 'env' && steps.project && !steps.env) ||
+        (key === 'remote' && steps.project && steps.env && !steps.remote)
+      ) {
+        li.classList.add('is-current');
+      } else {
+        li.classList.add('is-todo');
+      }
+    });
+  }
+
+  function renderShell() {
+    projectName.textContent = state.project || 'No project yet';
+    phaseLabel.textContent = `Phase: ${phase()}`;
+    toolRail.querySelectorAll<HTMLButtonElement>('.tool-tab').forEach((tab) => {
+      const id = tab.dataset.tool as ToolId;
+      const active = !state.mega && id === state.tool;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', String(active));
+      tab.disabled = state.mega;
+    });
+    renderWorkflow();
+  }
+
+  function scopedPanel(tool: ToolId): string {
+    if (tool === 'projects') {
+      return `
+        <div class="tool-panel" data-panel="projects">
+          <h2>Projects</h2>
+          <p class="job">Job: create or select local project identity.</p>
+          <p class="refuses">Refuses: runtimes, remotes, issues, deploy.</p>
+          <div class="field-row">
+            <input id="draft-project" type="text" value="${escapeHtml(state.draftProject)}" aria-label="Project name" />
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" data-action="create-project" data-preview="create-project">
+              Create project
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    if (tool === 'environment') {
+      return `
+        <div class="tool-panel" data-panel="environment">
+          <h2>Environment</h2>
+          <p class="job">Job: pin a runtime for the current project.</p>
+          <p class="refuses">Refuses: creating repos, cloning remotes, tracking issues.</p>
+          <div class="field-row">
+            <select id="draft-env" aria-label="Runtime">
+              <option value="node-22" ${state.draftEnv === 'node-22' ? 'selected' : ''}>Node 22 LTS</option>
+              <option value="python-3.13" ${state.draftEnv === 'python-3.13' ? 'selected' : ''}>Python 3.13</option>
+              <option value="go-1.24" ${state.draftEnv === 'go-1.24' ? 'selected' : ''}>Go 1.24</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" data-action="set-env" data-preview="set-env">
+              Pin environment
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    return `
+      <div class="tool-panel" data-panel="remote">
+        <h2>Remote</h2>
+        <p class="job">Job: connect a remote repository for sync.</p>
+        <p class="refuses">Refuses: choosing runtimes, rewriting local project identity.</p>
+        <div class="field-row">
+          <input id="draft-remote" type="text" value="${escapeHtml(state.draftRemote)}" aria-label="Remote URL" />
+        </div>
+        <div class="actions">
+          <button type="button" class="primary" data-action="connect-remote" data-preview="connect-remote">
+            Connect remote
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function megaPanel(): string {
+    return `
+      <div class="tool-panel" data-panel="mega">
+        <h2>Everything desk</h2>
+        <p class="job">One surface owns projects, runtimes, remotes, issues, and deploy.</p>
+        <p class="refuses">Refuses nothing — so feedforward cannot stay honest.</p>
+        <div class="mega-grid">
+          <div class="blob">
+            <h3>Project + runtime + remote</h3>
+            <p>Same fields as before, plus “also open board” and “deploy on create”.</p>
+          </div>
+          <div class="blob">
+            <h3>Issues</h3>
+            <p>Why is triage living next to runtime pins?</p>
+          </div>
+          <div class="blob">
+            <h3>Deploy</h3>
+            <p>Shipping controls landed here because the form had room.</p>
+          </div>
+        </div>
+        <div class="field-row" style="margin-top:1rem">
+          <input id="draft-project" type="text" value="${escapeHtml(state.draftProject)}" aria-label="Project name" />
+          <select id="draft-env" aria-label="Runtime">
+            <option value="node-22" ${state.draftEnv === 'node-22' ? 'selected' : ''}>Node 22 LTS</option>
+            <option value="python-3.13" ${state.draftEnv === 'python-3.13' ? 'selected' : ''}>Python 3.13</option>
+            <option value="go-1.24" ${state.draftEnv === 'go-1.24' ? 'selected' : ''}>Go 1.24</option>
+          </select>
+          <input id="draft-remote" type="text" value="${escapeHtml(state.draftRemote)}" aria-label="Remote URL" />
+        </div>
+        <div class="actions">
+          <button type="button" class="primary" data-action="mega-create" data-preview="mega-create">
+            Create everything
+          </button>
+          <button type="button" data-preview="mega-everything">
+            Also open issues + deploy
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function escapeHtml(value: string) {
+    return value
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;');
+  }
+
+  function readDrafts() {
+    const project = document.getElementById('draft-project') as HTMLInputElement | null;
+    const env = document.getElementById('draft-env') as HTMLSelectElement | null;
+    const remote = document.getElementById('draft-remote') as HTMLInputElement | null;
+    if (project) state.draftProject = project.value.trim();
+    if (env) state.draftEnv = env.value;
+    if (remote) state.draftRemote = remote.value.trim();
+  }
+
+  function render() {
+    renderShell();
+    stage.innerHTML = state.mega ? megaPanel() : scopedPanel(state.tool);
+    bindPreview(stage);
+    if (state.mega) {
+      setFeedforward(
+        'Mega-tool mode is on. Boundaries collapsed — hover an action to see why feedforward breaks.',
+        'warn',
+      );
+    } else {
+      setFeedforward('Hover or focus an action to preview its outcome.');
+    }
+  }
+
+  toolRail.addEventListener('click', (event) => {
+    const target = (event.target as HTMLElement).closest<HTMLButtonElement>('.tool-tab');
+    if (!target || state.mega) return;
+    state.tool = target.dataset.tool as ToolId;
+    render();
+  });
+
+  megaMode.addEventListener('change', () => {
+    state.mega = megaMode.checked;
+    render();
+  });
+
+  stage.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-action]');
+    if (!button) return;
+    readDrafts();
+    const action = button.dataset.action;
+    if (action === 'create-project') {
+      if (!state.draftProject) {
+        setFeedforward('Name the project first — identity is this tool’s only job.', 'warn');
+        return;
+      }
+      state.project = state.draftProject;
+      state.tool = 'environment';
+      setFeedforward(`Created “${state.project}”. Next honest step: pin an environment.`, 'ready');
+      renderShell();
+      stage.innerHTML = scopedPanel(state.tool);
+      bindPreview(stage);
+      return;
+    }
+    if (action === 'set-env') {
+      if (!state.project) {
+        previewFor('set-env');
+        return;
+      }
+      state.env = state.draftEnv;
+      state.tool = 'remote';
+      setFeedforward(
+        `Pinned ${envLabels[state.env]} for “${state.project}”. Next honest step: connect a remote.`,
+        'ready',
+      );
+      renderShell();
+      stage.innerHTML = scopedPanel(state.tool);
+      bindPreview(stage);
+      return;
+    }
+    if (action === 'connect-remote') {
+      if (!state.project || !state.env) {
+        previewFor('connect-remote');
+        return;
+      }
+      if (!state.draftRemote) {
+        setFeedforward('Provide a remote URL — sync is this tool’s only job.', 'warn');
+        return;
+      }
+      state.remote = state.draftRemote;
+      setFeedforward(
+        `Linked ${state.remote}. Shell phase is complete — each tool stayed in its lane.`,
+        'ready',
+      );
+      render();
+      return;
+    }
+    if (action === 'mega-create') {
+      state.project = state.draftProject || state.project || 'mystery-app';
+      state.env = state.draftEnv;
+      state.remote = state.draftRemote || 'unspecified-remote';
+      setFeedforward(
+        'Everything happened at once. You cannot tell which boundary owned which side effect.',
+        'warn',
+      );
+      renderShell();
+    }
+  });
+
+  stage.addEventListener('input', () => readDrafts());
+  stage.addEventListener('change', () => readDrafts());
+
+  render();
+</script>

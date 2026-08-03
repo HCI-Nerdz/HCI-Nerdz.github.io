@@ -1,0 +1,5 @@
+= 2026-08-03 — Titles as orientation
+
+* Philosophy essay on titles (HCI + ryanjohnson.dev)
+* Refined `STYLE.adoc` / `AGENTS.md` / agent-rules: first-party news omits org; *as*-framing; attach modifiers
+* Retitled several posts to match (instruction-flows news/essay, theme, product representation, pipeline, share-IR)
