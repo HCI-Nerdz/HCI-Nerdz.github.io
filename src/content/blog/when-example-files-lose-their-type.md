@@ -11,7 +11,7 @@ Windows File Explorer disagrees. It takes the segment after the last dot, looks 
 
 That is not a missing third-party codec. It is a missing association *kind*.
 
-![Side-by-side File Explorer comparison: today appsettings.json.example is an EXAMPLE File with no handler; pass-through peels to JSON with an example badge](/images/pass-through-extensions/explorer-before-after.png)
+See the live [today vs pass-through comparison](/demos/pass-through-extensions/) on the peel demo — that block is HTML/CSS on the dark site, not a light-mode graphic with a printed palette.
 
 ## Last suffix wins — until it shouldn’t
 

@@ -13,7 +13,7 @@ pubDate: 2026-08-02
 - A docs topic on the [Antora hub](https://hci-nerdz.github.io/docs/hci-nerdz/pass-through-extensions.html)
 - A Windows [settings app](https://github.com/HCI-Nerdz/pass-through-extensions) — toggle built-ins, add custom meta-types, Apply for the current user
 
-![Explorer today vs pass-through for appsettings.json.example](/images/pass-through-extensions/explorer-before-after.png)
+The [peel demo](/demos/pass-through-extensions/) shows today vs pass-through as HTML on the dark site (not a light-mode comparison graphic).
 
 ## Why it belongs here
 

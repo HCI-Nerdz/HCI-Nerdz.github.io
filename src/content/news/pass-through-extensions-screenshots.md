@@ -1,22 +1,22 @@
 ---
 title: "Pass-through extensions: screenshots and a settings app"
-description: "Explorer before/after art, the WPF configurator (built-ins + custom meta-types), and the peel demo — plus the PowerToys ask."
+description: "HTML today-vs-peel comparison on the demo, plus product photos of the WPF configurator — and the PowerToys ask."
 pubDate: 2026-08-03
 ---
 
-The [pass-through extensions](/blog/when-example-files-lose-their-type/) pattern now has pictures and a configurable Windows app, not just a peel algorithm.
+The [pass-through extensions](/blog/when-example-files-lose-their-type/) pattern now has a dark-mode-native comparison and a configurable Windows app.
 
 ## What you can see
 
-![Side-by-side: today vs pass-through for appsettings.json.example](/images/pass-through-extensions/explorer-before-after.png)
+The [peel demo](/demos/pass-through-extensions/) leads with an HTML **Today / Pass-through** Explorer strip — layout and accents use site tokens, so it follows the dark theme instead of shipping a cream infographic with a printed color legend.
 
-- [Peel demo](/demos/pass-through-extensions/) — interactive resolution plus the screenshot board at the top
-- [Essay](/blog/when-example-files-lose-their-type/) — embeds the Explorer comparison and settings shots
-- [Windows app](https://github.com/HCI-Nerdz/pass-through-extensions) — toggle built-ins (including `.old`), add your own meta-types, Apply to Explorer
+Product photos of the light desktop settings UI sit below that (the app itself is light chrome):
 
 ![Pass-through Extensions settings app](/images/pass-through-extensions/settings-app.png)
 
 ![Custom .backup meta-type in the settings app](/images/pass-through-extensions/settings-app-custom.png)
+
+Also: [essay](/blog/when-example-files-lose-their-type/), [Windows app](https://github.com/HCI-Nerdz/pass-through-extensions).
 
 ## Upstream
 

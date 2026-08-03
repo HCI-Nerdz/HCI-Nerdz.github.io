@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-03 — Pass-through compare as HTML
+
+* link:changelog-details/2026-08-03%20-%20pass-through-compare-html.adoc[Details]
+
 == 2026-08-03 — Pass-through screenshots
 
 * link:changelog-details/2026-08-03%20-%20pass-through-screenshots.adoc[Details]

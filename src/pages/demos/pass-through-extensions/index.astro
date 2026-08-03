@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ExplorerCompare from '../../../components/ExplorerCompare.astro';
 ---
 
 <BaseLayout
@@ -27,17 +28,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       </p>
     </header>
 
-    <div class="shot-board" aria-label="Product screenshots">
-      <figure class="shot">
-        <img
-          src="/images/pass-through-extensions/explorer-before-after.png"
-          alt="Side-by-side: today appsettings.json.example is an EXAMPLE File with no handler; pass-through shows JSON file with example badge opening in a JSON editor"
-          width="1600"
-          height="900"
-          loading="eager"
-        />
-        <figcaption>What Explorer should show — last-suffix vs peel.</figcaption>
-      </figure>
+    <ExplorerCompare />
+
+    <div class="shot-board" aria-label="Settings app screenshots">
+      <p class="shot-lede">
+        The Windows settings app is a light desktop chrome surface — shown here as product photos of
+        that UI, not as site layout. Comparison above is HTML so it inherits this page’s dark theme.
+      </p>
       <div class="shot-row">
         <figure class="shot">
           <img
@@ -206,6 +203,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   .shot-board {
     margin: 0 0 1.75rem;
     padding: 0;
+  }
+
+  .shot-lede {
+    margin: 0 0 0.85rem;
+    font-size: 0.9rem;
+    color: var(--paper-muted);
+    max-width: 40rem;
   }
 
   .shot-board > .shot {

@@ -1,0 +1,7 @@
+= 2026-08-03 — Pass-through compare as HTML
+
+Replaced the light-mode Explorer comparison graphic with dark-theme HTML/CSS.
+
+* New `ExplorerCompare.astro` on the peel demo — layout/copy/accents use site tokens
+* Removed `explorer-before-after.png` (baked cream chrome + printed palette legend)
+* Essay/news point at the live HTML compare; settings shots kept as product photos of the light WPF app
