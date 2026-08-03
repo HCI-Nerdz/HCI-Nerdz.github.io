@@ -149,6 +149,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 <style>
   .peel-page {
     max-width: 52rem;
+    /* Map local aliases onto the dark site tokens */
+    --muted: var(--paper-muted);
+    --teal: var(--honesty);
+    --amber: var(--focus);
   }
 
   .back-row {
@@ -156,13 +160,15 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .back {
-    color: var(--muted);
+    color: var(--paper-muted);
     text-decoration: none;
     font-size: 0.9rem;
+    font-family: var(--font-display);
+    font-weight: 600;
   }
 
   .back:hover {
-    color: var(--amber);
+    color: var(--focus);
   }
 
   .peel-intro .eyebrow {
@@ -171,7 +177,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-size: 0.8rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--teal);
+    color: var(--honesty);
   }
 
   .peel-intro h1 {
@@ -179,11 +185,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     line-height: 1.15;
+    color: var(--paper);
   }
 
   .lede {
     margin: 0 0 0.75rem;
-    color: var(--muted);
+    color: var(--paper-muted);
     max-width: 40rem;
   }
 
@@ -193,7 +200,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .related-links a {
-    color: var(--teal);
+    color: var(--honesty);
   }
 
   .shot-board {
@@ -227,13 +234,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     height: auto;
     border: 1px solid var(--line);
     border-radius: 2px;
-    background: color-mix(in srgb, var(--ink) 4%, var(--paper));
+    background: var(--ink-2);
   }
 
   .shot figcaption {
     margin-top: 0.4rem;
     font-size: 0.85rem;
-    color: var(--muted);
+    color: var(--paper-muted);
   }
 
   .peel-lab {
@@ -251,7 +258,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-size: 0.8rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--muted);
+    font-family: var(--font-display);
+    color: var(--paper-muted);
   }
 
   .field input {
@@ -260,12 +268,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     padding: 0.7rem 0.85rem;
     border: 1px solid var(--line);
     border-radius: 2px;
-    background: color-mix(in srgb, var(--paper) 88%, #fff);
-    color: var(--ink);
+    background: var(--ink-2);
+    color: var(--paper);
   }
 
   .field input:focus {
-    outline: 2px solid var(--amber);
+    outline: 2px solid var(--focus);
     outline-offset: 1px;
   }
 
@@ -277,20 +285,28 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .samples button {
-    font: inherit;
+    font-family: var(--font-display);
     font-size: 0.82rem;
-    padding: 0.35rem 0.65rem;
+    font-weight: 600;
+    padding: 0.4rem 0.7rem;
     border: 1px solid var(--line);
     border-radius: 2px;
-    background: transparent;
-    color: var(--ink);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--paper);
     cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
   }
 
   .samples button:hover,
   .samples button.is-active {
-    border-color: var(--teal);
-    color: var(--teal);
+    border-color: var(--honesty);
+    color: var(--honesty);
+    background: rgba(61, 155, 143, 0.12);
+  }
+
+  .samples button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
   }
 
   .compare {
@@ -310,8 +326,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     padding: 1rem 1.05rem 1.1rem;
     border: 1px solid var(--line);
     border-radius: 2px;
-    background:
-      linear-gradient(160deg, color-mix(in srgb, var(--paper) 92%, #fff), var(--paper));
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--paper);
   }
 
   .lane h2 {
@@ -322,12 +338,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+    color: var(--paper);
   }
 
   .tag {
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-size: 0.68rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: 0.15rem 0.4rem;
@@ -335,13 +352,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .tag.bad {
-    background: color-mix(in srgb, #b33 18%, transparent);
-    color: #8a2f2f;
+    background: color-mix(in srgb, #e07070 22%, transparent);
+    color: #f0a8a8;
   }
 
   .tag.good {
-    background: color-mix(in srgb, var(--teal) 22%, transparent);
-    color: color-mix(in srgb, var(--teal) 70%, #000);
+    background: color-mix(in srgb, var(--honesty) 22%, transparent);
+    color: #7dcdc2;
   }
 
   .facts {
@@ -353,7 +370,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .facts dt {
-    color: var(--muted);
+    color: var(--paper-muted);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
   }
 
   .facts dd {
@@ -361,20 +380,21 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
     font-size: 0.86rem;
     word-break: break-all;
+    color: var(--paper);
   }
 
   .verdict {
     margin: 0.85rem 0 0;
     font-size: 0.92rem;
-    color: var(--ink);
+    color: var(--paper);
   }
 
   .lane-today .verdict {
-    color: #8a2f2f;
+    color: #f0a8a8;
   }
 
   .lane-peel .verdict {
-    color: color-mix(in srgb, var(--teal) 55%, #000);
+    color: #7dcdc2;
   }
 
   .explorer {
@@ -383,6 +403,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     border-radius: 2px;
     overflow: hidden;
     font-size: 0.88rem;
+    color: var(--paper);
   }
 
   .explorer-chrome,
@@ -394,9 +415,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .explorer-chrome {
-    background: color-mix(in srgb, var(--ink) 6%, var(--paper));
-    color: var(--muted);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--paper-muted);
+    font-family: var(--font-display);
     font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -405,10 +428,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     border-top: 1px solid var(--line);
     font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
     font-size: 0.8rem;
+    color: var(--paper);
   }
 
   .explorer-row.is-peel {
-    background: color-mix(in srgb, var(--teal) 8%, transparent);
+    background: color-mix(in srgb, var(--honesty) 12%, transparent);
   }
 
   .explorer-row .name::before {
@@ -418,18 +442,18 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     height: 0.65rem;
     margin-right: 0.45rem;
     border-radius: 1px;
-    background: var(--muted);
+    background: var(--paper-muted);
     vertical-align: -0.05rem;
   }
 
   .explorer-row.is-peel .name::before {
-    background: var(--teal);
+    background: var(--honesty);
   }
 
   .peel-steps {
     margin: 0 0 1.5rem;
     padding: 0 0 0 1.2rem;
-    color: var(--muted);
+    color: var(--paper-muted);
     font-size: 0.92rem;
   }
 
@@ -438,8 +462,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .peel-steps code {
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
     font-size: 0.85em;
-    color: var(--ink);
+    color: var(--focus);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
   }
 
   .lesson {
@@ -451,12 +479,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     margin: 0 0 0.65rem;
     font-family: var(--font-display);
     font-size: 1.15rem;
+    color: var(--paper);
   }
 
   .lesson ul {
     margin: 0;
     padding-left: 1.15rem;
-    color: var(--muted);
+    color: var(--paper-muted);
   }
 
   .lesson li {
@@ -464,11 +493,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .lesson strong {
-    color: var(--ink);
+    color: var(--paper);
+  }
+
+  .lesson code {
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+    font-size: 0.88em;
+    color: var(--focus);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
   }
 
   .lesson a {
-    color: var(--teal);
+    color: var(--honesty);
   }
 </style>
 

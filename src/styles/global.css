@@ -336,6 +336,72 @@ img {
   border-radius: 2px;
 }
 
+.article .body :is(code, kbd, samp) {
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", "SF Mono", monospace;
+  font-size: 0.88em;
+  font-weight: 500;
+  color: var(--focus);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.12em 0.38em;
+  border-radius: 2px;
+}
+
+.article .body pre {
+  max-width: min(100%, 52rem);
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--ink-2);
+  color: var(--paper);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.article .body pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-weight: 450;
+}
+
+.article .body table {
+  width: 100%;
+  max-width: min(100%, 52rem);
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.article .body th,
+.article .body td {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  color: var(--paper);
+}
+
+.article .body th {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.article .body td {
+  font-family: var(--font-body);
+}
+
+.article .body td code {
+  white-space: nowrap;
+}
+
 .back {
   display: inline-block;
   margin-bottom: 1.25rem;
