@@ -15,7 +15,7 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 
 - News: `src/content/news/` · RSS `/news/rss.xml`
 - Blog: `src/content/blog/` · RSS `/blog/rss.xml`
-- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<id>/`)
+- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`)
 - Docs hub: `https://hci-nerdz.github.io/docs/`
 - Deploy: Astro 5 → `dist/` via GitHub Pages Actions
 
@@ -25,3 +25,4 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 - Literature for Scoped UX: `HCI-Nerdz/docs` `literature/scoped-ux-architecture/` (Gemini export + PDF); catalog `/docs/hci-nerdz/literature.html`
 - Instruction flows: demo `/demos/instruction-flow/`; Antora package `@antora-supplemental/instruction-flow` (`asciidoc-interactive`)
 - Pass-through extensions: demo `/demos/pass-through-extensions/`; Windows helper `HCI-Nerdz/pass-through-extensions`
+- Open-with interrupt: essay `/blog/when-double-click-skips-the-choice/`; docs `open-with-interrupt` (implementation recipes)

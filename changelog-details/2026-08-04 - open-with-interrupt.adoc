@@ -1,0 +1,7 @@
+= 2026-08-04 — Open-with interrupt
+
+Published the open-with interrupt pattern for file managers.
+
+* Essay: `when-double-click-skips-the-choice.md`
+* News: `open-with-interrupt-added-to-repertoire.md`
+* Points at docs topic `open-with-interrupt` for implementation recipes
