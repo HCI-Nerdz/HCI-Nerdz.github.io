@@ -1,8 +1,8 @@
 = Changelog
 
-== 2026-08-05 — ClearType when monitors disagree
+== 2026-08-05 — ClearType as subpixel rendering
 
-* link:changelog-details/2026-08-05%20-%20cleartype-when-monitors-disagree.adoc[Details]
+* link:changelog-details/2026-08-05%20-%20cleartype-as-subpixel-rendering.adoc[Details]
 
 == 2026-08-04 — Open-with interrupt
 
