@@ -1,8 +1,8 @@
 = Changelog
 
-== 2026-08-05 — ClearType as subpixel rendering
+== 2026-08-05 — ClearType Tuner in Windows
 
-* link:changelog-details/2026-08-05%20-%20cleartype-as-subpixel-rendering.adoc[Details]
+* link:changelog-details/2026-08-05%20-%20cleartype-tuner-in-windows.adoc[Details]
 
 == 2026-08-04 — Open-with interrupt
 

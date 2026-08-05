@@ -1,7 +1,0 @@
-= 2026-08-05 — ClearType as subpixel rendering
-
-Top-down ClearType essay; mixed RGB/BGR desks are a corollary section.
-
-* New blog: `src/content/blog/cleartype-as-subpixel-rendering.md`
-* Stub at `cleartype-when-monitors-disagree.md` pointing at the reframed essay
-* Cross-links to HCI docs topic and Dev-Centr explanation

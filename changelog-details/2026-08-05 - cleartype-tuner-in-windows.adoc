@@ -1,0 +1,7 @@
+= 2026-08-05 — ClearType Tuner in Windows
+
+Essay on ClearType and the Windows ClearType Text Tuner: why reading needs it, what the tuner adjusts, how setting planes differ, and mixed monitors as a later corollary.
+
+* Blog: `src/content/blog/cleartype-tuner-in-windows.md`
+* Removed earlier stub/slug drafts (`cleartype-when-monitors-disagree`, `cleartype-as-subpixel-rendering`)
+* Cross-links to HCI docs topic and Dev-Centr explanation
