@@ -1,18 +1,33 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Contributors,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/graphs/contributors]
+image:https://img.shields.io/github/forks/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Forks,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/network/members]
+image:https://img.shields.io/github/stars/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Stars,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/stargazers]
+image:https://img.shields.io/github/issues/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Issues,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/issues]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Issues]
+endif::[]
+
 = HCI-Nerdz.github.io
-:toc:
+
+HCI Nerdz GitHub Pages site (Astro).
+
+link:https://hci-nerdz.github.io[Visit site] ·
+link:https://hci-nerdz.github.io/docs/[Explore the docs] ·
+link:https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/issues[Report Bug]
 
 Astro site for link:https://hci-nerdz.github.io/[HCI Nerdz].
 
-== Commands
-
-[source,shell]
-----
-pnpm install
-pnpm dev
-pnpm build
-----
-
-== Structure
+== About The Project
 
 * Landing page, philosophy, news feed, blog essays (separate content collections + RSS), and `/demos/` index
 * Links to Antora docs at `https://hci-nerdz.github.io/docs/`
@@ -21,10 +36,30 @@ News = org updates. Blog = essays. Demos = interactive prototypes by category (i
 
 Authoritative conversation sources for concepts (e.g. Scoped UX) live in the docs repo under `literature/` — see link:https://hci-nerdz.github.io/docs/hci-nerdz/literature.html[Literature].
 
+== Built With
+
+* Astro
+
+== Getting Started
+
+[source,shell]
+----
+pnpm install
+pnpm dev
+pnpm build
+----
+
+== Usage
+
+Title and headline rules: link:STYLE.adoc[STYLE.adoc]. Agent entrypoint: link:AGENTS.md[AGENTS.md].
+
 == Changelog
 
 See link:CHANGELOG.adoc[CHANGELOG.adoc].
 
-== Editorial style
+== Contact
 
-Title and headline rules: link:STYLE.adoc[STYLE.adoc]. Agent entrypoint: link:AGENTS.md[AGENTS.md].
+HCI Nerdz — [ORG_EMAIL]
+
+* Project: https://github.com/HCI-Nerdz/HCI-Nerdz.github.io
+* Site: https://hci-nerdz.github.io
