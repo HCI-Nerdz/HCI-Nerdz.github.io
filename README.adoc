@@ -3,19 +3,12 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
+
 image:https://img.shields.io/github/contributors/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Contributors,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/graphs/contributors]
 image:https://img.shields.io/github/forks/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Forks,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/network/members]
 image:https://img.shields.io/github/stars/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Stars,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/stargazers]
 image:https://img.shields.io/github/issues/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Issues,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Issues]
-endif::[]
 
 = HCI-Nerdz.github.io
 
@@ -36,9 +29,20 @@ News = org updates. Blog = essays. Demos = interactive prototypes by category (i
 
 Authoritative conversation sources for concepts (e.g. Scoped UX) live in the docs repo under `literature/` — see link:https://hci-nerdz.github.io/docs/hci-nerdz/literature.html[Literature].
 
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
+
 == Built With
 
-* Astro
+* Site framework
+** link:https://astro.build/[image:https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white[Astro]]
+* Tooling
+** link:https://pnpm.io/[image:https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white[pnpm]]
+
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Getting Started
 
@@ -63,3 +67,7 @@ HCI Nerdz — [ORG_EMAIL]
 
 * Project: https://github.com/HCI-Nerdz/HCI-Nerdz.github.io
 * Site: https://hci-nerdz.github.io
+
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
