@@ -3,8 +3,28 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/graphs/contributors"><img src="https://img.shields.io/github/contributors/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/network/members"><img src="https://img.shields.io/github/forks/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/stargazers"><img src="https://img.shields.io/github/stars/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/issues"><img src="https://img.shields.io/github/issues/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">HCI-Nerdz.github.io</h3>
+<p align="center">
+HCI Nerdz GitHub Pages site (Astro).<br />
+<a href="https://hci-nerdz.github.io/docs/"><strong>Explore the docs »</strong></a><br /><br />
+<a href="https://hci-nerdz.github.io">Visit site</a>
+&middot;
+<a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/issues">Report Bug</a>
+</p>
+</div>
+++++
+endif::[]
 
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Contributors,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/graphs/contributors]
 image:https://img.shields.io/github/forks/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Forks,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/network/members]
 image:https://img.shields.io/github/stars/HCI-Nerdz/HCI-Nerdz.github.io.svg?style=for-the-badge[Stars,link=https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/stargazers]
@@ -19,6 +39,7 @@ link:https://hci-nerdz.github.io/docs/[Explore the docs] ·
 link:https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/issues[Report Bug]
 
 Astro site for link:https://hci-nerdz.github.io/[HCI Nerdz].
+endif::[]
 
 == About The Project
 
@@ -60,6 +81,22 @@ Title and headline rules: link:STYLE.adoc[STYLE.adoc]. Agent entrypoint: link:AG
 == Changelog
 
 See link:CHANGELOG.adoc[CHANGELOG.adoc].
+
+== Contributing
+
+Contributions are welcome. Open an issue before large changes.
+
+=== Top contributors
+
+++++
+<a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=HCI-Nerdz/HCI-Nerdz.github.io" alt="contributors" />
+</a>
+++++
+
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Contact
 
