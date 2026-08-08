@@ -1,0 +1,7 @@
+= 2026-08-08 — Visitor-first repo homepage
+
+Published the visitor-first GitHub repo homepage pattern (blog-flavored essay + mockups; no separate news item).
+
+* Essay: `when-the-file-tree-owns-the-first-viewport.md`
+* Mockups: `public/images/github-repo-visitor-first/`
+* Points at docs topic `visitor-first-repo-homepage` and https://github.com/orgs/community/discussions/204347
