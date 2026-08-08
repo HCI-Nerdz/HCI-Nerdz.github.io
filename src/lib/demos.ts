@@ -132,7 +132,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Open lexicon",
-            href: "https://hci-nerdz.github.io/audio-lexicon/app.html",
+            href: "https://hci-nerdz.github.io/audio-lexicon/",
           },
           {
             label: "Repo",
