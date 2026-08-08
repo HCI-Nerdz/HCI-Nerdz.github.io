@@ -122,7 +122,25 @@ export const demoCategories: DemoCategory[] = [
     title: "Search & filters",
     description:
       "Discoverable filter surfaces instead of power-user syntax as the only door.",
-    demos: [],
+    demos: [
+      {
+        id: "audio-lexicon",
+        title: "Audio lexicon",
+        summary:
+          "Pro-audio filter literacy: term tree, history, visualization, and A/B audition — then EqualizerAPO / OBS export when a term maps.",
+        href: "https://hci-nerdz.github.io/audio-lexicon/",
+        related: [
+          {
+            label: "Open lexicon",
+            href: "https://hci-nerdz.github.io/audio-lexicon/app.html",
+          },
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/audio-lexicon",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "theme-visual-contracts",

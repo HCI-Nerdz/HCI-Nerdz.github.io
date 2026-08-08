@@ -1,0 +1,3 @@
+= Audio lexicon on demos
+
+Linked *audio-lexicon* from the homepage demos list and the Search & filters category on `/demos/`. Added news: Audio lexicon added to the repertoire.

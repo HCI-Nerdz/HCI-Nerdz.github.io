@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-08 — Audio lexicon on demos
+
+* link:changelog-details/2026-08-08%20-%20audio-lexicon-demos.adoc[Details]
+
 == 2026-08-05 — ClearType Tuner in Windows
 
 * link:changelog-details/2026-08-05%20-%20cleartype-tuner-in-windows.adoc[Details]
