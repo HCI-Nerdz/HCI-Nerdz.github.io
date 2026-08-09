@@ -9,6 +9,31 @@ Agents and authors both follow this document.
 
 == News vs essay
 
+=== Stance (inner vs outer)
+
+The useful divide is not length or polish. It is **where the thought faces**:
+
+[cols="1,2,2"]
+|===
+| Kind | Faces | Typical cargo
+
+| *News*
+| **Outward** — what entered the shared record, what the org (or another actor) did, what readers should notice next
+| Ship announcements, repertoire additions, partner notes, status lines
+
+| *Blog / essay*
+| **Inward** — ideas, ideals, philosophy, craft tutorials, working theories; often a small social beat (thinking in public)
+| Framing essays, “when …” situations, how-I-think pieces, tutorial-shaped reflection
+|===
+
+If you are announcing that a thing exists in the world → **news**.
+If you are thinking through a claim, ideal, or how to see → **blog**.
+Changelog bullets are neither; they stay in changelog / Antora.
+
+House essay on the stance: link:https://ryanjohnson.dev/blog/posts/blog-as-inner-thought/[Blog as inner thought].
+
+=== Titles
+
 [cols="1,2,2"]
 |===
 | Kind | Job of the title | Default shape

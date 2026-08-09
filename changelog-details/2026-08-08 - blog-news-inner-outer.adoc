@@ -1,0 +1,8 @@
+= Blog / news stance — inner vs outer
+:description: STYLE and AGENTS notate news as outward (shared record) and blog as inward (ideas, philosophy, tutorials).
+
+== Summary
+
+* Expanded `STYLE.adoc` **News vs essay** with stance table: news faces outward; blog faces inward (ideas, ideals, philosophy, craft tutorials, thinking in public).
+* Pointed at ryanjohnson.dev essay link:https://ryanjohnson.dev/blog/posts/blog-as-inner-thought/[Blog as inner thought].
+* Mirrored the stance in `AGENTS.md` content map.

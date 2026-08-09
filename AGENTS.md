@@ -4,6 +4,7 @@
 
 Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/).
 
+- **News faces outward** (what entered the record); **blog faces inward** (ideas, ideals, philosophy, craft tutorials, thinking in public). Stance essay: https://ryanjohnson.dev/blog/posts/blog-as-inner-thought/
 - First-party news omits the org — `Instruction flows added to the repertoire`, not `HCI Nerdz adds…`.
 - Essay action: implied **[On]**; drop surplus *the* — `Navigating by content`.
 - Prefer *as* / process / *a X* / *when* / disproof over rigid `X is Y`.
@@ -13,8 +14,8 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 
 ## Content map
 
-- News: `src/content/news/` · RSS `/news/rss.xml`
-- Blog: `src/content/blog/` · RSS `/blog/rss.xml`
+- News: `src/content/news/` · RSS `/news/rss.xml` — outward / shared record
+- Blog: `src/content/blog/` · RSS `/blog/rss.xml` — inward / essays
 - Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`)
 - Docs hub: `https://hci-nerdz.github.io/docs/`
 - Deploy: Astro 5 → `dist/` via GitHub Pages Actions
