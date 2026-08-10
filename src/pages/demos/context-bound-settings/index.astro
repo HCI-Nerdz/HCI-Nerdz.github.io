@@ -1,0 +1,809 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Context-bound settings desk · HCI Nerdz"
+  description="Interactive demo: settings as a dependent process that follows activity state — only applicable controls for the here-and-now."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Context-bound settings</p>
+      <h1>Context-bound settings desk</h1>
+      <p class="lede">
+        Work in the activity plane. The settings pane is a <em>dependent process</em> — it
+        rebinds when your context changes. Toggle the across-town catalog to feel the storage room return.
+      </p>
+      <p class="related-links">
+        <a href="/blog/when-settings-live-across-town/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/context-bound-settings.html">Docs</a>
+      </p>
+    </header>
+
+    <section class="desk" id="desk" aria-label="Context-bound settings desk">
+      <div class="shell-bar">
+        <div class="shell-identity">
+          <span class="shell-label">Northwind Admin</span>
+          <strong id="context-chip">Context: —</strong>
+        </div>
+        <label class="mode-toggle">
+          <input type="checkbox" id="across-town" />
+          <span>Open across-town Settings</span>
+        </label>
+      </div>
+
+      <div class="view-rail" role="tablist" aria-label="Activity views">
+        <button type="button" class="view-tab is-active" role="tab" aria-selected="true" data-view="users">
+          Users
+          <small>directory</small>
+        </button>
+        <button type="button" class="view-tab" role="tab" aria-selected="false" data-view="groups">
+          Groups
+          <small>membership</small>
+        </button>
+        <button type="button" class="view-tab" role="tab" aria-selected="false" data-view="policies">
+          Policies
+          <small>compose</small>
+        </button>
+      </div>
+
+      <div class="workspace" id="workspace">
+        <div class="activity" id="activity" aria-label="Activity UI">
+          <!-- filled by script -->
+        </div>
+        <aside class="settings-pane" id="settings-pane" aria-label="Settings surface" aria-live="polite">
+          <!-- filled by script -->
+        </aside>
+      </div>
+
+      <p class="bus-strip" id="bus-strip" role="status">
+        Context bus idle.
+      </p>
+    </section>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li>
+          <strong>Dependent settings</strong> — the pane does not own context; it subscribes to the
+          activity UI.
+        </li>
+        <li>
+          <strong>Applicability</strong> — each control declares when it appears; unrelated catalog
+          entries stay out of the here-and-now.
+        </li>
+        <li>
+          <strong>Named bind</strong> — the context chip states <em>why</em> these controls are
+          showing, so adaptation is not magic.
+        </li>
+        <li>
+          <strong>Across-town contrast</strong> — the global wall still exists as escape hatch /
+          anti-pattern; it is not the default altitude.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .desk-page {
+    max-width: 64rem;
+  }
+
+  .back-row {
+    margin: 0 0 0.5rem;
+  }
+
+  .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .desk {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
+      rgba(255, 255, 255, 0.02);
+    animation: rise 0.7s ease both;
+  }
+
+  .shell-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .shell-identity {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .shell-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  #context-chip {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--honesty);
+  }
+
+  .mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .view-rail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .view-tab {
+    flex: 1 1 8rem;
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 600;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .view-tab small {
+    font-weight: 500;
+    font-size: 0.75rem;
+    opacity: 0.65;
+  }
+
+  .view-tab:hover {
+    border-color: var(--honesty);
+  }
+
+  .view-tab.is-active {
+    border-color: var(--honesty);
+    background: rgba(61, 155, 143, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.9fr);
+    gap: 0.85rem;
+    min-height: 22rem;
+    align-items: stretch;
+  }
+
+  @media (max-width: 820px) {
+    .workspace {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .activity,
+  .settings-pane {
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: rgba(0, 0, 0, 0.12);
+    padding: 1rem;
+  }
+
+  .activity h2,
+  .settings-pane h2 {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+  }
+
+  .activity-meta {
+    margin: -0.35rem 0 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .row-list {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    width: 100%;
+    font: inherit;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .row:hover {
+    border-color: var(--line);
+  }
+
+  .row.is-selected {
+    border-color: var(--honesty);
+    background: rgba(61, 155, 143, 0.14);
+  }
+
+  .avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(61, 155, 143, 0.25);
+    font-family: var(--font-display);
+  }
+
+  .row-body strong {
+    display: block;
+    font-size: 0.95rem;
+  }
+
+  .row-body span {
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  .pill {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.45rem;
+    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line);
+  }
+
+  .pill.on {
+    color: #7dcea0;
+    border-color: rgba(125, 206, 160, 0.4);
+  }
+
+  .group-stage {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .member-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .chip {
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--line);
+    font-size: 0.82rem;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .policy-draft {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .policy-draft label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+  }
+
+  .policy-draft input,
+  .policy-draft textarea,
+  .setting-control select,
+  .setting-control input {
+    font: inherit;
+    padding: 0.45rem 0.55rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.25);
+    color: inherit;
+  }
+
+  .policy-draft textarea {
+    min-height: 4.5rem;
+    resize: vertical;
+  }
+
+  .settings-pane {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    animation: pane-in 0.35s ease both;
+  }
+
+  .settings-pane.is-rebinding {
+    animation: pane-rebind 0.4s ease both;
+  }
+
+  .bind-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: fit-content;
+    padding: 0.25rem 0.55rem;
+    border-radius: 0.3rem;
+    font-size: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    background: rgba(61, 155, 143, 0.18);
+    color: var(--honesty);
+    border: 1px solid rgba(61, 155, 143, 0.35);
+  }
+
+  .setting-control {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.65rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .setting-control:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .setting-control .label {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  .setting-control .hint {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    line-height: 1.35;
+  }
+
+  .setting-control button {
+    justify-self: start;
+    margin-top: 0.15rem;
+    font: inherit;
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.04);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .setting-control button:hover {
+    border-color: var(--honesty);
+  }
+
+  .catalog-wall {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+  }
+
+  .catalog-wall .col {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 0.3rem;
+    opacity: 0.85;
+  }
+
+  .catalog-wall strong {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+  }
+
+  .bus-strip {
+    margin: 0;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.35rem;
+    border: 1px dashed rgba(61, 155, 143, 0.45);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.8rem;
+    background: rgba(61, 155, 143, 0.06);
+  }
+
+  .lesson {
+    margin-top: 1.75rem;
+    padding: 1.1rem 1.25rem;
+    border-left: 3px solid var(--honesty);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .lesson h2 {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+  }
+
+  .lesson ul {
+    margin: 0;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.6rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pane-in {
+    from {
+      opacity: 0;
+      transform: translateX(0.4rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pane-rebind {
+    0% {
+      opacity: 0.35;
+      transform: translateX(0.35rem);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const users = [
+    { id: "ada", name: "Ada Lovelace", email: "ada@northwind.example", role: "Engineer", ou: "Engineering", status: "Active", initials: "AL" },
+    { id: "grace", name: "Grace Hopper", email: "grace@northwind.example", role: "Admin", ou: "IT", status: "Active", initials: "GH" },
+    { id: "alan", name: "Alan Turing", email: "alan@northwind.example", role: "Analyst", ou: "Security", status: "Inactive", initials: "AT" },
+  ];
+
+  const groups = [
+    { id: "eng", name: "Engineering", members: ["Ada Lovelace", "Grace Hopper", "Lin Xie", "Devon Lane"], owners: ["Ava Chen"] },
+    { id: "sec", name: "Security", members: ["Alan Turing", "Sam Okonkwo"], owners: ["M. Resnick"] },
+  ];
+
+  /** @type {{ view: string, selectionId: string | null, mode: string, acrossTown: boolean }} */
+  let ctx = {
+    view: "users",
+    selectionId: "ada",
+    mode: "browse",
+    acrossTown: false,
+  };
+
+  const activityEl = document.getElementById("activity");
+  const settingsEl = document.getElementById("settings-pane");
+  const chipEl = document.getElementById("context-chip");
+  const busEl = document.getElementById("bus-strip");
+  const acrossTownToggle = document.getElementById("across-town");
+
+  const catalog = [
+    {
+      id: "user.role",
+      appliesWhen: (c) => c.view === "users" && c.selectionId,
+      render: (c) => {
+        const u = users.find((x) => x.id === c.selectionId);
+        return settingBlock("Role", "Changes what this person can do in Northwind Admin.", `
+          <select data-field="role">
+            ${["Engineer", "Admin", "Analyst", "Viewer"].map((r) => `<option ${u?.role === r ? "selected" : ""}>${r}</option>`).join("")}
+          </select>
+        `);
+      },
+    },
+    {
+      id: "user.ou",
+      appliesWhen: (c) => c.view === "users" && c.selectionId,
+      render: (c) => {
+        const u = users.find((x) => x.id === c.selectionId);
+        return settingBlock("Org unit", "Sets the organizational unit this user belongs to.", `
+          <select data-field="ou">
+            ${["Engineering", "IT", "Security", "Design"].map((o) => `<option ${u?.ou === o ? "selected" : ""}>${o}</option>`).join("")}
+          </select>
+        `);
+      },
+    },
+    {
+      id: "user.2sv",
+      appliesWhen: (c) => c.view === "users" && c.selectionId,
+      render: () => settingBlock("Reset 2-step verification", "Require this user to set up 2SV again on next sign-in.", `<button type="button" data-action="reset-2sv">Reset 2SV</button>`),
+    },
+    {
+      id: "user.suspend",
+      appliesWhen: (c) => c.view === "users" && c.selectionId,
+      render: () => settingBlock("Suspend user", "Temporarily disable sign-in for this account.", `<button type="button" data-action="suspend">Suspend</button>`),
+    },
+    {
+      id: "group.join",
+      appliesWhen: (c) => c.view === "groups" && c.selectionId,
+      render: () => settingBlock("Who can join", "Controls whether membership is open or invite-only.", `
+        <select><option>Invite only</option><option>Anyone in org</option><option>Approval required</option></select>
+      `),
+    },
+    {
+      id: "group.post",
+      appliesWhen: (c) => c.view === "groups" && c.selectionId,
+      render: () => settingBlock("Who can post", "Limits who may post to this group's channels.", `
+        <select><option>Group members</option><option>Owners only</option><option>Anyone in org</option></select>
+      `),
+    },
+    {
+      id: "group.external",
+      appliesWhen: (c) => c.view === "groups" && c.selectionId,
+      render: () => settingBlock("External members", "Allow people outside the org in this group.", `
+        <select><option>Allowed</option><option>Blocked</option></select>
+      `),
+    },
+    {
+      id: "group.aliases",
+      appliesWhen: (c) => c.view === "groups" && c.selectionId,
+      render: () => settingBlock("Alias addresses", "Extra addresses that deliver to this group.", `<button type="button">Manage aliases (2)</button>`),
+    },
+    {
+      id: "policy.scope",
+      appliesWhen: (c) => c.view === "policies",
+      render: () => settingBlock("Enforcement scope", "Where this draft policy will apply when published.", `
+        <select><option>Entire organization</option><option>Selected OUs</option><option>Selected groups</option></select>
+      `),
+    },
+    {
+      id: "policy.exceptions",
+      appliesWhen: (c) => c.view === "policies",
+      render: () => settingBlock("Exceptions", "Accounts or groups exempt from this draft.", `<button type="button">Add exception</button>`),
+    },
+    {
+      id: "policy.dryrun",
+      appliesWhen: (c) => c.view === "policies",
+      render: () => settingBlock("Dry-run first", "Simulate impact before enforce — recommended for new drafts.", `
+        <select><option>On</option><option>Off</option></select>
+      `),
+    },
+  ];
+
+  function settingBlock(label, hint, controlHtml) {
+    return `<div class="setting-control"><div class="label">${label}</div><div class="hint">${hint}</div>${controlHtml}</div>`;
+  }
+
+  function contextLabel() {
+    if (ctx.acrossTown) return "Context: ignored · across-town catalog";
+    if (ctx.view === "users") {
+      const u = users.find((x) => x.id === ctx.selectionId);
+      return u
+        ? `Context: selected user · ${u.name}`
+        : "Context: Users view · no selection";
+    }
+    if (ctx.view === "groups") {
+      const g = groups.find((x) => x.id === ctx.selectionId);
+      return g
+        ? `Context: editing group · ${g.name}`
+        : "Context: Groups view · no selection";
+    }
+    return "Context: composing policy · draft";
+  }
+
+  function publish(reason) {
+    busEl.textContent = `Context bus → ${JSON.stringify({
+      view: ctx.view,
+      selectionId: ctx.selectionId,
+      mode: ctx.mode,
+      acrossTown: ctx.acrossTown,
+      reason,
+    })}`;
+    render();
+  }
+
+  function renderActivity() {
+    if (ctx.view === "users") {
+      activityEl.innerHTML = `
+        <h2>Users</h2>
+        <p class="activity-meta">${users.length} people · select a row to bind settings</p>
+        <div class="row-list">
+          ${users
+            .map(
+              (u) => `
+            <button type="button" class="row ${ctx.selectionId === u.id ? "is-selected" : ""}" data-select="${u.id}">
+              <span class="avatar" aria-hidden="true">${u.initials}</span>
+              <span class="row-body"><strong>${u.name}</strong><span>${u.email}</span></span>
+              <span class="pill ${u.status === "Active" ? "on" : ""}">${u.status}</span>
+            </button>
+          `,
+            )
+            .join("")}
+        </div>
+      `;
+      return;
+    }
+
+    if (ctx.view === "groups") {
+      const g = groups.find((x) => x.id === ctx.selectionId) || groups[0];
+      ctx.selectionId = g.id;
+      activityEl.innerHTML = `
+        <h2>Groups</h2>
+        <p class="activity-meta">Pick a group, then edit membership beside its settings</p>
+        <div class="row-list" style="margin-bottom:0.85rem">
+          ${groups
+            .map(
+              (item) => `
+            <button type="button" class="row ${ctx.selectionId === item.id ? "is-selected" : ""}" data-select="${item.id}">
+              <span class="avatar" aria-hidden="true">${item.name.slice(0, 2).toUpperCase()}</span>
+              <span class="row-body"><strong>${item.name}</strong><span>${item.members.length} members</span></span>
+              <span class="pill">Group</span>
+            </button>
+          `,
+            )
+            .join("")}
+        </div>
+        <div class="group-stage">
+          <div>
+            <strong>Owners</strong>
+            <div class="member-chips" style="margin-top:0.4rem">
+              ${g.owners.map((n) => `<span class="chip">${n}</span>`).join("")}
+            </div>
+          </div>
+          <div>
+            <strong>Members</strong>
+            <div class="member-chips" style="margin-top:0.4rem">
+              ${g.members.map((n) => `<span class="chip">${n}</span>`).join("")}
+              <span class="chip">+ Add</span>
+            </div>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    activityEl.innerHTML = `
+      <h2>Compose policy</h2>
+      <p class="activity-meta">Draft stays in the activity plane; enforcement settings bind beside it</p>
+      <div class="policy-draft">
+        <label>Policy name
+          <input type="text" value="Require 2SV for Engineering" />
+        </label>
+        <label>Notes
+          <textarea>Roll out after dry-run. Exempt break-glass admins.</textarea>
+        </label>
+      </div>
+    `;
+  }
+
+  function renderSettings() {
+    settingsEl.classList.remove("is-rebinding");
+    void settingsEl.offsetWidth;
+    settingsEl.classList.add("is-rebinding");
+
+    if (ctx.acrossTown) {
+      settingsEl.innerHTML = `
+        <h2>Settings · Organization › Advanced</h2>
+        <span class="bind-badge">No activity bind</span>
+        <p class="activity-meta">Across-town catalog — rebuild context yourself</p>
+        <div class="catalog-wall">
+          <div class="col"><strong>Network</strong><span>IP allow list</span><span>Proxy mode</span><span>SMTP relay host</span></div>
+          <div class="col"><strong>Security</strong><span>Session idle timeout</span><span>Password policy</span><span>API quota soft limit</span></div>
+          <div class="col"><strong>Integrations</strong><span>Microsoft 365</span><span>Slack connector</span><span>Maintenance window</span></div>
+        </div>
+      `;
+      return;
+    }
+
+    const bound = catalog.filter((s) => s.appliesWhen(ctx));
+    const title =
+      ctx.view === "users"
+        ? "Settings for this user"
+        : ctx.view === "groups"
+          ? "Settings for this group"
+          : "Settings for this draft";
+
+    if (!bound.length) {
+      settingsEl.innerHTML = `
+        <h2>${title}</h2>
+        <span class="bind-badge">${contextLabel()}</span>
+        <p class="activity-meta">No applicable settings for this context. Select something in the activity UI.</p>
+      `;
+      return;
+    }
+
+    settingsEl.innerHTML = `
+      <h2>${title}</h2>
+      <span class="bind-badge">${contextLabel()}</span>
+      ${bound.map((s) => s.render(ctx)).join("")}
+      <p class="activity-meta" style="margin:0.5rem 0 0">
+        ${bound.length} bound · <button type="button" id="jump-catalog" style="all:unset;cursor:pointer;text-decoration:underline;color:var(--honesty)">Browse all settings</button>
+      </p>
+    `;
+
+    document.getElementById("jump-catalog")?.addEventListener("click", () => {
+      acrossTownToggle.checked = true;
+      ctx.acrossTown = true;
+      publish("escape-hatch");
+    });
+  }
+
+  function render() {
+    chipEl.textContent = contextLabel();
+    renderActivity();
+    renderSettings();
+  }
+
+  document.querySelectorAll(".view-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".view-tab").forEach((t) => {
+        t.classList.remove("is-active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+      ctx.view = tab.getAttribute("data-view");
+      ctx.mode = ctx.view === "policies" ? "compose" : "browse";
+      if (ctx.view === "users") ctx.selectionId = "ada";
+      if (ctx.view === "groups") ctx.selectionId = "eng";
+      if (ctx.view === "policies") ctx.selectionId = "draft-1";
+      publish("view-change");
+    });
+  });
+
+  activityEl.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-select]");
+    if (!btn) return;
+    ctx.selectionId = btn.getAttribute("data-select");
+    ctx.mode = ctx.view === "groups" ? "edit" : "browse";
+    publish("selection-change");
+  });
+
+  acrossTownToggle.addEventListener("change", () => {
+    ctx.acrossTown = acrossTownToggle.checked;
+    publish(ctx.acrossTown ? "open-catalog" : "return-to-bind");
+  });
+
+  publish("init");
+</script>

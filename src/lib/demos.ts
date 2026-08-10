@@ -189,8 +189,26 @@ export const demoCategories: DemoCategory[] = [
     id: "settings-source-of-truth",
     title: "Settings & source of truth",
     description:
-      "GUIs that reflect the real config, with jump-to-source when the file is the authority.",
-    demos: [],
+      "GUIs that reflect the real config, with jump-to-source when the file is the authority — and settings that stay bound to live activity context.",
+    demos: [
+      {
+        id: "context-bound-settings",
+        title: "Context-bound settings desk",
+        summary:
+          "Activity UI publishes context; a dependent settings pane matches applicability and shows only bound controls. Toggle the across-town catalog to feel the storage room return.",
+        href: "/demos/context-bound-settings/",
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-settings-live-across-town/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/context-bound-settings.html",
+          },
+        ],
+      },
+    ],
   },
 ];
 

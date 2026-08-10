@@ -1,0 +1,9 @@
+= 2026-08-10 — Context-bound settings
+
+Essay, news, interactive desk, and mockups for settings as a dependent process.
+
+* Blog: `when-settings-live-across-town.md`
+* News: `context-bound-settings-added-to-repertoire.md`
+* Demo: `/demos/context-bound-settings/`
+* Images: `public/images/context-bound-settings/`
+* Demos catalog: filled Settings & source of truth category
