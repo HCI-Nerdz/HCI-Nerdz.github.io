@@ -54,7 +54,7 @@ When the overlay is stable, you do not need the navbar to scream the product nam
 
 ## Path as a color series
 
-A third variant treats the rail *as* the breadcrumb. Instead of one wash around the frame, the L-edge shows a *series* of unique colors for the exact path in the org tree — Home → Cloud → Console → Billing → Accounts. That sequence orients you faster than a crumb string, and it can still borrow an org’s primary hues for early hops without collapsing “different app = different color”: the *sequence* is the identity, not a single swatch.
+A third variant treats the edge as a *path trace*. Instead of one wash around the frame, the L-edge shows a *series* of unique colors for the hops in the org tree — Home → Cloud → Console → Billing → Accounts. That sequence orients you faster than a crumb string, and it can still borrow an org’s primary hues for early hops without collapsing “different app = different color”: the *sequence* is the identity, not a single swatch.
 
 ![Idle L-rails striped with the path’s colors](/images/context-rails/path-edge-idle.png)
 
