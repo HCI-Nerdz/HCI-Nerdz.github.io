@@ -496,10 +496,79 @@ img {
   color: var(--paper);
 }
 
-.viz-card > span:last-child {
+.viz-card > span:last-child,
+.demo-family-head span {
   font-size: 0.88rem;
   line-height: 1.45;
   color: var(--paper-muted);
+}
+
+.demo-family {
+  grid-column: 1 / -1;
+}
+
+.demo-family-head {
+  display: grid;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.demo-family-head:hover strong {
+  color: var(--focus);
+}
+
+.shot-row {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.shot-tile {
+  display: grid;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.shot-tile em {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--paper-muted);
+}
+
+.shot-tile:hover em {
+  color: var(--focus);
+}
+
+.rl-frame {
+  display: block;
+  aspect-ratio: 16 / 10;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  background: #121820;
+  box-shadow: inset 0 0 0 1px rgba(232, 228, 217, 0.1);
+}
+
+.rl-frame img,
+.rl-zoom {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transform-origin: top center;
+  transition: transform 0.7s ease-out;
+}
+
+.viz-card:hover .rl-zoom,
+.shot-tile:hover .rl-zoom {
+  transform: scale(1.03);
 }
 
 .viz-stage {

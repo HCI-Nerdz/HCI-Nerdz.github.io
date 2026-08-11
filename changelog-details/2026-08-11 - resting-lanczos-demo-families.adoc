@@ -1,0 +1,7 @@
+= Resting-lanczos demo family shots
+
+Home and `/demos/` cards load prebaked Lanczos3 WebP tiers (`public/demo-shots/`, `pnpm shots`) with `srcset` / `sizes` and a `transform: scale(1.03)` hover — the DevCentr resting-lanczos pipeline.
+
+Edge Bar is indexed as a **family**: Map Edge, Modal Edge, and Path Edge each have their own capture target. The card does not screenshot the desk mock or the islands hub as if that were the product.
+
+CSS `VizCard` stages remain the fallback when tiers are missing.

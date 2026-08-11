@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-11 — Resting-lanczos demo family shots
+
+* Catalog cards use Lanczos3 `srcset` thumbs. Edge Bar is a family (Map / Modal / Path), not a screenshot of the desk href.
+* link:changelog-details/2026-08-11%20-%20resting-lanczos-demo-families.adoc[Details]
+
 == 2026-08-11 — Visual demo cards on home and /demos
 
 * Home and Demos use 16:10 CSS stages (painted at display size). Context rails is on the home grid.

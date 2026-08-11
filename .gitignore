@@ -13,6 +13,9 @@
 !public/**
 !src/
 !src/**
+!scripts/
+!scripts/**
+scripts/shot-masters/
 !.github/
 !.github/**
 !AGENTS.md

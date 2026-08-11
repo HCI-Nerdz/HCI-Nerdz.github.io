@@ -7,12 +7,25 @@ export type DemoViz =
   | 'rails'
   | 'settings';
 
+export interface DemoShot {
+  /** Filename stem for resting-lanczos tiers (`{id}-400.webp`). */
+  id: string;
+  label: string;
+  href: string;
+}
+
 export interface Demo {
   id: string;
   title: string;
   summary: string;
   href: string;
   viz: DemoViz;
+  /**
+   * Capture targets for the catalog card.
+   * One shot = screenshot of that surface. Several = a family (Edge Bar variants),
+   * not one thumb of the family landing page.
+   */
+  shots?: DemoShot[];
   /** Optional essay or docs deep-links */
   related?: { label: string; href: string }[];
 }
@@ -42,6 +55,13 @@ export const demoCategories: DemoCategory[] = [
           "Typed processing map for edge/request paths. Insert-between sockets, nested composites, and replay that surfaces apex/www redirect loops.",
         viz: "pipeline",
         href: "https://hci-nerdz.github.io/pipeline-composer/",
+        shots: [
+          {
+            id: "pipeline-composer",
+            label: "Pipeline composer",
+            href: "https://hci-nerdz.github.io/pipeline-composer/",
+          },
+        ],
         related: [
           {
             label: "Essay",
@@ -80,6 +100,13 @@ export const demoCategories: DemoCategory[] = [
           "Three narrow tools (Projects, Environment, Remote) with feedforward previews. Toggle mega-tool mode to feel the junk drawer return.",
         viz: "scoped",
         href: "/demos/scoped-ux/",
+        shots: [
+          {
+            id: "scoped-ux-desk",
+            label: "Scoped UX desk",
+            href: "/demos/scoped-ux/",
+          },
+        ],
         related: [
           {
             label: "Essay",
@@ -106,6 +133,13 @@ export const demoCategories: DemoCategory[] = [
           "Meta-suffixes like .example and .template are badges on a real type. Peel them and resolve open/icon from the stem — the way Explorer should.",
         viz: "peel",
         href: "/demos/pass-through-extensions/",
+        shots: [
+          {
+            id: "pass-through-extensions",
+            label: "Pass-through peel",
+            href: "/demos/pass-through-extensions/",
+          },
+        ],
         related: [
           {
             label: "Essay",
@@ -143,6 +177,13 @@ export const demoCategories: DemoCategory[] = [
           "Pro-audio filter literacy: term tree, history, visualization, and A/B audition — then EqualizerAPO / OBS export when a term maps.",
         viz: "audio",
         href: "https://hci-nerdz.github.io/audio-lexicon/",
+        shots: [
+          {
+            id: "audio-lexicon",
+            label: "Audio lexicon",
+            href: "https://hci-nerdz.github.io/audio-lexicon/",
+          },
+        ],
         related: [
           {
             label: "Open lexicon",
@@ -176,6 +217,13 @@ export const demoCategories: DemoCategory[] = [
           "Menu-style install guides: choose a path, see only the next honest steps, rewind and share the URL. Continuations nest under decisions instead of dumping every platform variant at once.",
         viz: "flow",
         href: "/demos/instruction-flow/",
+        shots: [
+          {
+            id: "instruction-flow",
+            label: "Instruction flow",
+            href: "/demos/instruction-flow/",
+          },
+        ],
         related: [
           {
             label: "Essay",
@@ -193,11 +241,28 @@ export const demoCategories: DemoCategory[] = [
       },
       {
         id: "context-rails",
-        title: "Edge Bar desk",
+        title: "Edge Bar",
         summary:
-          "Thin top/left Edge Bar expands on hover and opens a wireframe ecosystem map on click. Toggle header overload to feel platforms painted on the roof; switch platforms to feel stable overlay color.",
+          "Map, Modal, and Path variants — hover rails, click-through map, and framework islands. The desk page is the essay mock; the family below is the shipped MVP.",
         viz: "rails",
-        href: "/demos/context-rails/",
+        href: "https://hci-nerdz.github.io/context-rails/",
+        shots: [
+          {
+            id: "edge-bar-map",
+            label: "Map Edge",
+            href: "https://hci-nerdz.github.io/context-rails/demos/vanilla-mature/",
+          },
+          {
+            id: "edge-bar-modal",
+            label: "Modal Edge",
+            href: "https://hci-nerdz.github.io/context-rails/demos/modal-edge/",
+          },
+          {
+            id: "edge-bar-path",
+            label: "Path Edge",
+            href: "https://hci-nerdz.github.io/context-rails/demos/path-edge/",
+          },
+        ],
         related: [
           {
             label: "Essay",
@@ -208,8 +273,8 @@ export const demoCategories: DemoCategory[] = [
             href: "https://hci-nerdz.github.io/docs/hci-nerdz/context-rails.html",
           },
           {
-            label: "MVP (islands)",
-            href: "https://hci-nerdz.github.io/context-rails/",
+            label: "Desk mock",
+            href: "/demos/context-rails/",
           },
           {
             label: "Repo",
@@ -239,6 +304,13 @@ export const demoCategories: DemoCategory[] = [
           "Activity UI publishes context; a dependent settings pane matches applicability and shows only bound controls. Toggle the across-town catalog to feel the storage room return.",
         viz: "settings",
         href: "/demos/context-bound-settings/",
+        shots: [
+          {
+            id: "context-bound-settings",
+            label: "Context-bound settings",
+            href: "/demos/context-bound-settings/",
+          },
+        ],
         related: [
           {
             label: "Essay",

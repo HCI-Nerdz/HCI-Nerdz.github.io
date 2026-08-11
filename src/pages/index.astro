@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GitHubLink from '../components/GitHubLink.astro';
-import VizCard from '../components/VizCard.astro';
+import DemoCard from '../components/DemoCard.astro';
 import { allDemos } from '../lib/demos';
 import { getCollection } from 'astro:content';
 
@@ -103,7 +103,7 @@ const featuredDemos = allDemos();
         attention, theme, and more.
       </p>
       <div class="viz-grid">
-        {featuredDemos.map((demo) => <VizCard demo={demo} />)}
+        {featuredDemos.map((demo) => <DemoCard demo={demo} />)}
       </div>
       <p><a href="/demos/">All demos by category →</a></p>
     </section>

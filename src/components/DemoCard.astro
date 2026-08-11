@@ -1,0 +1,57 @@
+---
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import type { Demo } from '../lib/demos';
+import RestingShot from './RestingShot.astro';
+import VizCard from './VizCard.astro';
+
+interface Props {
+  demo: Demo;
+}
+
+const { demo } = Astro.props;
+const shots = demo.shots ?? [];
+const family = shots.length > 1;
+const pub = resolve(process.cwd(), 'public/demo-shots');
+const ready = shots.length > 0 && shots.every((s) => existsSync(resolve(pub, `${s.id}-800.webp`)));
+
+const soloSizes =
+  '(max-width: 639px) min(22rem, 90vw), (max-width: 1023px) min(22rem, 45vw), 16.5rem';
+const familySizes =
+  '(max-width: 639px) min(22rem, 90vw), (max-width: 1023px) min(18rem, 30vw), min(20rem, 28vw)';
+---
+
+{
+  !ready ? (
+    <VizCard demo={demo} />
+  ) : family ? (
+    <article class="viz-card demo-family">
+      <a class="demo-family-head" href={demo.href}>
+        <strong>{demo.title}</strong>
+        <span>{demo.summary}</span>
+      </a>
+      <ul class="shot-row">
+        {
+          shots.map((shot) => (
+            <li>
+              <a class="shot-tile" href={shot.href}>
+                <span class="rl-frame">
+                  <RestingShot id={shot.id} alt={`${shot.label} — ${demo.title}`} sizes={familySizes} />
+                </span>
+                <em>{shot.label}</em>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  ) : (
+    <a class="viz-card" href={demo.href}>
+      <span class="rl-frame">
+        <RestingShot id={shots[0].id} alt={`${demo.title} screenshot`} sizes={soloSizes} />
+      </span>
+      <strong>{demo.title}</strong>
+      <span>{demo.summary}</span>
+    </a>
+  )
+}

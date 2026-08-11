@@ -1,0 +1,62 @@
+{
+  "tiers": [400, 800],
+  "aspect": "16:10",
+  "shots": [
+    {
+      "id": "pipeline-composer",
+      "label": "Pipeline composer",
+      "url": "https://hci-nerdz.github.io/pipeline-composer/",
+      "selector": "main"
+    },
+    {
+      "id": "scoped-ux-desk",
+      "label": "Scoped UX desk",
+      "url": "https://hci-nerdz.github.io/demos/scoped-ux/",
+      "selector": "main"
+    },
+    {
+      "id": "pass-through-extensions",
+      "label": "Pass-through peel",
+      "url": "https://hci-nerdz.github.io/demos/pass-through-extensions/",
+      "selector": "main"
+    },
+    {
+      "id": "audio-lexicon",
+      "label": "Audio lexicon",
+      "url": "https://hci-nerdz.github.io/audio-lexicon/",
+      "selector": "main"
+    },
+    {
+      "id": "instruction-flow",
+      "label": "Instruction flow",
+      "url": "https://hci-nerdz.github.io/demos/instruction-flow/",
+      "selector": "main"
+    },
+    {
+      "id": "edge-bar-map",
+      "label": "Map Edge",
+      "url": "https://hci-nerdz.github.io/context-rails/demos/vanilla-mature/",
+      "selector": ".cr-stage",
+      "hover": ".cr-rail-top"
+    },
+    {
+      "id": "edge-bar-modal",
+      "label": "Modal Edge",
+      "url": "https://hci-nerdz.github.io/context-rails/demos/modal-edge/",
+      "selector": ".me-viewport",
+      "hover": ".cr-rail-top"
+    },
+    {
+      "id": "edge-bar-path",
+      "label": "Path Edge",
+      "url": "https://hci-nerdz.github.io/context-rails/demos/path-edge/",
+      "selector": "#rest-color .pe-stage, .pe-stage"
+    },
+    {
+      "id": "context-bound-settings",
+      "label": "Context-bound settings",
+      "url": "https://hci-nerdz.github.io/demos/context-bound-settings/",
+      "selector": "main"
+    }
+  ]
+}

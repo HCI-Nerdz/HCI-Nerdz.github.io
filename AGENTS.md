@@ -16,7 +16,7 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 
 - News: `src/content/news/` · RSS `/news/rss.xml` — outward / shared record
 - Blog: `src/content/blog/` · RSS `/blog/rss.xml` — inward / essays
-- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`). Home + catalog use `VizCard` CSS stages (display-size, no bitmap downscale). Photo thumbs later: DevCentr `resting-lanczos` (Lanczos3 + srcset).
+- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`). Cards use resting-lanczos WebP tiers (`public/demo-shots/`, `pnpm shots`). Edge Bar is a **family** (Map / Modal / Path shots) — do not thumb only the desk or hub href. CSS `VizCard` is the fallback when tiers are missing.
 - Docs hub: `https://hci-nerdz.github.io/docs/`
 - Deploy: Astro 5 → `dist/` via GitHub Pages Actions
 

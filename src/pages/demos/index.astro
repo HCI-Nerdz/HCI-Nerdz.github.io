@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import VizCard from '../../components/VizCard.astro';
+import DemoCard from '../../components/DemoCard.astro';
 import { demoCategories, demoCount } from '../../lib/demos';
 
 const total = demoCount();
@@ -48,7 +48,7 @@ const total = demoCount();
             <p class="empty-slot">No demos in this category yet.</p>
           ) : (
             <div class="viz-grid">
-              {cat.demos.map((demo) => <VizCard demo={demo} />)}
+              {cat.demos.map((demo) => <DemoCard demo={demo} />)}
             </div>
             {cat.demos.some((d) => d.related?.length) ? (
               <ul class="demo-related">
