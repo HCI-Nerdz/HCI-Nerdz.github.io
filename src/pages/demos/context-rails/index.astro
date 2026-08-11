@@ -1,0 +1,642 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Context rails desk · HCI Nerdz"
+  description="Interactive demo: edge-summoned ecosystem navigation — thin rails, wireframe platform map, stable overlay colors."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Context rails</p>
+      <h1>Context rails desk</h1>
+      <p class="lede">
+        Content is the skyscraper. Rails are the streets. Hover an edge to expand it; click to
+        summon the wireframe ecosystem map. Toggle <em>overload header</em> to feel platforms
+        painted on the roof.
+      </p>
+      <p class="related-links">
+        <a href="/blog/when-platforms-overload-the-entrypoint/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/context-rails.html">Docs</a>
+        ·
+        <a href="https://hci-nerdz.github.io/context-rails/">MVP islands</a>
+      </p>
+    </header>
+
+    <section class="desk" id="desk" aria-label="Context rails desk">
+      <div class="controls">
+        <label class="mode-toggle">
+          <input type="checkbox" id="overload-mode" />
+          <span>Overload header (anti-pattern)</span>
+        </label>
+        <p class="hint" id="status" role="status">Rails idle · platform: Mail</p>
+      </div>
+
+      <div
+        class="stage"
+        id="stage"
+        data-platform="mail"
+        style="--overlay: 210 55% 42%; --overlay-2: 200 40% 28%;"
+      >
+        <div class="overload-bar" id="overload-bar" hidden>
+          <span class="overload-brand">Entrypoint</span>
+          <div class="overload-tabs" id="overload-tabs"></div>
+        </div>
+
+        <button
+          type="button"
+          class="rail rail-top"
+          id="rail-top"
+          aria-label="Open ecosystem navigation from top edge"
+        >
+          <span class="rail-label">Ecosystem</span>
+        </button>
+        <button
+          type="button"
+          class="rail rail-left"
+          id="rail-left"
+          aria-label="Open ecosystem navigation from left edge"
+        ></button>
+
+        <div class="content" id="content" aria-live="polite">
+          <!-- filled by script -->
+        </div>
+
+        <div class="nav-overlay" id="nav-overlay" hidden>
+          <div class="nav-panel" role="dialog" aria-modal="true" aria-labelledby="nav-title">
+            <header class="nav-head">
+              <h2 id="nav-title">Wireframe ecosystem nav</h2>
+              <button type="button" class="nav-close" id="nav-close">Close</button>
+            </header>
+            <p class="nav-lede">Streets between buildings — pick a platform.</p>
+            <div class="wire" id="wire"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li>
+          <strong>Edge substrate</strong> — top and left rails summon ecosystem context; they do
+          not live in the content header.
+        </li>
+        <li>
+          <strong>Hover expand</strong> — rails widen for a label; color alone still signals the
+          affordance.
+        </li>
+        <li>
+          <strong>Wireframe nav</strong> — click opens a map of platforms, not another ephemeral
+          tab strip on the roof.
+        </li>
+        <li>
+          <strong>Overlay identity</strong> — each platform washes the shell with a stable
+          duo-tone so activity stays visually bound.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .desk-page {
+    max-width: 64rem;
+  }
+
+  .back-row {
+    margin: 0 0 0.5rem;
+  }
+
+  .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .desk {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
+      rgba(255, 255, 255, 0.02);
+    animation: rise 0.7s ease both;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.25rem;
+  }
+
+  .mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .hint {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.75;
+    font-family: var(--font-display);
+  }
+
+  .stage {
+    --rail-idle: 0.35rem;
+    --rail-hover: 2.75rem;
+    position: relative;
+    min-height: 26rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        120% 90% at 10% 0%,
+        hsl(var(--overlay) / 0.35),
+        transparent 55%
+      ),
+      linear-gradient(
+        145deg,
+        hsl(var(--overlay) / 0.22),
+        hsl(var(--overlay-2) / 0.35) 55%,
+        rgba(0, 0, 0, 0.35)
+      );
+    transition: background 0.45s ease;
+  }
+
+  .stage.is-overload .rail {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .overload-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .overload-brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-right: 0.35rem;
+    opacity: 0.85;
+  }
+
+  .overload-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .overload-tabs button {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: inherit;
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: var(--font-display);
+  }
+
+  .overload-tabs button.is-active {
+    border-color: hsl(var(--overlay));
+    background: hsl(var(--overlay) / 0.35);
+  }
+
+  .rail {
+    position: absolute;
+    z-index: 3;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #f4f7f6;
+    background: hsl(var(--overlay) / 0.92);
+    transition:
+      width 0.22s ease,
+      height 0.22s ease,
+      background 0.3s ease,
+      opacity 0.2s ease;
+    display: grid;
+    place-items: center;
+  }
+
+  .rail:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  .rail-top {
+    top: 0;
+    left: var(--rail-idle);
+    right: 0;
+    height: var(--rail-idle);
+    width: auto;
+  }
+
+  .stage.is-overload .rail-top {
+    top: auto;
+  }
+
+  .rail-left {
+    top: var(--rail-idle);
+    left: 0;
+    bottom: 0;
+    width: var(--rail-idle);
+    height: auto;
+  }
+
+  .rail-label {
+    opacity: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+  }
+
+  .stage.is-pair-hover .rail-top,
+  .rail-top:focus-visible {
+    height: var(--rail-hover);
+  }
+
+  .stage.is-pair-hover .rail-left,
+  .rail-left:focus-visible {
+    width: var(--rail-hover);
+  }
+
+  .stage.is-pair-hover .rail-top .rail-label,
+  .rail-top:focus-visible .rail-label {
+    opacity: 1;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    margin: calc(var(--rail-idle) + 0.85rem) 1rem 1rem calc(var(--rail-idle) + 0.85rem);
+    padding: 1.15rem 1.2rem 1.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.35rem;
+    background: rgba(8, 12, 14, 0.55);
+    backdrop-filter: blur(6px);
+    min-height: 18rem;
+  }
+
+  .stage.is-overload .content {
+    margin-top: 0.85rem;
+  }
+
+  .content h2 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .content .meta {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .content p {
+    margin: 0 0 0.75rem;
+    line-height: 1.55;
+    max-width: 40rem;
+  }
+
+  .fake-rows {
+    display: grid;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .fake-row {
+    height: 2.1rem;
+    border-radius: 0.3rem;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--overlay) / 0.18),
+      rgba(255, 255, 255, 0.06)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    background: rgba(4, 8, 10, 0.72);
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-panel {
+    width: min(36rem, 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.45rem;
+    background:
+      radial-gradient(80% 60% at 50% 0%, hsl(var(--overlay) / 0.25), transparent 60%),
+      #0c1216;
+    padding: 1rem 1.1rem 1.2rem;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  .nav-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-head h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+
+  .nav-close {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: inherit;
+    border-radius: 0.3rem;
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+    font-family: var(--font-display);
+  }
+
+  .nav-lede {
+    margin: 0.5rem 0 1rem;
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+
+  .wire {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 0.65rem;
+  }
+
+  .wire button {
+    display: grid;
+    gap: 0.2rem;
+    text-align: left;
+    padding: 0.75rem 0.8rem;
+    border-radius: 0.35rem;
+    border: 1px dashed rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .wire button:hover,
+  .wire button:focus-visible {
+    border-style: solid;
+    border-color: hsl(var(--overlay));
+    background: hsl(var(--overlay) / 0.2);
+    transform: translateY(-1px);
+  }
+
+  .wire button strong {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+  }
+
+  .wire button small {
+    opacity: 0.65;
+    font-size: 0.75rem;
+  }
+
+  .wire button.is-current {
+    border-style: solid;
+    border-color: hsl(var(--overlay));
+    background: hsl(var(--overlay) / 0.28);
+  }
+
+  .lesson {
+    margin-top: 1.75rem;
+    padding: 1.1rem 1.2rem;
+    border-left: 3px solid var(--honesty);
+  }
+
+  .lesson h2 {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+  }
+
+  .lesson ul {
+    margin: 0;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: 0.55rem;
+  }
+</style>
+
+<script>
+  type Platform = {
+    id: string;
+    label: string;
+    blurb: string;
+    role: string;
+    overlay: string;
+    overlay2: string;
+  };
+
+  const platforms: Platform[] = [
+    {
+      id: 'mail',
+      label: 'Mail',
+      blurb: 'Inbox and threads — a familiar building in the suite.',
+      role: 'Messaging',
+      overlay: '210 55% 42%',
+      overlay2: '200 40% 28%',
+    },
+    {
+      id: 'drive',
+      label: 'Drive',
+      blurb: 'Files and shared folders as the activity plane.',
+      role: 'Storage',
+      overlay: '28 70% 42%',
+      overlay2: '18 45% 28%',
+    },
+    {
+      id: 'admin',
+      label: 'Admin',
+      blurb: 'Directory and policy work without stealing Mail’s chrome.',
+      role: 'Control plane',
+      overlay: '160 40% 36%',
+      overlay2: '170 30% 22%',
+    },
+    {
+      id: 'cloud',
+      label: 'Cloud',
+      blurb: 'Compute and projects — a different world, same streets.',
+      role: 'Infrastructure',
+      overlay: '265 45% 42%',
+      overlay2: '250 35% 26%',
+    },
+    {
+      id: 'docs',
+      label: 'Docs',
+      blurb: 'Authoring surface with its own overlay identity.',
+      role: 'Creation',
+      overlay: '145 45% 34%',
+      overlay2: '155 30% 22%',
+    },
+  ];
+
+  let activeId = 'mail';
+  let navOpen = false;
+
+  const stage = document.getElementById('stage')!;
+  const content = document.getElementById('content')!;
+  const status = document.getElementById('status')!;
+  const overloadMode = document.getElementById('overload-mode') as HTMLInputElement;
+  const overloadBar = document.getElementById('overload-bar')!;
+  const overloadTabs = document.getElementById('overload-tabs')!;
+  const navOverlay = document.getElementById('nav-overlay')!;
+  const wire = document.getElementById('wire')!;
+  const railTop = document.getElementById('rail-top')!;
+  const railLeft = document.getElementById('rail-left')!;
+  const navClose = document.getElementById('nav-close')!;
+
+  function active(): Platform {
+    return platforms.find((p) => p.id === activeId) ?? platforms[0];
+  }
+
+  function applyPlatform(id: string) {
+    activeId = id;
+    const p = active();
+    stage.dataset.platform = p.id;
+    stage.style.setProperty('--overlay', p.overlay);
+    stage.style.setProperty('--overlay-2', p.overlay2);
+    content.innerHTML = `
+      <h2>${p.label}</h2>
+      <p class="meta">Platform overlay · ${p.role}</p>
+      <p>${p.blurb}</p>
+      <p>
+        Local page chrome can stay here. Cross-platform moves go through the rails —
+        streets under the skyscraper, not tabs on the roof.
+      </p>
+      <div class="fake-rows" aria-hidden="true">
+        <div class="fake-row"></div>
+        <div class="fake-row"></div>
+        <div class="fake-row"></div>
+      </div>
+    `;
+    status.textContent = navOpen
+      ? `Wireframe nav open · platform: ${p.label}`
+      : `Rails idle · platform: ${p.label}`;
+    renderOverloadTabs();
+    renderWire();
+  }
+
+  function renderOverloadTabs() {
+    overloadTabs.innerHTML = '';
+    for (const p of platforms) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = p.label;
+      b.classList.toggle('is-active', p.id === activeId);
+      b.addEventListener('click', () => applyPlatform(p.id));
+      overloadTabs.appendChild(b);
+    }
+  }
+
+  function renderWire() {
+    wire.innerHTML = '';
+    for (const p of platforms) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.classList.toggle('is-current', p.id === activeId);
+      b.innerHTML = `<strong>${p.label}</strong><small>${p.role}</small>`;
+      b.addEventListener('click', () => {
+        applyPlatform(p.id);
+        setNav(false);
+      });
+      wire.appendChild(b);
+    }
+  }
+
+  function setNav(open: boolean) {
+    navOpen = open;
+    navOverlay.hidden = !open;
+    const p = active();
+    status.textContent = open
+      ? `Wireframe nav open · platform: ${p.label}`
+      : `Rails idle · platform: ${p.label}`;
+    if (open) {
+      navClose.focus();
+    }
+  }
+
+  function setOverload(on: boolean) {
+    stage.classList.toggle('is-overload', on);
+    overloadBar.hidden = !on;
+    status.textContent = on
+      ? `Header overloaded · platform: ${active().label}`
+      : `Rails idle · platform: ${active().label}`;
+    if (on) setNav(false);
+  }
+
+  const pairOn = () => stage.classList.add('is-pair-hover');
+  const pairOff = () => stage.classList.remove('is-pair-hover');
+  for (const rail of [railTop, railLeft]) {
+    rail.addEventListener('mouseenter', pairOn);
+    rail.addEventListener('mouseleave', pairOff);
+    rail.addEventListener('focus', pairOn);
+    rail.addEventListener('blur', pairOff);
+    rail.addEventListener('click', () => setNav(true));
+  }
+  navClose.addEventListener('click', () => setNav(false));
+  navOverlay.addEventListener('click', (e) => {
+    if (e.target === navOverlay) setNav(false);
+  });
+  overloadMode.addEventListener('change', () => setOverload(overloadMode.checked));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navOpen) setNav(false);
+  });
+
+  applyPlatform(activeId);
+  setOverload(false);
+</script>

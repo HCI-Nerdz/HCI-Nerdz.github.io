@@ -176,6 +176,31 @@ export const demoCategories: DemoCategory[] = [
           },
         ],
       },
+      {
+        id: "context-rails",
+        title: "Context rails desk",
+        summary:
+          "Thin top/left edge rails expand on hover and open a wireframe ecosystem map on click. Toggle header overload to feel platforms painted on the roof; switch platforms to feel stable overlay color.",
+        href: "/demos/context-rails/",
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-platforms-overload-the-entrypoint/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/context-rails.html",
+          },
+          {
+            label: "MVP (islands)",
+            href: "https://hci-nerdz.github.io/context-rails/",
+          },
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/context-rails",
+          },
+        ],
+      },
     ],
   },
   {

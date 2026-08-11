@@ -1,0 +1,10 @@
+= 2026-08-10 — Context rails
+
+Essay, news, mockups, interactive desk, and link to multi-framework MVP.
+
+* Blog: `when-platforms-overload-the-entrypoint.md`
+* News: `context-rails-added-to-repertoire.md`
+* Demo: `/demos/context-rails/`
+* Images: `public/images/context-rails/`
+* MVP: `https://hci-nerdz.github.io/context-rails/` · `https://github.com/HCI-Nerdz/context-rails`
+* Demos catalog: Attention & progressive disclosure
