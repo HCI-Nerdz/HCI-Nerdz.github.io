@@ -1,8 +1,18 @@
+export type DemoViz =
+  | 'pipeline'
+  | 'audio'
+  | 'scoped'
+  | 'peel'
+  | 'flow'
+  | 'rails'
+  | 'settings';
+
 export interface Demo {
   id: string;
   title: string;
   summary: string;
   href: string;
+  viz: DemoViz;
   /** Optional essay or docs deep-links */
   related?: { label: string; href: string }[];
 }
@@ -30,6 +40,7 @@ export const demoCategories: DemoCategory[] = [
         title: "Pipeline composer",
         summary:
           "Typed processing map for edge/request paths. Insert-between sockets, nested composites, and replay that surfaces apex/www redirect loops.",
+        viz: "pipeline",
         href: "https://hci-nerdz.github.io/pipeline-composer/",
         related: [
           {
@@ -67,6 +78,7 @@ export const demoCategories: DemoCategory[] = [
         title: "Scoped UX desk",
         summary:
           "Three narrow tools (Projects, Environment, Remote) with feedforward previews. Toggle mega-tool mode to feel the junk drawer return.",
+        viz: "scoped",
         href: "/demos/scoped-ux/",
         related: [
           {
@@ -92,6 +104,7 @@ export const demoCategories: DemoCategory[] = [
         title: "Pass-through peel",
         summary:
           "Meta-suffixes like .example and .template are badges on a real type. Peel them and resolve open/icon from the stem — the way Explorer should.",
+        viz: "peel",
         href: "/demos/pass-through-extensions/",
         related: [
           {
@@ -128,6 +141,7 @@ export const demoCategories: DemoCategory[] = [
         title: "Audio lexicon",
         summary:
           "Pro-audio filter literacy: term tree, history, visualization, and A/B audition — then EqualizerAPO / OBS export when a term maps.",
+        viz: "audio",
         href: "https://hci-nerdz.github.io/audio-lexicon/",
         related: [
           {
@@ -160,6 +174,7 @@ export const demoCategories: DemoCategory[] = [
         title: "Instruction flow",
         summary:
           "Menu-style install guides: choose a path, see only the next honest steps, rewind and share the URL. Continuations nest under decisions instead of dumping every platform variant at once.",
+        viz: "flow",
         href: "/demos/instruction-flow/",
         related: [
           {
@@ -178,9 +193,10 @@ export const demoCategories: DemoCategory[] = [
       },
       {
         id: "context-rails",
-        title: "Context rails desk",
+        title: "Edge Bar desk",
         summary:
-          "Thin top/left edge rails expand on hover and open a wireframe ecosystem map on click. Toggle header overload to feel platforms painted on the roof; switch platforms to feel stable overlay color.",
+          "Thin top/left Edge Bar expands on hover and opens a wireframe ecosystem map on click. Toggle header overload to feel platforms painted on the roof; switch platforms to feel stable overlay color.",
+        viz: "rails",
         href: "/demos/context-rails/",
         related: [
           {
@@ -221,6 +237,7 @@ export const demoCategories: DemoCategory[] = [
         title: "Context-bound settings desk",
         summary:
           "Activity UI publishes context; a dependent settings pane matches applicability and shows only bound controls. Toggle the across-town catalog to feel the storage room return.",
+        viz: "settings",
         href: "/demos/context-bound-settings/",
         related: [
           {
@@ -239,4 +256,8 @@ export const demoCategories: DemoCategory[] = [
 
 export function demoCount(categories: DemoCategory[] = demoCategories): number {
   return categories.reduce((n, c) => n + c.demos.length, 0);
+}
+
+export function allDemos(categories: DemoCategory[] = demoCategories): Demo[] {
+  return categories.flatMap((c) => c.demos);
 }

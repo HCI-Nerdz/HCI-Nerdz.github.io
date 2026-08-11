@@ -16,7 +16,7 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 
 - News: `src/content/news/` · RSS `/news/rss.xml` — outward / shared record
 - Blog: `src/content/blog/` · RSS `/blog/rss.xml` — inward / essays
-- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`)
+- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`). Home + catalog use `VizCard` CSS stages (display-size, no bitmap downscale). Photo thumbs later: DevCentr `resting-lanczos` (Lanczos3 + srcset).
 - Docs hub: `https://hci-nerdz.github.io/docs/`
 - Deploy: Astro 5 → `dist/` via GitHub Pages Actions
 

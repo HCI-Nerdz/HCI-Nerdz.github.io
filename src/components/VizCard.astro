@@ -1,0 +1,61 @@
+---
+import type { Demo } from '../lib/demos';
+
+interface Props {
+  demo: Demo;
+}
+
+const { demo } = Astro.props;
+---
+
+<a class="viz-card" href={demo.href}>
+  <span class={`viz-stage viz-${demo.viz}`} aria-hidden="true">
+    <span class="viz-chrome"></span>
+    {
+      demo.viz === 'pipeline' && (
+        <span class="viz-pipeline">
+          <i /><i /><i />
+        </span>
+      )
+    }
+    {
+      demo.viz === 'audio' && (
+        <span class="viz-bars">
+          <i /><i /><i /><i /><i /><i />
+        </span>
+      )
+    }
+    {
+      demo.viz === 'scoped' && (
+        <span class="viz-panes">
+          <i /><i /><i />
+        </span>
+      )
+    }
+    {
+      demo.viz === 'peel' && (
+        <span class="viz-file">
+          <b>report</b>
+          <em>.example</em>
+        </span>
+      )
+    }
+    {
+      demo.viz === 'flow' && (
+        <span class="viz-steps">
+          <i /><i /><i />
+        </span>
+      )
+    }
+    {demo.viz === 'rails' && <span class="viz-l" />}
+    {
+      demo.viz === 'settings' && (
+        <span class="viz-bound">
+          <i /><i />
+        </span>
+      )
+    }
+  </span>
+  <strong>{demo.title}</strong>
+  <span>{demo.summary}</span>
+</a>

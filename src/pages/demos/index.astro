@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import VizCard from '../../components/VizCard.astro';
 import { demoCategories, demoCount } from '../../lib/demos';
 
 const total = demoCount();
@@ -46,26 +47,26 @@ const total = demoCount();
           {cat.demos.length === 0 ? (
             <p class="empty-slot">No demos in this category yet.</p>
           ) : (
-            <ul class="demo-list">
-              {cat.demos.map((demo) => (
-                <li>
-                  <a class="title" href={demo.href}>
-                    {demo.title}
-                  </a>
-                  <p>{demo.summary}</p>
-                  {demo.related?.length ? (
-                    <p class="related">
+            <div class="viz-grid">
+              {cat.demos.map((demo) => <VizCard demo={demo} />)}
+            </div>
+            {cat.demos.some((d) => d.related?.length) ? (
+              <ul class="demo-related">
+                {cat.demos.map((demo) =>
+                  demo.related?.length ? (
+                    <li>
+                      <span>{demo.title}</span>
                       {demo.related.map((link, i) => (
                         <span>
                           {i > 0 ? ' · ' : ''}
                           <a href={link.href}>{link.label}</a>
                         </span>
                       ))}
-                    </p>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
+                    </li>
+                  ) : null,
+                )}
+              </ul>
+            ) : null}
           )}
         </section>
       ))
@@ -121,41 +122,16 @@ const total = demoCount();
     scroll-margin-top: 5rem;
   }
 
-  .demo-list {
-    margin: 0;
+  .demo-related {
+    margin: 0.25rem 0 0;
     padding: 0;
     list-style: none;
-  }
-
-  .demo-list li {
     display: grid;
     gap: 0.35rem;
-    padding: 1.1rem 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .demo-list .title {
     font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--paper);
-    text-decoration: none;
-  }
-
-  .demo-list .title:hover {
-    color: var(--focus);
-  }
-
-  .demo-list p {
-    margin: 0;
-    max-width: 42rem;
-    color: var(--paper-muted);
-  }
-
-  .demo-list .related {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    color: var(--paper-muted);
   }
 
   .empty-slot {

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GitHubLink from '../components/GitHubLink.astro';
+import VizCard from '../components/VizCard.astro';
+import { allDemos } from '../lib/demos';
 import { getCollection } from 'astro:content';
 
 const news = (await getCollection('news', ({ data }) => !data.draft)).sort(
@@ -11,6 +13,7 @@ const blog = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 );
 const latestNews = news.slice(0, 2);
 const latestBlog = blog.slice(0, 3);
+const featuredDemos = allDemos();
 ---
 
 <BaseLayout active="home">
@@ -99,24 +102,9 @@ const latestBlog = blog.slice(0, 3);
         Interactive experiments, grouped by pattern — processing maps, product representation,
         attention, theme, and more.
       </p>
-      <ul class="partners">
-        <li>
-          <a href="https://hci-nerdz.github.io/pipeline-composer/">Pipeline composer</a>
-          <span>Sequence-first processing map — typed insert, nested parallelism, path replay</span>
-        </li>
-        <li>
-          <a href="https://hci-nerdz.github.io/audio-lexicon/">Audio lexicon</a>
-          <span>Pro-audio filter literacy — meaning, history, audition, and export</span>
-        </li>
-        <li>
-          <a href="/demos/scoped-ux/">Scoped UX desk</a>
-          <span>Narrow tools under one shell — feedforward previews, mega-tool contrast</span>
-        </li>
-        <li>
-          <a href="/demos/instruction-flow/">Instruction flow</a>
-          <span>Menu-style install guides — one decision at a time, shareable paths</span>
-        </li>
-      </ul>
+      <div class="viz-grid">
+        {featuredDemos.map((demo) => <VizCard demo={demo} />)}
+      </div>
       <p><a href="/demos/">All demos by category →</a></p>
     </section>
 
