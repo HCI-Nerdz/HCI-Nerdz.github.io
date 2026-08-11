@@ -11,7 +11,9 @@
     "shots": "node scripts/capture-demo-shots.mjs"
   },
   "dependencies": {
-    "astro": "^5.12.0"
+    "astro": "^5.12.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

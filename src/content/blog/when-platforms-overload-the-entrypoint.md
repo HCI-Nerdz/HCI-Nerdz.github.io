@@ -79,8 +79,8 @@ The pattern shines where shell state can sit next to routed content — **Solid 
 
 ## Where to go next
 
-- **Docs** — [Context rails](https://hci-nerdz.github.io/docs/hci-nerdz/context-rails.html)
-- **Demo** — [Context rails desk](/demos/context-rails/)
+- **Docs** — [Edge Bar](https://hci-nerdz.github.io/docs/hci-nerdz/context-rails.html)
+- **Demo** — [Edge Bar desk](/demos/context-rails/)
 - **MVP** — [Multi-framework Astro islands](https://hci-nerdz.github.io/context-rails/) · [repo](https://github.com/HCI-Nerdz/context-rails)
 - **Path Edge** — [breadcrumb colors](https://hci-nerdz.github.io/context-rails/demos/path-edge/)
 - **Sibling** — [When settings live across town](/blog/when-settings-live-across-town/) (bind settings to activity; rails bind *platforms* to the shell)

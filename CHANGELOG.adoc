@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-11 — Navigating by content
+
+* Paired essays, docs link, rename demo, Mermaid on blog, homepage HCI domains map
+* link:changelog-details/2026-08-11%20-%20navigating-by-content.adoc[Details]
+
 == 2026-08-11 — Resting-lanczos demo family shots
 
 * Catalog cards use Lanczos3 `srcset` thumbs. Edge Bar is a family (Map / Modal / Path), not a screenshot of the desk href.

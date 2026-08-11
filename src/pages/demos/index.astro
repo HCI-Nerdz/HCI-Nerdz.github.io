@@ -47,26 +47,28 @@ const total = demoCount();
           {cat.demos.length === 0 ? (
             <p class="empty-slot">No demos in this category yet.</p>
           ) : (
-            <div class="viz-grid">
-              {cat.demos.map((demo) => <DemoCard demo={demo} />)}
-            </div>
-            {cat.demos.some((d) => d.related?.length) ? (
-              <ul class="demo-related">
-                {cat.demos.map((demo) =>
-                  demo.related?.length ? (
-                    <li>
-                      <span>{demo.title}</span>
-                      {demo.related.map((link, i) => (
-                        <span>
-                          {i > 0 ? ' · ' : ''}
-                          <a href={link.href}>{link.label}</a>
-                        </span>
-                      ))}
-                    </li>
-                  ) : null,
-                )}
-              </ul>
-            ) : null}
+            <>
+              <div class="viz-grid">
+                {cat.demos.map((demo) => <DemoCard demo={demo} />)}
+              </div>
+              {cat.demos.some((d) => d.related?.length) ? (
+                <ul class="demo-related">
+                  {cat.demos.map((demo) =>
+                    demo.related?.length ? (
+                      <li>
+                        <span>{demo.title}</span>
+                        {demo.related.map((link, i) => (
+                          <span>
+                            {i > 0 ? ' · ' : ''}
+                            <a href={link.href}>{link.label}</a>
+                          </span>
+                        ))}
+                      </li>
+                    ) : null,
+                  )}
+                </ul>
+              ) : null}
+            </>
           )}
         </section>
       ))

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MermaidBoot from '../../components/MermaidBoot.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -39,4 +40,5 @@ const { Content } = await render(post);
       <Content />
     </div>
   </main>
+  <MermaidBoot />
 </BaseLayout>

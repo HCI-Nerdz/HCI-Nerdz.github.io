@@ -1,0 +1,26 @@
+---
+/** Loads Mermaid and renders ```mermaid fences after paint. */
+---
+<script>
+  import { initMermaid } from '../lib/mermaid';
+
+  initMermaid();
+  document.addEventListener('astro:page-load', () => initMermaid());
+</script>
+
+<style is:global>
+  .hci-mermaid {
+    margin: 1.25rem 0 1.75rem;
+    padding: 1rem 0.75rem;
+    overflow-x: auto;
+    border: 1px solid color-mix(in srgb, #0c6b6e 22%, transparent);
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, #0c6b6e 6%, transparent);
+  }
+  .hci-mermaid svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+</style>

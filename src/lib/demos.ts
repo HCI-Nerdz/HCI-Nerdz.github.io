@@ -292,6 +292,43 @@ export const demoCategories: DemoCategory[] = [
     demos: [],
   },
   {
+    id: "naming-reference",
+    title: "Naming & reference",
+    description:
+      "Pretty URLs and path labels for humans; content identity and reverse consumers for wires — DevX as HCI.",
+    demos: [
+      {
+        id: "navigating-by-content",
+        title: "Navigating by content",
+        summary:
+          "Flip between string-wired URLs and content hashes. Rename the pretty path and watch who breaks — or who doesn't.",
+        viz: "rails",
+        href: "/demos/navigating-by-content/",
+        shots: [
+          {
+            id: "navigating-by-content",
+            label: "Navigating by content",
+            href: "/demos/navigating-by-content/",
+          },
+        ],
+        related: [
+          {
+            label: "Relatable essay",
+            href: "/blog/when-renaming-a-page-breaks-half-your-docs/",
+          },
+          {
+            label: "Technical essay",
+            href: "/blog/when-the-name-is-not-the-wire/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "settings-source-of-truth",
     title: "Settings & source of truth",
     description:

@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Navigating by content · HCI Nerdz"
+  description="Animated mock: renaming a pretty URL breaks string-wired docs; content hashes stay put while the human label moves."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Navigating by content</p>
+      <h1>Labels move. Identity shouldn't.</h1>
+      <p class="lede">
+        Flip between today's string wiring and content-addressed fetch. Same rename.
+        Different blast radius.
+      </p>
+      <p class="related-links">
+        <a href="/blog/when-renaming-a-page-breaks-half-your-docs/">Relatable essay</a>
+        ·
+        <a href="/blog/when-the-name-is-not-the-wire/">Technical essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html">Docs</a>
+      </p>
+    </header>
+
+    <section class="stage" aria-label="Rename simulation">
+      <div class="toolbar">
+        <fieldset class="mode">
+          <legend class="sr-only">Wiring mode</legend>
+          <label>
+            <input type="radio" name="mode" value="strings" checked />
+            Wire on pretty URL
+          </label>
+          <label>
+            <input type="radio" name="mode" value="content" />
+            Wire on content hash
+          </label>
+        </fieldset>
+        <button type="button" class="rename" id="rename-btn">Rename /docs/api → /docs/interfaces</button>
+      </div>
+
+      <div class="panels">
+        <article class="panel producer">
+          <h2>Producer</h2>
+          <div class="card">
+            <img class="icon" src="/images/navigating-by-content/icon.svg" width="72" height="72" alt="" />
+            <p class="label">Human label</p>
+            <p class="path" id="path-label"><code>/docs/api</code></p>
+            <p class="label">Content identity</p>
+            <p class="hash"><code>#e3b0c442…</code></p>
+          </div>
+        </article>
+
+        <article class="panel consumers">
+          <h2>Consumers</h2>
+          <ul class="consumer-list" id="consumers">
+            <li data-ref="url" class="ok">
+              <span class="name">Sibling README</span>
+              <code class="ref url-ref">…/docs/api</code>
+              <span class="status" data-status>linked</span>
+            </li>
+            <li data-ref="url" class="ok">
+              <span class="name">Antora nav</span>
+              <code class="ref url-ref">…/docs/api</code>
+              <span class="status" data-status>linked</span>
+            </li>
+            <li data-ref="hash" class="ok">
+              <span class="name">Agent cite</span>
+              <code class="ref">#e3b0c442…</code>
+              <span class="status" data-status>linked</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="caption" id="caption">
+        Pretty URL is both label and wire. A rename snaps every string consumer.
+      </p>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  const pathLabel = document.getElementById('path-label');
+  const caption = document.getElementById('caption');
+  const consumers = document.getElementById('consumers');
+  const renameBtn = document.getElementById('rename-btn');
+  let renamed = false;
+
+  function mode() {
+    return /** @type {HTMLInputElement} */ (
+      document.querySelector('input[name="mode"]:checked')
+    ).value;
+  }
+
+  function apply() {
+    const m = mode();
+    const newPath = renamed ? '/docs/interfaces' : '/docs/api';
+    pathLabel.innerHTML = `<code>${newPath}</code>`;
+
+    consumers.querySelectorAll('li').forEach((li) => {
+      const status = li.querySelector('[data-status]');
+      const urlRef = li.querySelector('.url-ref');
+      const isUrl = li.getAttribute('data-ref') === 'url';
+
+      if (urlRef) {
+        // String-wired consumers keep the old path after rename; content mode updates the label display.
+        if (m === 'strings' && renamed) {
+          urlRef.textContent = '…/docs/api';
+        } else {
+          urlRef.textContent = `…${newPath}`;
+        }
+      }
+
+      li.classList.remove('ok', 'broken', 'pulse');
+      if (m === 'strings' && renamed && isUrl) {
+        li.classList.add('broken', 'pulse');
+        status.textContent = '404 / rot';
+      } else {
+        li.classList.add('ok');
+        status.textContent = 'linked';
+        if (renamed) li.classList.add('pulse');
+      }
+    });
+
+    caption.textContent =
+      m === 'strings'
+        ? renamed
+          ? 'String consumers still hold /docs/api. The producer moved. Attention tax begins.'
+          : 'Pretty URL is both label and wire. A rename snaps every string consumer.'
+        : renamed
+          ? 'Hash consumers still resolve. The human label updated; identity did not.'
+          : 'Dependents wire on #hash. The pretty path is a detachable label.';
+  }
+
+  renameBtn.addEventListener('click', () => {
+    renamed = !renamed;
+    renameBtn.textContent = renamed
+      ? 'Undo rename'
+      : 'Rename /docs/api → /docs/interfaces';
+    apply();
+  });
+
+  document.querySelectorAll('input[name="mode"]').forEach((el) => {
+    el.addEventListener('change', () => {
+      renamed = false;
+      renameBtn.textContent = 'Rename /docs/api → /docs/interfaces';
+      apply();
+    });
+  });
+
+  apply();
+</script>
+
+<style>
+  .desk-intro .eyebrow {
+    font-family: Syne, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+  .stage {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background:
+      radial-gradient(120% 80% at 10% 0%, color-mix(in srgb, #0c6b6e 14%, transparent), transparent 55%),
+      radial-gradient(90% 70% at 100% 20%, color-mix(in srgb, #d4568c 12%, transparent), transparent 50%),
+      color-mix(in srgb, CanvasText 4%, Canvas);
+    border: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .mode {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+  .rename {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.4rem;
+    border: 1px solid color-mix(in srgb, #0c6b6e 45%, transparent);
+    background: #0c6b6e;
+    color: #f4fbfb;
+    cursor: pointer;
+  }
+  .rename:hover {
+    filter: brightness(1.08);
+  }
+  .panels {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 840px) {
+    .panels {
+      grid-template-columns: 1fr 1.2fr;
+    }
+  }
+  .panel h2 {
+    font-family: Syne, sans-serif;
+    font-size: 1.05rem;
+    margin: 0 0 0.65rem;
+  }
+  .card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, Canvas 88%, transparent);
+    border: 1px solid color-mix(in srgb, CanvasText 10%, transparent);
+  }
+  .icon {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .label {
+    margin: 0.35rem 0 0.1rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  .path code,
+  .hash code,
+  .ref {
+    font-family: ui-monospace, monospace;
+    font-size: 0.9rem;
+  }
+  .consumer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+  .consumer-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0.15rem 0.75rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 0.45rem;
+    border: 1px solid color-mix(in srgb, CanvasText 10%, transparent);
+    background: color-mix(in srgb, Canvas 88%, transparent);
+    transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease;
+  }
+  .consumer-list .name {
+    font-weight: 600;
+  }
+  .consumer-list .ref {
+    grid-column: 1 / -1;
+    opacity: 0.85;
+  }
+  .consumer-list .status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    align-self: start;
+  }
+  .consumer-list li.ok .status {
+    color: #0c6b6e;
+  }
+  .consumer-list li.broken {
+    border-color: color-mix(in srgb, #b42318 55%, transparent);
+    background: color-mix(in srgb, #b42318 10%, Canvas);
+  }
+  .consumer-list li.broken .status {
+    color: #b42318;
+  }
+  .consumer-list li.pulse {
+    animation: settle 0.7s ease;
+  }
+  @keyframes settle {
+    0% {
+      transform: translateY(2px) scale(0.99);
+    }
+    60% {
+      transform: translateY(-2px) scale(1.01);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  .caption {
+    margin: 1.1rem 0 0;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
