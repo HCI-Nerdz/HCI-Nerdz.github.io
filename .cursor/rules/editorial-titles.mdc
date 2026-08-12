@@ -1,0 +1,14 @@
+﻿---
+description: News and blog title style — orientation doctrine
+globs: src/content/news/**/*.md,src/content/blog/**/*.md
+alwaysApply: false
+---
+
+# Titles for news and blog
+
+Follow `STYLE.adoc` and `AGENTS.md`. Philosophy: `/blog/titles-as-orientation/`.
+
+- First-party news omits the org (notification line).
+- Action essays: implied [On]; drop surplus *the*.
+- Prefer *as* / *when* / disproof / questions over rigid *X is Y*.
+- Attach floating modifiers to an object.
