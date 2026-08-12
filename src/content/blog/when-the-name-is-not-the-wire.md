@@ -12,7 +12,7 @@ Rename the path, and every dependent that baked the string becomes a broken prom
 This essay is the technical companion to [When renaming a page breaks half your docs](/blog/when-renaming-a-page-breaks-half-your-docs/).
 Full diagrams and the adoption ladder live in the docs: [Navigating by content](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
 
-![Icon: hash core with detachable /docs/api label](/images/navigating-by-content/icon.svg)
+<img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Hash core with detachable /docs/api label" />
 
 ## Two naming problems, not one solution
 

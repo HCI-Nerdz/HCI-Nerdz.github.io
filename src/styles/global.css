@@ -368,6 +368,12 @@ img {
   border-radius: 2px;
 }
 
+.article .body img.concept-icon {
+  max-width: 12rem;
+  border: 0;
+  background: transparent;
+}
+
 .article .body :is(code, kbd, samp) {
   font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", "SF Mono", monospace;
   font-size: 0.88em;

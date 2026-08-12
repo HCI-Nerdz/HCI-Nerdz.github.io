@@ -10,7 +10,7 @@ I am tired of updating URLs.
 
 Not the thoughtful kind of tired — the kind where you rename one docs path for clarity, then spend the afternoon grepping sibling repos because somebody pasted `https://…/old-path` into a README six months ago. The rename was correct. The breakage was predictable. The work is still yours.
 
-![Icon: stable content core with a detachable name tag](/images/navigating-by-content/icon.svg)
+<img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Stable content core with a detachable name tag" />
 
 ## Pretty names are not wires
 
