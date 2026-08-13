@@ -1,0 +1,6 @@
+= Equal homepage CTAs — changelog detail
+:description: Hero destinations share one button style.
+
+== Changed
+
+* Homepage hero no longer paints Blog as a filled primary. Blog, Demos, News, Docs, and Philosophy are equivalent outline buttons — none of them is the current page, and none is a single main CTA.

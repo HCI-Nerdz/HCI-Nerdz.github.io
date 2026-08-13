@@ -177,11 +177,6 @@ img {
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.cta a.primary {
-  background: var(--focus);
-  color: var(--ink);
-}
-
 .cta a.secondary {
   border: 1px solid var(--line);
   color: var(--paper);
