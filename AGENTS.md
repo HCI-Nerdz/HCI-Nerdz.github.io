@@ -29,6 +29,7 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 - Open-with interrupt: essay `/blog/when-double-click-skips-the-choice/`; docs `open-with-interrupt` (implementation recipes)
 - Visitor-first repo homepage: essay `/blog/when-the-file-tree-owns-the-first-viewport/`; docs `visitor-first-repo-homepage`; upstream https://github.com/orgs/community/discussions/204347
 - Context-bound settings: essay `/blog/when-settings-live-across-town/`; docs `context-bound-settings`; demo `/demos/context-bound-settings/`
+- Config field vocabulary: essay `/blog/when-config-files-withhold-the-vocabulary/` (companion to UniConfig Config Panel)
 - Context rails: essay `/blog/when-platforms-overload-the-entrypoint/`; docs `context-rails`; demo `/demos/context-rails/`; MVP `https://hci-nerdz.github.io/context-rails/`
 - Navigating by content: essays `/blog/when-renaming-a-page-breaks-half-your-docs/` + `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content`; demo `/demos/navigating-by-content/`; Mermaid via `MermaidBoot`
 - Homepage domains map orients HCI lanes (including naming & reference); keep out of the hero
