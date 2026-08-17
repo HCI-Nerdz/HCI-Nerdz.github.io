@@ -30,4 +30,4 @@ Arbitrary maps (`tags = { anything: anything }`) remain hostile. HCL *programs* 
 
 Dev-Centr is shipping that stack as **UniConfig Config Panel**: a D library for the tree, a dlangui desktop for the panel, SDLang profiles for globs. The HCI claim does not depend on the toolkit. It depends on treating field vocabulary as a first-class UI, not as something the last author happened to type.
 
-Docs: [UniConfig](https://docs.devcentr.org/uniconfig/latest/). Record: [Config files get a Control Panel](https://devcentr.org/news/2026-08-17-config-files-get-a-control-panel).
+Docs: [UniConfig](https://docs.devcentr.org/uniconfig/). Record: [Config files get a Control Panel](https://devcentr.org/news/2026-08-17-config-files-get-a-control-panel).
