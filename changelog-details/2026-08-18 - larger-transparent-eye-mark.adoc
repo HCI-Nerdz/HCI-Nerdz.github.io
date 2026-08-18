@@ -1,0 +1,8 @@
+= Larger transparent eye mark — changelog detail
+:description: Site chrome uses a transparent eye; the padded tile stays for avatars.
+
+== Changed
+
+* Replaced the header/favicon mark with a larger almond, thicker outline, and bigger iris/pupil/glint on a transparent background. The cream sclera is part of the glyph so the pupil still reads on dark pages without a dark rounded square.
+* Kept `public/logo-mark-avatar.svg` (padded rounded square) for org avatar, social, and the 180px apple-touch icon.
+* Regenerated `favicon.svg`, `favicon.ico` (16/32), `favicon-32.png`, `favicon-192.png`, and `apple-touch-icon.png` via `pnpm favicons` (`scripts/render-favicons.mjs`, sharp).

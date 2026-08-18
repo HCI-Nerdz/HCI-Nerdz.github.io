@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "shots": "node scripts/capture-demo-shots.mjs"
+    "shots": "node scripts/capture-demo-shots.mjs",
+    "favicons": "node scripts/render-favicons.mjs"
   },
   "dependencies": {
     "astro": "^5.12.0",

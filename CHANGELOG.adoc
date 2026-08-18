@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-08-18 — Larger transparent eye mark
+
+* Site header and favicon use the eye on alpha — no rounded-square tile in chrome. Iris, pupil, and stroke are larger so the mark reads at 16px.
+* Padded dark tile kept as `logo-mark-avatar.svg` for GitHub, social, and apple-touch.
+* link:changelog-details/2026-08-18%20-%20larger-transparent-eye-mark.adoc[Details]
+
 == 2026-08-18 — What we fight for
 
 * Homepage manifesto under the existing heading: HCI/UI/UX as how computers fit into our lives; respect for cognition and attention; mental models; discoverability and least surprise. Short hero tagline stays.

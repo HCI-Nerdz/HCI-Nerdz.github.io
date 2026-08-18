@@ -1,27 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-label="HCI Nerdz">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 160" role="img" aria-label="HCI Nerdz">
+  <defs>
+    <linearGradient id="wordmarkEyeStroke" x1="28" y1="20" x2="228" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F7A73" />
+      <stop offset="1" stop-color="#E8A54B" />
+    </linearGradient>
+  </defs>
   <text x="0" y="108"
     font-family="Syne, Avenir Next, Segoe UI, sans-serif"
     font-size="96"
     font-weight="700"
     letter-spacing="-2"
     fill="#E8E4D9">HCI Nerdz</text>
-  <g transform="translate(600 18)">
+  <g transform="translate(596 8) scale(0.56)">
     <path
-      d="M46 54
-         C58 30 82 18 104 18
-         C126 18 150 30 162 54
-         C150 90 126 102 104 102
-         C82 102 58 90 46 54 Z"
-      fill="rgba(232,228,217,0.10)"
-      stroke="#3D9B8F"
-      stroke-opacity=".5"
-      stroke-width="6"
+      d="M12 128
+         C48 52 88 24 128 24
+         C168 24 208 52 244 128
+         C208 204 168 232 128 232
+         C88 232 48 204 12 128 Z"
+      fill="#E8E4D9"
+      stroke="url(#wordmarkEyeStroke)"
+      stroke-width="20"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
-    <circle cx="104" cy="56" r="20" fill="rgba(232,165,75,0.18)" />
-    <circle cx="104" cy="56" r="12" fill="rgba(232,165,75,0.78)" />
-    <circle cx="98" cy="50" r="4" fill="#E8E4D9" opacity="0.9" />
-    <circle cx="104" cy="56" r="8" fill="#0E1218" />
+    <circle cx="128" cy="132" r="82" fill="#E8A54B" fill-opacity="0.28" />
+    <circle cx="128" cy="132" r="70" fill="#E8A54B" />
+    <circle cx="128" cy="132" r="40" fill="#0E1218" />
+    <circle cx="112" cy="116" r="16" fill="#F4F1E8" />
   </g>
 </svg>
