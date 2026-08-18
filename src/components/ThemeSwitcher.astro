@@ -6,11 +6,29 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<label class:list={['header-control theme-control', className]}>
-  <span class="sr-only" data-i18n="theme.toggle">Theme</span>
-  <select class="theme-mode-select" aria-label="Theme mode">
-    <option value="system" data-i18n="theme.system">System</option>
-    <option value="light" data-i18n="theme.light">Light</option>
-    <option value="dark" data-i18n="theme.dark">Dark</option>
-  </select>
-</label>
+<button
+  type="button"
+  class:list={['theme-toggle', className]}
+  data-theme-toggle
+  data-i18n-aria="theme.switch_to_dark"
+  aria-label="Switch to dark mode"
+  aria-pressed="false"
+>
+  <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" fill="currentColor" />
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      d="M12 3v2M12 19v2M3 12h2M19 12h2M5.64 5.64l1.41 1.41M16.95 16.95l1.41 1.41M5.64 18.36l1.41-1.41M16.95 7.05l1.41-1.41"
+    />
+  </svg>
+  <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      fill="currentColor"
+      d="M14.3 3.2a8.6 8.6 0 1 0 6.5 13.3 7.1 7.1 0 0 1-6.5-13.3z"
+    />
+  </svg>
+  <span class="sr-only" data-i18n="theme.switch_to_dark">Switch to dark mode</span>
+</button>

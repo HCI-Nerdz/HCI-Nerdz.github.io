@@ -26,12 +26,12 @@ const {
         const THEME_KEY = 'theme-mode';
         const mql = window.matchMedia('(prefers-color-scheme: dark)');
         const systemTheme = () => (mql.matches ? 'dark' : 'light');
-        let mode = 'system';
+        let override = null;
         try {
-          mode = localStorage.getItem(THEME_KEY) || 'system';
+          const saved = localStorage.getItem(THEME_KEY);
+          if (saved === 'light' || saved === 'dark') override = saved;
         } catch {}
-        const effective = mode === 'system' ? systemTheme() : mode;
-        document.documentElement.dataset.theme = effective;
+        document.documentElement.dataset.theme = override || systemTheme();
       })();
     </script>
     <style is:global>
@@ -85,49 +85,51 @@ const {
           >
             <span data-i18n="nav.philosophy">Philosophy</span>
           </a>
-          <span class="nav-tool" data-collapse="tools"><LangSwitcher /></span>
-          <span class="nav-tool" data-collapse="tools"><GitHubLink class="nav-github" /></span>
-          <span class="nav-tool" data-collapse="tools"><ThemeSwitcher /></span>
         </div>
 
-        <button
-          type="button"
-          class="nav-toggle"
-          id="nav-toggle"
-          aria-expanded="false"
-          aria-controls="nav-drawer"
-          data-i18n-aria="nav.menu"
-          aria-label="Open menu"
-        >
-          <span class="nav-toggle-bars" aria-hidden="true"></span>
-        </button>
-
-        <div class="nav-drawer" id="nav-drawer" hidden>
-          <a class="nav-link" data-collapse="primary" href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>
-            <span data-i18n="nav.blog">Blog</span>
-          </a>
-          <a class="nav-link" data-collapse="primary" href="/demos/" aria-current={active === 'demos' ? 'page' : undefined}>
-            <span data-i18n="nav.demos">Demos</span>
-          </a>
-          <a class="nav-link" data-collapse="primary" href="https://hci-nerdz.github.io/docs/">
-            <span data-i18n="nav.docs">Docs</span>
-          </a>
-          <a class="nav-link" data-collapse="secondary" href="/news/" aria-current={active === 'news' ? 'page' : undefined}>
-            <span data-i18n="nav.news">News</span>
-          </a>
-          <a
-            class="nav-link"
-            data-collapse="secondary"
-            href="/philosophy/"
-            aria-current={active === 'philosophy' ? 'page' : undefined}
+        <div class="nav-collapse">
+          <button
+            type="button"
+            class="nav-toggle"
+            id="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-drawer"
+            data-i18n-aria="nav.menu"
+            aria-label="Open menu"
           >
-            <span data-i18n="nav.philosophy">Philosophy</span>
-          </a>
-          <span class="nav-tool" data-collapse="tools"><LangSwitcher /></span>
-          <span class="nav-tool" data-collapse="tools"><GitHubLink class="nav-github" showStars={false} /></span>
-          <span class="nav-tool" data-collapse="tools"><ThemeSwitcher /></span>
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-drawer" id="nav-drawer" hidden>
+            <a class="nav-link" data-collapse="primary" href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>
+              <span data-i18n="nav.blog">Blog</span>
+            </a>
+            <a class="nav-link" data-collapse="primary" href="/demos/" aria-current={active === 'demos' ? 'page' : undefined}>
+              <span data-i18n="nav.demos">Demos</span>
+            </a>
+            <a class="nav-link" data-collapse="primary" href="https://hci-nerdz.github.io/docs/">
+              <span data-i18n="nav.docs">Docs</span>
+            </a>
+            <a class="nav-link" data-collapse="secondary" href="/news/" aria-current={active === 'news' ? 'page' : undefined}>
+              <span data-i18n="nav.news">News</span>
+            </a>
+            <a
+              class="nav-link"
+              data-collapse="secondary"
+              href="/philosophy/"
+              aria-current={active === 'philosophy' ? 'page' : undefined}
+            >
+              <span data-i18n="nav.philosophy">Philosophy</span>
+            </a>
+          </div>
         </div>
       </nav>
+
+      <div class="nav-chrome">
+        <LangSwitcher />
+        <GitHubLink class="nav-github" />
+        <ThemeSwitcher />
+      </div>
     </header>
     <slot />
     <footer class="site-footer" aria-label="Site footer">
@@ -174,6 +176,26 @@ const {
           return 'en';
         }
 
+        function eventEl(e) {
+          return e.target instanceof Element ? e.target : e.target.parentElement;
+        }
+
+        function closeLangMenus() {
+          document.querySelectorAll('[data-lang-switcher]').forEach((root) => {
+            const trigger = root.querySelector('[data-lang-trigger]');
+            const menu = root.querySelector('[data-lang-menu]');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            if (menu) menu.hidden = true;
+          });
+        }
+
+        function setLangMenuOpen(root, open) {
+          const trigger = root.querySelector('[data-lang-trigger]');
+          const menu = root.querySelector('[data-lang-menu]');
+          if (trigger) trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (menu) menu.hidden = !open;
+        }
+
         function applyLang(lang) {
           document.documentElement.lang = lang;
           const dict = I18N[lang] || I18N.en;
@@ -190,64 +212,68 @@ const {
             if (v) el.setAttribute('aria-label', v);
           });
           document.querySelectorAll('[data-lang]').forEach((btn) => {
-            btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+            btn.setAttribute('aria-selected', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
           });
         }
 
-        function applyTheme(mode) {
-          const mql = window.matchMedia('(prefers-color-scheme: dark)');
-          const systemTheme = () => (mql.matches ? 'dark' : 'light');
-          const effective = mode === 'system' ? systemTheme() : mode;
+        function systemTheme() {
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function readThemeOverride() {
+          try {
+            const saved = localStorage.getItem(THEME_KEY);
+            if (saved === 'light' || saved === 'dark') return saved;
+          } catch {}
+          return null;
+        }
+
+        function writeThemeOverride(override) {
+          try {
+            if (override === 'light' || override === 'dark') localStorage.setItem(THEME_KEY, override);
+            else localStorage.removeItem(THEME_KEY);
+          } catch {}
+        }
+
+        function syncThemeToggle(effective) {
+          const dict = I18N[document.documentElement.lang] || I18N.en;
+          const key = effective === 'dark' ? 'theme.switch_to_light' : 'theme.switch_to_dark';
+          const label = dict[key];
+          document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+            btn.setAttribute('aria-pressed', effective === 'dark' ? 'true' : 'false');
+            btn.setAttribute('data-i18n-aria', key);
+            if (label) btn.setAttribute('aria-label', label);
+            const sr = btn.querySelector('.sr-only');
+            if (sr && label) {
+              sr.setAttribute('data-i18n', key);
+              sr.textContent = label;
+            }
+          });
+        }
+
+        function applyTheme(override) {
+          const effective = override || systemTheme();
           document.documentElement.dataset.theme = effective;
           document.documentElement.style.colorScheme = effective;
-          document.querySelectorAll('.theme-mode-select').forEach((sel) => {
-            sel.value = mode;
-          });
+          syncThemeToggle(effective);
         }
 
         const initLang = pickInitialLang();
         applyLang(initLang);
 
-        document.addEventListener('click', (e) => {
-          const el = e.target instanceof Element ? e.target : e.target.parentElement;
-          const btn = el && el.closest('[data-lang]');
-          if (!btn) return;
-          const v = btn.getAttribute('data-lang');
-          if (!SUPPORTED.includes(v)) return;
-          try {
-            localStorage.setItem(LANG_KEY, v);
-          } catch {}
-          applyLang(v);
-        });
-
-        let mode = 'system';
-        try {
-          mode = localStorage.getItem(THEME_KEY) || 'system';
-        } catch {}
-        applyTheme(mode);
+        applyTheme(readThemeOverride());
 
         const mql = window.matchMedia('(prefers-color-scheme: dark)');
         mql.addEventListener('change', () => {
-          try {
-            localStorage.setItem(THEME_KEY, 'system');
-          } catch {}
-          applyTheme('system');
-        });
-
-        document.querySelectorAll('.theme-mode-select').forEach((sel) => {
-          sel.addEventListener('change', () => {
-            const v = sel.value;
-            try {
-              localStorage.setItem(THEME_KEY, v);
-            } catch {}
-            applyTheme(v);
-          });
+          writeThemeOverride(null);
+          applyTheme(null);
         });
 
         const toggle = document.getElementById('nav-toggle');
         const drawer = document.getElementById('nav-drawer');
+        let setDrawerOpen = () => {};
         if (toggle && drawer) {
-          const setOpen = (open) => {
+          setDrawerOpen = (open) => {
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
             drawer.hidden = !open;
             document.body.classList.toggle('nav-open', open);
@@ -256,19 +282,58 @@ const {
             toggle.setAttribute('data-i18n-aria', open ? 'nav.close' : 'nav.menu');
           };
           toggle.addEventListener('click', () => {
-            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-          });
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') setOpen(false);
-          });
-          document.addEventListener('click', (e) => {
-            if (!document.body.classList.contains('nav-open')) return;
-            const el = e.target instanceof Element ? e.target : e.target.parentElement;
-            if (!el) return;
-            if (toggle.contains(el) || drawer.contains(el)) return;
-            setOpen(false);
+            const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+            if (willOpen) closeLangMenus();
+            setDrawerOpen(willOpen);
           });
         }
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key !== 'Escape') return;
+          closeLangMenus();
+          setDrawerOpen(false);
+        });
+
+        document.addEventListener('click', (e) => {
+          const el = eventEl(e);
+          if (!el) return;
+
+          const option = el.closest('[data-lang]');
+          if (option) {
+            const v = option.getAttribute('data-lang');
+            if (SUPPORTED.includes(v)) {
+              try {
+                localStorage.setItem(LANG_KEY, v);
+              } catch {}
+              applyLang(v);
+            }
+            closeLangMenus();
+            return;
+          }
+
+          const langTrigger = el.closest('[data-lang-trigger]');
+          if (langTrigger) {
+            const root = langTrigger.closest('[data-lang-switcher]');
+            const willOpen = langTrigger.getAttribute('aria-expanded') !== 'true';
+            closeLangMenus();
+            setDrawerOpen(false);
+            if (root && willOpen) setLangMenuOpen(root, true);
+            return;
+          }
+
+          if (!el.closest('[data-lang-switcher]')) closeLangMenus();
+
+          if (document.body.classList.contains('nav-open') && toggle && drawer) {
+            if (!toggle.contains(el) && !drawer.contains(el)) setDrawerOpen(false);
+          }
+
+          const themeBtn = el.closest('[data-theme-toggle]');
+          if (!themeBtn) return;
+          const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+          const next = current === 'dark' ? 'light' : 'dark';
+          writeThemeOverride(next);
+          applyTheme(next);
+        });
       })();
     </script>
   </body>

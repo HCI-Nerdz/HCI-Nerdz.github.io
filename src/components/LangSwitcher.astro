@@ -6,31 +6,60 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<div class:list={['lang-switcher', className]} role="group">
-  <span class="sr-only" data-i18n="lang.label">Language</span>
-  <button type="button" class="lang-btn" data-lang="en" data-i18n-aria="lang.en" aria-label="English" aria-pressed="false">
-    <svg class="lang-flag" viewBox="0 0 16 12" aria-hidden="true">
-      <rect width="16" height="12" rx="1" fill="#012169" />
-      <path d="M0 0 L16 12 M16 0 L0 12" stroke="#fff" stroke-width="2.4" />
-      <path d="M0 0 L16 12 M16 0 L0 12" stroke="#C8102E" stroke-width="1.2" />
-      <path d="M8 0 V12 M0 6 H16" stroke="#fff" stroke-width="3.2" />
-      <path d="M8 0 V12 M0 6 H16" stroke="#C8102E" stroke-width="1.6" />
+<div class:list={['lang-switcher', className]} data-lang-switcher>
+  <button
+    type="button"
+    id="lang-trigger"
+    class="lang-trigger"
+    data-lang-trigger
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-controls="lang-menu"
+    data-i18n-aria="lang.label"
+    aria-label="Language"
+  >
+    <span class="lang-code" data-code="en">EN</span>
+    <span class="lang-code" data-code="es">ES</span>
+    <span class="lang-code" data-code="fr">FR</span>
+    <svg class="lang-caret" viewBox="0 0 12 12" aria-hidden="true">
+      <path fill="currentColor" d="M3 4.5 6 7.5 9 4.5"></path>
     </svg>
-    <span class="sr-only" data-i18n="lang.en">English</span>
   </button>
-  <button type="button" class="lang-btn" data-lang="es" data-i18n-aria="lang.es" aria-label="Español" aria-pressed="false">
-    <svg class="lang-flag" viewBox="0 0 16 12" aria-hidden="true">
-      <rect width="16" height="12" rx="1" fill="#AA151B" />
-      <rect y="3" width="16" height="6" fill="#F1BF00" />
-    </svg>
-    <span class="sr-only" data-i18n="lang.es">Español</span>
-  </button>
-  <button type="button" class="lang-btn" data-lang="fr" data-i18n-aria="lang.fr" aria-label="Français" aria-pressed="false">
-    <svg class="lang-flag" viewBox="0 0 16 12" aria-hidden="true">
-      <rect width="16" height="12" rx="1" fill="#fff" />
-      <rect width="5.4" height="12" fill="#002654" />
-      <rect x="10.6" width="5.4" height="12" fill="#CE1126" />
-    </svg>
-    <span class="sr-only" data-i18n="lang.fr">Français</span>
-  </button>
+  <ul class="lang-menu" id="lang-menu" data-lang-menu hidden role="listbox" aria-labelledby="lang-trigger">
+    <li role="none">
+      <button type="button" class="lang-option" role="option" data-lang="en" aria-selected="true">
+        <svg class="lang-flag" viewBox="0 0 60 30" aria-hidden="true">
+          <rect width="60" height="30" fill="#bf0a30"></rect>
+          <rect y="3.46" width="60" height="3.46" fill="#fff"></rect>
+          <rect y="10.38" width="60" height="3.46" fill="#fff"></rect>
+          <rect y="17.3" width="60" height="3.46" fill="#fff"></rect>
+          <rect y="24.22" width="60" height="3.46" fill="#fff"></rect>
+          <rect width="24" height="16.15" fill="#002868"></rect>
+        </svg>
+        <span class="lang-option-code">EN</span>
+        <span class="sr-only" data-i18n="lang.en">English</span>
+      </button>
+    </li>
+    <li role="none">
+      <button type="button" class="lang-option" role="option" data-lang="es" aria-selected="false">
+        <svg class="lang-flag" viewBox="0 0 60 30" aria-hidden="true">
+          <rect width="60" height="30" fill="#c60b1e"></rect>
+          <rect y="7.5" width="60" height="15" fill="#ffc400"></rect>
+        </svg>
+        <span class="lang-option-code">ES</span>
+        <span class="sr-only" data-i18n="lang.es">Español</span>
+      </button>
+    </li>
+    <li role="none">
+      <button type="button" class="lang-option" role="option" data-lang="fr" aria-selected="false">
+        <svg class="lang-flag" viewBox="0 0 60 30" aria-hidden="true">
+          <rect width="20" height="30" fill="#0055a4"></rect>
+          <rect x="20" width="20" height="30" fill="#fff"></rect>
+          <rect x="40" width="20" height="30" fill="#ef4135"></rect>
+        </svg>
+        <span class="lang-option-code">FR</span>
+        <span class="sr-only" data-i18n="lang.fr">Français</span>
+      </button>
+    </li>
+  </ul>
 </div>

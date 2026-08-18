@@ -1,0 +1,8 @@
+= Header chrome — theme, language, GitHub — changelog detail
+:description: Always-visible header controls; theme icon toggle; compact language dropdown.
+
+== Changed
+
+* Theme switcher is a single icon toggle (sun/moon) — no System option in the UI; defaults to OS `prefers-color-scheme`, click sets a light/dark override, OS change clears the override.
+* Language switcher is a compact custom dropdown: trigger shows `EN` / `ES` / `FR`; menu shows flags plus those codes. Themed with `--ink-2` / `--paper` / `--line` so it stays readable in dark mode (native `<select>` option menus are not used).
+* Header order, left to right: brand, nav links, hamburger, language, GitHub, theme toggle. Hamburger stays next to the links it collapses. Language, GitHub, and theme stay visible at all breakpoints — only nav links go into the drawer.

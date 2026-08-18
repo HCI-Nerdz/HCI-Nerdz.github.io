@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-08-18 — Header chrome: theme, language, GitHub
+
+* Theme icon toggle (system default, light/dark override); compact language dropdown (EN/ES/FR + flags); GitHub always visible — nav links only in hamburger.
+* Header order: brand, nav links, hamburger, language, GitHub, theme toggle.
+* link:changelog-details/2026-08-18%20-%20header-chrome-theme-lang-github.adoc[Details]
+
 == 2026-08-13 — Equal homepage CTAs
 
 * Hero links (Blog, Demos, News, Docs, Philosophy) share one button style — no filled “current page” CTA.
