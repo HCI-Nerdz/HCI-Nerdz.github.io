@@ -634,6 +634,10 @@ html[data-theme="dark"] .hci-i {
 }
 
 .hero-eye {
+  --iris-center: #e89bb8;
+  --iris-mid: #c44a78;
+  --iris-edge: #6e2848;
+  --iris-limbal: #3a1524;
   position: absolute;
   left: 50%;
   top: 0;
@@ -642,6 +646,13 @@ html[data-theme="dark"] .hci-i {
   height: 0.38em;
   transform: translate(-50%, 6%);
   pointer-events: none;
+}
+
+html[data-theme="dark"] .hero-eye {
+  --iris-center: #f0b8cc;
+  --iris-mid: #d4568c;
+  --iris-edge: #8a3358;
+  --iris-limbal: #4a1c32;
 }
 
 .hero-eye-svg {
@@ -655,11 +666,11 @@ html[data-theme="dark"] .hci-i {
 }
 
 .hero-eye .eye-iris-ring {
-  fill: color-mix(in srgb, var(--focus) 28%, transparent);
+  fill: var(--iris-limbal);
 }
 
 .hero-eye .eye-iris {
-  fill: var(--focus);
+  fill: url(#hero-iris-fill);
 }
 
 .hero-eye .eye-pupil {
