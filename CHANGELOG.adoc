@@ -1,5 +1,12 @@
 = Changelog
 
+== 2026-08-18 — What we fight for
+
+* Homepage manifesto under the existing heading: HCI/UI/UX as how computers fit into our lives; respect for cognition and attention; mental models; discoverability and least surprise. Short hero tagline stays.
+* Philosophy page aligns the cognition section with those same principles without reprinting the homepage paragraph.
+* EN/ES/FR strings: `fight.heading`, `fight.body_1`–`fight.body_3`.
+* link:changelog-details/2026-08-18%20-%20what-we-fight-for.adoc[Details]
+
 == 2026-08-18 — Header chrome: theme, language, GitHub
 
 * Theme icon toggle (system default, light/dark override); compact language dropdown (EN/ES/FR + flags); GitHub always visible — nav links only in hamburger.

@@ -1,0 +1,8 @@
+= What we fight for — changelog detail
+:description: Homepage manifesto on HCI/UI/UX, cognition, mental models, and least surprise.
+
+== Changed
+
+* The homepage already had a **What we fight for** heading and a short product-representation lede. The manifesto is the section body now (three short paragraphs), not a stuffed `p.tag` in the hero. The logotype, punchy tagline, sibling-org note, and the existing principles list stay.
+* Philosophy does not reprint the homepage paragraph. **Respecting cognition** now also names mental models, discoverability, and least surprise so the two pages agree.
+* i18n keys: `fight.heading`, `fight.body_1`, `fight.body_2`, `fight.body_3` (en / es / fr).

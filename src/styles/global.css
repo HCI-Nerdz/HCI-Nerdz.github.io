@@ -759,6 +759,20 @@ html[data-theme="dark"] .hci-i {
   color: var(--paper-muted);
 }
 
+.fight-copy {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1.5rem;
+  max-width: 42rem;
+  color: var(--paper-muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.fight-copy p {
+  margin: 0;
+}
+
 .principles {
   display: grid;
   gap: 1.25rem;
