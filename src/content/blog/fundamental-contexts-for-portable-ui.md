@@ -7,7 +7,7 @@ tags: ["portability", "architecture", "discussion", "prototype-strategy"]
 
 This is exploratory — a mapped brainstorm, not a finished spec.
 
-The recurring frustration in cross-framework UI work is the hunt for **one language that exports everything**. Decades of prior art suggest that hunt ends in runtimes, not translators. Maybe the honest move is smaller: identify a few **fundamental contexts** every interactive system actually has, specify those sharply, and leave the rest native.
+The recurring frustration in cross-framework UI work is the hunt for **one language that exports everything**. Decades of prior art suggest that hunt ends in runtimes, not translators. Maybe the pragmatic move is smaller: identify a few **fundamental contexts** every interactive system actually has, specify those sharply, and leave the rest native.
 
 ## UI is not just structure
 
@@ -62,7 +62,7 @@ None of these failed because the authors were foolish. Each chose a boundary:
 - **QML / XUL / UIML** — runtime languages; export to alien hosts was never the win
 - **Power Automate / Logic Apps** — product proof for visual pipelines; closed runtime
 
-HCI Nerdz is not trying to beat them at their own boundary. The attempt is to **stack** the boundaries: IR from the processing-map work, machines from the Zag/XState tradition, DOM renderer for honesty, canvas renderer for depth, thin wrappers per framework.
+HCI Nerdz is not trying to beat them at their own boundary. The attempt is to **stack** the boundaries: IR from the processing-map work, machines from the Zag/XState tradition, DOM renderer for clarity, canvas renderer for depth, thin wrappers per framework.
 
 ## Spec language vs language capabilities
 

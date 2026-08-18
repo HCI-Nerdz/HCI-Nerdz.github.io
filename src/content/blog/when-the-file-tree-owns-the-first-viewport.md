@@ -30,7 +30,7 @@ Empty space in the sidebar should not look like a broken product. It should look
 
 A small `+` / **Add section** control on hover opens a short list of addable sections. Hovering a row expands a one-line explanation (“Releases — publish versioned binaries and notes”). That is progressive disclosure aimed at maintainers, not a second homepage of CTAs aimed at everyone.
 
-No README → no **Readme** link in About. Honesty over chrome.
+No README → no **Readme** link in About. Substance over chrome.
 
 ## Mockups
 
@@ -61,4 +61,4 @@ The idea is the altitude: visitor meaning first, owner onboarding on demand. Rec
 - **Docs** — [Visitor-first repo homepage](https://hci-nerdz.github.io/docs/hci-nerdz/visitor-first-repo-homepage.html)
 - **Upstream** — [Community discussion #204347](https://github.com/orgs/community/discussions/204347)
 
-GitHub can ship the sidebar disclosure without waiting on a full layout rewrite, and README | Code tabs (or README-above-tree) as the default when a README exists. Until then, the mockups are small enough to argue from, clear enough to consolidate against sibling threads, and honest enough to belong in the repertoire.
+GitHub can ship the sidebar disclosure without waiting on a full layout rewrite, and README | Code tabs (or README-above-tree) as the default when a README exists. Until then, the mockups are small enough to argue from, clear enough to consolidate against sibling threads, and ready enough to belong in the repertoire.

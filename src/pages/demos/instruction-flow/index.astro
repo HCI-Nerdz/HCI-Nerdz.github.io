@@ -59,7 +59,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         </li>
         <li>
           <strong>Kitchen sink on demand</strong> — expand mode shows every branch for printing or
-          scraping; the default view stays honest about cognitive load.
+          scraping; the default view respects cognitive load.
         </li>
       </ul>
     </aside>
@@ -384,7 +384,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     id: 'os',
     title: 'Operating environment',
     prompt: 'Which OS are you on?',
-    blurb: 'You already decided this before opening the guide — still ask once so the rest of the path stays honest.',
+    blurb: 'You already decided this before opening the guide — still ask once so the rest of the path stays coherent.',
     param: 'os',
     choices: [
       { id: 'linux', label: 'Linux', hint: 'Including WSL' },

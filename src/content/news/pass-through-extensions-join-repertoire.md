@@ -19,4 +19,4 @@ The [peel demo](/demos/pass-through-extensions/) shows today vs pass-through wit
 
 `appsettings.json.example` is a JSON file wearing a badge. Humans read it that way. Win32 association lookup does not. The bug is product representation in the shell: the name already encodes the type; the double-click surface throws it away.
 
-That sits with honesty and intuition-over-backwards-convention — and with the long game of filing the missing OS feature while shipping the workaround we can run today. See also the [screenshot follow-up](/news/pass-through-extensions-screenshots/).
+That sits with discoverable surfaces and intuition-over-backwards-convention — and with the long game of filing the missing OS feature while shipping the workaround we can run today. See also the [screenshot follow-up](/news/pass-through-extensions-screenshots/).

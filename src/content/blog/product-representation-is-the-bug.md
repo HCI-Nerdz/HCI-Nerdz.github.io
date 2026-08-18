@@ -2,7 +2,7 @@
 title: "When the UI hides what counts"
 description: "If the engine already knows and the first-class UI does not ask, the product is lying about involvement — that is an HCI bug, not a power-user gap."
 pubDate: 2026-08-01
-tags: ["discoverability", "honesty", "product-representation"]
+tags: ["discoverability", "surfaces", "product-representation"]
 ---
 
 Most "missing features" I file are not missing. The engine already knows. Search already works. The config file already has the truth. What is missing is the **surface** that teaches ordinary users that the capability exists.
@@ -28,7 +28,7 @@ The same pattern shows up in editors. A settings UI that does not reflect langua
 If the backend can answer the question, the first-class UI should ask it.
 
 - Parity of affordances: if Mentions is a dropdown, Commenter should be too.
-- Honest severity and exit codes: help is success; warnings should not look like errors.
+- Clear severity and exit codes: help is success; warnings should not look like errors.
 - Theme and preview fidelity: the surface should inherit the host contract, not ship a light island in a dark room.
 
 For the broader ethical frame — attention, cognitive overhead, heirloom software — see the [Vision](https://ryanjohnson.website/vision/) essay and our [philosophy](/philosophy/) page. For progressive CLI help that does not dump walls of text, see our sibling org [OpenShellOrg](https://openshellorg.github.io/).

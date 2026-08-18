@@ -1,6 +1,9 @@
 ---
 import GitHubLink from '../components/GitHubLink.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
+import LangSwitcher from '../components/LangSwitcher.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import { I18N } from '../lib/i18n';
 
 interface Props {
   title?: string;
@@ -10,7 +13,7 @@ interface Props {
 
 const {
   title = 'HCI Nerdz',
-  description = 'HCI and UI/UX innovation — honest surfaces, lower cognitive tax.',
+  description = 'HCI and UI/UX innovation — discoverable surfaces, lower cognitive tax.',
   active,
 } = Astro.props;
 ---
@@ -18,6 +21,22 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      (function () {
+        const THEME_KEY = 'theme-mode';
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        const systemTheme = () => (mql.matches ? 'dark' : 'light');
+        let mode = 'system';
+        try {
+          mode = localStorage.getItem(THEME_KEY) || 'system';
+        } catch {}
+        const effective = mode === 'system' ? systemTheme() : mode;
+        document.documentElement.dataset.theme = effective;
+      })();
+    </script>
+    <style is:global>
+      @import '../styles/global.css';
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
@@ -28,7 +47,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@0..200,0..24&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <link
@@ -38,19 +57,76 @@ const {
     />
     <slot name="head" />
   </head>
-  <body>
+  <body class={active ? `is-${active}` : undefined}>
     <header class="site-header">
       <a class="brand" href="/">
         <img src="/logo-mark.svg" width="32" height="32" alt="" />
         HCI Nerdz
       </a>
-      <nav class="nav-links" aria-label="Site">
-        <a href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>Blog</a>
-        <a href="/demos/" aria-current={active === 'demos' ? 'page' : undefined}>Demos</a>
-        <a href="/news/" aria-current={active === 'news' ? 'page' : undefined}>News</a>
-        <a href="https://hci-nerdz.github.io/docs/">Docs</a>
-        <a href="/philosophy/" aria-current={active === 'philosophy' ? 'page' : undefined}>Philosophy</a>
-        <GitHubLink class="nav-github" />
+      <nav class="site-nav" aria-label="Site">
+        <div class="nav-inline">
+          <a class="nav-link" data-collapse="primary" href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>
+            <span data-i18n="nav.blog">Blog</span>
+          </a>
+          <a class="nav-link" data-collapse="primary" href="/demos/" aria-current={active === 'demos' ? 'page' : undefined}>
+            <span data-i18n="nav.demos">Demos</span>
+          </a>
+          <a class="nav-link" data-collapse="primary" href="https://hci-nerdz.github.io/docs/">
+            <span data-i18n="nav.docs">Docs</span>
+          </a>
+          <a class="nav-link" data-collapse="secondary" href="/news/" aria-current={active === 'news' ? 'page' : undefined}>
+            <span data-i18n="nav.news">News</span>
+          </a>
+          <a
+            class="nav-link"
+            data-collapse="secondary"
+            href="/philosophy/"
+            aria-current={active === 'philosophy' ? 'page' : undefined}
+          >
+            <span data-i18n="nav.philosophy">Philosophy</span>
+          </a>
+          <span class="nav-tool" data-collapse="tools"><LangSwitcher /></span>
+          <span class="nav-tool" data-collapse="tools"><GitHubLink class="nav-github" /></span>
+          <span class="nav-tool" data-collapse="tools"><ThemeSwitcher /></span>
+        </div>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-expanded="false"
+          aria-controls="nav-drawer"
+          data-i18n-aria="nav.menu"
+          aria-label="Open menu"
+        >
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+
+        <div class="nav-drawer" id="nav-drawer" hidden>
+          <a class="nav-link" data-collapse="primary" href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>
+            <span data-i18n="nav.blog">Blog</span>
+          </a>
+          <a class="nav-link" data-collapse="primary" href="/demos/" aria-current={active === 'demos' ? 'page' : undefined}>
+            <span data-i18n="nav.demos">Demos</span>
+          </a>
+          <a class="nav-link" data-collapse="primary" href="https://hci-nerdz.github.io/docs/">
+            <span data-i18n="nav.docs">Docs</span>
+          </a>
+          <a class="nav-link" data-collapse="secondary" href="/news/" aria-current={active === 'news' ? 'page' : undefined}>
+            <span data-i18n="nav.news">News</span>
+          </a>
+          <a
+            class="nav-link"
+            data-collapse="secondary"
+            href="/philosophy/"
+            aria-current={active === 'philosophy' ? 'page' : undefined}
+          >
+            <span data-i18n="nav.philosophy">Philosophy</span>
+          </a>
+          <span class="nav-tool" data-collapse="tools"><LangSwitcher /></span>
+          <span class="nav-tool" data-collapse="tools"><GitHubLink class="nav-github" showStars={false} /></span>
+          <span class="nav-tool" data-collapse="tools"><ThemeSwitcher /></span>
+        </div>
       </nav>
     </header>
     <slot />
@@ -81,9 +157,119 @@ const {
       </p>
     </footer>
     <ImageLightbox />
+    <script is:inline define:vars={{ I18N }}>
+      (function () {
+        const SUPPORTED = ['en', 'es', 'fr'];
+        const LANG_KEY = 'lang';
+        const THEME_KEY = 'theme-mode';
+
+        function pickInitialLang() {
+          try {
+            const saved = localStorage.getItem(LANG_KEY);
+            if (saved && SUPPORTED.includes(saved)) return saved;
+          } catch {}
+          const nav = (navigator.language || 'en').toLowerCase();
+          if (nav.startsWith('es')) return 'es';
+          if (nav.startsWith('fr')) return 'fr';
+          return 'en';
+        }
+
+        function applyLang(lang) {
+          document.documentElement.lang = lang;
+          const dict = I18N[lang] || I18N.en;
+          document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            if (!key) return;
+            const v = dict[key];
+            if (v) el.textContent = v;
+          });
+          document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+            const key = el.getAttribute('data-i18n-aria');
+            if (!key) return;
+            const v = dict[key];
+            if (v) el.setAttribute('aria-label', v);
+          });
+          document.querySelectorAll('[data-lang]').forEach((btn) => {
+            btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+          });
+        }
+
+        function applyTheme(mode) {
+          const mql = window.matchMedia('(prefers-color-scheme: dark)');
+          const systemTheme = () => (mql.matches ? 'dark' : 'light');
+          const effective = mode === 'system' ? systemTheme() : mode;
+          document.documentElement.dataset.theme = effective;
+          document.documentElement.style.colorScheme = effective;
+          document.querySelectorAll('.theme-mode-select').forEach((sel) => {
+            sel.value = mode;
+          });
+        }
+
+        const initLang = pickInitialLang();
+        applyLang(initLang);
+
+        document.addEventListener('click', (e) => {
+          const el = e.target instanceof Element ? e.target : e.target.parentElement;
+          const btn = el && el.closest('[data-lang]');
+          if (!btn) return;
+          const v = btn.getAttribute('data-lang');
+          if (!SUPPORTED.includes(v)) return;
+          try {
+            localStorage.setItem(LANG_KEY, v);
+          } catch {}
+          applyLang(v);
+        });
+
+        let mode = 'system';
+        try {
+          mode = localStorage.getItem(THEME_KEY) || 'system';
+        } catch {}
+        applyTheme(mode);
+
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        mql.addEventListener('change', () => {
+          try {
+            localStorage.setItem(THEME_KEY, 'system');
+          } catch {}
+          applyTheme('system');
+        });
+
+        document.querySelectorAll('.theme-mode-select').forEach((sel) => {
+          sel.addEventListener('change', () => {
+            const v = sel.value;
+            try {
+              localStorage.setItem(THEME_KEY, v);
+            } catch {}
+            applyTheme(v);
+          });
+        });
+
+        const toggle = document.getElementById('nav-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        if (toggle && drawer) {
+          const setOpen = (open) => {
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            drawer.hidden = !open;
+            document.body.classList.toggle('nav-open', open);
+            const dict = I18N[document.documentElement.lang] || I18N.en;
+            toggle.setAttribute('aria-label', open ? dict['nav.close'] : dict['nav.menu']);
+            toggle.setAttribute('data-i18n-aria', open ? 'nav.close' : 'nav.menu');
+          };
+          toggle.addEventListener('click', () => {
+            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+          });
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setOpen(false);
+          });
+          document.addEventListener('click', (e) => {
+            if (!document.body.classList.contains('nav-open')) return;
+            const el = e.target instanceof Element ? e.target : e.target.parentElement;
+            if (!el) return;
+            if (toggle.contains(el) || drawer.contains(el)) return;
+            setOpen(false);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
-
-<style is:global>
-  @import '../styles/global.css';
-</style>

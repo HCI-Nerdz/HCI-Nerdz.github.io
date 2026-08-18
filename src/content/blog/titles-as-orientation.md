@@ -76,7 +76,7 @@ Implementation nuance belongs after the human job. *Treating dark mode as an ove
 
 *Supplemental is not a soft fork of Antora* asserts. *What is Antora Supplemental?* is the question readers already have. Match the title to the mental query when the piece is definitional.
 
-## Soft welcomes and honest inaccuracy
+## Soft welcomes and deliberate looseness
 
 A first news post should often be welcome-shaped: motivation, philosophy, who is involved, and links to the people who will help run it. Soft welcomes (*Welcome to the continuing blog*) can work when the audience already knew a prior surface — the title assumes continuity. Titles are often slightly inaccurate in predictable, stymied ways; that is part of the genre. Fix the ones that *disorient*; forgive the ones that only *approximate*.
 

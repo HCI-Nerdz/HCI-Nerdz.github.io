@@ -21,7 +21,7 @@ That posture shows up in Mermaid CSS-var work under OpenShellOrg and in Valentus
 
 ## Motion has a theme contract too
 
-DevCentr's [Brand and UI Motion Formats](https://docs.devcentr.org/general-knowledge/explanation/brand-motion.html) note is not only about SVG vs Lottie vs Rive. It is about *honest harbor*: portable marks you can read in git, agent-edit, and embed without shipping a player "just because." Interactive motion can be worth a runtime when the job is interactive. A looping logo rarely is.
+DevCentr's [Brand and UI Motion Formats](https://docs.devcentr.org/general-knowledge/explanation/brand-motion.html) note is not only about SVG vs Lottie vs Rive. It is about *portable harbor*: marks you can read in git, agent-edit, and embed without shipping a player "just because." Interactive motion can be worth a runtime when the job is interactive. A looping logo rarely is.
 
 HCI takeaway: pick the format that matches the job, keep an SVG twin when the interactive export is binary, and do not tax every page with a motion runtime that the surface does not need.
 

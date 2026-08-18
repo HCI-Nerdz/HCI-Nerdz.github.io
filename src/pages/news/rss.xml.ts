@@ -33,7 +33,7 @@ export async function GET() {
   <channel>
     <title>HCI Nerdz News</title>
     <link>${site}/news/</link>
-    <description>Honest surfaces, lower cognitive tax, and the evolution of HCI Nerdz.</description>
+    <description>Discoverable surfaces, lower cognitive tax, and the evolution of HCI Nerdz.</description>
 ${items}
   </channel>
 </rss>

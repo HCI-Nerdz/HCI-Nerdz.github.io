@@ -17,7 +17,7 @@ pubDate: 2026-08-02
 
 Multi-platform install docs usually dump every OS and package manager at once, or exile long branches (Docker, CI) to tangent pages. Both force readers to hold the real decision tree in working memory. Instruction flows treat that tree as the product surface: buttons for orthogonal choices, continuations under the chosen path, kitchen-sink expand only when you ask for it.
 
-That sits with progressive disclosure and product representation — capability should show up as an honest path, not as a wall of conditionals or a footnote link.
+That sits with progressive disclosure and product representation — capability should show up as a clear path, not as a wall of conditionals or a footnote link.
 
 ## What is not done yet
 

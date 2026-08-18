@@ -17,7 +17,7 @@ That line came out of reverse-quote semantics work across shells. It applies jus
 
 In [Why the human brain prefers Procedural and Functional Paradigms](https://ryanjohnson.website/why-the-human-brain-prefers-procedural-and-functional-paradigms/), the claim is that thought is abstracted action — prefrontal machinery evolved to plan sequences and functional groupings, not to worship categorical cages. Joe Armstrong's critique of OO (functions and data locked in the same cage) is a cognitive argument as much as a language one.
 
-Interfaces inherit the same bias. Group tools by *what they do together for a goal*, not by an org chart of widget categories. Progressive disclosure is procedural planning made visual: show the next honest step, deepen on demand.
+Interfaces inherit the same bias. Group tools by *what they do together for a goal*, not by an org chart of widget categories. Progressive disclosure is procedural planning made visual: show the next clear step, deepen on demand.
 
 ## Day-1 naming and mental models
 

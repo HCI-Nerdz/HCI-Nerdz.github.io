@@ -1,10 +1,10 @@
 ---
 title: "Hello, HCI Nerdz"
-description: "The org is live — honest surfaces, lower cognitive tax, and a clean split from shell/CLI work."
+description: "The org is live — discoverable surfaces, lower cognitive tax, and a clean split from shell/CLI work."
 pubDate: 2026-08-01
 ---
 
-HCI Nerdz is the home for **human–computer interaction** work that is graphical, spatial, and product-facing — UI chrome, discoverability, theme integrity, dialogs, desktop metaphors, and the cognitive honesty of what an interface teaches.
+HCI Nerdz is the home for **human–computer interaction** work that is graphical, spatial, and product-facing — UI chrome, discoverability, theme integrity, dialogs, desktop metaphors, and what an interface teaches about capability.
 
 ## Why this org exists
 
@@ -14,7 +14,7 @@ Those are not polish nits. They are **product representation** bugs: the surface
 
 ## Sibling to OpenShellOrg
 
-Shells and CLIs already have a home: [openshellorg](https://github.com/openshellorg). That org owns SOS, structured pipelines, progressive CLI help, and entrypoint honesty.
+Shells and CLIs already have a home: [openshellorg](https://github.com/openshellorg). That org owns SOS, structured pipelines, progressive CLI help, and entrypoint clarity.
 
 HCI Nerdz owns the other half of that fight — how humans *see and manipulate* systems.
 

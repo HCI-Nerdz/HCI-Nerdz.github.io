@@ -68,7 +68,7 @@ Microsoft can still add a real passthru flag to ProgIDs. Until then:
 
 4. **Feedback** — Feedback Hub / WinUI wishlist: *documented meta-suffix association that delegates open and icon to the stem*; PowerToys is a natural host for the workaround meanwhile ([microsoft/PowerToys#49631](https://github.com/microsoft/PowerToys/issues/49631))
 
-Editors should grow matching `files.associations` defaults. Open dialogs inside apps should accept the same peel. But Explorer is where the double-click contract lives — that is the honesty surface that matters first.
+Editors should grow matching `files.associations` defaults. Open dialogs inside apps should accept the same peel. But Explorer is where the double-click contract lives — that is the discoverable surface that matters first.
 
 ## Try the peel
 

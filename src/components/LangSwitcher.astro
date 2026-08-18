@@ -1,0 +1,36 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['lang-switcher', className]} role="group">
+  <span class="sr-only" data-i18n="lang.label">Language</span>
+  <button type="button" class="lang-btn" data-lang="en" data-i18n-aria="lang.en" aria-label="English" aria-pressed="false">
+    <svg class="lang-flag" viewBox="0 0 16 12" aria-hidden="true">
+      <rect width="16" height="12" rx="1" fill="#012169" />
+      <path d="M0 0 L16 12 M16 0 L0 12" stroke="#fff" stroke-width="2.4" />
+      <path d="M0 0 L16 12 M16 0 L0 12" stroke="#C8102E" stroke-width="1.2" />
+      <path d="M8 0 V12 M0 6 H16" stroke="#fff" stroke-width="3.2" />
+      <path d="M8 0 V12 M0 6 H16" stroke="#C8102E" stroke-width="1.6" />
+    </svg>
+    <span class="sr-only" data-i18n="lang.en">English</span>
+  </button>
+  <button type="button" class="lang-btn" data-lang="es" data-i18n-aria="lang.es" aria-label="Español" aria-pressed="false">
+    <svg class="lang-flag" viewBox="0 0 16 12" aria-hidden="true">
+      <rect width="16" height="12" rx="1" fill="#AA151B" />
+      <rect y="3" width="16" height="6" fill="#F1BF00" />
+    </svg>
+    <span class="sr-only" data-i18n="lang.es">Español</span>
+  </button>
+  <button type="button" class="lang-btn" data-lang="fr" data-i18n-aria="lang.fr" aria-label="Français" aria-pressed="false">
+    <svg class="lang-flag" viewBox="0 0 16 12" aria-hidden="true">
+      <rect width="16" height="12" rx="1" fill="#fff" />
+      <rect width="5.4" height="12" fill="#002654" />
+      <rect x="10.6" width="5.4" height="12" fill="#CE1126" />
+    </svg>
+    <span class="sr-only" data-i18n="lang.fr">Français</span>
+  </button>
+</div>

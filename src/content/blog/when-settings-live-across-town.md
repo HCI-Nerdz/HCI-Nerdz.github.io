@@ -18,7 +18,7 @@ Once a control exceeds the *here and now* of the activity, products shove it int
 
 ![Dense admin settings page disconnected from any live task — the across-town storage room](/images/context-bound-settings/settings-across-town.png)
 
-That layout is honest about inventory. It is dishonest about *work*. The admin who was looking at Ada Lovelace now holds Ada in working memory while hunting SMTP relay hosts and API quota soft limits. The setting never meets the object it governs in the same field of view.
+That layout is accurate about inventory. It is misleading about *work*. The admin who was looking at Ada Lovelace now holds Ada in working memory while hunting SMTP relay hosts and API quota soft limits. The setting never meets the object it governs in the same field of view.
 
 ## Settings beside the activity
 
@@ -69,7 +69,7 @@ The blurry boundary in GUI design is exactly here: **when does a control belong 
 
 ## Risks worth naming
 
-Adaptive placement can punish spatial memory if causality is opaque. Name the bind. Prefer stable slots inside the pane. Do not reshuffle every keystroke — reshuffle on *meaningful* context transitions (selection change, view change, mode change). Keep an escape hatch to the full catalog. Pair with [source-of-truth honesty](https://hci-nerdz.github.io/docs/hci-nerdz/principles.html): the pane must reflect real config, with jump-to-JSON or policy source when the file is authority.
+Adaptive placement can punish spatial memory if causality is opaque. Name the bind. Prefer stable slots inside the pane. Do not reshuffle every keystroke — reshuffle on *meaningful* context transitions (selection change, view change, mode change). Keep an escape hatch to the full catalog. Pair with [source-of-truth sync](https://hci-nerdz.github.io/docs/hci-nerdz/principles.html): the pane must reflect real config, with jump-to-JSON or policy source when the file is authority.
 
 ## Where to go next
 
@@ -77,4 +77,4 @@ The idea is the bind: settings as a dependent process that follows activity stat
 
 - **Docs** — [Context-bound settings](https://hci-nerdz.github.io/docs/hci-nerdz/context-bound-settings.html)
 - **Demo** — [Context-bound settings desk](/demos/context-bound-settings/)
-- **Sibling** — [Many small tools under one roof](/blog/scoped-ux-architecture/) (narrow scopes make honest applicability possible)
+- **Sibling** — [Many small tools under one roof](/blog/scoped-ux-architecture/) (narrow scopes make clear applicability possible)

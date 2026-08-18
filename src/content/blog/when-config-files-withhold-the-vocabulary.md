@@ -6,7 +6,7 @@ draft: false
 tags: ["settings", "config", "schema", "field-discovery", "product-representation", "dconf"]
 ---
 
-Ada opens `terraform.tfvars`. Two keys: `region` and `environment`. The rest of the module's inputs — the ones reused across every stack she has ever copied — live in `variables.tf`, in the provider schema, in last quarter's example that someone deleted. The file is honest about what she saved. It is silent about what she is *allowed* to save.
+Ada opens `terraform.tfvars`. Two keys: `region` and `environment`. The rest of the module's inputs — the ones reused across every stack she has ever copied — live in `variables.tf`, in the provider schema, in last quarter's example that someone deleted. The file reflects what she saved. It is silent about what she is *allowed* to save.
 
 That silence is not a personality trait of Terraform. It is the natural state of INI, YAML, TOML, SDLang, `cfg`, JSON. Syntax is not vocabulary. A form needs the second document: types, enums, defaults, a one-line *why*. Without it, a generic "config GUI" can only replay the two keys she already knew.
 

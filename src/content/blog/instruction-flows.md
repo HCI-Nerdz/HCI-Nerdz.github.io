@@ -32,7 +32,7 @@ Instruction flows merge navigation and content for the part of the doc that is a
 - **Continuations** — choosing Docker expands Docker under that list item; it does not exile Docker to a sibling article because the author got nervous about length.
 - **Rewind** — other options stay visible so people can try another path without starting from the homepage.
 - **Shareable state** — URL variables encode the path (`?os=linux&method=docker`) so Slack pastes carry the tailored guide.
-- **Print / scrape honesty** — expand-all (or a hidden DOM skeleton) keeps the full graph available for printing, SEO, and AI without making the default view a firehose.
+- **Print / scrape fidelity** — expand-all (or a hidden DOM skeleton) keeps the full graph available for printing, SEO, and AI without making the default view a firehose.
 
 ## Antora, not a fork of Antora
 

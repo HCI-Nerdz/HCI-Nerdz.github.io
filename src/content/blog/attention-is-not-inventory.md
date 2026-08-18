@@ -27,7 +27,7 @@ That is why HCI Nerdz cares about:
 
 - Progressive disclosure instead of walls of options
 - Consistent affordances across similar jobs
-- Honest signals (severity, success, theme) so users do not spend cycles decoding lies
+- Clear signals (severity, success, theme) so users do not spend cycles decoding lies
 
 ## Heirloom software
 

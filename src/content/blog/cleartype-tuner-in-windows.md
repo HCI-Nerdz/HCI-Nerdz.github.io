@@ -36,7 +36,7 @@ It helps to separate three layers that the UI often blends together.
 
 **Weight and contrast.** Later pages of the inbox wizard offer samples that feel like contrast or stem weight. Those pages write registry values that were meaningful in older stacks. On modern Windows, careful reverse-engineering (including [bp2008’s ClearType Investigations](https://github.com/bp2008/BetterClearTypeTuner/wiki/ClearType-Investigations) and [Reupen’s 2025 walkthrough of each tuner step](https://blog.yuo.be/2025/05/20/what-does-each-step-in-the-cleartype-tuner-do/)) has found that some of those later pages no longer change what you see. Better ClearType Tuner omits the dead controls on purpose and keeps the ones that still move pixels: antialiasing mode, RGB/BGR/grayscale, and contrast where it still applies.
 
-You do not need every registry name to use the tuner well. You do need to know that “I ran the wizard” is not the same as “every page did something,” and that a simpler third-party UI can be more honest about the live surface.
+You do not need every registry name to use the tuner well. You do need to know that “I ran the wizard” is not the same as “every page did something,” and that a simpler third-party UI can be clearer about the live surface.
 
 ## Where Windows keeps the settings
 
@@ -54,11 +54,11 @@ So the ClearType Text Tuner writes across more than one plane. Some of what it w
 
 That gap—UI that offers per-monitor tuning while large parts of the text stack still behave as one session-wide choice—is a [product representation](/blog/product-representation-is-the-bug/) problem. The structure behind the glass is richer than the story the first-class surface tells, and also poorer than the story implies, depending on which plane you look at.
 
-## Tools with different honesty
+## Tools with different fidelity
 
 **`cttune.exe`** is still the right starting place for many people. It is built in, it shows samples, and it can write different Avalon per-display values when you step through monitors. It also updates the global GDI orientation. Treat it as a guided preference pass, not as a guarantee that every window on every panel will match the sample you liked.
 
-**Better ClearType Tuner** is blunt on purpose. Its author concluded that per-monitor overrides were unreliable in modern Windows, so the app sets every connected display the same and drives the global orientation explicitly. If you use it to pick BGR because an external panel needs BGR, you also stamp that choice onto the internal panel and onto GDI. The README says so. That honesty is useful. The comforting advice “just use the native tuner and keep RGB on the laptop while the external stays BGR” only helps the apps that actually consume per-display Avalon/DirectWrite data—and it never gives you two GDI orientations at once.
+**Better ClearType Tuner** is blunt on purpose. Its author concluded that per-monitor overrides were unreliable in modern Windows, so the app sets every connected display the same and drives the global orientation explicitly. If you use it to pick BGR because an external panel needs BGR, you also stamp that choice onto the internal panel and onto GDI. The README says so. That clarity is useful. The comforting advice “just use the native tuner and keep RGB on the laptop while the external stays BGR” only helps the apps that actually consume per-display Avalon/DirectWrite data—and it never gives you two GDI orientations at once.
 
 When inbox geometry options are not enough—unusual subpixel layouts, or apps that will not cooperate—people reach for deeper renderers such as MacType. That is outside ClearType proper, but it is part of the same reading-quality story.
 

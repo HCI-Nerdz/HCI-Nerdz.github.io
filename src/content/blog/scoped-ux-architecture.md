@@ -38,7 +38,7 @@ People reach for “scoped UX framework” when they mean standards plus compone
 | Scoped UX architecture | What each tool includes and excludes; how consistency is enforced | System |
 | Feedforward UX | Proactive guidance about outcomes before commit | Interaction |
 
-You use a scoped architecture to keep tools small enough that feedforward can tell the truth. A mega-tool with unbounded side effects cannot honestly preview what will happen. Feedforward lives *inside* scoped tools; it does not replace the architecture.
+You use a scoped architecture to keep tools small enough that feedforward can tell the truth. A mega-tool with unbounded side effects cannot reliably preview what will happen. Feedforward lives *inside* scoped tools; it does not replace the architecture.
 
 ## Why constraint is kindness
 
@@ -47,7 +47,7 @@ Constraint-driven design is not austerity theater. It is product representation 
 1. **Isolation** — a Create Invoice tool that also half-manages contacts teaches the wrong model.
 2. **Transfer** — when every tool shares the same insert, confirm, and back patterns, the second tool is cheaper than the first.
 3. **Teaching** — if the shell mirrors development phases or environment nesting, the layout itself is a lesson.
-4. **Feedforward room** — narrow outcomes make predictive chrome honest instead of decorative.
+4. **Feedforward room** — narrow outcomes make predictive chrome truthful instead of decorative.
 
 Progressive disclosure still matters on a single screen. Scoped architecture answers a different question: *how many jobs is this surface allowed to own?*
 

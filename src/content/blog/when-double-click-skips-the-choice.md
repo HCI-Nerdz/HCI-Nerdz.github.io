@@ -30,7 +30,7 @@ Two bindings sit largely unused for *files* and map cleanly to the job:
 1. **Ctrl + double-click** — “I want to *control* which application opens this.” Semantic mnemonic, not a random chord. On Windows Explorer it has no stock file-open binding; that makes it a viable interrupt.
 2. **Middle-click on a file** — folders already own middle-click for tabs in many environments; files often do nothing (Explorer), are ignored (Nautilus), or silently default-open (Dolphin). Reclaiming middle-click on *files* for Open with keeps the “alternate open” family consistent without stealing folder-tab behavior.
 
-Either binding should open the system app picker for the selected file — temporary choice, same honesty surface as today’s Open with — not silently rebind the permanent default. Permanent defaults stay in Properties / Get Info / “Always.”
+Either binding should open the system app picker for the selected file — temporary choice, same discoverable surface as today’s Open with — not silently rebind the permanent default. Permanent defaults stay in Properties / Get Info / “Always.”
 
 ## Product representation again
 
@@ -43,6 +43,6 @@ Intuition over backwards convention applies. Teaching everyone a deeper context-
 The idea is the interrupt. Recipes for AutoHotkey on Windows, Finder/third-party patterns on macOS, and Linux wrappers or input hooks live in the docs — not here.
 
 - **Docs** — [Open-with interrupt](https://hci-nerdz.github.io/docs/hci-nerdz/open-with-interrupt.html)
-- **Sibling pattern** — [When example files lose their type](/blog/when-example-files-lose-their-type/) (association honesty once you *do* open)
+- **Sibling pattern** — [When example files lose their type](/blog/when-example-files-lose-their-type/) (association clarity once you *do* open)
 
-OS vendors and file-manager maintainers can ship this as a first-class binding. Until then, the interrupt is small enough to prototype, clear enough to argue for, and honest enough to belong in the repertoire.
+OS vendors and file-manager maintainers can ship this as a first-class binding. Until then, the interrupt is small enough to prototype, clear enough to argue for, and ready enough to belong in the repertoire.

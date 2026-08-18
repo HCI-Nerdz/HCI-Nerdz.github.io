@@ -41,7 +41,7 @@ But a surprising amount of infrastructure and product logic *is* ordered:
 - Form wizards and checkout flows
 - Accessibility trees walked in document order
 
-Human planning machinery is good at sequences and goals. Progressive disclosure is already procedural planning made visual: show the next honest step, deepen on demand. A processing map makes that honesty structural — the order you see is the order that runs.
+Human planning machinery is good at sequences and goals. Progressive disclosure is already procedural planning made visual: show the next clear step, deepen on demand. A processing map makes that order structural — the order you see is the order that runs.
 
 Parallelism still matters. Fan-out, race, join, and "all of these must pass" are real. Express them as **typed composite steps** inside the sequence: a step named *Parallel checks* that expands into sibling sub-steps, then joins before the next top-level stage. Sequence stays the spine; composition fills the vertebrae.
 
@@ -91,7 +91,7 @@ The UI should be able to narrate a sample input walking the map: which step matc
 
 - **Not BPMN cosplay.** The goal is a legible product surface, not enterprise diagram theater.
 - **Not "everything is a node graph."** Freeform graphs bury order. Use graphs when the domain is a graph; default to a spine when the domain is a spine.
-- **Not a replacement for code.** Pipelines as config still need export, diff, and review. The composer is the honest face of that config — the same heirloom obligation as any other settings GUI that claims to represent a file.
+- **Not a replacement for code.** Pipelines as config still need export, diff, and review. The composer is the faithful face of that config — the same heirloom obligation as any other settings GUI that claims to represent a file.
 
 ## Design rules (short)
 
@@ -125,6 +125,6 @@ The prototype follows the HCI Nerdz strategy template: **core IR**, **headless c
 
 - **HCI Nerdz** — graphical pipeline composers, processing maps, product representation of ordered systems
 - **OpenShellOrg** — shell and CLI pipelines, structured pipelines in the terminal
-- **DevCentr** — environment and toolchain orchestration that should eventually show the same honesty about order
+- **DevCentr** — environment and toolchain orchestration that should eventually show the same clarity about order
 
 Same obligation, different surfaces: do not make people assemble a machine in their head that the product already knows how to run.

@@ -91,7 +91,7 @@ export const demoCategories: DemoCategory[] = [
     id: "scoped-ux-architecture",
     title: "Scoped UX architecture",
     description:
-      "Many small tools, each with a clear job, under one roof — hard boundaries, shared shell, room for honest feedforward.",
+      "Many small tools, each with a clear job, under one roof — hard boundaries, shared shell, room for feedforward that matches reality.",
     demos: [
       {
         id: "scoped-ux-desk",
@@ -214,7 +214,7 @@ export const demoCategories: DemoCategory[] = [
         id: "instruction-flow",
         title: "Instruction flow",
         summary:
-          "Menu-style install guides: choose a path, see only the next honest steps, rewind and share the URL. Continuations nest under decisions instead of dumping every platform variant at once.",
+          "Menu-style install guides: choose a path, see only the next clear steps, rewind and share the URL. Continuations nest under decisions instead of dumping every platform variant at once.",
         viz: "flow",
         href: "/demos/instruction-flow/",
         shots: [
@@ -288,7 +288,7 @@ export const demoCategories: DemoCategory[] = [
     id: "feedback-severity",
     title: "Feedback & severity",
     description:
-      "Honest signals — warnings that look like warnings, help that is not failure, toasts that explain why.",
+      "Clear signals — warnings that look like warnings, help that is not failure, toasts that explain why.",
     demos: [],
   },
   {

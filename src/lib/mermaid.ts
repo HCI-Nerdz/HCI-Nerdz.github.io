@@ -21,7 +21,7 @@ export function initMermaid() {
 
   const run = async () => {
     const mermaid = await loadMermaid();
-    const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const dark = document.documentElement.dataset.theme === 'dark';
     mermaid.initialize({
       startOnLoad: false,
       securityLevel: 'strict',

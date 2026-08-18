@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<label class:list={['header-control theme-control', className]}>
+  <span class="sr-only" data-i18n="theme.toggle">Theme</span>
+  <select class="theme-mode-select" aria-label="Theme mode">
+    <option value="system" data-i18n="theme.system">System</option>
+    <option value="light" data-i18n="theme.light">Light</option>
+    <option value="dark" data-i18n="theme.dark">Dark</option>
+  </select>
+</label>

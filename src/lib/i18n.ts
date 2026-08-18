@@ -1,0 +1,70 @@
+export type Lang = 'en' | 'es' | 'fr';
+
+export const LANGS: Lang[] = ['en', 'es', 'fr'];
+
+export const I18N: Record<Lang, Record<string, string>> = {
+  en: {
+    'nav.blog': 'Blog',
+    'nav.demos': 'Demos',
+    'nav.news': 'News',
+    'nav.docs': 'Docs',
+    'nav.philosophy': 'Philosophy',
+    'nav.menu': 'Open menu',
+    'nav.close': 'Close menu',
+    'hero.tagline':
+      'Honest surfaces. Lower cognitive tax. HCI and UI/UX innovation for interfaces that respect how minds work.',
+    'hero.note_prefix': 'Shell and CLI standards live at our sibling org,',
+    'hero.note_org': 'openshellorg.',
+    'theme.toggle': 'Theme',
+    'theme.system': 'System',
+    'theme.light': 'Light',
+    'theme.dark': 'Dark',
+    'lang.label': 'Language',
+    'lang.en': 'English',
+    'lang.es': 'Español',
+    'lang.fr': 'Français',
+  },
+  es: {
+    'nav.blog': 'Blog',
+    'nav.demos': 'Demos',
+    'nav.news': 'Noticias',
+    'nav.docs': 'Docs',
+    'nav.philosophy': 'Filosofía',
+    'nav.menu': 'Abrir menú',
+    'nav.close': 'Cerrar menú',
+    'hero.tagline':
+      'Superficies honestas. Menor carga cognitiva. Innovación en HCI y UI/UX para interfaces que respetan cómo funciona la mente.',
+    'hero.note_prefix': 'Las normas de Shell y CLI viven en nuestra organización hermana,',
+    'hero.note_org': 'openshellorg.',
+    'theme.toggle': 'Tema',
+    'theme.system': 'Sistema',
+    'theme.light': 'Claro',
+    'theme.dark': 'Oscuro',
+    'lang.label': 'Idioma',
+    'lang.en': 'Inglés',
+    'lang.es': 'Español',
+    'lang.fr': 'Francés',
+  },
+  fr: {
+    'nav.blog': 'Blog',
+    'nav.demos': 'Démos',
+    'nav.news': 'Actualités',
+    'nav.docs': 'Docs',
+    'nav.philosophy': 'Philosophie',
+    'nav.menu': 'Ouvrir le menu',
+    'nav.close': 'Fermer le menu',
+    'hero.tagline':
+      'Surfaces découvrables. Moins de charge cognitive. Innovation en HCI et UI/UX pour des interfaces qui respectent le fonctionnement de l’esprit.',
+    'hero.note_prefix': 'Les standards Shell et CLI vivent dans notre organisation sœur,',
+    'hero.note_org': 'openshellorg.',
+    'theme.toggle': 'Thème',
+    'theme.system': 'Système',
+    'theme.light': 'Clair',
+    'theme.dark': 'Sombre',
+    'lang.label': 'Langue',
+    'lang.en': 'Anglais',
+    'lang.es': 'Espagnol',
+    'lang.fr': 'Français',
+  },
+};
+

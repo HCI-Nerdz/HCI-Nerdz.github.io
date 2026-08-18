@@ -5,7 +5,23 @@
     font-weight="700"
     letter-spacing="-2"
     fill="#E8E4D9">HCI Nerdz</text>
-  <circle cx="668" cy="42" r="14" fill="#E8A54B"/>
-  <circle cx="698" cy="78" r="9" fill="#3D9B8F"/>
-  <line x1="668" y1="56" x2="690" y2="72" stroke="#C9D1D9" stroke-opacity=".5" stroke-width="3"/>
+  <g transform="translate(600 18)">
+    <path
+      d="M46 54
+         C58 30 82 18 104 18
+         C126 18 150 30 162 54
+         C150 90 126 102 104 102
+         C82 102 58 90 46 54 Z"
+      fill="rgba(232,228,217,0.10)"
+      stroke="#3D9B8F"
+      stroke-opacity=".5"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="104" cy="56" r="20" fill="rgba(232,165,75,0.18)" />
+    <circle cx="104" cy="56" r="12" fill="rgba(232,165,75,0.78)" />
+    <circle cx="98" cy="50" r="4" fill="#E8E4D9" opacity="0.9" />
+    <circle cx="104" cy="56" r="8" fill="#0E1218" />
+  </g>
 </svg>

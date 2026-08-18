@@ -19,25 +19,135 @@ const featuredDemos = allDemos();
 <BaseLayout active="home">
   <main class="shell">
     <section class="hero">
-      <img class="mark" src="/logo-mark.svg" width="256" height="256" alt="HCI Nerdz" />
-      <h1>HCI Nerdz</h1>
+      <div class="hero-logotype-wrap">
+        <h1 class="hero-logotype" id="hero-logotype" aria-label="HCI Nerdz">
+          <span class="hero-wordmark">
+            <span class="hci-word" id="hci-word">
+              <span class="hci-letter hci-h" data-char="H" data-edpt="140" data-phase="0" aria-hidden="true">H</span>
+              <span class="hci-letter hci-c" data-char="C" data-edpt="88" data-phase="0.9" aria-hidden="true">C</span>
+            <span class="hci-letter hci-i" data-char="I" data-edpt="118" data-phase="1.7" aria-hidden="true"
+              ><span class="hero-eye" id="hero-eye"
+                ><svg class="hero-eye-svg" viewBox="0 0 64 40" aria-hidden="true">
+                  <path
+                    class="eye-white"
+                    d="M4 20 C12 6 22 4 32 4 C42 4 52 6 60 20 C52 34 42 36 32 36 C22 36 12 34 4 20 Z"
+                  />
+                  <g class="eye-look" id="hero-eye-look">
+                    <circle class="eye-iris-ring" cx="32" cy="20" r="10" />
+                    <circle class="eye-iris" cx="32" cy="20" r="7" />
+                    <circle class="eye-pupil" cx="32" cy="20" r="3.6" />
+                    <circle class="eye-glint" cx="30.2" cy="18.2" r="1.2" />
+                  </g>
+                  <path class="eye-lid" d="M4 20 C12 6 22 4 32 4 C42 4 52 6 60 20 Z" />
+                </svg></span
+              >I</span
+            >
+            </span>
+            <span class="nerdz-word" id="nerdz-word" aria-hidden="true">
+              <span>N</span><span>e</span><span>r</span><span>d</span><span>z</span>
+            </span>
+          </span>
+        </h1>
+      </div>
+
       <p class="tag">
-        Honest surfaces. Lower cognitive tax. HCI and UI/UX innovation for interfaces that respect
-        how minds work.
+        <span data-i18n="hero.tagline">
+          Discoverable surfaces. Lower cognitive tax. HCI and UI/UX innovation for interfaces that respect
+          how minds work.
+        </span>
       </p>
       <div class="cta">
-        <a class="secondary" href="/blog/">Blog</a>
-        <a class="secondary" href="/demos/">Demos</a>
-        <a class="secondary" href="/news/">News</a>
-        <a class="secondary" href="https://hci-nerdz.github.io/docs/">Docs</a>
-        <a class="secondary" href="/philosophy/">Philosophy</a>
+        <a class="secondary" href="/blog/">
+          <span data-i18n="nav.blog">Blog</span>
+        </a>
+        <a class="secondary" href="/demos/">
+          <span data-i18n="nav.demos">Demos</span>
+        </a>
+        <a class="secondary" href="/news/">
+          <span data-i18n="nav.news">News</span>
+        </a>
+        <a class="secondary" href="https://hci-nerdz.github.io/docs/">
+          <span data-i18n="nav.docs">Docs</span>
+        </a>
+        <a class="secondary" href="/philosophy/">
+          <span data-i18n="nav.philosophy">Philosophy</span>
+        </a>
         <GitHubLink class="secondary cta-github" />
       </div>
       <p class="note">
-        Shell and CLI standards live at our sibling org,
-        <a href="https://github.com/openshellorg">openshellorg</a>.
+        <span data-i18n="hero.note_prefix">Shell and CLI standards live at our sibling org,</span>
+        <a href="https://github.com/openshellorg">
+          <span data-i18n="hero.note_org">openshellorg.</span>
+        </a>
       </p>
     </section>
+
+    <script>
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const letters = Array.from(document.querySelectorAll<HTMLElement>('.hci-letter'));
+      const eye = document.getElementById('hero-eye');
+      const look = document.getElementById('hero-eye-look');
+
+      const bases = letters.map((el) => Number(el.dataset.edpt) || 100);
+      const phases = letters.map((el) => Number(el.dataset.phase) || 0);
+
+      if (!prefersReduced && letters.length) {
+        const amp = 42;
+        const speed = 0.002;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = now - start;
+          const dir = Math.floor(t / 6200) % 2 === 0 ? 1 : -1;
+          letters.forEach((el, i) => {
+            const wave = Math.sin(t * speed + phases[i] + i * 0.8);
+            const edpt = Math.max(0, Math.min(200, bases[i] + amp * wave * dir));
+            el.style.fontVariationSettings = `"EDPT" ${edpt.toFixed(1)}, "EHLT" 12`;
+          });
+          requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+
+      if (eye && look && !prefersReduced) {
+        let targetX = 0;
+        let targetY = 0;
+        let curX = 0;
+        let curY = 0;
+        const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
+
+        window.addEventListener(
+          'pointermove',
+          (e) => {
+            const r = eye.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            targetX = clamp(((e.clientX - cx) / Math.max(r.width, 1)) * 6, -6, 6);
+            targetY = clamp(((e.clientY - cy) / Math.max(r.height, 1)) * 4, -4, 4);
+          },
+          { passive: true },
+        );
+
+        const loop = () => {
+          curX += (targetX - curX) * 0.16;
+          curY += (targetY - curY) * 0.16;
+          look.setAttribute('transform', `translate(${curX.toFixed(2)} ${curY.toFixed(2)})`);
+          requestAnimationFrame(loop);
+        };
+        requestAnimationFrame(loop);
+
+        const blink = () => {
+          eye.classList.add('is-blinking');
+          window.setTimeout(() => eye.classList.remove('is-blinking'), 180);
+        };
+        const scheduleBlink = () => {
+          window.setTimeout(() => {
+            blink();
+            scheduleBlink();
+          }, 2600 + Math.random() * 3600);
+        };
+        scheduleBlink();
+      }
+    </script>
 
     <section class="section" aria-labelledby="principles-heading">
       <h2 id="principles-heading">What we fight for</h2>
@@ -107,7 +217,7 @@ const featuredDemos = allDemos();
         </li>
         <li>
           <a href="/demos/#feedback-severity"><strong>Feedback &amp; severity</strong></a>
-          <span>Honest signals; help that is not failure.</span>
+          <span>Clear signals; help that is not failure.</span>
         </li>
       </ul>
     </section>

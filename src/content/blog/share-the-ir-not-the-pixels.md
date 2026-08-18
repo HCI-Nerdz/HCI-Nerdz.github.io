@@ -87,7 +87,7 @@ HCI Nerdz can compose these parts *intentionally* rather than chase a mega-spec.
 The lesson is demand, not format:
 
 - Visual pipeline editors are worth building
-- The hard part is honest domain typing + replay, not iconography
+- The hard part is rigorous domain typing + replay, not iconography
 - Vendors optimize for their runtime, not for export to your prototype
 
 Our open prototypes should still export — but export *meaning* (IR + evaluation), not a pixel-perfect clone of Microsoft's chrome.

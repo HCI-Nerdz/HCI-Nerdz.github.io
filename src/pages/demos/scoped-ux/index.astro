@@ -506,7 +506,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         tone: state.project && state.env ? 'ready' : 'warn',
       },
       'mega-create': {
-        text: 'Mega-tool mode: one form also offers remotes, runtimes, issues, and deploy — outcome is no longer previewable as one honest sentence.',
+        text: 'Mega-tool mode: one form also offers remotes, runtimes, issues, and deploy — outcome is no longer previewable as one clear sentence.',
         tone: 'warn',
       },
       'mega-everything': {
@@ -624,7 +624,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <div class="tool-panel" data-panel="mega">
         <h2>Everything desk</h2>
         <p class="job">One surface owns projects, runtimes, remotes, issues, and deploy.</p>
-        <p class="refuses">Refuses nothing — so feedforward cannot stay honest.</p>
+        <p class="refuses">Refuses nothing — so feedforward cannot stay truthful.</p>
         <div class="mega-grid">
           <div class="blob">
             <h3>Project + runtime + remote</h3>
@@ -715,7 +715,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       }
       state.project = state.draftProject;
       state.tool = 'environment';
-      setFeedforward(`Created “${state.project}”. Next honest step: pin an environment.`, 'ready');
+      setFeedforward(`Created “${state.project}”. Next step: pin an environment.`, 'ready');
       renderShell();
       stage.innerHTML = scopedPanel(state.tool);
       bindPreview(stage);
@@ -729,7 +729,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       state.env = state.draftEnv;
       state.tool = 'remote';
       setFeedforward(
-        `Pinned ${envLabels[state.env]} for “${state.project}”. Next honest step: connect a remote.`,
+        `Pinned ${envLabels[state.env]} for “${state.project}”. Next step: connect a remote.`,
         'ready',
       );
       renderShell();
