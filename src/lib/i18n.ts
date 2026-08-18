@@ -12,7 +12,7 @@ export const I18N: Record<Lang, Record<string, string>> = {
     'nav.menu': 'Open menu',
     'nav.close': 'Close menu',
     'hero.tagline':
-      'Honest surfaces. Lower cognitive tax. HCI and UI/UX innovation for interfaces that respect how minds work.',
+      'Discoverable surfaces. Lower cognitive tax. HCI and UI/UX innovation for interfaces that respect how minds work.',
     'hero.note_prefix': 'Shell and CLI standards live at our sibling org,',
     'hero.note_org': 'openshellorg.',
     'theme.toggle': 'Theme',
@@ -33,7 +33,7 @@ export const I18N: Record<Lang, Record<string, string>> = {
     'nav.menu': 'Abrir menú',
     'nav.close': 'Cerrar menú',
     'hero.tagline':
-      'Superficies honestas. Menor carga cognitiva. Innovación en HCI y UI/UX para interfaces que respetan cómo funciona la mente.',
+      'Superficies descubribles. Menor carga cognitiva. Innovación en HCI y UI/UX para interfaces que respetan cómo funciona la mente.',
     'hero.note_prefix': 'Las normas de Shell y CLI viven en nuestra organización hermana,',
     'hero.note_org': 'openshellorg.',
     'theme.toggle': 'Tema',
