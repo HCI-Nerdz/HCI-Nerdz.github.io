@@ -1,0 +1,7 @@
+= Continuous HCI extrusion loop — changelog detail
+:description: Hero Nabla EDPT animation loops on a sine wave without a sign-flip snap.
+
+== Changed
+
+* The homepage logotype drove Nabla `EDPT` with a sine wave, then multiplied that wave by `+1` / `-1` every 6.2 seconds. Unless the wave was exactly zero at the flip, extrusion depth jumped.
+* The sign flip is gone. Depth stays `base + amplitude * sin(t)`, which is already periodic, so the loop has no seam.

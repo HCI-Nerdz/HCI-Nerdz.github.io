@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-18 — Continuous HCI extrusion loop
+
+* Homepage Nabla `EDPT` animation no longer flips sign every 6.2s, so extrusion depth does not snap at the cycle boundary.
+* link:changelog-details/2026-08-18%20-%20continuous-hci-extrusion-loop.adoc[Details]
+
 == 2026-08-18 — Larger transparent eye mark
 
 * Site header and favicon use the eye on alpha — no rounded-square tile in chrome. Iris, pupil, and stroke are larger so the mark reads at 16px.

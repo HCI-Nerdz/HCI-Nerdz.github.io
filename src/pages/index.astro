@@ -110,10 +110,9 @@ const featuredDemos = allDemos();
         const start = performance.now();
         const tick = (now: number) => {
           const t = now - start;
-          const dir = Math.floor(t / 6200) % 2 === 0 ? 1 : -1;
           letters.forEach((el, i) => {
             const wave = Math.sin(t * speed + phases[i] + i * 0.8);
-            const edpt = Math.max(0, Math.min(200, bases[i] + amp * wave * dir));
+            const edpt = Math.max(0, Math.min(200, bases[i] + amp * wave));
             el.style.fontVariationSettings = `"EDPT" ${edpt.toFixed(1)}, "EHLT" 12`;
           });
           requestAnimationFrame(tick);
