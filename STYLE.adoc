@@ -135,6 +135,28 @@ Sources: AP headline notes; reporting textbooks (verb + present); Cambridge head
 
 Encyclopedia concept names (`= Instruction flows`) — no forced news verb.
 
+== Symptom ↔ diagnosis / treatment
+
+When people only *feel* a failure (broken links, rename fallout) but cannot name the system mistake, couple two revisable faces:
+
+[cols="1,2,2"]
+|===
+| Face | Job | Typical surface
+
+| *Symptom*
+| Start from what readers already know and feel
+| Situation essay (`When …`), demo that shows the breakage
+
+| *Diagnosis / treatment*
+| Name the mistake and the stack of fixes
+| Concept docs topic; technical companion essay
+|===
+
+Keep the pairing explicit so either face can revise without forcing a retitle of the other.
+Example: symptom *When renaming a page breaks half your docs* ↔ diagnosis *Labels versus wires* / *When the name is not the wire*.
+
+Do not steal *Navigating by content* for the reference-identity topic — that title belongs to instruction flows (menu-style docs).
+
 == Quick checklist
 
 . First-party news → org omitted unless another actor?

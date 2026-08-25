@@ -3,7 +3,7 @@ title: "When renaming a page breaks half your docs"
 description: "Pretty URLs are for people. When we wire systems to those names, a rename becomes unpaid chores across every project that trusted the string."
 pubDate: 2026-08-11
 draft: false
-tags: ["devx", "naming", "docs", "reference-integrity", "navigating-by-content"]
+tags: ["devx", "naming", "docs", "reference-integrity", "labels-versus-wires"]
 ---
 
 I am tired of updating URLs.
@@ -11,6 +11,12 @@ I am tired of updating URLs.
 Not the thoughtful kind of tired — the kind where you rename one docs path for clarity, then spend the afternoon grepping sibling repos because somebody pasted `https://…/old-path` into a README six months ago. The rename was correct. The breakage was predictable. The work is still yours.
 
 <img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Stable content core with a detachable name tag" />
+
+## Symptom face
+
+This essay is the **symptom** entry: what you already feel.
+URL rot, rename fallout, string archaeology — the waiting-room complaint.
+Diagnosis and treatment live elsewhere so we can revise the theory without renaming the ache, and revise the ache without moving the architecture page.
 
 ## Pretty names are not wires
 
@@ -36,13 +42,14 @@ That is the DevX win.
 Less attention spent on string archaeology.
 More attention on the change you meant to make.
 
-## Two essays, one idea
+## Paired faces
 
-This piece is the gut check.
-
-The technical companion — [When the name is not the wire](/blog/when-the-name-is-not-the-wire/) — stacks the fix: content hashes for identity, mutable pointers when content actually changes, and a producer-owned consumer list for today's string-shaped web.
-The docs topic [Navigating by content](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) is the full proposal.
-The [demo](/demos/navigating-by-content/) shows rename-break versus content-stable fetch in one screen.
+| Face | Where |
+| --- | --- |
+| Symptom (this piece) | The gut check |
+| Diagnosis | [When the name is not the wire](/blog/when-the-name-is-not-the-wire/) |
+| Diagnosis + treatment | Docs: [Labels versus wires](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) |
+| Symptom demo | [Rename simulation](/demos/navigating-by-content/) |
 
 connectome-fs is the long game on the same mistake: paths as navigation, nodes as truth.
 If you live in graphs and editions, start there after the gut check.

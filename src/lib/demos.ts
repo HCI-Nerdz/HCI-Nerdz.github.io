@@ -295,33 +295,33 @@ export const demoCategories: DemoCategory[] = [
     id: "naming-reference",
     title: "Naming & reference",
     description:
-      "Pretty URLs and path labels for humans; content identity and reverse consumers for wires — DevX as HCI.",
+      "Start from rename/URL breakage people already feel; diagnose labels-as-wires; treat with content identity and reverse consumers.",
     demos: [
       {
         id: "navigating-by-content",
-        title: "Navigating by content",
+        title: "When the rename breaks the README",
         summary:
-          "Flip between string-wired URLs and content hashes. Rename the pretty path and watch who breaks — or who doesn't.",
+          "Symptom demo: flip between string-wired URLs and content hashes. Rename the pretty path and watch who breaks — or who doesn't.",
         viz: "rails",
         href: "/demos/navigating-by-content/",
         shots: [
           {
             id: "navigating-by-content",
-            label: "Navigating by content",
+            label: "When the rename breaks the README",
             href: "/demos/navigating-by-content/",
           },
         ],
         related: [
           {
-            label: "Relatable essay",
+            label: "Symptom essay",
             href: "/blog/when-renaming-a-page-breaks-half-your-docs/",
           },
           {
-            label: "Technical essay",
+            label: "Diagnosis essay",
             href: "/blog/when-the-name-is-not-the-wire/",
           },
           {
-            label: "Docs",
+            label: "Treatment docs",
             href: "https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html",
           },
         ],

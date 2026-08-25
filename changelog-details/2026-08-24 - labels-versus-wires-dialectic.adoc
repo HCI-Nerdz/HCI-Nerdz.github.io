@@ -1,0 +1,7 @@
+= Labels versus wires — symptom ↔ diagnosis dialectic
+
+* News: *Labels versus wires added to the repertoire* (file slug kept)
+* Essays: explicit Symptom / Diagnosis faces; docs link uses concept title *Labels versus wires*
+* Demo: *When the rename breaks the README*; related links labeled Symptom / Diagnosis / Treatment
+* Homepage Naming & reference blurb leads with felt breakage
+* STYLE + AGENTS: pattern for coupling symptom entry with revisable diagnosis/treatment

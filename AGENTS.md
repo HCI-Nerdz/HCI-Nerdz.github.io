@@ -31,5 +31,5 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 - Context-bound settings: essay `/blog/when-settings-live-across-town/`; docs `context-bound-settings`; demo `/demos/context-bound-settings/`
 - Config field vocabulary: essay `/blog/when-config-files-withhold-the-vocabulary/` (companion to UniConfig Config Panel)
 - Context rails: essay `/blog/when-platforms-overload-the-entrypoint/`; docs `context-rails`; demo `/demos/context-rails/`; MVP `https://hci-nerdz.github.io/context-rails/`
-- Navigating by content: essays `/blog/when-renaming-a-page-breaks-half-your-docs/` + `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content`; demo `/demos/navigating-by-content/`; Mermaid via `MermaidBoot`
+- Labels versus wires: symptom essay `/blog/when-renaming-a-page-breaks-half-your-docs/` + demo `/demos/navigating-by-content/`; diagnosis essay `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content` (concept title Labels versus wires); Mermaid via `MermaidBoot`. Symptom ↔ diagnosis/treatment dialectic — see STYLE. **Systems umbrella:** Internet Reliability @ DevCentr (not this site). Instruction-flows keeps *Navigating by content*.
 - Homepage domains map orients HCI lanes (including naming & reference); keep out of the hero

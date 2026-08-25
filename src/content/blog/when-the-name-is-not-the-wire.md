@@ -3,14 +3,15 @@ title: "When the name is not the wire"
 description: "NDN, content-addressing, and CONSUMERS.md solve different bounds of the same human want: stop treating pretty names as system identity."
 pubDate: 2026-08-11
 draft: false
-tags: ["architecture", "ndn", "cas", "devx", "navigating-by-content", "connectome-fs"]
+tags: ["architecture", "ndn", "cas", "devx", "labels-versus-wires", "connectome-fs"]
 ---
 
 The web taught us a bad habit: treat the human-readable path as the thing itself.
 Rename the path, and every dependent that baked the string becomes a broken promise.
 
-This essay is the technical companion to [When renaming a page breaks half your docs](/blog/when-renaming-a-page-breaks-half-your-docs/).
-Full diagrams and the adoption ladder live in the docs: [Navigating by content](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
+This essay is the **diagnosis** face — paired with the symptom entry [When renaming a page breaks half your docs](/blog/when-renaming-a-page-breaks-half-your-docs/).
+Full diagrams and the **treatment** ladder live in the docs: [Labels versus wires](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
+Either face can revise without forcing a retitle of the other.
 
 <img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Hash core with detachable /docs/api label" />
 
@@ -62,7 +63,7 @@ flowchart LR
 
 Unison shows the destination for *code* identity.
 [connectome-fs](https://github.com/connectome-fs/connectome-fs) aims at the filesystem and association plane underneath many languages and non-code artifacts — path as projection, graph as truth.
-See its explanation *Navigating by content* beside *Semantic change units*.
+See its explanation *Labels versus wires* beside *Semantic change units*.
 
 ## Near-term practice
 

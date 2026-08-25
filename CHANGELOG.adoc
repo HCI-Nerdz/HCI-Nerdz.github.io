@@ -1,5 +1,12 @@
 = Changelog
 
+== 2026-08-24 — Labels versus wires dialectic
+
+* Repertoire framing: symptom entry (rename essay + demo) paired with revisable diagnosis/treatment (technical essay + docs *Labels versus wires*).
+* STYLE documents symptom ↔ diagnosis/treatment for repertoire topics.
+* News title updated; demo eyebrow/title are symptom-facing.
+* link:changelog-details/2026-08-24%20-%20labels-versus-wires-dialectic.adoc[Details]
+
 == 2026-08-18 — Continuous HCI extrusion loop
 
 * Homepage Nabla `EDPT` animation no longer flips sign every 6.2s, so extrusion depth does not snap at the cycle boundary.
