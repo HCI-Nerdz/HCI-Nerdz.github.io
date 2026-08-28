@@ -57,6 +57,12 @@
       "label": "Context-bound settings",
       "url": "https://hci-nerdz.github.io/demos/context-bound-settings/",
       "selector": "main"
+    },
+    {
+      "id": "spatial-web-windows",
+      "label": "Spatial web windows desk",
+      "url": "https://hci-nerdz.github.io/demos/spatial-web-windows/",
+      "selector": "main"
     }
   ]
 }

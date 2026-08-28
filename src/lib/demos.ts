@@ -5,7 +5,9 @@ export type DemoViz =
   | 'peel'
   | 'flow'
   | 'rails'
-  | 'settings';
+  | 'settings'
+  | 'piles'
+  | 'spatial';
 
 export interface DemoShot {
   /** Filename stem for resting-lanczos tiers (`{id}-400.webp`). */
@@ -205,6 +207,47 @@ export const demoCategories: DemoCategory[] = [
     demos: [],
   },
   {
+    id: "spatial-windowing",
+    title: "Spatial windowing",
+    description:
+      "Multi-window desktop web UX — lite palettes, SharedWorker hubs, intent routing, and Document PiP for professional tools.",
+    demos: [
+      {
+        id: "spatial-web-windows",
+        title: "Spatial web windows desk",
+        summary:
+          "Photo-grade desk with torn-off histogram (Document PiP) and curves remote (chromeless popup). Toggle monolith vs spatial vs mobile intent.",
+        viz: "spatial",
+        href: "/demos/spatial-web-windows/",
+        shots: [
+          {
+            id: "spatial-web-windows",
+            label: "Spatial web windows desk",
+            href: "/demos/spatial-web-windows/",
+          },
+        ],
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-the-browser-flattens-working-memory/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/spatial-web-windows.html",
+          },
+          {
+            label: "Dev-Centr",
+            href: "https://docs.devcentr.org/dev-centr/latest/architecture/ui-heavy-web-apps.html#spatial-windows-and-lite-palettes",
+          },
+          {
+            label: "Browser fork",
+            href: "https://github.com/Desktop-Tooling/spatial-browser",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "attention-disclosure",
     title: "Attention & progressive disclosure",
     description:
@@ -285,11 +328,68 @@ export const demoCategories: DemoCategory[] = [
     ],
   },
   {
+    id: "attention-inbox",
+    title: "Attention & inbox",
+    description:
+      "Inbox UX that respects cognitive budget — glanceable sentiment, pile canvases, trays without autoload.",
+    demos: [
+      {
+        id: "piles",
+        title: "Piles",
+        summary:
+          "Canvas email with sentiment signals — pile previews on a desk-like surface, urgency glow, vertical tab tray, grid mode.",
+        viz: "piles",
+        href: "https://hci-nerdz.github.io/piles/",
+        shots: [
+          { id: "piles", label: "Landing canvas", href: "https://hci-nerdz.github.io/piles/" },
+          { id: "piles-gmail", label: "Gmail chrome", href: "https://hci-nerdz.github.io/piles/gmail-chrome/" },
+          { id: "piles-components", label: "Components", href: "https://hci-nerdz.github.io/piles/components/" },
+        ],
+        related: [
+          { label: "Essay", href: "/blog/attention-is-not-inventory/" },
+          { label: "Docs", href: "https://hci-nerdz.github.io/docs/hci-nerdz/piles.html" },
+          { label: "Repo", href: "https://github.com/HCI-Nerdz/piles" },
+          { label: "Desktop app", href: "https://github.com/Desktop-Tooling/piles" },
+        ],
+      },
+    ],
+  },
+  {
     id: "feedback-severity",
     title: "Feedback & severity",
     description:
       "Clear signals — warnings that look like warnings, help that is not failure, toasts that explain why.",
-    demos: [],
+    demos: [
+      {
+        id: "grounded-tokens",
+        title: "Grounded tokens",
+        summary:
+          "Mark heuristic versus researched tokens in AI assistant output — dashed underline for assumptions, solid for verified facts. Replay the fork-name case study.",
+        viz: "flow",
+        href: "/demos/grounded-tokens/",
+        shots: [
+          {
+            id: "grounded-tokens",
+            label: "Grounded tokens replay",
+            href: "/demos/grounded-tokens/",
+          },
+        ],
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-the-agent-names-a-fork-before-it-looks/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/grounded-tokens.html",
+          },
+          {
+            label: "Literature",
+            href: "https://github.com/HCI-Nerdz/docs/blob/main/literature/grounded-tokens/cursor-seed-2026-08-28.md",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "naming-reference",

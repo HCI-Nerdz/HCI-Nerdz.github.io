@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-28 — Grounded tokens
+
+* Essay, news, demo `/demos/grounded-tokens/` — fork-name case study with provenance toggle
+* link:changelog-details/2026-08-28%20-%20grounded-tokens.adoc[Details]
+
 == 2026-08-24 — Labels versus wires dialectic
 
 * Repertoire framing: symptom entry (rename essay + demo) paired with revisable diagnosis/treatment (technical essay + docs *Labels versus wires*).

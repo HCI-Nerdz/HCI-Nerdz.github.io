@@ -55,6 +55,13 @@ const { demo } = Astro.props;
         </span>
       )
     }
+    {
+      demo.viz === 'spatial' && (
+        <span class="viz-windows">
+          <i /><i /><i />
+        </span>
+      )
+    }
   </span>
   <strong>{demo.title}</strong>
   <span>{demo.summary}</span>

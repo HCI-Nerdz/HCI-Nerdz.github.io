@@ -1,0 +1,516 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Grounded tokens desk · HCI Nerdz"
+  description="Interactive demo: mark heuristic versus grounded tokens in AI assistant output — fork-name case study."
+  active="demos"
+>
+  <main class="shell page desk-page gt-page shell-prov">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Grounded tokens</p>
+      <h1>Grounded tokens desk</h1>
+      <p class="lede">
+        Assistant UIs render guesses and verified facts with the same weight. This replay shows how
+        inline marks — dashed for heuristic, solid for grounded — would have flagged a wrong fork
+        slug before it burned three turns.
+      </p>
+      <p class="related-links">
+        <a href="/blog/when-the-agent-names-a-fork-before-it-looks/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/grounded-tokens.html">Docs</a>
+        ·
+        <a href="https://github.com/HCI-Nerdz/docs/blob/main/literature/grounded-tokens/cursor-seed-2026-08-28.md">Literature seed</a>
+      </p>
+    </header>
+
+    <section class="desk" id="desk" aria-label="Grounded tokens desk">
+      <div class="shell-bar">
+        <div class="shell-identity">
+          <span class="shell-label">Agent transcript</span>
+          <strong id="scene-chip">Scene: fork-name retry</strong>
+        </div>
+        <label class="mode-toggle">
+          <input type="checkbox" id="provenance-on" checked />
+          <span>Show provenance</span>
+        </label>
+      </div>
+
+      <aside class="legend" id="legend" aria-label="Grounded token legend">
+      <span class="leg leg-heur"><span class="swatch"></span> Heuristic — assumed, not verified</span>
+      <span class="leg leg-research"><span class="swatch"></span> Researched - confirmed by lookup</span>
+      <span class="leg leg-corrected"><span class="swatch"></span> Corrected - rejected heuristic</span>
+    </aside>
+
+    <div class="chat-toolbar-hidden" role="toolbar" aria-label="Replay controls">
+      <button type="button" id="btn-replay">Replay scene</button>
+      <button type="button" id="btn-step">Next line</button>
+    </div>
+    <section class="chat-shell" aria-label="Mock agent chat">
+      <div class="chat-header">
+        <span class="chat-title">Agent</span>
+        <span class="chat-meta" id="chat-meta">Step 0 / 4</span>
+      </div>
+      <ol class="chat-lines" id="chat-lines" aria-live="polite"></ol>
+    </section>
+      <p class="bus-strip" id="bus-strip" role="status">Provenance on.</p>
+    </section>
+
+    <figure class="case-shot">
+      <img
+        src="/demos/grounded-tokens/case-study-fork-name.png"
+        alt="Real Cursor chat where the agent assumed AMDphreak/clients before finding AMDphreak/bitwarden-clients"
+        width="960"
+        height="540"
+        loading="lazy"
+      />
+      <figcaption>
+        Real scene that seeded this idea — same story as the replay above.
+      </figcaption>
+    </figure>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li>
+          <strong>Heuristic tokens pop first</strong> — dashed underline on
+          <code>AMDphreak/clients</code> before any GitHub check.
+        </li>
+        <li>
+          <strong>Researched tokens stay quiet</strong> — solid underline on
+          <code>AMDphreak/bitwarden-clients</code> after verification; hover for source.
+        </li>
+        <li>
+          <strong>Upgrade in place</strong> — when the agent corrects itself, class changes are visible
+          in the tokens, not only in the apology sentence.
+        </li>
+        <li>
+          <strong>People first</strong> — the mark answers “did it check?” without reading the tool log.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .desk-page {
+    max-width: 64rem;
+  }
+
+  .gt-page {
+  }
+
+  .back-row {
+    margin: 0 0 0.5rem;
+  }
+
+  .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .desk {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
+      rgba(255, 255, 255, 0.02);
+    animation: rise 0.7s ease both;
+  }
+
+  .shell-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .shell-identity { display: grid; gap: 0.2rem; }
+  .shell-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  #scene-chip {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--honesty);
+  }
+  .mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    cursor: pointer;
+    user-select: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .bus-strip {
+    margin: 0;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--paper-muted);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .chat-toolbar-hidden {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .chat-toolbar-hidden button {
+    min-height: 2.4rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .chat-toolbar-hidden button:hover {
+    color: var(--focus);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    color: var(--paper-muted);
+  }
+
+  .legend.is-hidden {
+    opacity: 0.35;
+  }
+
+  .leg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .swatch {
+    width: 1.5rem;
+    height: 0;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+  }
+
+  .leg-heur .swatch {
+    border-bottom-style: dashed;
+    border-bottom-color: #e8a54b;
+  }
+
+  .leg-research .swatch {
+    border-bottom-color: var(--focus);
+  }
+
+  .leg-corrected .swatch {
+    border-bottom-style: dashed;
+    border-bottom-color: #c97b7b;
+  }
+
+  .chat-shell {
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background:
+      linear-gradient(155deg, rgba(232, 165, 75, 0.08), transparent 42%),
+      rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    animation: rise 0.7s ease both;
+  }
+
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .chat-meta {
+    color: var(--paper-muted);
+    font-weight: 600;
+  }
+
+  .chat-lines {
+    margin: 0;
+    padding: 1rem 1.1rem 1.25rem;
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+    min-height: 11rem;
+  }
+
+  .chat-lines li {
+    color: var(--paper-muted);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    animation: rise 0.4s ease both;
+  }
+
+  .chat-lines li.is-status {
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .chat-lines li.is-done {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--focus);
+    font-weight: 700;
+  }
+
+  .tok {
+    cursor: help;
+    border-radius: 2px;
+  }
+
+  .shell-plain .tok-heur,
+  .shell-plain .tok-research,
+  .shell-plain .tok-corrected {
+    text-decoration: none !important;
+    color: inherit !important;
+    background: transparent;
+  }
+
+  .shell-prov .tok-heur {
+    text-decoration: underline dashed var(--honesty);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    color: #ffd89a;
+  }
+
+  .shell-prov .tok-research {
+    text-decoration: underline solid var(--focus);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    color: #a8e6dc;
+  }
+
+  .shell-prov .tok-corrected {
+    text-decoration: underline dashed #c97b7b;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    color: #f0b4b4;
+  }
+
+  .case-shot {
+    margin: 2rem 0 0;
+  }
+
+  .case-shot img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+  }
+
+  .case-shot figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--paper-muted);
+  }
+
+  .lesson {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .lesson h2 {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .lesson ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .lesson li {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+    color: var(--paper-muted);
+  }
+
+  .lesson strong {
+    color: var(--focus);
+    font-family: var(--font-display);
+  }
+</style>
+
+<script>
+  type TokClass = 'heur' | 'research' | 'corrected';
+
+  interface Segment {
+    text: string;
+    cls?: TokClass;
+    title?: string;
+  }
+
+  interface Line {
+    kind: 'status' | 'msg' | 'done';
+    segments: Segment[];
+  }
+
+  const script: Line[] = [
+    {
+      kind: 'status',
+      segments: [
+        { text: 'Retrying ' },
+        {
+          text: 'AMDphreak/clients',
+          cls: 'heur',
+          title: 'Assumed — inferred from upstream bitwarden/clients; not verified',
+        },
+        { text: ' now.' },
+      ],
+    },
+    {
+      kind: 'msg',
+      segments: [
+        { text: 'Still failing on ' },
+        {
+          text: 'AMDphreak/clients',
+          cls: 'heur',
+          title: 'Assumed — still no successful gh repo view',
+        },
+        { text: '. Checking whether the fork is actually there…' },
+      ],
+    },
+    {
+      kind: 'msg',
+      segments: [
+        { text: "Wasn't the GitHub App. Your Bitwarden fork is " },
+        {
+          text: 'AMDphreak/bitwarden-clients',
+          cls: 'research',
+          title: 'Grounded — gh repo view AMDphreak/bitwarden-clients → 200',
+        },
+        { text: ', not ' },
+        { text: 'AMDphreak/clients', cls: 'heur', title: 'Heuristic — now explicitly rejected' },
+        { text: '. Retrying on the real name.' },
+      ],
+    },
+    {
+      kind: 'done',
+      segments: [{ text: 'Update bitwarden#22642 onto main — Done' }],
+    },
+  ];
+
+  const linesEl = document.getElementById('chat-lines')!;
+  const metaEl = document.getElementById('chat-meta')!;
+  const busEl = document.getElementById('bus-strip')!;
+  const provToggle = document.getElementById('provenance-on') as HTMLInputElement;
+  const legendEl = document.getElementById('legend')!;
+  const page = document.querySelector('.gt-page')!;
+  let step = 0;
+
+  function escapeHtml(v: string) {
+    return v.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  }
+
+  function renderSegment(seg: Segment, showProv: boolean): string {
+    if (!seg.cls || !showProv) return escapeHtml(seg.text);
+    const cls = `tok tok-${seg.cls}`;
+    const title = seg.title ? ` title="${escapeHtml(seg.title)}"` : '';
+    const aria = seg.title ? ` aria-description="${escapeHtml(seg.title)}"` : '';
+    return `<span class="${cls}"${title}${aria}>${escapeHtml(seg.text)}</span>`;
+  }
+
+  function renderLine(line: Line, showProv: boolean): string {
+    const inner = line.segments.map((s) => renderSegment(s, showProv)).join('');
+    const cls = line.kind === 'status' ? 'is-status' : line.kind === 'done' ? 'is-done' : '';
+    return `<li class="${cls}">${inner}</li>`;
+  }
+
+  function paint() {
+    const showProv = provToggle.checked;
+    page?.classList.toggle('shell-prov', showProv);
+    page?.classList.toggle('shell-plain', !showProv);
+    legendEl.classList.toggle('is-hidden', !showProv);
+    linesEl.innerHTML = script.slice(0, step).map((l) => renderLine(l, showProv)).join('');
+    metaEl.textContent = `Step ${step} / ${script.length}`;
+    if (busEl) {
+      busEl.textContent = showProv
+        ? 'Provenance on — heuristics shout before they waste turns.'
+        : 'Provenance off — every token reads with equal confidence.';
+    }
+  }
+
+  document.getElementById('btn-step')!.addEventListener('click', () => {
+    if (step < script.length) step += 1;
+    paint();
+  });
+
+  document.getElementById('btn-replay')!.addEventListener('click', () => {
+    step = 0;
+    paint();
+    let i = 0;
+    const tick = () => {
+      if (i >= script.length) return;
+      step = i + 1;
+      paint();
+      i += 1;
+      if (i < script.length) window.setTimeout(tick, 900);
+    };
+    tick();
+  });
+
+  provToggle.addEventListener('change', paint);
+
+  step = script.length;
+  paint();
+</script>

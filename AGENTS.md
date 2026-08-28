@@ -24,7 +24,7 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 
 - Scoped UX architecture: many small tools under one roof; feedforward is interaction-layer, not a synonym
 - Literature for Scoped UX: `HCI-Nerdz/docs` `literature/scoped-ux-architecture/` (Gemini export + PDF); catalog `/docs/hci-nerdz/literature.html`
-- Instruction flows: demo `/demos/instruction-flow/`; Antora package `@antora-supplemental/instruction-flow` (`asciidoc-interactive`)
+- Instruction flows: demo `/demos/instruction-flow/`; Antora package `@antora-supplemental/instruction-flow` (`asciidoc-interactive`); literature `HCI-Nerdz/docs` `literature/instruction-flows/`
 - Pass-through extensions: demo `/demos/pass-through-extensions/`; Windows helper `HCI-Nerdz/pass-through-extensions`
 - Open-with interrupt: essay `/blog/when-double-click-skips-the-choice/`; docs `open-with-interrupt` (implementation recipes)
 - Visitor-first repo homepage: essay `/blog/when-the-file-tree-owns-the-first-viewport/`; docs `visitor-first-repo-homepage`; upstream https://github.com/orgs/community/discussions/204347
@@ -32,4 +32,6 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 - Config field vocabulary: essay `/blog/when-config-files-withhold-the-vocabulary/` (companion to UniConfig Config Panel)
 - Context rails: essay `/blog/when-platforms-overload-the-entrypoint/`; docs `context-rails`; demo `/demos/context-rails/`; MVP `https://hci-nerdz.github.io/context-rails/`
 - Labels versus wires: symptom essay `/blog/when-renaming-a-page-breaks-half-your-docs/` + demo `/demos/navigating-by-content/`; diagnosis essay `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content` (concept title Labels versus wires); Mermaid via `MermaidBoot`. Symptom ↔ diagnosis/treatment dialectic — see STYLE. **Systems umbrella:** Internet Reliability @ DevCentr (not this site). Instruction-flows keeps *Navigating by content*.
+- Spatial web windows: essay `/blog/when-the-browser-flattens-working-memory/`; docs `spatial-web-windows`; demo `/demos/spatial-web-windows/`; fork `Desktop-Tooling/spatial-browser`
+- Grounded tokens: essay `/blog/when-the-agent-names-a-fork-before-it-looks/`; docs `grounded-tokens`; demo `/demos/grounded-tokens/`; literature `HCI-Nerdz/docs` `literature/grounded-tokens/`
 - Homepage domains map orients HCI lanes (including naming & reference); keep out of the hero

@@ -1333,6 +1333,37 @@ html[data-theme="dark"] .hero-eye {
   background: rgba(61, 155, 143, 0.28);
 }
 
+.viz-windows {
+  position: absolute;
+  inset: 18% 10% 14%;
+}
+
+.viz-windows i {
+  position: absolute;
+  border-radius: 0.2rem;
+  border: 1px solid rgba(232, 165, 75, 0.35);
+  background: rgba(26, 35, 50, 0.9);
+}
+
+.viz-windows i:nth-child(1) {
+  inset: 0 28% 22% 0;
+  background: rgba(61, 155, 143, 0.22);
+}
+
+.viz-windows i:nth-child(2) {
+  width: 38%;
+  height: 42%;
+  right: 0;
+  top: 0;
+}
+
+.viz-windows i:nth-child(3) {
+  width: 38%;
+  height: 38%;
+  right: 0;
+  bottom: 0;
+}
+
 @media (max-width: 640px) {
   .hero {
     padding-top: 3rem;
