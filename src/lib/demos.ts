@@ -245,6 +245,43 @@ export const demoCategories: DemoCategory[] = [
           },
         ],
       },
+      {
+        id: "shell-context-demo",
+        title: "Open Terminal layout desk",
+        summary:
+          "Facsimile desk for how terminals fit real work: prompt context while you type, tabs in one window, a calling window that indexes separate sessions, a project manager next to a DevCentr grid, contained tiling zones you can spawn and delete, and session re-association. Desk mocks only — native windowing stays in open-terminal.",
+        viz: "spatial",
+        href: "https://hci-nerdz.github.io/shell-context-demo/",
+        shots: [
+          {
+            id: "shell-context-demo",
+            label: "Open Terminal layout desk",
+            href: "https://hci-nerdz.github.io/shell-context-demo/",
+          },
+        ],
+        related: [
+          {
+            label: "Desk page",
+            href: "/demos/shell-context/",
+          },
+          {
+            label: "Zones",
+            href: "https://hci-nerdz.github.io/shell-context-demo/#/zones",
+          },
+          {
+            label: "Manager",
+            href: "https://hci-nerdz.github.io/shell-context-demo/#/manager",
+          },
+          {
+            label: "OpenShellOrg host",
+            href: "https://openshellorg.github.io/docs/shell-architecture/open-terminal-host.html",
+          },
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/shell-context-demo",
+          },
+        ],
+      },
     ],
   },
   {

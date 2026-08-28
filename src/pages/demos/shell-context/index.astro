@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Open Terminal layout desk · HCI Nerdz"
+  description="Facsimile desk for Open Terminal layout modes and shell-context chrome — interactive variants on GitHub Pages."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Open Terminal layouts</p>
+      <h1>Open Terminal layout desk</h1>
+      <p class="lede">
+        How terminal chrome fits real work: context tokens while you type, tabs in one window,
+        a calling window that indexes separate sessions, a project manager next to a DevCentr grid,
+        contained tiling zones, and session re-association. Interactive facsimile — not a native WM.
+      </p>
+      <p class="related-links">
+        <a href="https://hci-nerdz.github.io/shell-context-demo/">Open live desk</a>
+        ·
+        <a href="https://openshellorg.github.io/docs/shell-architecture/open-terminal-host.html">Host docs</a>
+        ·
+        <a href="https://github.com/HCI-Nerdz/shell-context-demo">Repo</a>
+      </p>
+    </header>
+
+    <section class="desk" aria-label="Variant links">
+      <ul class="variant-list">
+        <li><a href="https://hci-nerdz.github.io/shell-context-demo/#/prompt">Prompt desk</a> — tokens and paste preview on the everyday CLI surface</li>
+        <li><a href="https://hci-nerdz.github.io/shell-context-demo/#/standalone">Standalone</a> — tabs + session in one window</li>
+        <li><a href="https://hci-nerdz.github.io/shell-context-demo/#/decoupled">Decoupled index</a> — calling window + separate session windows</li>
+        <li><a href="https://hci-nerdz.github.io/shell-context-demo/#/manager">Project manager</a> — vertical groups beside DevCentr grid highlight</li>
+        <li><a href="https://hci-nerdz.github.io/shell-context-demo/#/zones">Nested zones</a> — contained tiling with spawn/delete</li>
+        <li><a href="https://hci-nerdz.github.io/shell-context-demo/#/association">Association</a> — register sessions with another UI</li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .desk-page { max-width: 48rem; }
+  .back-row { margin: 0 0 0.5rem; }
+  .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .desk {
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+  }
+  .variant-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: 0.65rem;
+    line-height: 1.45;
+  }
+</style>

@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-08-28 -- Open Terminal layout desk
+
+* Catalog: `shell-context-demo` under Spatial windowing (`src/lib/demos.ts`).
+* Thin desk `/demos/shell-context/` + news card.
+* Live suite: https://hci-nerdz.github.io/shell-context-demo/ (screenshots re-capture later after windowing chrome).
+
 == 2026-08-28 — Project inbox
 
 * Essay, news, demo `/demos/project-inbox/` — parallel task grid with fork panel, chapter bar, serialized-mode contrast
