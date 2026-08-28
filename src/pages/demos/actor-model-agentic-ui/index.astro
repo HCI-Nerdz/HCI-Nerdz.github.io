@@ -4,10 +4,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Actor-model agentic UI desk · HCI Nerdz"
-  description="Interactive demo: node graph on disk — epoch bar, task grid, fork panel, spawn tangents, serialized wall contrast."
+  description="Interactive demo: parallel agent tasks in a grid with cosmetic fork chats — not a serialized wall of status spam."
   active="demos"
 >
-  <main class="shell page desk-page am-page">
+  <main class="shell page desk-page pi-page shell-prov">
     <p class="back-row">
       <a class="back" href="/demos/">← Demos</a>
     </p>
@@ -15,73 +15,77 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <p class="eyebrow">Demo · Actor-model agentic UI</p>
       <h1>Actor-model agentic UI desk</h1>
       <p class="lede">
-        Linear chat lies when parallel jobs branch. This desk treats each bounded context as a node
-        on disk — coordinator thread stays thin, tasks live in a grid, tangents spawn children with
-        recorded lineage. Toggle serialized mode to feel today's wall of updates.
+        Twelve repo jobs run at once. The grid shows each card's status without scrolling the main
+        thread. Click a card for the localized fork. Toggle serialized mode to feel today's default.
       </p>
       <p class="related-links">
         <a href="/blog/when-chat-should-spawn-a-node/">Essay</a>
         ·
         <a href="https://hci-nerdz.github.io/docs/hci-nerdz/actor-model-agentic-ui.html">Docs</a>
         ·
-        <a href="https://docs.devcentr.org/agent-rules/actor-model-agentic-ui.html">Harness</a>
+        <a href="https://docs.devcentr.org/agent-rules/actor-model-agentic-ui.html">DevCentr harness</a>
       </p>
     </header>
 
-    <section class="desk" id="desk" aria-label="Actor-model agentic UI desk">
-      <nav class="lineage-strip" id="lineage-strip" aria-label="Node lineage"></nav>
-
+    <section class="desk" id="desk" aria-label="Actor-model agentic UI demo">
       <div class="shell-bar">
         <div class="shell-identity">
           <span class="shell-label">Coordinator node</span>
-          <strong id="coord-chip">coord-001</strong>
+          <strong id="run-chip">9 of 12 running</strong>
+          <span class="phase" id="epoch-label">Epoch 1</span>
         </div>
-        <label class="mode-toggle">
-          <input type="checkbox" id="serialized-mode" />
-          <span>Serialized mode</span>
-        </label>
+        <div class="shell-controls">
+          <label class="mode-toggle">
+            <input type="checkbox" id="serialized-mode" />
+            <span>Serialized (old way)</span>
+          </label>
+          <button type="button" id="btn-next-epoch" class="epoch-btn">Next epoch</button>
+        </div>
       </div>
 
-      <div class="epoch-bar" id="epoch-bar" role="tablist" aria-label="Epoch selector"></div>
+      <p class="lineage-strip" id="lineage-strip">Spawn: coord-001 → disc-org-connect → task nodes</p>
 
-      <section class="coord-thread" id="coord-thread" aria-label="Coordinator mailbox thread"></section>
-
-      <div class="grid-fork" id="grid-fork">
-        <section class="task-grid-wrap" id="task-grid-wrap" aria-label="Task node grid">
-          <div class="task-grid" id="task-grid" role="list"></div>
-        </section>
-
-        <aside class="fork-panel" id="fork-panel" aria-label="Fork panel" hidden>
-          <header class="fork-head">
-            <h2 id="fork-title">Fork</h2>
-            <button type="button" class="fork-close" id="fork-close" aria-label="Close fork panel">×</button>
-          </header>
-          <dl class="fork-meta" id="fork-meta"></dl>
-          <div class="fork-lines" id="fork-lines" aria-live="polite"></div>
-          <button type="button" class="spawn-btn" id="spawn-tangent">Spawn tangent</button>
-        </aside>
+      <div class="inbox-region" id="inbox-region" aria-label="Task node grid">
+        <div class="inbox-grid" id="inbox-grid" role="list"></div>
       </div>
 
-      <section class="serialized-wall" id="serialized-wall" aria-label="Serialized main thread" hidden>
-        <div class="serialized-header">
-          <span class="shell-label">Main thread — all nodes flattened</span>
+      <div class="fork-panel is-hidden" id="fork-panel" aria-label="Node fork chat">
+        <div class="fork-header">
+          <button type="button" id="fork-close" class="fork-close" aria-label="Close fork">×</button>
+          <div>
+            <strong id="fork-title">Node</strong>
+            <span class="fork-meta" id="fork-status"></span>
+          </div>
         </div>
-        <ol class="serialized-lines" id="serialized-lines"></ol>
+        <ol class="fork-lines" id="fork-lines"></ol>
+        <form class="fork-compose" id="fork-compose">
+          <input type="text" id="fork-input" placeholder="Message this node…" autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+
+      <section class="main-thread" aria-label="Coordinator chat">
+        <div class="chat-header">
+          <span class="chat-title">Main thread</span>
+          <span class="chat-meta" id="thread-meta">Coordinator summaries only</span>
+        </div>
+        <ol class="chat-lines" id="main-lines" aria-live="polite"></ol>
       </section>
 
-      <p class="bus-strip" id="bus-strip" role="status">Grid view — one actor per card.</p>
+      <p class="bus-strip" id="bus-strip" role="status">Grid mode — cards update in place; main thread stays thin.</p>
     </section>
 
     <figure class="case-shot">
       <img
         src="/demos/actor-model-agentic-ui/serialized-wall.png"
-        alt="Serialized multi-repo updates in one chat scroll — the pain this desk avoids"
+        alt="Real agent chat with repeated 9 of 12 running headers and duplicate Done cards in one scroll"
         width="960"
         height="540"
         loading="lazy"
       />
       <figcaption>
-        Serialized mode replays this wall — every actor dumped into one scroll.
+        Today's serialized surface — the problem this inbox replaces. Same aggregate header three
+        times; Done cards duplicated in the scroll.
       </figcaption>
     </figure>
 
@@ -89,29 +93,30 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <h2>What you are seeing</h2>
       <ul>
         <li>
-          <strong>Epoch bar</strong> — when the mission reframes, freeze the prior grid and start a
-          new epoch instead of mutating history.
+          <strong>Distinct cards</strong> — each parallel job gets one tile (not four copies of the
+          same Done step).
         </li>
         <li>
-          <strong>Task grid</strong> — a filter over <code>type=task</code>; status dots, one-line
-          summaries, click for fork chat.
+          <strong>Fork on click</strong> — localized chat for that job only; canonical thread stays
+          unified on disk.
         </li>
         <li>
-          <strong>Fork panel</strong> — disk address, <code>spawnedBy</code>, and
-          <code>spawned[]</code> lineage — parent and child both record each other.
+          <strong>Mailbox summaries</strong> — blocked cards explain CLA vs permissions without loading
+          sibling forks.
         </li>
         <li>
-          <strong>Spawn tangent</strong> — drift inside a node creates a discussion child on disk;
-          parent appends to <code>spawned[]</code>.
+          <strong>Chapters</strong> — start Epoch 2 to re-issue the grid; prior epoch stays in the
+          selector.
         </li>
         <li>
-          <strong>Coordinator stays thin</strong> — mailbox summaries only; detail lives on the node
-          graph, not in one scroll.
+          <strong>Serialized toggle</strong> — every sub-line lands in main scroll again; feel why the
+          grid exists.
         </li>
       </ul>
     </aside>
   </main>
 </BaseLayout>
+
 <style>
   .desk-page {
     max-width: 64rem;
@@ -148,53 +153,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
       rgba(255, 255, 255, 0.02);
     animation: rise 0.7s ease both;
-  }
-
-  .lineage-strip {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.35rem 0.5rem;
-    padding: 0.65rem 0.75rem;
-    border: 1px solid var(--line);
-    border-radius: 0.35rem;
-    font-family: var(--font-display);
-    font-size: 0.88rem;
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .lineage-strip .leg-node {
-    padding: 0.2rem 0.55rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--paper-muted);
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .lineage-strip .leg-node.is-coord {
-    color: var(--honesty);
-    border-color: rgba(61, 155, 143, 0.45);
-  }
-
-  .lineage-strip .leg-node.is-disc {
-    color: #a8e6dc;
-    border-color: rgba(61, 155, 143, 0.35);
-  }
-
-  .lineage-strip .leg-node.is-task {
-    color: var(--focus);
-    border-color: rgba(232, 165, 75, 0.35);
-  }
-
-  .lineage-strip .leg-node.is-active {
-    background: rgba(232, 165, 75, 0.15);
-    color: var(--paper);
-    font-weight: 700;
-  }
-
-  .lineage-arrow {
-    opacity: 0.55;
-    user-select: none;
+    position: relative;
   }
 
   .shell-bar {
@@ -208,8 +167,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .shell-identity {
-    display: grid;
-    gap: 0.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
   }
 
   .shell-label {
@@ -220,10 +181,24 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     opacity: 0.7;
   }
 
-  #coord-chip {
+  #run-chip {
     font-family: var(--font-display);
     font-size: 1rem;
     color: var(--honesty);
+  }
+
+  .phase {
+    font-size: 0.85rem;
+    color: var(--paper-muted);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .shell-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
   }
 
   .mode-toggle {
@@ -237,111 +212,86 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-weight: 600;
   }
 
-  .mode-toggle input {
-    accent-color: var(--focus);
-  }
-
-  .epoch-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
   .epoch-btn {
-    min-height: 2.2rem;
-    padding: 0.35rem 0.9rem;
+    min-height: 2.4rem;
+    padding: 0.35rem 0.85rem;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 0.35rem;
     background: rgba(255, 255, 255, 0.04);
-    color: var(--paper-muted);
+    color: var(--paper);
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 0.88rem;
     cursor: pointer;
-  }
-
-  .epoch-btn.is-active {
-    color: var(--paper);
-    border-color: var(--focus);
-    background: rgba(232, 165, 75, 0.12);
   }
 
   .epoch-btn:hover {
     color: var(--focus);
   }
 
-  .coord-thread {
-    margin: 0;
-    padding: 0.75rem 0.9rem;
+  .inbox-region {
+    max-height: 14rem;
+    overflow: auto;
+    padding: 0.25rem;
     border: 1px solid var(--line);
     border-radius: 0.35rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .inbox-region.is-hidden {
+    display: none;
+  }
+
+  .inbox-grid {
     display: grid;
-    gap: 0.45rem;
-  }
-
-  .coord-line {
-    margin: 0;
-    font-size: 0.92rem;
-    color: var(--paper-muted);
-    line-height: 1.45;
-  }
-
-  .coord-line strong {
-    color: var(--focus);
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-
-  .grid-fork {
-    display: grid;
-    gap: 1rem;
-  }
-
-  @media (min-width: 52rem) {
-    .grid-fork.has-fork {
-      grid-template-columns: 1fr min(22rem, 38%);
-    }
-  }
-
-  .task-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
     gap: 0.65rem;
   }
 
   .task-card {
     display: grid;
-    gap: 0.35rem;
-    padding: 0.75rem 0.8rem;
+    gap: 0.45rem;
+    padding: 0.75rem;
     border: 1px solid var(--line);
-    border-radius: 0.4rem;
+    border-radius: 0.45rem;
     background: rgba(255, 255, 255, 0.03);
-    text-align: left;
     cursor: pointer;
+    text-align: left;
     color: inherit;
     font: inherit;
-    transition: border-color 0.15s ease, background 0.15s ease;
+    transition: border-color 0.15s ease;
   }
 
   .task-card:hover,
   .task-card.is-selected {
     border-color: var(--focus);
-    background: rgba(232, 165, 75, 0.08);
   }
 
-  .task-card-head {
+  .task-card:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .task-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.88rem;
+    line-height: 1.3;
+  }
+
+  .task-summary {
+    font-size: 0.78rem;
+    color: var(--paper-muted);
+    line-height: 1.35;
+  }
+
+  .task-foot {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.4rem;
-  }
-
-  .task-id {
+    gap: 0.5rem;
+    font-size: 0.75rem;
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.92rem;
-    color: var(--paper);
+    font-weight: 600;
   }
 
   .status-dot {
@@ -351,69 +301,60 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     flex-shrink: 0;
   }
 
-  .status-dot.running {
-    background: var(--focus);
-    box-shadow: 0 0 0 2px rgba(232, 165, 75, 0.25);
+  .status-done .status-dot {
+    background: #5ecf9a;
   }
 
-  .status-dot.blocked {
+  .status-running .status-dot {
+    background: #e8a54b;
+    animation: pulse 1.2s ease infinite;
+  }
+
+  .status-blocked .status-dot {
     background: #c97b7b;
-    box-shadow: 0 0 0 2px rgba(201, 123, 123, 0.25);
   }
 
-  .status-dot.done {
-    background: var(--honesty);
-    box-shadow: 0 0 0 2px rgba(61, 155, 143, 0.25);
+  .status-failed .status-dot {
+    background: #e05a5a;
   }
 
-  .type-badge {
-    display: inline-block;
-    width: fit-content;
-    padding: 0.1rem 0.45rem;
-    border-radius: 999px;
-    font-family: var(--font-display);
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  .task-action {
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--paper-muted);
-    border: 1px solid var(--line);
-  }
-
-  .task-summary {
-    margin: 0;
-    font-size: 0.82rem;
-    color: var(--paper-muted);
-    line-height: 1.4;
+    color: var(--focus);
+    opacity: 0.85;
   }
 
   .fork-panel {
     border: 1px solid var(--line);
-    border-radius: 0.4rem;
-    padding: 0.85rem 0.95rem 1rem;
-    background:
-      linear-gradient(155deg, rgba(232, 165, 75, 0.08), transparent 42%),
-      rgba(255, 255, 255, 0.02);
-    animation: rise 0.4s ease both;
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
   }
 
-  .fork-head {
+  .fork-panel.is-hidden {
+    display: none;
+  }
+
+  .fork-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.65rem;
-  }
-
-  .fork-head h2 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    color: var(--focus);
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid var(--line);
   }
 
   .fork-close {
-    border: 0;
+    border: none;
     background: transparent;
     color: var(--paper-muted);
     font-size: 1.35rem;
@@ -422,122 +363,108 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     padding: 0 0.25rem;
   }
 
-  .fork-close:hover {
-    color: var(--focus);
-  }
-
   .fork-meta {
-    margin: 0 0 0.75rem;
-    display: grid;
-    gap: 0.35rem;
-    font-size: 0.85rem;
-  }
-
-  .fork-meta dt {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--paper-muted);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .fork-meta dd {
-    margin: 0 0 0.35rem;
-    color: var(--paper);
-    word-break: break-word;
-  }
-
-  .fork-meta code {
+    display: block;
     font-size: 0.82rem;
-    color: var(--honesty);
+    color: var(--paper-muted);
+    margin-top: 0.15rem;
   }
 
   .fork-lines {
-    margin: 0 0 0.85rem;
-    padding: 0.65rem 0.75rem;
-    border: 1px solid var(--line);
-    border-radius: 0.35rem;
-    background: rgba(0, 0, 0, 0.15);
+    margin: 0;
+    padding: 0.85rem 1rem;
+    list-style: none;
     display: grid;
-    gap: 0.5rem;
+    gap: 0.65rem;
     max-height: 10rem;
     overflow: auto;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     color: var(--paper-muted);
-    line-height: 1.45;
   }
 
-  .fork-lines p {
-    margin: 0;
+  .fork-lines li.is-agent {
+    color: var(--paper);
   }
 
-  .spawn-btn {
-    width: 100%;
-    min-height: 2.4rem;
-    padding: 0.35rem 0.85rem;
+  .fork-lines li.is-user {
+    color: var(--focus);
+    font-weight: 600;
+  }
+
+  .fork-compose {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.65rem 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .fork-compose input {
+    flex: 1;
+    min-height: 2.2rem;
+    padding: 0.35rem 0.65rem;
     border: 1px solid var(--line);
     border-radius: 0.35rem;
-    background: rgba(61, 155, 143, 0.12);
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--paper);
+    font: inherit;
+  }
+
+  .fork-compose button {
+    min-height: 2.2rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.04);
     color: var(--paper);
     font-family: var(--font-display);
     font-weight: 700;
     cursor: pointer;
   }
 
-  .spawn-btn:hover {
-    color: var(--focus);
-    border-color: var(--focus);
-  }
-
-  .serialized-wall {
+  .main-thread {
     border: 1px solid var(--line);
-    border-radius: 0.4rem;
+    border-radius: 0.5rem;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.02);
   }
 
-  .serialized-header {
-    padding: 0.65rem 0.9rem;
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
     border-bottom: 1px solid var(--line);
-    background: rgba(201, 123, 123, 0.1);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
   }
 
-  .serialized-lines {
+  .chat-meta {
+    color: var(--paper-muted);
+    font-weight: 600;
+  }
+
+  .chat-lines {
     margin: 0;
-    padding: 0.85rem 1rem 1.1rem;
+    padding: 1rem 1.1rem 1.25rem;
     list-style: none;
     display: grid;
-    gap: 0.65rem;
-    max-height: 22rem;
+    gap: 0.75rem;
+    min-height: 6rem;
+    max-height: 12rem;
     overflow: auto;
-  }
-
-  .serialized-lines li {
-    padding: 0.55rem 0.65rem;
-    border-left: 3px solid var(--line);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: var(--paper-muted);
-    line-height: 1.45;
-    animation: rise 0.35s ease both;
   }
 
-  .serialized-lines li strong {
+  .chat-lines li.is-coordinator {
     color: var(--paper);
     font-family: var(--font-display);
+    font-weight: 600;
   }
 
-  .serialized-lines li.is-blocked {
-    border-left-color: #c97b7b;
-  }
-
-  .serialized-lines li.is-running {
-    border-left-color: var(--focus);
-  }
-
-  .serialized-lines li.is-done {
-    border-left-color: var(--honesty);
+  .chat-lines li.is-serialized {
+    font-size: 0.85rem;
+    padding-left: 0.65rem;
+    border-left: 2px solid var(--line);
   }
 
   .bus-strip {
@@ -598,492 +525,258 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-family: var(--font-display);
   }
 </style>
-<script>
-  type NodeType = 'task' | 'discussion' | 'coordinator';
-  type NodeStatus = 'running' | 'blocked' | 'done' | 'idle';
 
-  interface Node {
+<script>
+  type TaskStatus = 'done' | 'running' | 'blocked' | 'failed';
+
+  interface ForkLine {
+    role: 'agent' | 'user';
+    text: string;
+  }
+
+  interface Task {
     id: string;
-    type: NodeType;
     title: string;
     summary: string;
-    status: NodeStatus;
-    address: string;
-    spawnedBy?: string;
-    spawned?: string[];
-    forkLines: string[];
-    epoch: 1 | 2;
+    status: TaskStatus;
+    action?: string;
+    fork: ForkLine[];
   }
 
-  interface EpochMeta {
-    id: 1 | 2;
+  interface Epoch {
+    id: number;
     label: string;
-    note: string;
-    coordLines: string[];
+    runChip: string;
+    tasks: Task[];
+    mainLines: { kind: 'coordinator' | 'serialized'; text: string }[];
   }
 
-  const nodes = new Map<string, Node>();
-
-  function nodeKey(id: string, epoch?: 1 | 2) {
-    return epoch !== undefined && id.startsWith('task-') ? `${id}@e${epoch}` : id;
-  }
-
-  function seedNode(node: Node) {
-    nodes.set(nodeKey(node.id, node.epoch), { ...node, spawned: node.spawned ? [...node.spawned] : [] });
-  }
-
-  seedNode({
-    id: 'coord-001',
-    type: 'coordinator',
-    title: 'Org batch coordinator',
-    summary: 'Mailbox for twelve-repo connect batch',
-    status: 'running',
-    address: 'nodes/coord-001/',
-    spawned: [
-      'disc-org-connect',
-      'task-docs-3',
-      'task-vscode',
-      'task-bitwarden',
-      'task-openshellorg',
-      'task-libmir',
-      'task-unit-thread',
-    ],
-    forkLines: [
-      'Batch: connect DevCentr org repos to Cursor.',
-      'Spawned disc-org-connect for policy tangent.',
-      'Mailbox: 9 of 12 running.',
-    ],
-    epoch: 1,
-  });
-
-  seedNode({
-    id: 'disc-org-connect',
-    type: 'discussion',
-    title: 'Org connect policy',
-    summary: 'CLA + permissions before task spawn',
-    status: 'idle',
-    address: 'nodes/disc-org-connect/',
-    spawnedBy: 'coord-001',
-    spawned: [
-      'task-docs-3',
-      'task-vscode',
-      'task-bitwarden',
-      'task-openshellorg',
-      'task-libmir',
-      'task-unit-thread',
-    ],
-    forkLines: [
-      'User: connect every org repo — but check CLA first.',
-      'Spawned six task nodes after policy cleared.',
-    ],
-    epoch: 1,
-  });
-
-  const epoch1Tasks: Omit<Node, 'epoch'>[] = [
-    {
-      id: 'task-docs-3',
-      type: 'task',
-      title: 'Merge docs#3',
-      summary: 'Antora xref pass on docs#3',
-      status: 'running',
-      address: 'nodes/task-docs-3/',
-      spawnedBy: 'disc-org-connect',
-      forkLines: [
-        'Checking xref:agent-rules:harness-neutral.adoc',
-        'Three broken xrefs remain in module nav.',
-      ],
-    },
-    {
-      id: 'task-vscode',
-      type: 'task',
-      title: 'VS Code settings sync',
-      summary: 'Wire workspace trust for org clone',
-      status: 'running',
-      address: 'nodes/task-vscode/',
-      spawnedBy: 'disc-org-connect',
-      forkLines: ['Applying .vscode/settings.json template.', 'Trust prompt deferred to user.'],
-    },
-    {
-      id: 'task-bitwarden',
-      type: 'task',
-      title: 'Bitwarden clients fork',
-      summary: 'Retry on AMDphreak/bitwarden-clients',
-      status: 'running',
-      address: 'nodes/task-bitwarden/',
-      spawnedBy: 'disc-org-connect',
-      forkLines: [
-        'Was not AMDphreak/clients — fork is bitwarden-clients.',
-        'Merge bitwarden#22642 onto main in progress.',
-      ],
-    },
-    {
-      id: 'task-openshellorg',
-      type: 'task',
-      title: 'OpenShell org hook',
-      summary: 'Blocked — missing org admin',
-      status: 'blocked',
-      address: 'nodes/task-openshellorg/',
-      spawnedBy: 'disc-org-connect',
-      forkLines: ['gh api: 403 — need org owner to install Cursor app.'],
-    },
-    {
-      id: 'task-libmir',
-      type: 'task',
-      title: 'libmir publish',
-      summary: 'Blocked — dub token scope',
-      status: 'blocked',
-      address: 'nodes/task-libmir/',
-      spawnedBy: 'disc-org-connect',
-      forkLines: ['DUB publish token lacks category write.', 'Waiting on vault entry.'],
-    },
-    {
-      id: 'task-unit-thread',
-      type: 'task',
-      title: 'unit-thread CI',
-      summary: 'Blocked — workflow file conflict',
-      status: 'blocked',
-      address: 'nodes/task-unit-thread/',
-      spawnedBy: 'disc-org-connect',
-      forkLines: ['release.yml conflict with upstream matrix.', 'Needs human merge.'],
-    },
-  ];
-
-  epoch1Tasks.forEach((t) => seedNode({ ...t, epoch: 1 }));
-
-  seedNode({
-    id: 'task-docs-3',
-    type: 'task',
-    title: 'Merge docs#3',
-    summary: 'Done — merged to main',
-    status: 'done',
-    address: 'nodes/task-docs-3/',
-    spawnedBy: 'disc-org-connect',
-    forkLines: ['All xrefs resolved.', 'PR merged — node frozen for epoch 2.'],
-    epoch: 2,
-  });
-
-  seedNode({
-    id: 'task-bitwarden',
-    type: 'task',
-    title: 'Bitwarden clients fork',
-    summary: 'Done — bitwarden#22642 on main',
-    status: 'done',
-    address: 'nodes/task-bitwarden/',
-    spawnedBy: 'disc-org-connect',
-    forkLines: ['Merge complete.', 'Mailbox summary archived.'],
-    epoch: 2,
-  });
-
-  seedNode({
-    id: 'task-vscode',
-    type: 'task',
-    title: 'VS Code settings sync',
-    summary: 'Still running — trust prompt open',
-    status: 'running',
-    address: 'nodes/task-vscode/',
-    spawnedBy: 'disc-org-connect',
-    forkLines: ['User has not confirmed workspace trust yet.'],
-    epoch: 2,
-  });
-
-  seedNode({
-    id: 'task-openshellorg',
-    type: 'task',
-    title: 'OpenShell org hook',
-    summary: 'Still blocked — org admin',
-    status: 'blocked',
-    address: 'nodes/task-openshellorg/',
-    spawnedBy: 'disc-org-connect',
-    forkLines: ['Escalated to org owner — no change in epoch 2.'],
-    epoch: 2,
-  });
-
-  seedNode({
-    id: 'task-libmir',
-    type: 'task',
-    title: 'libmir publish',
-    summary: 'Still blocked — dub token',
-    status: 'blocked',
-    address: 'nodes/task-libmir/',
-    spawnedBy: 'disc-org-connect',
-    forkLines: ['Vault entry still missing.'],
-    epoch: 2,
-  });
-
-  seedNode({
-    id: 'task-unit-thread',
-    type: 'task',
-    title: 'unit-thread CI',
-    summary: 'Still blocked — release.yml',
-    status: 'blocked',
-    address: 'nodes/task-unit-thread/',
-    spawnedBy: 'disc-org-connect',
-    forkLines: ['Conflict unresolved — epoch 2 carries forward.'],
-    epoch: 2,
-  });
-
-  const epochs: EpochMeta[] = [
+  const epochs: Epoch[] = [
     {
       id: 1,
       label: 'Epoch 1',
-      note: 'Initial org-connect batch',
-      coordLines: [
-        '<strong>9 of 12</strong> tasks running across org repos.',
-        'Mailbox summaries refreshed — detail on nodes, not here.',
+      runChip: '9 of 12 running',
+      tasks: [
+        {
+          id: 'docs-3',
+          title: 'Merge docs#3 onto main',
+          summary: 'Branch pushed; GitHub is source of truth.',
+          status: 'done',
+          action: 'Open in Cursor',
+          fork: [
+            { role: 'agent', text: 'Merged dev-centr/docs#3 onto main. No conflicts.' },
+            { role: 'agent', text: 'Pushed branch. CI green. Nothing for you to approve.' },
+          ],
+        },
+        {
+          id: 'vscode-299941',
+          title: 'Update vscode#299941',
+          summary: 'One-line docs tweak; already approved upstream.',
+          status: 'done',
+          action: 'Open in Cursor',
+          fork: [
+            { role: 'agent', text: 'Virtualization-Documentation#2002 was approved by Niels last week.' },
+            { role: 'agent', text: 'Synced fork; push complete. Inspect diff only if curious.' },
+          ],
+        },
+        {
+          id: 'bitwarden-22642',
+          title: 'Update bitwarden#22642',
+          summary: 'Retrying on AMDphreak/bitwarden-clients…',
+          status: 'running',
+          fork: [
+            { role: 'agent', text: 'First attempt used heuristic slug AMDphreak/clients — rejected.' },
+            { role: 'agent', text: 'Verified AMDphreak/bitwarden-clients via gh repo view. Retrying push.' },
+          ],
+        },
+        {
+          id: 'openshellorg-prohelp',
+          title: 'openshellorg/prohelp#1',
+          summary: 'Blocked — unsigned CLA on org.',
+          status: 'blocked',
+          fork: [
+            { role: 'agent', text: 'You own openshellorg but the Cursor GitHub App lacks write on prohelp until CLA bot clears.' },
+            { role: 'agent', text: 'Mailbox: status=blocked reason=cla. Siblings should not assume this repo is green.' },
+          ],
+        },
+        {
+          id: 'libmir-asdf',
+          title: 'libmir/asdf#30',
+          summary: 'Blocked — external org; read-only token.',
+          status: 'blocked',
+          fork: [
+            { role: 'agent', text: 'Not your org. App installed but cannot push without upstream merge permissions.' },
+          ],
+        },
+        {
+          id: 'unit-thread',
+          title: 'atilaneves/unit-thread#12',
+          summary: 'Blocked — external; waiting on maintainer.',
+          status: 'blocked',
+          fork: [
+            { role: 'agent', text: 'Fork exists; PR needs maintainer review before agent can merge.' },
+          ],
+        },
+      ],
+      mainLines: [
+        { kind: 'coordinator', text: 'Connected orgs to Cursor. Twelve repo jobs spawned; grid holds live status.' },
+        { kind: 'coordinator', text: 'Three Done, three blocked (CLA + external), one running. Open a card for detail — not repeated here.' },
       ],
     },
     {
       id: 2,
       label: 'Epoch 2',
-      note: 'Post-merge reframe — two done, five carry forward',
-      coordLines: [
-        '<strong>2 done</strong>, <strong>1 running</strong>, <strong>3 blocked</strong> — epoch frozen for inspect.',
-        'Prior epoch grid immutable; this bar is the new mission slice.',
+      runChip: '2 of 4 running',
+      tasks: [
+        {
+          id: 'openshellorg-prohelp',
+          title: 'openshellorg/prohelp#1',
+          summary: 'CLA signed — merge retry in progress.',
+          status: 'running',
+          fork: [
+            { role: 'agent', text: 'CLA cleared overnight. Re-queued from mailbox summary v2.' },
+            { role: 'agent', text: 'Wait graph: bitwarden-22642 must finish before batch tag.' },
+          ],
+        },
+        {
+          id: 'bitwarden-22642',
+          title: 'Update bitwarden#22642',
+          summary: 'Done — on real fork slug.',
+          status: 'done',
+          action: 'Open in Cursor',
+          fork: [
+            { role: 'agent', text: 'Push succeeded on AMDphreak/bitwarden-clients.' },
+          ],
+        },
+        {
+          id: 'batch-tag',
+          title: 'Tag batch release notes',
+          summary: 'Waiting on openshellorg + CI.',
+          status: 'running',
+          fork: [
+            { role: 'agent', text: 'Declared waitOn: [openshellorg-prohelp, bitwarden-22642]. Bitwarden terminal; openshellorg still running.' },
+          ],
+        },
+        {
+          id: 'windows-dev-docs',
+          title: 'windows-dev-docs sync',
+          summary: 'Queued — starts when batch tag completes.',
+          status: 'blocked',
+          fork: [
+            { role: 'agent', text: 'Harness warn-mode: partial dependency if started early. Holding until batch tag mailbox=done.' },
+          ],
+        },
+      ],
+      mainLines: [
+        { kind: 'coordinator', text: 'Epoch 2 — CLA unblocked openshellorg. Grid re-issued; prior epoch frozen in selector.' },
+        { kind: 'coordinator', text: 'Wait graph active: batch tag will not finalize until prohelp merge completes.' },
       ],
     },
   ];
 
-  let activeEpoch: 1 | 2 = 1;
+  let epochIdx = 0;
   let selectedId: string | null = null;
-  let tangentCounter = 0;
-  let serialized = false;
 
-  const lineageEl = document.getElementById('lineage-strip')!;
-  const epochBarEl = document.getElementById('epoch-bar')!;
-  const coordThreadEl = document.getElementById('coord-thread')!;
-  const taskGridEl = document.getElementById('task-grid')!;
-  const forkPanelEl = document.getElementById('fork-panel') as HTMLElement;
-  const forkTitleEl = document.getElementById('fork-title')!;
-  const forkMetaEl = document.getElementById('fork-meta')!;
+  const gridEl = document.getElementById('inbox-grid')!;
+  const inboxRegion = document.getElementById('inbox-region')!;
+  const mainLinesEl = document.getElementById('main-lines')!;
+  const forkPanel = document.getElementById('fork-panel')!;
+  const forkTitle = document.getElementById('fork-title')!;
+  const forkStatus = document.getElementById('fork-status')!;
   const forkLinesEl = document.getElementById('fork-lines')!;
-  const gridForkEl = document.getElementById('grid-fork')!;
-  const taskGridWrapEl = document.getElementById('task-grid-wrap')!;
-  const serializedWallEl = document.getElementById('serialized-wall')!;
-  const serializedLinesEl = document.getElementById('serialized-lines')!;
+  const runChipEl = document.getElementById('run-chip')!;
+  const chapterLabel = document.getElementById('epoch-label')!;
   const busEl = document.getElementById('bus-strip')!;
   const serializedToggle = document.getElementById('serialized-mode') as HTMLInputElement;
 
-  function escapeHtml(v: string) {
-    return v.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  function currentEpoch() {
+    return epochs[epochIdx];
   }
 
-  function getTasksForEpoch(epoch: 1 | 2): Node[] {
-    return [...nodes.values()].filter((n) => n.type === 'task' && n.epoch === epoch);
+  function findTask(id: string): Task | undefined {
+    return currentEpoch().tasks.find((t) => t.id === id);
   }
 
-  function getNode(id: string, epoch?: 1 | 2): Node | undefined {
-    if (id.startsWith('task-') && epoch !== undefined) {
-      return nodes.get(nodeKey(id, epoch));
-    }
-    return nodes.get(id) ?? [...nodes.values()].find((x) => x.id === id);
+  function statusLabel(s: TaskStatus) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  function lineagePath(taskId?: string | null): string[] {
-    const path = ['coord-001', 'disc-org-connect'];
-    if (taskId) path.push(taskId);
-    return path;
-  }
-
-  function paintLineage() {
-    const path = lineagePath(selectedId);
-    lineageEl.innerHTML = path
-      .map((id, i) => {
-        const n = getNode(id, id.startsWith('task-') ? activeEpoch : undefined);
-        const cls =
-          n?.type === 'coordinator'
-            ? 'is-coord'
-            : n?.type === 'discussion'
-              ? 'is-disc'
-              : 'is-task';
-        const active = id === selectedId || (!selectedId && id === 'coord-001') ? ' is-active' : '';
-        const arrow = i < path.length - 1 ? '<span class="lineage-arrow" aria-hidden="true">→</span>' : '';
-        return `<span class="leg-node ${cls}${active}">${escapeHtml(id)}</span>${arrow}`;
-      })
-      .join('');
-  }
-
-  function paintEpochBar() {
-    epochBarEl.innerHTML = epochs
+  function renderGrid() {
+    const ch = currentEpoch();
+    gridEl.innerHTML = ch.tasks
       .map(
-        (e) =>
-          `<button type="button" class="epoch-btn${e.id === activeEpoch ? ' is-active' : ''}" role="tab" aria-selected="${e.id === activeEpoch}" data-epoch="${e.id}">${escapeHtml(e.label)}</button>`,
+        (t) => `
+      <button type="button" class="task-card status-${t.status}${selectedId === t.id ? ' is-selected' : ''}" data-id="${t.id}" role="listitem">
+        <span class="task-title">${t.title}</span>
+        <span class="task-summary">${t.summary}</span>
+        <span class="task-foot">
+          <span><span class="status-dot" aria-hidden="true"></span> ${statusLabel(t.status)}</span>
+          ${t.action ? `<span class="task-action">${t.action}</span>` : ''}
+        </span>
+      </button>`,
       )
       .join('');
 
-    epochBarEl.querySelectorAll('.epoch-btn').forEach((btn) => {
+    gridEl.querySelectorAll('.task-card').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const next = Number((btn as HTMLElement).dataset.epoch) as 1 | 2;
-        if (next === activeEpoch) return;
-        activeEpoch = next;
-        selectedId = null;
-        paint();
+        selectedId = (btn as HTMLElement).dataset.id ?? null;
+        renderGrid();
+        renderFork();
       });
     });
   }
 
-  function paintCoordThread() {
-    const meta = epochs.find((e) => e.id === activeEpoch)!;
-    coordThreadEl.innerHTML = meta.coordLines
-      .map((line) => `<p class="coord-line">${line}</p>`)
+  function renderFork() {
+    if (!selectedId) {
+      forkPanel.classList.add('is-hidden');
+      return;
+    }
+    const task = findTask(selectedId);
+    if (!task) {
+      forkPanel.classList.add('is-hidden');
+      return;
+    }
+    forkPanel.classList.remove('is-hidden');
+    forkTitle.textContent = task.title;
+    forkStatus.textContent = `${statusLabel(task.status)} — fork view (cosmetic)`;
+    forkLinesEl.innerHTML = task.fork
+      .map((l) => `<li class="is-${l.role}">${l.text}</li>`)
       .join('');
   }
 
-  function paintTaskGrid() {
-    const tasks = getTasksForEpoch(activeEpoch);
-    taskGridEl.innerHTML = tasks
-      .map((t) => {
-        const selected = t.id === selectedId ? ' is-selected' : '';
-        return `<button type="button" class="task-card${selected}" role="listitem" data-id="${escapeHtml(t.id)}">
-          <span class="task-card-head">
-            <span class="task-id">${escapeHtml(t.id.replace(/^task-/, ''))}</span>
-            <span class="status-dot ${escapeHtml(t.status)}" title="${escapeHtml(t.status)}"></span>
-          </span>
-          <span class="type-badge">type: ${escapeHtml(t.type)}</span>
-          <p class="task-summary">${escapeHtml(t.summary)}</p>
-        </button>`;
-      })
-      .join('');
+  function renderMain() {
+    const ch = currentEpoch();
+    const serialized = serializedToggle.checked;
 
-    taskGridEl.querySelectorAll('.task-card').forEach((card) => {
-      card.addEventListener('click', () => {
-        selectedId = (card as HTMLElement).dataset.id ?? null;
-        paint();
-      });
-    });
-  }
-
-  function paintForkPanel() {
-    if (!selectedId || serialized) {
-      forkPanelEl.hidden = true;
-      gridForkEl.classList.remove('has-fork');
-      return;
-    }
-
-    const node = getNode(selectedId, activeEpoch);
-    if (!node) {
-      forkPanelEl.hidden = true;
-      gridForkEl.classList.remove('has-fork');
-      return;
-    }
-
-    forkPanelEl.hidden = false;
-    gridForkEl.classList.add('has-fork');
-    forkTitleEl.textContent = node.title;
-
-    const spawnedList =
-      node.spawned && node.spawned.length
-        ? node.spawned.map((s) => `<code>${escapeHtml(s)}</code>`).join(', ')
-        : '—';
-
-    forkMetaEl.innerHTML = `
-      <dt>Title</dt><dd>${escapeHtml(node.title)}</dd>
-      <dt>Type</dt><dd><code>${escapeHtml(node.type)}</code></dd>
-      <dt>Status</dt><dd>${escapeHtml(node.status)}</dd>
-      <dt>Disk address</dt><dd><code>${escapeHtml(node.address)}</code></dd>
-      <dt>spawnedBy</dt><dd>${node.spawnedBy ? `<code>${escapeHtml(node.spawnedBy)}</code>` : '—'}</dd>
-      <dt>spawned[]</dt><dd>${spawnedList}</dd>
-    `;
-
-    forkLinesEl.innerHTML = node.forkLines.map((l) => `<p>${escapeHtml(l)}</p>`).join('');
-  }
-
-  function paintSerialized() {
-    if (!serialized) {
-      serializedWallEl.hidden = true;
-      taskGridWrapEl.hidden = false;
-      return;
-    }
-
-    taskGridWrapEl.hidden = true;
-    forkPanelEl.hidden = true;
-    gridForkEl.classList.remove('has-fork');
-    serializedWallEl.hidden = false;
-
-    const tasks = getTasksForEpoch(activeEpoch);
-    const coord = epochs.find((e) => e.id === activeEpoch)!;
-    const lines: string[] = [];
-
-    coord.coordLines.forEach((l) => {
-      lines.push(
-        `<li class="is-running"><strong>coord-001</strong> — ${l.replace(/<\/?strong>/g, '')}</li>`,
-      );
-    });
-
-    lines.push(
-      `<li><strong>disc-org-connect</strong> — CLA cleared; spawned ${tasks.length} task nodes.</li>`,
-    );
-
-    tasks.forEach((t) => {
-      const cls =
-        t.status === 'blocked' ? 'is-blocked' : t.status === 'done' ? 'is-done' : 'is-running';
-      const fork = t.forkLines.join(' ');
-      lines.push(
-        `<li class="${cls}"><strong>${escapeHtml(t.id.replace(/^task-/, ''))}</strong> — ${escapeHtml(t.summary)}. ${escapeHtml(fork)}</li>`,
-      );
-    });
-
-    [...nodes.values()]
-      .filter(
-        (n) => n.type === 'discussion' && n.id.startsWith('disc-tangent-') && n.epoch === activeEpoch,
-      )
-      .forEach((n) => {
-        lines.push(
-          `<li><strong>${escapeHtml(n.id)}</strong> — ${escapeHtml(n.summary)}. ${escapeHtml(n.forkLines.join(' '))}</li>`,
-        );
-      });
-
-    serializedLinesEl.innerHTML = lines.join('');
-  }
-
-  function paintBus() {
-    const meta = epochs.find((e) => e.id === activeEpoch)!;
     if (serialized) {
-      busEl.textContent = 'Serialized mode — every node flattened into one scroll. That is the pain.';
-    } else if (selectedId) {
-      busEl.textContent = `Fork open on ${selectedId} — spawn tangent to branch without polluting this transcript.`;
+      inboxRegion.classList.add('is-hidden');
+      forkPanel.classList.add('is-hidden');
+      const flat: string[] = [];
+      ch.mainLines.forEach((l) => flat.push(l.text));
+      ch.tasks.forEach((t) => {
+        flat.push(`🔄 ${ch.runChip}. ${t.title} — ${statusLabel(t.status)}: ${t.summary}`);
+        t.fork.forEach((f) => flat.push(`  ↳ ${f.text}`));
+      });
+      mainLinesEl.innerHTML = flat
+        .map((text) => `<li class="is-serialized">${text}</li>`)
+        .join('');
+      busEl.textContent = 'Serialized mode — the wall returns. Scroll to reconstruct parallel state.';
     } else {
-      busEl.textContent = `${meta.label}: ${meta.note}. Grid view — one actor per card.`;
+      inboxRegion.classList.remove('is-hidden');
+      mainLinesEl.innerHTML = ch.mainLines
+        .map((l) => `<li class="is-coordinator">${l.text}</li>`)
+        .join('');
+      busEl.textContent = 'Grid mode — cards update in place; main thread stays thin.';
+      renderFork();
     }
-  }
 
-  function spawnTangent() {
-    if (!selectedId || serialized) return;
-    const parent = getNode(selectedId, activeEpoch);
-    if (!parent) return;
-
-    tangentCounter += 1;
-    const childId = `disc-tangent-${tangentCounter}`;
-    const child: Node = {
-      id: childId,
-      type: 'discussion',
-      title: `Tangent from ${parent.id}`,
-      summary: 'Drift captured as child node on disk',
-      status: 'idle',
-      address: `nodes/${childId}/`,
-      spawnedBy: parent.id,
-      spawned: [],
-      forkLines: [
-        `Spawned from ${parent.id} — topic drift isolated.`,
-        'Parent meta.json updated with spawned[] entry.',
-      ],
-      epoch: activeEpoch,
-    };
-
-    nodes.set(nodeKey(childId, activeEpoch), child);
-    parent.spawned = parent.spawned ? [...parent.spawned, childId] : [childId];
-    nodes.set(nodeKey(parent.id, parent.epoch), parent);
-
-    selectedId = childId;
-    paint();
+    runChipEl.textContent = ch.runChip;
+    chapterLabel.textContent = ch.label;
   }
 
   function paint() {
-    paintLineage();
-    paintCoordThread();
-    paintTaskGrid();
-    paintForkPanel();
-    paintSerialized();
-    paintBus();
+    renderGrid();
+    renderMain();
   }
 
   document.getElementById('fork-close')!.addEventListener('click', () => {
@@ -1091,14 +784,35 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     paint();
   });
 
-  document.getElementById('spawn-tangent')!.addEventListener('click', spawnTangent);
+  document.getElementById('fork-compose')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById('fork-input') as HTMLInputElement;
+    const text = input.value.trim();
+    if (!text || !selectedId) return;
+    const task = findTask(selectedId);
+    if (!task) return;
+    task.fork.push({ role: 'user', text });
+    task.fork.push({ role: 'agent', text: 'Noted in this fork only — coordinator thread gets a one-line summary on next sync.' });
+    input.value = '';
+    renderFork();
+  });
 
   serializedToggle.addEventListener('change', () => {
-    serialized = serializedToggle.checked;
-    if (serialized) selectedId = null;
+    if (serializedToggle.checked) selectedId = null;
     paint();
   });
 
-  paintEpochBar();
+  document.getElementById('btn-next-epoch')!.addEventListener('click', () => {
+    if (chapterIdx < epochs.length - 1) {
+      epochIdx += 1;
+      selectedId = null;
+      paint();
+    } else {
+      epochIdx = 0;
+      selectedId = null;
+      paint();
+    }
+  });
+
   paint();
 </script>
