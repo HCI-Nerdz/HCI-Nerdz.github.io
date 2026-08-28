@@ -1,0 +1,6 @@
+= 2026-08-28 - Project inbox
+
+* Essay: When parallel agents still read as one thread
+* News: project inbox added to the repertoire
+* Interactive demo at `/demos/project-inbox/` — task grid, fork panel, chapter bar, serialized-mode contrast
+* Docs topic + actor topology SVG; DevCentr harness contract cross-linked

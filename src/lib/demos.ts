@@ -334,6 +334,35 @@ export const demoCategories: DemoCategory[] = [
       "Inbox UX that respects cognitive budget — glanceable sentiment, pile canvases, trays without autoload.",
     demos: [
       {
+        id: "project-inbox",
+        title: "Project inbox",
+        summary:
+          "Parallel agent tasks in a scrollable grid — status dots, one-line summaries, cosmetic fork chats on click. Toggle serialized mode to feel today's wall of updates.",
+        viz: "piles",
+        href: "/demos/project-inbox/",
+        shots: [
+          {
+            id: "project-inbox",
+            label: "Project inbox desk",
+            href: "/demos/project-inbox/",
+          },
+        ],
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-parallel-agents-still-read-as-one-thread/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/project-inbox.html",
+          },
+          {
+            label: "DevCentr harness",
+            href: "https://docs.devcentr.org/agent-rules/project-inbox.html",
+          },
+        ],
+      },
+      {
         id: "piles",
         title: "Piles",
         summary:
@@ -350,6 +379,35 @@ export const demoCategories: DemoCategory[] = [
           { label: "Docs", href: "https://hci-nerdz.github.io/docs/hci-nerdz/piles.html" },
           { label: "Repo", href: "https://github.com/HCI-Nerdz/piles" },
           { label: "Desktop app", href: "https://github.com/Desktop-Tooling/piles" },
+        ],
+      },
+      {
+        id: "project-inbox",
+        title: "Project inbox desk",
+        summary:
+          "Parallel agent tasks in a scrollable grid — status lights, cosmetic fork chats, chapters. Toggle off to feel the serialized wall-of-updates pain.",
+        viz: "piles",
+        href: "/demos/project-inbox/",
+        shots: [
+          {
+            id: "project-inbox",
+            label: "Project inbox grid",
+            href: "/demos/project-inbox/",
+          },
+        ],
+        related: [
+          {
+            label: "Essay",
+            href: "/blog/when-parallel-agents-fill-one-chat/",
+          },
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/project-inbox.html",
+          },
+          {
+            label: "Dev-Centr harness",
+            href: "https://docs.devcentr.org/agent-rules/agent-harness.html#project-inbox",
+          },
         ],
       },
     ],
