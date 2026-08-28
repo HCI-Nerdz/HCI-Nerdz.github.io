@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-28 — Project inbox
+
+* Essay, news, demo `/demos/project-inbox/` — parallel task grid with fork panel, chapter bar, serialized-mode contrast
+* link:changelog-details/2026-08-28%20-%20project-inbox.adoc[Details]
+
 == 2026-08-28 — Grounded tokens
 
 * Essay, news, demo `/demos/grounded-tokens/` — fork-name case study with provenance toggle
