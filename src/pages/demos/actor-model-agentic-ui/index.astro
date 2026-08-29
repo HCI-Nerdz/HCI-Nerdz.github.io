@@ -1,22 +1,31 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import GitHubLink from '../../../components/GitHubLink.astro';
 ---
 
 <BaseLayout
   title="Actor-model agentic UI desk · HCI Nerdz"
-  description="Interactive demo: parallel agent tasks in a grid with cosmetic fork chats — not a serialized wall of status spam."
+  description="Agent conversations on a rearrangeable canvas — preview thumbs, PM statuses, archive with position memory — plus the classic parallel task grid."
   active="demos"
 >
   <main class="shell page desk-page pi-page shell-prov">
-    <p class="back-row">
-      <a class="back" href="/demos/">← Demos</a>
+    <nav class="identity-strip" aria-label="Demo identity">
+      <a href="/demos/">HCI-Nerdz</a>
+      <span class="identity-sep" aria-hidden="true">/</span>
+      <a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io">HCI-Nerdz.github.io</a>
+    </nav>
+    <p class="vcs-row">
+      <GitHubLink href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io" showStars={false} />
     </p>
+
     <header class="desk-intro">
       <p class="eyebrow">Demo · Actor-model agentic UI</p>
       <h1>Actor-model agentic UI desk</h1>
       <p class="lede">
-        Twelve repo jobs run at once. The grid shows each card's status without scrolling the main
-        thread. Click a card for the localized fork. Toggle serialized mode to feel today's default.
+        Agent chats are project work, not a scroll wall. On the canvas, each conversation is a
+        preview thumb plus a clipped blurb you can rearrange — statuses read like mail (working,
+        waiting, unread, needs you, completed). The grid variant keeps the parallel job view.
+        Same node graph; different projections.
       </p>
       <p class="related-links">
         <a href="/blog/when-chat-should-spawn-a-node/">Essay</a>
@@ -24,8 +33,36 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <a href="https://hci-nerdz.github.io/docs/hci-nerdz/actor-model-agentic-ui.html">Docs</a>
         ·
         <a href="https://docs.devcentr.org/agent-rules/actor-model-agentic-ui.html">DevCentr harness</a>
+        ·
+        <a href="https://hci-nerdz.github.io/piles/">Piles (email canvas sibling)</a>
       </p>
     </header>
+
+    <figure class="case-shot lede-shot">
+      <img
+        src="/demos/actor-model-agentic-ui/serialized-wall.png"
+        alt="Real agent chat with repeated 9 of 12 running headers and duplicate Done cards in one scroll"
+        width="960"
+        height="540"
+        loading="eager"
+      />
+      <figcaption>
+        Today's serialized surface — the problem this desk replaces. Same aggregate header repeated;
+        Done cards duplicated in the scroll.
+      </figcaption>
+    </figure>
+
+    <div class="variant-switch" role="tablist" aria-label="Desk layout">
+      <button type="button" class="variant-tab is-active" role="tab" aria-selected="true" data-variant="canvas" id="tab-canvas">
+        Canvas
+      </button>
+      <button type="button" class="variant-tab" role="tab" aria-selected="false" data-variant="grid" id="tab-grid">
+        Grid
+      </button>
+    </div>
+    <p class="variant-blurb" id="variant-blurb">
+      Harness canvas — drag conversation cards, colorized PM statuses, archive remembers position.
+    </p>
 
     <section class="desk" id="desk" aria-label="Actor-model agentic UI demo">
       <div class="shell-bar">
@@ -45,9 +82,27 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
       <p class="lineage-strip" id="lineage-strip">Spawn: coord-001 → disc-org-connect → task nodes</p>
 
-      <div class="inbox-region" id="inbox-region" aria-label="Task node grid">
-        <div class="inbox-grid" id="inbox-grid" role="list"></div>
+      <div class="status-legend" id="status-legend" aria-label="PM status legend">
+        <span class="leg pm-working"><i></i> Working</span>
+        <span class="leg pm-waiting"><i></i> Waiting</span>
+        <span class="leg pm-unread"><i></i> Unread</span>
+        <span class="leg pm-read"><i></i> Read</span>
+        <span class="leg pm-needs_you"><i></i> Needs you</span>
+        <span class="leg pm-completed"><i></i> Completed</span>
       </div>
+
+      <div class="inbox-region" id="inbox-region" aria-label="Conversation surface">
+        <div class="inbox-grid is-hidden" id="inbox-grid" role="list"></div>
+        <div class="inbox-canvas" id="inbox-canvas" role="list"></div>
+      </div>
+
+      <aside class="archive-bin" id="archive-bin" aria-label="Archive bin">
+        <div class="archive-head">
+          <strong>Archive</strong>
+          <span class="archive-meta" id="archive-meta">Empty — drag or archive from a card</span>
+        </div>
+        <ul class="archive-list" id="archive-list"></ul>
+      </aside>
 
       <div class="fork-panel is-hidden" id="fork-panel" aria-label="Node fork chat">
         <div class="fork-header">
@@ -56,7 +111,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
             <strong id="fork-title">Node</strong>
             <span class="fork-meta" id="fork-status"></span>
           </div>
+          <div class="fork-actions">
+            <button type="button" id="btn-mark-complete" class="fork-action">Mark completed</button>
+            <button type="button" id="btn-archive" class="fork-action">Archive</button>
+          </div>
         </div>
+        <ol class="title-index" id="title-index" aria-label="Title history"></ol>
         <ol class="fork-lines" id="fork-lines"></ol>
         <form class="fork-compose" id="fork-compose">
           <input type="text" id="fork-input" placeholder="Message this node…" autocomplete="off" />
@@ -72,45 +132,31 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <ol class="chat-lines" id="main-lines" aria-live="polite"></ol>
       </section>
 
-      <p class="bus-strip" id="bus-strip" role="status">Grid mode — cards update in place; main thread stays thin.</p>
+      <p class="bus-strip" id="bus-strip" role="status">Canvas mode — rearrange previews; statuses are agent PM, not only job dots.</p>
     </section>
-
-    <figure class="case-shot">
-      <img
-        src="/demos/actor-model-agentic-ui/serialized-wall.png"
-        alt="Real agent chat with repeated 9 of 12 running headers and duplicate Done cards in one scroll"
-        width="960"
-        height="540"
-        loading="lazy"
-      />
-      <figcaption>
-        Today's serialized surface — the problem this inbox replaces. Same aggregate header three
-        times; Done cards duplicated in the scroll.
-      </figcaption>
-    </figure>
 
     <aside class="lesson">
       <h2>What you are seeing</h2>
       <ul>
         <li>
-          <strong>Distinct cards</strong> — each parallel job gets one tile (not four copies of the
-          same Done step).
+          <strong>Canvas of chats</strong> — each card is a conversation preview + blurb; drag to
+          rearrange (Piles spatial pattern; agent PM domain).
         </li>
         <li>
-          <strong>Fork on click</strong> — localized chat for that job only; canonical thread stays
-          unified on disk.
+          <strong>PM statuses</strong> — working, waiting, unread, read, needs you, user-marked
+          completed — colorized like mail, not only done/running/blocked.
         </li>
         <li>
-          <strong>Mailbox summaries</strong> — blocked cards explain CLA vs permissions without loading
-          sibling forks.
+          <strong>Archive remembers position</strong> — restore layered by recency onto the saved
+          canvas spot.
         </li>
         <li>
-          <strong>Chapters</strong> — start Epoch 2 to re-issue the grid; prior epoch stays in the
-          selector.
+          <strong>Title index</strong> — topic changes leave a bookmark stack (latest on top) beside
+          the fork.
         </li>
         <li>
-          <strong>Serialized toggle</strong> — every sub-line lands in main scroll again; feel why the
-          grid exists.
+          <strong>Grid + serialized</strong> — classic parallel job tiles, or the wall again via the
+          toggle.
         </li>
       </ul>
     </aside>
@@ -122,8 +168,32 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     max-width: 64rem;
   }
 
-  .back-row {
-    margin: 0 0 0.5rem;
+  .identity-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.5rem;
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .identity-strip a {
+    color: var(--paper-muted);
+    text-decoration: none;
+  }
+
+  .identity-strip a:hover {
+    color: var(--focus);
+  }
+
+  .identity-sep {
+    opacity: 0.45;
+  }
+
+  .vcs-row {
+    margin: 0 0 1rem;
   }
 
   .desk-intro .eyebrow {
@@ -137,10 +207,57 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .related-links {
-    margin: -0.5rem 0 1.75rem;
+    margin: -0.5rem 0 1.25rem;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  .lede-shot {
+    margin: 0 0 1.25rem;
+  }
+
+  .lede-shot img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+  }
+
+  .lede-shot figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--paper-muted);
+  }
+
+  .variant-switch {
+    display: flex;
+    gap: 0.35rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .variant-tab {
+    min-height: 2.35rem;
+    padding: 0.35rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--paper-muted);
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .variant-tab.is-active {
+    color: var(--paper);
+    border-color: var(--focus);
+    background: rgba(110, 181, 255, 0.12);
+  }
+
+  .variant-blurb {
+    margin: 0 0 1rem;
+    font-size: 0.92rem;
+    color: var(--paper-muted);
   }
 
   .desk {
@@ -212,7 +329,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-weight: 600;
   }
 
-  .epoch-btn {
+  .epoch-btn,
+  .fork-action {
     min-height: 2.4rem;
     padding: 0.35rem 0.85rem;
     border: 1px solid var(--line);
@@ -224,17 +342,82 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     cursor: pointer;
   }
 
-  .epoch-btn:hover {
+  .epoch-btn:hover,
+  .fork-action:hover {
     color: var(--focus);
   }
 
+  .status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.85rem;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--paper-muted);
+  }
+
+  .status-legend.is-hidden {
+    display: none;
+  }
+
+  .leg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .leg i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .pm-working i,
+  .status-working .status-dot,
+  .canvas-card.status-working {
+    --pm: #e8a54b;
+  }
+  .pm-waiting i,
+  .status-waiting .status-dot,
+  .canvas-card.status-waiting {
+    --pm: #8b9dc3;
+  }
+  .pm-unread i,
+  .status-unread .status-dot,
+  .canvas-card.status-unread {
+    --pm: #6eb5ff;
+  }
+  .pm-read i,
+  .status-read .status-dot,
+  .canvas-card.status-read {
+    --pm: #9aa3ad;
+  }
+  .pm-needs_you i,
+  .status-needs_you .status-dot,
+  .canvas-card.status-needs_you {
+    --pm: #c97b7b;
+  }
+  .pm-completed i,
+  .status-completed .status-dot,
+  .canvas-card.status-completed {
+    --pm: #5ecf9a;
+  }
+
+  .leg i {
+    background: var(--pm, #999);
+  }
+
   .inbox-region {
-    max-height: 14rem;
+    position: relative;
+    min-height: 16rem;
+    max-height: 22rem;
     overflow: auto;
-    padding: 0.25rem;
+    padding: 0.35rem;
     border: 1px solid var(--line);
     border-radius: 0.35rem;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.18);
   }
 
   .inbox-region.is-hidden {
@@ -247,13 +430,26 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     gap: 0.65rem;
   }
 
-  .task-card {
+  .inbox-grid.is-hidden,
+  .inbox-canvas.is-hidden,
+  .archive-bin.is-hidden {
+    display: none;
+  }
+
+  .inbox-canvas {
+    position: relative;
+    min-height: 18rem;
+    height: 18rem;
+  }
+
+  .task-card,
+  .canvas-card {
     display: grid;
-    gap: 0.45rem;
-    padding: 0.75rem;
+    gap: 0.4rem;
+    padding: 0.7rem;
     border: 1px solid var(--line);
     border-radius: 0.45rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
     cursor: pointer;
     text-align: left;
     color: inherit;
@@ -262,26 +458,66 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .task-card:hover,
-  .task-card.is-selected {
+  .task-card.is-selected,
+  .canvas-card:hover,
+  .canvas-card.is-selected {
     border-color: var(--focus);
   }
 
-  .task-card:focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 2px;
+  .canvas-card {
+    position: absolute;
+    width: 11.5rem;
+    border-left: 3px solid var(--pm, var(--line));
+    cursor: grab;
+    touch-action: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  }
+
+  .canvas-card.is-dragging {
+    cursor: grabbing;
+    opacity: 0.92;
+    z-index: 40 !important;
+  }
+
+  .preview-thumb {
+    height: 3.4rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 42%, transparent 42%),
+      linear-gradient(90deg, transparent 0 18%, rgba(110, 181, 255, 0.35) 18% 78%, transparent 78%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
+    background-size: 100% 28%, 100% 28%, 100% 100%;
+    background-position: 8% 22%, 55% 62%, 0 0;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .preview-thumb::after {
+    content: '';
+    position: absolute;
+    inset: auto 12% 18% 12%;
+    height: 0.35rem;
+    border-radius: 0.2rem;
+    background: rgba(255, 255, 255, 0.18);
   }
 
   .task-title {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     line-height: 1.3;
   }
 
   .task-summary {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--paper-muted);
     line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .task-foot {
@@ -289,7 +525,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-family: var(--font-display);
     font-weight: 600;
   }
@@ -299,21 +535,25 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     height: 0.55rem;
     border-radius: 50%;
     flex-shrink: 0;
+    display: inline-block;
+    background: var(--pm, #999);
+    margin-right: 0.3rem;
+  }
+
+  .status-working .status-dot {
+    animation: pulse 1.2s ease infinite;
   }
 
   .status-done .status-dot {
     background: #5ecf9a;
   }
-
   .status-running .status-dot {
     background: #e8a54b;
     animation: pulse 1.2s ease infinite;
   }
-
   .status-blocked .status-dot {
     background: #c97b7b;
   }
-
   .status-failed .status-dot {
     background: #e05a5a;
   }
@@ -334,6 +574,60 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     opacity: 0.85;
   }
 
+  .archive-bin {
+    border: 1px dashed var(--line);
+    border-radius: 0.35rem;
+    padding: 0.65rem 0.75rem;
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .archive-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .archive-meta {
+    color: var(--paper-muted);
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+
+  .archive-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .archive-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 0.3rem;
+    font-size: 0.78rem;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .archive-list button {
+    border: none;
+    background: transparent;
+    color: var(--focus);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.72rem;
+    cursor: pointer;
+    padding: 0;
+  }
+
   .fork-panel {
     border: 1px solid var(--line);
     border-radius: 0.35rem;
@@ -347,6 +641,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
   .fork-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.65rem 0.85rem;
@@ -368,6 +663,34 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-size: 0.82rem;
     color: var(--paper-muted);
     margin-top: 0.15rem;
+  }
+
+  .fork-actions {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .title-index {
+    margin: 0;
+    padding: 0.55rem 0.85rem;
+    list-style: none;
+    display: grid;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.78rem;
+    color: var(--paper-muted);
+    font-family: var(--font-display);
+  }
+
+  .title-index:empty {
+    display: none;
+  }
+
+  .title-index li:first-child {
+    color: var(--paper);
+    font-weight: 700;
   }
 
   .fork-lines {
@@ -477,23 +800,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     background: rgba(255, 255, 255, 0.03);
   }
 
-  .case-shot {
-    margin: 2rem 0 0;
-  }
-
-  .case-shot img {
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--line);
-    border-radius: 0.35rem;
-  }
-
-  .case-shot figcaption {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--paper-muted);
-  }
-
   .lesson {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
@@ -527,7 +833,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 </style>
 
 <script>
-  type TaskStatus = 'done' | 'running' | 'blocked' | 'failed';
+  type JobStatus = 'done' | 'running' | 'blocked' | 'failed';
+  type PmStatus = 'working' | 'waiting' | 'unread' | 'read' | 'needs_you' | 'completed';
 
   interface ForkLine {
     role: 'agent' | 'user';
@@ -537,10 +844,17 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   interface Task {
     id: string;
     title: string;
+    titleHistory: string[];
     summary: string;
-    status: TaskStatus;
+    jobStatus: JobStatus;
+    pmStatus: PmStatus;
     action?: string;
     fork: ForkLine[];
+    x: number;
+    y: number;
+    z: number;
+    archived?: boolean;
+    archivedAt?: number;
   }
 
   interface Epoch {
@@ -560,9 +874,14 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'docs-3',
           title: 'Merge docs#3 onto main',
+          titleHistory: ['Wire Antora playbook', 'Merge docs#3 onto main'],
           summary: 'Branch pushed; GitHub is source of truth.',
-          status: 'done',
+          jobStatus: 'done',
+          pmStatus: 'read',
           action: 'Open in Cursor',
+          x: 24,
+          y: 18,
+          z: 1,
           fork: [
             { role: 'agent', text: 'Merged dev-centr/docs#3 onto main. No conflicts.' },
             { role: 'agent', text: 'Pushed branch. CI green. Nothing for you to approve.' },
@@ -571,9 +890,14 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'vscode-299941',
           title: 'Update vscode#299941',
+          titleHistory: ['Docs tweak upstream', 'Update vscode#299941'],
           summary: 'One-line docs tweak; already approved upstream.',
-          status: 'done',
+          jobStatus: 'done',
+          pmStatus: 'completed',
           action: 'Open in Cursor',
+          x: 220,
+          y: 28,
+          z: 2,
           fork: [
             { role: 'agent', text: 'Virtualization-Documentation#2002 was approved by Niels last week.' },
             { role: 'agent', text: 'Synced fork; push complete. Inspect diff only if curious.' },
@@ -582,8 +906,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'bitwarden-22642',
           title: 'Update bitwarden#22642',
+          titleHistory: ['Heuristic slug push', 'Update bitwarden#22642'],
           summary: 'Retrying on AMDphreak/bitwarden-clients…',
-          status: 'running',
+          jobStatus: 'running',
+          pmStatus: 'working',
+          x: 420,
+          y: 40,
+          z: 3,
           fork: [
             { role: 'agent', text: 'First attempt used heuristic slug AMDphreak/clients — rejected.' },
             { role: 'agent', text: 'Verified AMDphreak/bitwarden-clients via gh repo view. Retrying push.' },
@@ -592,8 +921,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'openshellorg-prohelp',
           title: 'openshellorg/prohelp#1',
+          titleHistory: ['CLA check', 'openshellorg/prohelp#1'],
           summary: 'Blocked — unsigned CLA on org.',
-          status: 'blocked',
+          jobStatus: 'blocked',
+          pmStatus: 'needs_you',
+          x: 48,
+          y: 150,
+          z: 4,
           fork: [
             { role: 'agent', text: 'You own openshellorg but the Cursor GitHub App lacks write on prohelp until CLA bot clears.' },
             { role: 'agent', text: 'Mailbox: status=blocked reason=cla. Siblings should not assume this repo is green.' },
@@ -602,25 +936,37 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'libmir-asdf',
           title: 'libmir/asdf#30',
-          summary: 'Blocked — external org; read-only token.',
-          status: 'blocked',
+          titleHistory: ['External org push', 'libmir/asdf#30'],
+          summary: 'Waiting before execute — need your token scope decision.',
+          jobStatus: 'blocked',
+          pmStatus: 'waiting',
+          x: 250,
+          y: 165,
+          z: 5,
           fork: [
             { role: 'agent', text: 'Not your org. App installed but cannot push without upstream merge permissions.' },
+            { role: 'agent', text: 'Paused before retry. Reply with fork strategy or abort.' },
           ],
         },
         {
           id: 'unit-thread',
           title: 'atilaneves/unit-thread#12',
-          summary: 'Blocked — external; waiting on maintainer.',
-          status: 'blocked',
+          titleHistory: ['Maintainer wait', 'atilaneves/unit-thread#12'],
+          summary: 'New mailbox summary since you last opened this card.',
+          jobStatus: 'blocked',
+          pmStatus: 'unread',
+          x: 450,
+          y: 175,
+          z: 6,
           fork: [
             { role: 'agent', text: 'Fork exists; PR needs maintainer review before agent can merge.' },
+            { role: 'agent', text: 'Maintainer commented overnight — unread until you open the fork.' },
           ],
         },
       ],
       mainLines: [
-        { kind: 'coordinator', text: 'Connected orgs to Cursor. Twelve repo jobs spawned; grid holds live status.' },
-        { kind: 'coordinator', text: 'Three Done, three blocked (CLA + external), one running. Open a card for detail — not repeated here.' },
+        { kind: 'coordinator', text: 'Connected orgs to Cursor. Twelve repo jobs spawned; canvas holds live status.' },
+        { kind: 'coordinator', text: 'PM statuses on cards — needs-you and waiting are not the same as blocked job dots.' },
       ],
     },
     {
@@ -631,8 +977,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'openshellorg-prohelp',
           title: 'openshellorg/prohelp#1',
+          titleHistory: ['CLA check', 'openshellorg/prohelp#1', 'CLA cleared — merge retry'],
           summary: 'CLA signed — merge retry in progress.',
-          status: 'running',
+          jobStatus: 'running',
+          pmStatus: 'working',
+          x: 40,
+          y: 36,
+          z: 1,
           fork: [
             { role: 'agent', text: 'CLA cleared overnight. Re-queued from mailbox summary v2.' },
             { role: 'agent', text: 'Wait graph: bitwarden-22642 must finish before batch tag.' },
@@ -641,34 +992,50 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         {
           id: 'bitwarden-22642',
           title: 'Update bitwarden#22642',
+          titleHistory: ['Heuristic slug push', 'Update bitwarden#22642'],
           summary: 'Done — on real fork slug.',
-          status: 'done',
+          jobStatus: 'done',
+          pmStatus: 'completed',
           action: 'Open in Cursor',
-          fork: [
-            { role: 'agent', text: 'Push succeeded on AMDphreak/bitwarden-clients.' },
-          ],
+          x: 260,
+          y: 48,
+          z: 2,
+          fork: [{ role: 'agent', text: 'Push succeeded on AMDphreak/bitwarden-clients.' }],
         },
         {
           id: 'batch-tag',
           title: 'Tag batch release notes',
-          summary: 'Waiting on openshellorg + CI.',
-          status: 'running',
+          titleHistory: ['Batch release notes', 'Tag batch release notes'],
+          summary: 'Waiting on openshellorg + CI before execute.',
+          jobStatus: 'running',
+          pmStatus: 'waiting',
+          x: 460,
+          y: 40,
+          z: 3,
           fork: [
-            { role: 'agent', text: 'Declared waitOn: [openshellorg-prohelp, bitwarden-22642]. Bitwarden terminal; openshellorg still running.' },
+            {
+              role: 'agent',
+              text: 'Declared waitOn: [openshellorg-prohelp, bitwarden-22642]. Bitwarden terminal; openshellorg still running.',
+            },
           ],
         },
         {
           id: 'windows-dev-docs',
           title: 'windows-dev-docs sync',
-          summary: 'Queued — starts when batch tag completes.',
-          status: 'blocked',
+          titleHistory: ['windows-dev-docs sync'],
+          summary: 'Unread — queued when batch tag completes.',
+          jobStatus: 'blocked',
+          pmStatus: 'unread',
+          x: 180,
+          y: 170,
+          z: 4,
           fork: [
             { role: 'agent', text: 'Harness warn-mode: partial dependency if started early. Holding until batch tag mailbox=done.' },
           ],
         },
       ],
       mainLines: [
-        { kind: 'coordinator', text: 'Epoch 2 — CLA unblocked openshellorg. Grid re-issued; prior epoch frozen in selector.' },
+        { kind: 'coordinator', text: 'Epoch 2 — CLA unblocked openshellorg. Canvas re-issued; prior epoch frozen in selector.' },
         { kind: 'coordinator', text: 'Wait graph active: batch tag will not finalize until prohelp merge completes.' },
       ],
     },
@@ -676,17 +1043,27 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
   let epochIdx = 0;
   let selectedId: string | null = null;
+  let layout: 'canvas' | 'grid' = 'canvas';
+  let zTop = 10;
+  let drag: { id: string; ox: number; oy: number; moved: boolean } | null = null;
 
   const gridEl = document.getElementById('inbox-grid')!;
+  const canvasEl = document.getElementById('inbox-canvas')!;
   const inboxRegion = document.getElementById('inbox-region')!;
+  const archiveBin = document.getElementById('archive-bin')!;
+  const archiveList = document.getElementById('archive-list')!;
+  const archiveMeta = document.getElementById('archive-meta')!;
+  const statusLegend = document.getElementById('status-legend')!;
   const mainLinesEl = document.getElementById('main-lines')!;
   const forkPanel = document.getElementById('fork-panel')!;
   const forkTitle = document.getElementById('fork-title')!;
   const forkStatus = document.getElementById('fork-status')!;
   const forkLinesEl = document.getElementById('fork-lines')!;
+  const titleIndex = document.getElementById('title-index')!;
   const runChipEl = document.getElementById('run-chip')!;
   const chapterLabel = document.getElementById('epoch-label')!;
   const busEl = document.getElementById('bus-strip')!;
+  const variantBlurb = document.getElementById('variant-blurb')!;
   const serializedToggle = document.getElementById('serialized-mode') as HTMLInputElement;
 
   function currentEpoch() {
@@ -697,20 +1074,89 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     return currentEpoch().tasks.find((t) => t.id === id);
   }
 
-  function statusLabel(s: TaskStatus) {
+  function activeTasks() {
+    return currentEpoch().tasks.filter((t) => !t.archived);
+  }
+
+  function archivedTasks() {
+    return currentEpoch()
+      .tasks.filter((t) => t.archived)
+      .sort((a, b) => (b.archivedAt ?? 0) - (a.archivedAt ?? 0));
+  }
+
+  function pmLabel(s: PmStatus) {
+    const map: Record<PmStatus, string> = {
+      working: 'Working',
+      waiting: 'Waiting',
+      unread: 'Unread',
+      read: 'Read',
+      needs_you: 'Needs you',
+      completed: 'Completed',
+    };
+    return map[s];
+  }
+
+  function jobLabel(s: JobStatus) {
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  function renderGrid() {
-    const ch = currentEpoch();
-    gridEl.innerHTML = ch.tasks
+  function setVariant(next: 'canvas' | 'grid') {
+    layout = next;
+    document.querySelectorAll('.variant-tab').forEach((tab) => {
+      const on = (tab as HTMLElement).dataset.variant === next;
+      tab.classList.toggle('is-active', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    variantBlurb.textContent =
+      next === 'canvas'
+        ? 'Harness canvas — drag conversation cards, colorized PM statuses, archive remembers position.'
+        : 'Parallel job grid — status dots per task; fork on click; epochs re-issue the batch.';
+    paint();
+  }
+
+  function renderArchive() {
+    const items = archivedTasks();
+    if (layout !== 'canvas' || serializedToggle.checked) {
+      archiveBin.classList.add('is-hidden');
+      return;
+    }
+    archiveBin.classList.remove('is-hidden');
+    archiveMeta.textContent = items.length
+      ? `${items.length} archived — restore by recency`
+      : 'Empty — archive from the fork panel';
+    archiveList.innerHTML = items
       .map(
         (t) => `
-      <button type="button" class="task-card status-${t.status}${selectedId === t.id ? ' is-selected' : ''}" data-id="${t.id}" role="listitem">
+      <li>
+        <span>${t.title}</span>
+        <button type="button" data-restore="${t.id}">Restore</button>
+      </li>`,
+      )
+      .join('');
+    archiveList.querySelectorAll('[data-restore]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = (btn as HTMLElement).dataset.restore!;
+        const task = findTask(id);
+        if (!task) return;
+        task.archived = false;
+        delete task.archivedAt;
+        task.z = ++zTop;
+        selectedId = id;
+        paint();
+      });
+    });
+  }
+
+  function renderGrid() {
+    const tasks = activeTasks();
+    gridEl.innerHTML = tasks
+      .map(
+        (t) => `
+      <button type="button" class="task-card status-${t.jobStatus}${selectedId === t.id ? ' is-selected' : ''}" data-id="${t.id}" role="listitem">
         <span class="task-title">${t.title}</span>
         <span class="task-summary">${t.summary}</span>
         <span class="task-foot">
-          <span><span class="status-dot" aria-hidden="true"></span> ${statusLabel(t.status)}</span>
+          <span><span class="status-dot" aria-hidden="true"></span> ${jobLabel(t.jobStatus)}</span>
           ${t.action ? `<span class="task-action">${t.action}</span>` : ''}
         </span>
       </button>`,
@@ -720,8 +1166,75 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     gridEl.querySelectorAll('.task-card').forEach((btn) => {
       btn.addEventListener('click', () => {
         selectedId = (btn as HTMLElement).dataset.id ?? null;
-        renderGrid();
-        renderFork();
+        paint();
+      });
+    });
+  }
+
+  function renderCanvas() {
+    const tasks = activeTasks();
+    canvasEl.innerHTML = tasks
+      .map(
+        (t) => `
+      <article
+        class="canvas-card status-${t.pmStatus}${selectedId === t.id ? ' is-selected' : ''}"
+        data-id="${t.id}"
+        role="listitem"
+        style="left:${t.x}px;top:${t.y}px;z-index:${t.z}"
+        tabindex="0"
+      >
+        <div class="preview-thumb" aria-hidden="true"></div>
+        <span class="task-title">${t.title}</span>
+        <span class="task-summary">${t.summary}</span>
+        <span class="task-foot">
+          <span><span class="status-dot" aria-hidden="true"></span> ${pmLabel(t.pmStatus)}</span>
+        </span>
+      </article>`,
+      )
+      .join('');
+
+    canvasEl.querySelectorAll('.canvas-card').forEach((el) => {
+      const card = el as HTMLElement;
+      const id = card.dataset.id!;
+      card.addEventListener('pointerdown', (e) => {
+        const task = findTask(id);
+        if (!task) return;
+        const pe = e as PointerEvent;
+        card.setPointerCapture(pe.pointerId);
+        drag = { id, ox: pe.clientX - task.x, oy: pe.clientY - task.y, moved: false };
+        task.z = ++zTop;
+        card.style.zIndex = String(task.z);
+        card.classList.add('is-dragging');
+      });
+      card.addEventListener('pointermove', (e) => {
+        if (!drag || drag.id !== id) return;
+        const task = findTask(id);
+        if (!task) return;
+        const pe = e as PointerEvent;
+        const nx = Math.max(0, pe.clientX - drag.ox);
+        const ny = Math.max(0, pe.clientY - drag.oy);
+        if (Math.abs(nx - task.x) > 3 || Math.abs(ny - task.y) > 3) drag.moved = true;
+        task.x = nx;
+        task.y = ny;
+        card.style.left = `${task.x}px`;
+        card.style.top = `${task.y}px`;
+      });
+      card.addEventListener('pointerup', () => {
+        card.classList.remove('is-dragging');
+        if (drag && drag.id === id && !drag.moved) {
+          selectedId = id;
+          const task = findTask(id);
+          if (task && task.pmStatus === 'unread') task.pmStatus = 'read';
+          paint();
+        }
+        drag = null;
+      });
+      card.addEventListener('keydown', (e) => {
+        if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+          e.preventDefault();
+          selectedId = id;
+          paint();
+        }
       });
     });
   }
@@ -732,16 +1245,22 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       return;
     }
     const task = findTask(selectedId);
-    if (!task) {
+    if (!task || task.archived) {
       forkPanel.classList.add('is-hidden');
       return;
     }
     forkPanel.classList.remove('is-hidden');
     forkTitle.textContent = task.title;
-    forkStatus.textContent = `${statusLabel(task.status)} — fork view (cosmetic)`;
-    forkLinesEl.innerHTML = task.fork
-      .map((l) => `<li class="is-${l.role}">${l.text}</li>`)
+    const statusText =
+      layout === 'canvas'
+        ? `${pmLabel(task.pmStatus)} — fork view (cosmetic)`
+        : `${jobLabel(task.jobStatus)} — fork view (cosmetic)`;
+    forkStatus.textContent = statusText;
+    titleIndex.innerHTML = [...task.titleHistory]
+      .reverse()
+      .map((t, i) => `<li>${i === 0 ? t : `↳ ${t}`}</li>`)
       .join('');
+    forkLinesEl.innerHTML = task.fork.map((l) => `<li class="is-${l.role}">${l.text}</li>`).join('');
   }
 
   function renderMain() {
@@ -751,23 +1270,30 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     if (serialized) {
       inboxRegion.classList.add('is-hidden');
       forkPanel.classList.add('is-hidden');
+      statusLegend.classList.add('is-hidden');
+      archiveBin.classList.add('is-hidden');
       const flat: string[] = [];
       ch.mainLines.forEach((l) => flat.push(l.text));
       ch.tasks.forEach((t) => {
-        flat.push(`🔄 ${ch.runChip}. ${t.title} — ${statusLabel(t.status)}: ${t.summary}`);
+        flat.push(`🔄 ${ch.runChip}. ${t.title} — ${jobLabel(t.jobStatus)} / ${pmLabel(t.pmStatus)}: ${t.summary}`);
         t.fork.forEach((f) => flat.push(`  ↳ ${f.text}`));
       });
-      mainLinesEl.innerHTML = flat
-        .map((text) => `<li class="is-serialized">${text}</li>`)
-        .join('');
+      mainLinesEl.innerHTML = flat.map((text) => `<li class="is-serialized">${text}</li>`).join('');
       busEl.textContent = 'Serialized mode — the wall returns. Scroll to reconstruct parallel state.';
     } else {
       inboxRegion.classList.remove('is-hidden');
-      mainLinesEl.innerHTML = ch.mainLines
-        .map((l) => `<li class="is-coordinator">${l.text}</li>`)
-        .join('');
-      busEl.textContent = 'Grid mode — cards update in place; main thread stays thin.';
+      const useCanvas = layout === 'canvas';
+      gridEl.classList.toggle('is-hidden', useCanvas);
+      canvasEl.classList.toggle('is-hidden', !useCanvas);
+      statusLegend.classList.toggle('is-hidden', !useCanvas);
+      if (useCanvas) renderCanvas();
+      else renderGrid();
+      mainLinesEl.innerHTML = ch.mainLines.map((l) => `<li class="is-coordinator">${l.text}</li>`).join('');
+      busEl.textContent = useCanvas
+        ? 'Canvas mode — rearrange previews; statuses are agent PM, not only job dots.'
+        : 'Grid mode — cards update in place; main thread stays thin.';
       renderFork();
+      renderArchive();
     }
 
     runChipEl.textContent = ch.runChip;
@@ -775,11 +1301,35 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   function paint() {
-    renderGrid();
     renderMain();
   }
 
+  document.querySelectorAll('.variant-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      setVariant(((tab as HTMLElement).dataset.variant as 'canvas' | 'grid') ?? 'canvas');
+    });
+  });
+
   document.getElementById('fork-close')!.addEventListener('click', () => {
+    selectedId = null;
+    paint();
+  });
+
+  document.getElementById('btn-mark-complete')!.addEventListener('click', () => {
+    if (!selectedId) return;
+    const task = findTask(selectedId);
+    if (!task) return;
+    task.pmStatus = 'completed';
+    task.jobStatus = 'done';
+    paint();
+  });
+
+  document.getElementById('btn-archive')!.addEventListener('click', () => {
+    if (!selectedId) return;
+    const task = findTask(selectedId);
+    if (!task) return;
+    task.archived = true;
+    task.archivedAt = Date.now();
     selectedId = null;
     paint();
   });
@@ -792,7 +1342,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     const task = findTask(selectedId);
     if (!task) return;
     task.fork.push({ role: 'user', text });
-    task.fork.push({ role: 'agent', text: 'Noted in this fork only — coordinator thread gets a one-line summary on next sync.' });
+    task.fork.push({
+      role: 'agent',
+      text: 'Noted in this fork only — coordinator thread gets a one-line summary on next sync.',
+    });
+    if (task.pmStatus === 'needs_you' || task.pmStatus === 'waiting') task.pmStatus = 'working';
     input.value = '';
     renderFork();
   });
@@ -803,16 +1357,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   });
 
   document.getElementById('btn-next-epoch')!.addEventListener('click', () => {
-    if (chapterIdx < epochs.length - 1) {
-      epochIdx += 1;
-      selectedId = null;
-      paint();
-    } else {
-      epochIdx = 0;
-      selectedId = null;
-      paint();
-    }
+    if (epochIdx < epochs.length - 1) epochIdx += 1;
+    else epochIdx = 0;
+    selectedId = null;
+    paint();
   });
 
-  paint();
+  setVariant('canvas');
 </script>

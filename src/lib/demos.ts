@@ -374,7 +374,7 @@ export const demoCategories: DemoCategory[] = [
         id: "actor-model-agentic-ui",
         title: "Actor-model agentic UI",
         summary:
-          "Persisted node graph on disk — discussion spawns tasks, drift spawns tangents. Task grid view, fork panel with addresses and spawn lineage, serialized contrast.",
+          "Harness canvas of conversation previews (PM statuses, drag, archive with position memory) plus classic task grid, fork panel, epochs, and serialized contrast. Same node graph; Piles is the email-canvas sibling.",
         viz: "piles",
         href: "/demos/actor-model-agentic-ui/",
         shots: [

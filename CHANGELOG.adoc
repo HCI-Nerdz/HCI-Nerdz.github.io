@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-29 — Actor-model harness canvas
+
+* Demo `/demos/actor-model-agentic-ui/`: Canvas variant — conversation preview thumbs, email-like PM statuses, drag rearrange, archive with position restore, title-history index; Grid variant retained.
+* Catalog blurb updated; identity strip + VCS mark on the demo page.
+
 == 2026-08-28 -- Open Terminal layout desk
 
 * Catalog: `shell-context-demo` under Spatial windowing (`src/lib/demos.ts`).
