@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Search, don't sort principle
+
+* Homepage principle retitled from “First-class UI for real jobs” to the classic Search, don't sort: filters above the list, not side chrome or cryptic syntax.
+
 == 2026-08-30 — Drop “Surfaces tell the truth” principle
 
 * Removed that homepage bullet; remaining principles list starts at intuition over convention.
