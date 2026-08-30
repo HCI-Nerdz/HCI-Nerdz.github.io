@@ -12,7 +12,6 @@ import {
 const total = demoCount();
 const defaultMode: DemoDateMode = 'released';
 const categories = categoriesForIndex(defaultMode);
-const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categories[0]?.id;
 ---
 
 <BaseLayout
@@ -27,7 +26,7 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
       <a href="/blog/">blog</a> and
       <a href="https://hci-nerdz.github.io/docs/">docs</a>.
       Grouped by familiar UI domains — expand a category, newest first inside.
-      Switch Released / Updated to change which date sorts and shows.
+      Switch Release Date / Updated to change which date sorts and shows.
       {total === 1 ? '1 demo live' : `${total} demos live`} so far.
     </p>
 
@@ -38,7 +37,7 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
         aria-label="Sort demos by date"
         data-date-mode-root
       >
-        <span class="date-mode-label" id="date-mode-label">Show by</span>
+        <span class="date-mode-label" id="date-mode-label">Sort by</span>
         <button
           type="button"
           class="date-mode-btn"
@@ -46,7 +45,7 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
           aria-pressed="true"
           aria-describedby="date-mode-label"
         >
-          Released
+          Release Date
         </button>
         <button
           type="button"
@@ -64,9 +63,8 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
       {
         categories.map((cat) => {
           const n = cat.demos.length;
-          const open = cat.id === defaultOpenId;
           return (
-            <details class="demo-accordion" id={cat.id} data-category-id={cat.id} open={open || undefined}>
+            <details class="demo-accordion" id={cat.id} data-category-id={cat.id}>
               <summary class="demo-accordion-summary">
                 <span class="demo-accordion-title">{cat.title}</span>
                 <span class="demo-accordion-count">{demoCountLabel(n)}</span>
@@ -93,16 +91,6 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
                             activeDate={activeDate}
                             categoryTitle={cat.title}
                           />
-                          {demo.related?.length ? (
-                            <p class="demo-related-inline">
-                              {demo.related.map((link, i) => (
-                                <span>
-                                  {i > 0 ? ' · ' : ''}
-                                  <a href={link.href}>{link.label}</a>
-                                </span>
-                              ))}
-                            </p>
-                          ) : null}
                         </li>
                       );
                     })}
@@ -145,7 +133,7 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
   }
 
   function modeLabel(mode) {
-    return mode === 'released' ? 'Released' : 'Updated';
+    return mode === 'released' ? 'Release Date' : 'Updated';
   }
 
   function categoryMaxDate(details, mode) {
@@ -380,22 +368,8 @@ const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categori
     gap: 0.9rem;
   }
 
-  .demo-timeline-item {
-    display: grid;
-    gap: 0.35rem;
-  }
-
   .demo-timeline-item :global(.viz-card),
   .demo-timeline-item :global(.demo-family) {
     margin: 0;
-  }
-
-  .demo-related-inline {
-    margin: 0;
-    padding: 0 0.15rem;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--paper-muted);
   }
 </style>

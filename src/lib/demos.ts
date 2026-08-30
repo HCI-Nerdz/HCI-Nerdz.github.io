@@ -665,7 +665,7 @@ export function formatDemoDate(isoDate: string): string {
 }
 
 export function dateModeLabel(mode: DemoDateMode): string {
-  return mode === 'released' ? 'Released' : 'Updated';
+  return mode === 'released' ? 'Release Date' : 'Updated';
 }
 
 export function demoCountLabel(n: number): string {

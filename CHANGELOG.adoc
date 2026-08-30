@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Demos index sort chrome
+
+* Sort by Release Date | Updated; accordions closed by default; related links inside cards; solo thumbs capped to one family-column width.
+* link:changelog-details/2026-08-30%20-%20demos-index-sort-chrome.adoc[Details]
+
 == 2026-08-30 — Partner footer titles
 
 * Footer lists each partner once with a short title; adds Desktop Tooling; homepage Partners aligned.

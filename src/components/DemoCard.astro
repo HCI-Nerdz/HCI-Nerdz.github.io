@@ -17,11 +17,12 @@ interface Props {
 const { demo, dateMode, activeDate, categoryTitle } = Astro.props;
 const shots = demo.shots ?? [];
 const family = shots.length > 1;
+const related = demo.related ?? [];
 const pub = resolve(process.cwd(), 'public/demo-shots');
 const ready = shots.length > 0 && shots.every((s) => existsSync(resolve(pub, `${s.id}-800.webp`)));
 
 const soloSizes =
-  '(max-width: 639px) min(22rem, 90vw), (max-width: 1023px) min(22rem, 45vw), 16.5rem';
+  '(max-width: 639px) min(18rem, 90vw), (max-width: 1023px) min(18rem, 40vw), 18rem';
 const familySizes =
   '(max-width: 639px) min(22rem, 90vw), (max-width: 1023px) min(18rem, 30vw), min(20rem, 28vw)';
 
@@ -67,23 +68,49 @@ const dateText = activeDate ? formatDemoDate(activeDate) : '';
           ))
         }
       </ul>
-    </article>
-  ) : (
-    <a class="viz-card" href={demo.href}>
-      <span class="rl-frame">
-        <RestingShot id={shots[0].id} alt={`${demo.title} screenshot`} sizes={soloSizes} />
-      </span>
       {
-        showMeta ? (
-          <p class="demo-meta">
-            <time datetime={activeDate}>{dateText}</time>
-            <span class="demo-meta-mode">{modeText}</span>
-            {categoryTitle ? <span class="demo-meta-cat">{categoryTitle}</span> : null}
+        related.length ? (
+          <p class="demo-related-inline">
+            {related.map((link, i) => (
+              <span>
+                {i > 0 ? ' · ' : ''}
+                <a href={link.href}>{link.label}</a>
+              </span>
+            ))}
           </p>
         ) : null
       }
-      <strong>{demo.title}</strong>
-      <span>{demo.summary}</span>
-    </a>
+    </article>
+  ) : (
+    <article class="viz-card">
+      <a class="viz-card-main" href={demo.href}>
+        <span class="rl-frame rl-frame-solo">
+          <RestingShot id={shots[0].id} alt={`${demo.title} screenshot`} sizes={soloSizes} />
+        </span>
+        {
+          showMeta ? (
+            <p class="demo-meta">
+              <time datetime={activeDate}>{dateText}</time>
+              <span class="demo-meta-mode">{modeText}</span>
+              {categoryTitle ? <span class="demo-meta-cat">{categoryTitle}</span> : null}
+            </p>
+          ) : null
+        }
+        <strong>{demo.title}</strong>
+        <span>{demo.summary}</span>
+      </a>
+      {
+        related.length ? (
+          <p class="demo-related-inline">
+            {related.map((link, i) => (
+              <span>
+                {i > 0 ? ' · ' : ''}
+                <a href={link.href}>{link.label}</a>
+              </span>
+            ))}
+          </p>
+        ) : null
+      }
+    </article>
   )
 }

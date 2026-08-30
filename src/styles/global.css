@@ -1112,17 +1112,58 @@ html[data-theme="dark"] .hero-eye {
   color: inherit;
 }
 
+.viz-card-main {
+  display: grid;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.viz-card-main:hover {
+  color: inherit;
+}
+
+.viz-card-main:hover strong {
+  color: var(--focus);
+}
+
 .viz-card strong {
   font-family: var(--font-display);
   font-size: 1.05rem;
   color: var(--paper);
 }
 
-.viz-card > span:last-of-type,
+.viz-card-main > span:last-of-type,
 .demo-family-head > span:last-of-type {
   font-size: 0.88rem;
   line-height: 1.45;
   color: var(--paper-muted);
+}
+
+/* Solo thumbs match one column of a 3-shot family row */
+.rl-frame-solo,
+.viz-stage-solo {
+  width: 100%;
+  max-width: 18rem;
+  justify-self: start;
+}
+
+.demo-related-inline {
+  margin: 0;
+  padding: 0.15rem 0 0;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--paper-muted);
+}
+
+.demo-related-inline a {
+  color: var(--focus);
+  text-decoration: none;
+}
+
+.demo-related-inline a:hover {
+  text-decoration: underline;
 }
 
 .demo-meta {

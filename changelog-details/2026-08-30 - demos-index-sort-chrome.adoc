@@ -1,0 +1,8 @@
+= Demos index sort chrome and card layout
+
+Catalog controls and solo cards on `/demos/` get clearer labels and tighter layout.
+
+* Sort toggle reads *Sort by* · *Release Date* | *Updated* (was *Show by* · *Released*).
+* Category accordions stay closed until the reader opens one (hash deep-links still open the matching panel).
+* Related links render inside each card boundary instead of as a row under it.
+* Solo mockup / VizCard thumbs cap at one family-column width (~18rem) and left-align.

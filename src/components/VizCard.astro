@@ -10,75 +10,90 @@ interface Props {
 }
 
 const { demo, dateMode, activeDate, categoryTitle } = Astro.props;
+const related = demo.related ?? [];
 const showMeta = Boolean(dateMode && activeDate);
 const modeText = dateMode ? dateModeLabel(dateMode) : '';
 const dateText = activeDate ? formatDemoDate(activeDate) : '';
 ---
 
-<a class="viz-card" href={demo.href}>
-  <span class={`viz-stage viz-${demo.viz}`} aria-hidden="true">
-    <span class="viz-chrome"></span>
+<article class="viz-card">
+  <a class="viz-card-main" href={demo.href}>
+    <span class={`viz-stage viz-stage-solo viz-${demo.viz}`} aria-hidden="true">
+      <span class="viz-chrome"></span>
+      {
+        demo.viz === 'pipeline' && (
+          <span class="viz-pipeline">
+            <i /><i /><i />
+          </span>
+        )
+      }
+      {
+        demo.viz === 'audio' && (
+          <span class="viz-bars">
+            <i /><i /><i /><i /><i /><i />
+          </span>
+        )
+      }
+      {
+        demo.viz === 'scoped' && (
+          <span class="viz-panes">
+            <i /><i /><i />
+          </span>
+        )
+      }
+      {
+        demo.viz === 'peel' && (
+          <span class="viz-file">
+            <b>report</b>
+            <em>.example</em>
+          </span>
+        )
+      }
+      {
+        demo.viz === 'flow' && (
+          <span class="viz-steps">
+            <i /><i /><i />
+          </span>
+        )
+      }
+      {demo.viz === 'rails' && <span class="viz-l" />}
+      {
+        demo.viz === 'settings' && (
+          <span class="viz-bound">
+            <i /><i />
+          </span>
+        )
+      }
+      {
+        demo.viz === 'spatial' && (
+          <span class="viz-windows">
+            <i /><i /><i />
+          </span>
+        )
+      }
+    </span>
     {
-      demo.viz === 'pipeline' && (
-        <span class="viz-pipeline">
-          <i /><i /><i />
-        </span>
-      )
+      showMeta ? (
+        <p class="demo-meta">
+          <time datetime={activeDate}>{dateText}</time>
+          <span class="demo-meta-mode">{modeText}</span>
+          {categoryTitle ? <span class="demo-meta-cat">{categoryTitle}</span> : null}
+        </p>
+      ) : null
     }
-    {
-      demo.viz === 'audio' && (
-        <span class="viz-bars">
-          <i /><i /><i /><i /><i /><i />
-        </span>
-      )
-    }
-    {
-      demo.viz === 'scoped' && (
-        <span class="viz-panes">
-          <i /><i /><i />
-        </span>
-      )
-    }
-    {
-      demo.viz === 'peel' && (
-        <span class="viz-file">
-          <b>report</b>
-          <em>.example</em>
-        </span>
-      )
-    }
-    {
-      demo.viz === 'flow' && (
-        <span class="viz-steps">
-          <i /><i /><i />
-        </span>
-      )
-    }
-    {demo.viz === 'rails' && <span class="viz-l" />}
-    {
-      demo.viz === 'settings' && (
-        <span class="viz-bound">
-          <i /><i />
-        </span>
-      )
-    }
-    {
-      demo.viz === 'spatial' && (
-        <span class="viz-windows">
-          <i /><i /><i />
-        </span>
-      )
-    }
-  </span>
+    <strong>{demo.title}</strong>
+    <span>{demo.summary}</span>
+  </a>
   {
-    showMeta ? (
-      <p class="demo-meta">
-        <time datetime={activeDate}>{dateText}</time>
-        <span class="demo-meta-mode">{modeText}</span>
-        {categoryTitle ? <span class="demo-meta-cat">{categoryTitle}</span> : null}
+    related.length ? (
+      <p class="demo-related-inline">
+        {related.map((link, i) => (
+          <span>
+            {i > 0 ? ' · ' : ''}
+            <a href={link.href}>{link.label}</a>
+          </span>
+        ))}
       </p>
     ) : null
   }
-  <strong>{demo.title}</strong>
-  <span>{demo.summary}</span>
-</a>
+</article>
