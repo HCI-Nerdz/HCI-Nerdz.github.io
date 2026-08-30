@@ -1,0 +1,524 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Spatial web windows desk · HCI Nerdz"
+  description="Interactive demo: photo-grade desk with torn-off lite palettes, SharedWorker hub, Document PiP, and intent routing."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <p class="back-row">
+      <a class="back" href="/demos/">← Demos</a>
+    </p>
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · Spatial web windows</p>
+      <h1>Spatial web windows desk</h1>
+      <p class="lede">
+        A lightweight photo desk: viewport, histogram, and curves remote.
+        Toggle monolithic mode to feel the single-viewport trap return.
+        Tear palettes off with Document PiP or chromeless popups.
+      </p>
+      <p class="related-links">
+        <a href="/blog/when-the-browser-flattens-working-memory/">Essay</a>
+        ·
+        <a href="https://hci-nerdz.github.io/docs/hci-nerdz/spatial-web-windows.html">Docs</a>
+      </p>
+    </header>
+
+    <section class="desk" id="desk" aria-label="Spatial web windows desk">
+      <div class="shell-bar">
+        <div class="shell-identity">
+          <span class="shell-label">Northwind Develop</span>
+          <strong id="mode-chip">Mode: spatial</strong>
+        </div>
+        <div class="bar-controls">
+          <label class="mode-toggle">
+            <input type="radio" name="layout" value="spatial" checked />
+            <span>Spatial</span>
+          </label>
+          <label class="mode-toggle">
+            <input type="radio" name="layout" value="monolith" />
+            <span>Monolith</span>
+          </label>
+          <label class="mode-toggle">
+            <input type="radio" name="layout" value="mobile" />
+            <span>Mobile intent</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="api-strip" id="api-strip" aria-live="polite"></div>
+
+      <div class="workspace" id="workspace">
+        <div class="viewport-col">
+          <div class="viewport-wrap">
+            <canvas id="viewport" width="640" height="400" aria-label="Sample image viewport"></canvas>
+            <p class="viewport-hint">Drag to move selection · palettes follow via SharedWorker</p>
+          </div>
+        </div>
+
+        <div class="palette-col" id="palette-col">
+          <div class="palette panel" id="histogram-panel">
+            <h2>Histogram</h2>
+            <canvas id="histogram" width="280" height="100" aria-label="Histogram"></canvas>
+            <button type="button" class="btn" id="pip-histogram">Open in Document PiP</button>
+          </div>
+          <div class="palette panel" id="curves-panel">
+            <h2>Curves remote</h2>
+            <label>Exposure <span id="exp-inline">0</span>
+              <input type="range" id="exposure-inline" min="-100" max="100" value="0" />
+            </label>
+            <label>Contrast <span id="con-inline">100</span>
+              <input type="range" id="contrast-inline" min="0" max="200" value="100" />
+            </label>
+            <button type="button" class="btn" id="open-curves">Tear off curves window</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-sheet" id="mobile-sheet" hidden>
+        <button type="button" class="sheet-tab" id="sheet-hist">Histogram</button>
+        <button type="button" class="sheet-tab" id="sheet-curves">Curves</button>
+        <div class="sheet-body" id="sheet-body"></div>
+      </div>
+    </section>
+
+    <aside class="lesson">
+      <h2>What you are seeing</h2>
+      <ul>
+        <li><strong>Spatial mode</strong> — viewport and palettes are separate surfaces; OS window boundaries reinforce context.</li>
+        <li><strong>SharedWorker hub</strong> — exposure and selection sync across windows without coupling <code>opener</code>.</li>
+        <li><strong>Lite windows</strong> — Document PiP (histogram) and chromeless popup (curves) strip URL chrome.</li>
+        <li><strong>Intent routing</strong> — mobile intent uses bottom sheets, not viewport-width collapse.</li>
+        <li><strong>Monolith contrast</strong> — everything crammed in one column recreates the SPA trap.</li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style>
+  .desk-page { max-width: 56rem; }
+  .back-row { margin: 0 0 0.5rem; }
+  .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+  .related-links {
+    margin: -0.5rem 0 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .desk {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .shell-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .shell-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .bar-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .api-strip {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+  .api-strip .ok { color: #3D9B8F; }
+  .api-strip .no { color: #6b7a8a; }
+  .workspace {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 0;
+    min-height: 420px;
+  }
+  .workspace.is-monolith { grid-template-columns: 1fr; }
+  .workspace.is-monolith .palette-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--line);
+  }
+  .workspace.is-mobile .palette-col { display: none; }
+  .viewport-col { padding: 1rem; }
+  .viewport-wrap { position: relative; }
+  #viewport {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    cursor: crosshair;
+    background: #1a2332;
+  }
+  .viewport-hint {
+    margin: 0.5rem 0 0;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .palette-col {
+    border-left: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+  }
+  .panel {
+    padding: 1rem;
+    flex: 1;
+  }
+  .panel + .panel { border-top: 1px solid var(--line); }
+  .panel h2 {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--honesty);
+  }
+  .panel label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+  }
+  .panel input[type=range] { width: 100%; accent-color: #3D9B8F; }
+  .btn {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: rgba(61, 155, 143, 0.15);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .btn:hover { background: rgba(61, 155, 143, 0.3); }
+  .mobile-sheet {
+    border-top: 1px solid var(--line);
+    padding: 0.75rem 1rem 1rem;
+  }
+  .sheet-tab {
+    margin-right: 0.5rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .sheet-tab.is-active { background: rgba(232, 165, 75, 0.2); border-color: var(--honesty); }
+  .sheet-body { margin-top: 0.75rem; }
+  .lesson {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.15);
+  }
+  .lesson h2 { margin: 0 0 0.75rem; font-size: 1rem; }
+  .lesson ul { margin: 0; padding-left: 1.2rem; }
+  .lesson li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+  @media (max-width: 720px) {
+    .workspace:not(.is-mobile) { grid-template-columns: 1fr; }
+    .palette-col { border-left: none; border-top: 1px solid var(--line); }
+  }
+</style>
+
+<script>
+  const SAMPLE_GRADIENT = () => {
+    const c = document.createElement('canvas');
+    c.width = 640; c.height = 400;
+    const ctx = c.getContext('2d')!;
+    const g = ctx.createLinearGradient(0, 0, 640, 400);
+    g.addColorStop(0, '#2a4858');
+    g.addColorStop(0.35, '#E8A54B');
+    g.addColorStop(0.7, '#3D9B8F');
+    g.addColorStop(1, '#1a2332');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 640, 400);
+    ctx.fillStyle = 'rgba(255,255,255,0.08)';
+    for (let i = 0; i < 12; i++) {
+      ctx.beginPath();
+      ctx.arc(80 + i * 45, 200 + Math.sin(i) * 60, 30 + i * 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return c;
+  };
+
+  let state = {
+    exposure: 0,
+    contrast: 100,
+    selection: { x: 0.25, y: 0.25, w: 0.35, h: 0.35 },
+    mode: 'spatial' as 'spatial' | 'monolith' | 'mobile',
+    displayIntent: 'desktop' as 'desktop' | 'mobile',
+  };
+
+  let workerPort: MessagePort | null = null;
+  const channel = new BroadcastChannel('spatial-web-windows-demo');
+  let curvesWin: Window | null = null;
+  let pipWindow: Window | null = null;
+  const baseCanvas = SAMPLE_GRADIENT();
+
+  function connectWorker() {
+    try {
+      const worker = new SharedWorker('/demos/spatial-web-windows/hub-worker.js', { name: 'spatial-demo' });
+      workerPort = worker.port;
+      workerPort.start();
+      workerPort.onmessage = (e) => {
+        if (e.data?.type === 'state') applyRemoteState(e.data.payload);
+      };
+      workerPort.postMessage({ type: 'patch', payload: { ...state } });
+    } catch {
+      channel.onmessage = (e) => {
+        if (e.data?.type === 'state') applyRemoteState(e.data.payload);
+        if (e.data?.type === 'patch') {
+          Object.assign(state, e.data.payload);
+          syncUI();
+          drawViewport();
+        }
+      };
+    }
+  }
+
+  function patch(p: Partial<typeof state>) {
+    Object.assign(state, p);
+    if (workerPort) workerPort.postMessage({ type: 'patch', payload: p });
+    else channel.postMessage({ type: 'patch', payload: p });
+    syncUI();
+    drawViewport();
+    drawHistogram();
+  }
+
+  function applyRemoteState(s: typeof state) {
+    Object.assign(state, s);
+    syncUI(false);
+    drawViewport();
+    drawHistogram();
+  }
+
+  function syncUI(updateSliders = true) {
+    const chip = document.getElementById('mode-chip');
+    if (chip) chip.textContent = `Mode: ${state.mode} · intent: ${state.displayIntent}`;
+    if (updateSliders) {
+      (document.getElementById('exposure-inline') as HTMLInputElement).value = String(state.exposure);
+      (document.getElementById('contrast-inline') as HTMLInputElement).value = String(state.contrast);
+      (document.getElementById('exp-inline') as HTMLElement).textContent = String(state.exposure);
+      (document.getElementById('con-inline') as HTMLElement).textContent = String(state.contrast);
+    }
+  }
+
+  function drawViewport() {
+    const canvas = document.getElementById('viewport') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(baseCanvas, 0, 0);
+
+    ctx.filter = `brightness(${100 + state.exposure}%) contrast(${state.contrast}%)`;
+    ctx.drawImage(baseCanvas, 0, 0);
+    ctx.filter = 'none';
+
+    const sel = state.selection;
+    const sx = sel.x * canvas.width;
+    const sy = sel.y * canvas.height;
+    const sw = sel.w * canvas.width;
+    const sh = sel.h * canvas.height;
+    ctx.strokeStyle = '#E8A54B';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(sx, sy, sw, sh);
+    ctx.fillStyle = 'rgba(232, 165, 75, 0.12)';
+    ctx.fillRect(sx, sy, sw, sh);
+  }
+
+  function drawHistogram() {
+    const canvas = document.getElementById('histogram') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#1a2332';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const bins = 48;
+    const w = canvas.width / bins;
+    for (let i = 0; i < bins; i++) {
+      const h = 20 + Math.abs(Math.sin(i * 0.4 + state.exposure * 0.02)) * 70 * (state.contrast / 100);
+      ctx.fillStyle = i > bins * 0.6 ? '#E8A54B' : '#3D9B8F';
+      ctx.fillRect(i * w + 1, canvas.height - h, w - 2, h);
+    }
+  }
+
+  function renderApiStrip() {
+    const el = document.getElementById('api-strip');
+    if (!el) return;
+    const checks = [
+      ['SharedWorker', typeof SharedWorker !== 'undefined'],
+      ['BroadcastChannel', typeof BroadcastChannel !== 'undefined'],
+      ['Document PiP', 'documentPictureInPicture' in window],
+      ['getScreenDetails', 'getScreenDetails' in window],
+      ['spatialBrowser fork', !!(window as unknown as { spatialBrowser?: unknown }).spatialBrowser],
+    ];
+    el.innerHTML = checks
+      .map(([name, ok]) => `<span class="${ok ? 'ok' : 'no'}">${name}: ${ok ? 'yes' : 'no'}</span>`)
+      .join('');
+  }
+
+  function setLayout(mode: 'spatial' | 'monolith' | 'mobile') {
+    state.mode = mode;
+    state.displayIntent = mode === 'mobile' ? 'mobile' : 'desktop';
+    const ws = document.getElementById('workspace');
+    const sheet = document.getElementById('mobile-sheet');
+    ws?.classList.remove('is-monolith', 'is-mobile');
+    if (mode === 'monolith') ws?.classList.add('is-monolith');
+    if (mode === 'mobile') {
+      ws?.classList.add('is-mobile');
+      sheet?.removeAttribute('hidden');
+    } else {
+      sheet?.setAttribute('hidden', '');
+    }
+    patch({ mode, displayIntent: state.displayIntent });
+  }
+
+  async function openDocumentPiP() {
+    const pip = (window as unknown as { documentPictureInPicture?: { requestWindow: (o?: object) => Promise<Window> } }).documentPictureInPicture;
+    if (!pip) {
+      alert('Document Picture-in-Picture is not available in this browser. Use Chrome 116+.');
+      return;
+    }
+    if (pipWindow && !pipWindow.closed) {
+      pipWindow.focus();
+      return;
+    }
+    pipWindow = await pip.requestWindow({ width: 320, height: 180 });
+    pipWindow.document.body.style.margin = '0';
+    pipWindow.document.body.style.background = '#0E1218';
+    const title = pipWindow.document.createElement('h1');
+    title.textContent = 'Histogram (PiP)';
+    title.style.cssText = 'font:600 0.75rem system-ui;color:#E8A54B;margin:0.5rem;text-transform:uppercase;letter-spacing:0.06em';
+    const c = pipWindow.document.createElement('canvas');
+    c.width = 280; c.height = 100;
+    c.style.display = 'block';
+    c.style.margin = '0.5rem auto';
+    pipWindow.document.body.append(title, c);
+    const tick = () => {
+      if (pipWindow?.closed) return;
+      const ctx = c.getContext('2d')!;
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.fillStyle = '#1a2332';
+      ctx.fillRect(0, 0, c.width, c.height);
+      for (let i = 0; i < 48; i++) {
+        const h = 20 + Math.abs(Math.sin(i * 0.4 + state.exposure * 0.02)) * 70 * (state.contrast / 100);
+        ctx.fillStyle = i > 28 ? '#E8A54B' : '#3D9B8F';
+        ctx.fillRect(i * 6 + 1, c.height - h, 4, h);
+      }
+      requestAnimationFrame(tick);
+    };
+    tick();
+  }
+
+  function openCurvesPopup() {
+    if (curvesWin && !curvesWin.closed) {
+      curvesWin.focus();
+      return;
+    }
+    const features = 'popup,width=280,height=320,toolbar=no,menubar=no,location=no';
+    curvesWin = window.open('/demos/spatial-web-windows/curves-popup.html', 'curves-remote', features);
+  }
+
+  document.querySelectorAll('input[name="layout"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      const v = (e.target as HTMLInputElement).value as 'spatial' | 'monolith' | 'mobile';
+      setLayout(v);
+    });
+  });
+
+  document.getElementById('exposure-inline')?.addEventListener('input', (e) => {
+    const v = Number((e.target as HTMLInputElement).value);
+    (document.getElementById('exp-inline') as HTMLElement).textContent = String(v);
+    patch({ exposure: v });
+  });
+  document.getElementById('contrast-inline')?.addEventListener('input', (e) => {
+    const v = Number((e.target as HTMLInputElement).value);
+    (document.getElementById('con-inline') as HTMLElement).textContent = String(v);
+    patch({ contrast: v });
+  });
+
+  document.getElementById('pip-histogram')?.addEventListener('click', openDocumentPiP);
+  document.getElementById('open-curves')?.addEventListener('click', openCurvesPopup);
+
+  let dragging = false;
+  const viewport = document.getElementById('viewport') as HTMLCanvasElement;
+  viewport?.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    const r = viewport.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    patch({ selection: { x: x - 0.1, y: y - 0.1, w: 0.2, h: 0.2 } });
+  });
+  viewport?.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const r = viewport.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    patch({
+      selection: {
+        x: Math.max(0, Math.min(0.8, x - state.selection.w / 2)),
+        y: Math.max(0, Math.min(0.8, y - state.selection.h / 2)),
+        w: state.selection.w,
+        h: state.selection.h,
+      },
+    });
+  });
+  viewport?.addEventListener('pointerup', () => { dragging = false; });
+
+  document.getElementById('sheet-hist')?.addEventListener('click', () => {
+    document.getElementById('sheet-body')!.innerHTML = '<p style="font-size:0.85rem;color:var(--muted)">Histogram sheet — mobile intent routes palettes here instead of collapsing by width.</p>';
+    document.getElementById('sheet-hist')?.classList.add('is-active');
+    document.getElementById('sheet-curves')?.classList.remove('is-active');
+  });
+  document.getElementById('sheet-curves')?.addEventListener('click', () => {
+    document.getElementById('sheet-body')!.innerHTML = document.getElementById('curves-panel')!.innerHTML;
+    document.getElementById('sheet-curves')?.classList.add('is-active');
+    document.getElementById('sheet-hist')?.classList.remove('is-active');
+  });
+
+  connectWorker();
+  renderApiStrip();
+  drawViewport();
+  drawHistogram();
+
+  if (new URLSearchParams(location.search).get('fork') === '1') {
+    (window as unknown as { spatialBrowser?: object }).spatialBrowser = {
+      workspaceGroup: 'demo-workspace',
+      parentRelativeTop: true,
+      version: '0.1.0-local',
+    };
+    renderApiStrip();
+  }
+</script>

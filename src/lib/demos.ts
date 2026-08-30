@@ -548,16 +548,16 @@ export const demoCategories: DemoCategory[] = [
     demos: [
       {
         id: "grounded-tokens",
-        title: "Grounded tokens",
-        summary: "Mark heuristic versus researched tokens in AI assistant output — dashed underline for assumptions, solid for verified facts. Replay the fork-name case study.",
+        title: "Detecting AI lies",
+        summary: "Highlight heuristic guesses versus researched facts in AI assistant output — dashed for assumptions, solid for verified. Replay the fork-name case study.",
         viz: "flow",
         href: "/demos/grounded-tokens/",
         releasedAt: "2026-08-28",
-        modifiedAt: "2026-08-28",
+        modifiedAt: "2026-08-30",
         shots: [
           {
             id: "grounded-tokens",
-            label: "Grounded tokens replay",
+            label: "Detecting AI lies replay",
             href: "/demos/grounded-tokens/",
           },
         ],

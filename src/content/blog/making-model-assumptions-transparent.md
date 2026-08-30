@@ -74,5 +74,5 @@ This essay, the [docs topic](https://hci-nerdz.github.io/docs/hci-nerdz/grounded
 ## Where to go next
 
 - **Docs** — [Grounded tokens](https://hci-nerdz.github.io/docs/hci-nerdz/grounded-tokens.html)
-- **Demo** — [Grounded tokens desk](/demos/grounded-tokens/)
+- **Demo** — [Detecting AI lies](/demos/grounded-tokens/)
 - **Literature** — [cursor-seed-2026-08-28](https://github.com/HCI-Nerdz/docs/blob/main/literature/grounded-tokens/cursor-seed-2026-08-28.md)

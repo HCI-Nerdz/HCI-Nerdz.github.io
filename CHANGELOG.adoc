@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-08-30 — Detecting AI lies + spatial desk publish
+
+* Catalog/demo title: Grounded tokens → Detecting AI lies (slug unchanged).
+* Publish Spatial web windows desk, essay, news, and shots (was local-only → 404).
+* link:changelog-details/2026-08-30%20-%20detecting-ai-lies-spatial-publish.adoc[Details]
+
 == 2026-08-30 — OpenShellOrg links use opensh.org
 
 * Partner footer and site links point at https://opensh.org/ instead of openshellorg.github.io.

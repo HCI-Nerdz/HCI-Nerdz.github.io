@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Curves · Spatial demo</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+    body {
+      margin: 0; padding: 1rem; background: #0E1218; color: #E8E4D9;
+      min-width: 220px;
+    }
+    h1 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: #E8A54B; margin: 0 0 1rem; }
+    label { display: block; margin-bottom: 1rem; font-size: 0.9rem; }
+    input[type=range] { width: 100%; accent-color: #3D9B8F; }
+    .val { float: right; color: #9aa8b8; font-variant-numeric: tabular-nums; }
+    .hint { font-size: 0.75rem; color: #6b7a8a; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Curves remote</h1>
+  <label>Exposure <span class="val" id="exp-val">0</span>
+    <input type="range" id="exposure" min="-100" max="100" value="0" />
+  </label>
+  <label>Contrast <span class="val" id="con-val">100</span>
+    <input type="range" id="contrast" min="0" max="200" value="100" />
+  </label>
+  <p class="hint">Lite window · SharedWorker hub</p>
+  <script>
+    let workerPort = null;
+    const channel = new BroadcastChannel('spatial-web-windows-demo');
+
+    function connectWorker() {
+      try {
+        const worker = new SharedWorker('/demos/spatial-web-windows/hub-worker.js', { name: 'spatial-demo' });
+        workerPort = worker.port;
+        workerPort.start();
+        workerPort.onmessage = (e) => {
+          if (e.data?.type === 'state') applyState(e.data.payload, false);
+        };
+        workerPort.postMessage({ type: 'get' });
+      } catch (_) {
+        channel.onmessage = (e) => {
+          if (e.data?.type === 'state') applyState(e.data.payload, false);
+        };
+      }
+    }
+
+    function patch(p) {
+      if (workerPort) workerPort.postMessage({ type: 'patch', payload: p });
+      else channel.postMessage({ type: 'patch', payload: p });
+    }
+
+    function applyState(s, fromLocal) {
+      document.getElementById('exposure').value = s.exposure;
+      document.getElementById('contrast').value = s.contrast;
+      document.getElementById('exp-val').textContent = s.exposure;
+      document.getElementById('con-val').textContent = s.contrast;
+    }
+
+    document.getElementById('exposure').addEventListener('input', (e) => {
+      const v = Number(e.target.value);
+      document.getElementById('exp-val').textContent = v;
+      patch({ exposure: v });
+    });
+    document.getElementById('contrast').addEventListener('input', (e) => {
+      const v = Number(e.target.value);
+      document.getElementById('con-val').textContent = v;
+      patch({ contrast: v });
+    });
+
+    connectWorker();
+  </script>
+</body>
+</html>

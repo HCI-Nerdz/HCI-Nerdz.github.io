@@ -3,8 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Grounded tokens desk · HCI Nerdz"
-  description="Interactive demo: mark heuristic versus grounded tokens in AI assistant output — fork-name case study."
+  title="Detecting AI lies · HCI Nerdz"
+  description="Interactive demo: highlight heuristic guesses versus researched facts in AI assistant output — fork-name case study."
   active="demos"
 >
   <main class="shell page desk-page gt-page shell-prov">
@@ -12,11 +12,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <a class="back" href="/demos/">← Demos</a>
     </p>
     <header class="desk-intro">
-      <p class="eyebrow">Demo · Grounded tokens</p>
-      <h1>Grounded tokens desk</h1>
+      <p class="eyebrow">Demo · Detecting AI lies</p>
+      <h1>Detecting AI lies</h1>
       <p class="lede">
         Assistant UIs render guesses and verified facts with the same weight. This replay shows how
-        inline marks — dashed for heuristic, solid for grounded — would have flagged a wrong fork
+        inline marks — dashed for heuristic, solid for researched — would have flagged a wrong fork
         slug before it burned three turns.
       </p>
       <p class="related-links">
@@ -28,7 +28,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       </p>
     </header>
 
-    <section class="desk" id="desk" aria-label="Grounded tokens desk">
+    <section class="desk" id="desk" aria-label="Detecting AI lies desk">
       <div class="shell-bar">
         <div class="shell-identity">
           <span class="shell-label">Agent transcript</span>
@@ -40,7 +40,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         </label>
       </div>
 
-      <aside class="legend" id="legend" aria-label="Grounded token legend">
+      <aside class="legend" id="legend" aria-label="Provenance legend">
       <span class="leg leg-heur"><span class="swatch"></span> Heuristic — assumed, not verified</span>
       <span class="leg leg-research"><span class="swatch"></span> Researched - confirmed by lookup</span>
       <span class="leg leg-corrected"><span class="swatch"></span> Corrected - rejected heuristic</span>

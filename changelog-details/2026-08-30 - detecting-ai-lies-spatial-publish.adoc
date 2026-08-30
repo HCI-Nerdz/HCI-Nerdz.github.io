@@ -1,0 +1,7 @@
+= Detecting AI lies + spatial desk publish — changelog detail
+:description: Visual title for grounded-tokens demo; publish spatial-web-windows that was 404ing.
+
+== Changed
+
+* Public title **Detecting AI lies** for the grounded-tokens demo and catalog card (URL `/demos/grounded-tokens/` kept).
+* Committed Spatial web windows desk page, public assets, essay, and news so `/demos/spatial-web-windows/` resolves on Pages.
