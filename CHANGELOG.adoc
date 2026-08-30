@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-08-30 — Demos index timeline
+
+* Catalog categories become familiar UI domains; Theme → Theming; accordion index with Released/Updated dates.
+* Bare category count badges removed (counts now say “N demos” / “no demos yet”).
+* link:changelog-details/2026-08-30%20-%20demos-index-timeline.adoc[Details]
+
 == 2026-08-30 — Docs path renames as unpaid chores
 
 * Symptom essay retitled for cold-reader orientation; URL beat drops "pretty" framing; 301 from old slug.

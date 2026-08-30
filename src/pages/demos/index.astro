@@ -1,14 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DemoCard from '../../components/DemoCard.astro';
-import { demoCategories, demoCount } from '../../lib/demos';
+import {
+  categoriesForIndex,
+  demoCount,
+  demoCountLabel,
+  demoDate,
+  type DemoDateMode,
+} from '../../lib/demos';
 
 const total = demoCount();
+const defaultMode: DemoDateMode = 'released';
+const categories = categoriesForIndex(defaultMode);
+const defaultOpenId = categories.find((c) => c.demos.length > 0)?.id ?? categories[0]?.id;
 ---
 
 <BaseLayout
   title="Demos · HCI Nerdz"
-  description="Interactive HCI prototypes — processing maps, product representation, and other surfaces that make the essays tangible."
+  description="Interactive HCI prototypes grouped by familiar UI domains — navigation, windowing, settings, and more."
   active="demos"
 >
   <main class="shell page">
@@ -17,130 +26,376 @@ const total = demoCount();
       Interactive experiments for patterns we argue for in the
       <a href="/blog/">blog</a> and
       <a href="https://hci-nerdz.github.io/docs/">docs</a>.
-      Categories below are the taxonomy — empty ones are intentional placeholders for work still to ship.
+      Grouped by familiar UI domains — expand a category, newest first inside.
+      Switch Released / Updated to change which date sorts and shows.
       {total === 1 ? '1 demo live' : `${total} demos live`} so far.
     </p>
 
-    <nav class="demo-toc" aria-label="Demo categories">
-      <ol>
-        {
-          demoCategories.map((cat) => (
-            <li>
-              <a href={`#${cat.id}`}>{cat.title}</a>
-              <span class="count">{cat.demos.length}</span>
-            </li>
-          ))
-        }
-      </ol>
-    </nav>
-
-    {
-      demoCategories.map((cat) => (
-        <section
-          class="demo-category section"
-          id={cat.id}
-          aria-labelledby={`${cat.id}-heading`}
+    <div class="demos-toolbar">
+      <div
+        class="date-mode"
+        role="group"
+        aria-label="Sort demos by date"
+        data-date-mode-root
+      >
+        <span class="date-mode-label" id="date-mode-label">Show by</span>
+        <button
+          type="button"
+          class="date-mode-btn"
+          data-date-mode="released"
+          aria-pressed="true"
+          aria-describedby="date-mode-label"
         >
-          <h2 id={`${cat.id}-heading`}>{cat.title}</h2>
-          <p class="lede">{cat.description}</p>
+          Released
+        </button>
+        <button
+          type="button"
+          class="date-mode-btn"
+          data-date-mode="modified"
+          aria-pressed="false"
+          aria-describedby="date-mode-label"
+        >
+          Updated
+        </button>
+      </div>
+    </div>
 
-          {cat.demos.length === 0 ? (
-            <p class="empty-slot">No demos in this category yet.</p>
-          ) : (
-            <>
-              <div class="viz-grid">
-                {cat.demos.map((demo) => <DemoCard demo={demo} />)}
+    <div class="demo-accordions" data-demo-accordions>
+      {
+        categories.map((cat) => {
+          const n = cat.demos.length;
+          const open = cat.id === defaultOpenId;
+          return (
+            <details class="demo-accordion" id={cat.id} data-category-id={cat.id} open={open || undefined}>
+              <summary class="demo-accordion-summary">
+                <span class="demo-accordion-title">{cat.title}</span>
+                <span class="demo-accordion-count">{demoCountLabel(n)}</span>
+              </summary>
+              <div class="demo-accordion-body">
+                <p class="demo-accordion-desc">{cat.description}</p>
+                {n === 0 ? (
+                  <p class="empty-slot">No demos in this domain yet — kept as a roadmap slot.</p>
+                ) : (
+                  <ol class="demo-timeline" data-demo-list>
+                    {cat.demos.map((demo) => {
+                      const activeDate = demoDate(demo, defaultMode);
+                      return (
+                        <li
+                          class="demo-timeline-item"
+                          data-demo-id={demo.id}
+                          data-released={demo.releasedAt}
+                          data-modified={demo.modifiedAt}
+                          data-title={demo.title}
+                        >
+                          <DemoCard
+                            demo={demo}
+                            dateMode={defaultMode}
+                            activeDate={activeDate}
+                            categoryTitle={cat.title}
+                          />
+                          {demo.related?.length ? (
+                            <p class="demo-related-inline">
+                              {demo.related.map((link, i) => (
+                                <span>
+                                  {i > 0 ? ' · ' : ''}
+                                  <a href={link.href}>{link.label}</a>
+                                </span>
+                              ))}
+                            </p>
+                          ) : null}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                )}
               </div>
-              {cat.demos.some((d) => d.related?.length) ? (
-                <ul class="demo-related">
-                  {cat.demos.map((demo) =>
-                    demo.related?.length ? (
-                      <li>
-                        <span>{demo.title}</span>
-                        {demo.related.map((link, i) => (
-                          <span>
-                            {i > 0 ? ' · ' : ''}
-                            <a href={link.href}>{link.label}</a>
-                          </span>
-                        ))}
-                      </li>
-                    ) : null,
-                  )}
-                </ul>
-              ) : null}
-            </>
-          )}
-        </section>
-      ))
-    }
+            </details>
+          );
+        })
+      }
+    </div>
   </main>
 </BaseLayout>
 
+<script>
+  const STORAGE_KEY = 'hci-demos-date-mode';
+
+  function readMode() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'released' || saved === 'modified') return saved;
+    } catch {}
+    return 'released';
+  }
+
+  function writeMode(mode) {
+    try {
+      localStorage.setItem(STORAGE_KEY, mode);
+    } catch {}
+  }
+
+  function formatDate(iso) {
+    const d = new Date(`${iso}T12:00:00Z`);
+    return d.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      timeZone: 'UTC',
+    });
+  }
+
+  function modeLabel(mode) {
+    return mode === 'released' ? 'Released' : 'Updated';
+  }
+
+  function categoryMaxDate(details, mode) {
+    const items = details.querySelectorAll('[data-demo-id]');
+    let max = '';
+    items.forEach((item) => {
+      const iso = item.getAttribute(mode === 'released' ? 'data-released' : 'data-modified') || '';
+      if (iso > max) max = iso;
+    });
+    return max;
+  }
+
+  function applyMode(mode) {
+    const root = document.querySelector('[data-date-mode-root]');
+    const wrap = document.querySelector('[data-demo-accordions]');
+    if (!root || !wrap) return;
+
+    root.querySelectorAll('[data-date-mode]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-date-mode') === mode ? 'true' : 'false');
+    });
+
+    const label = modeLabel(mode);
+
+    wrap.querySelectorAll('[data-demo-list]').forEach((list) => {
+      const items = Array.from(list.querySelectorAll(':scope > [data-demo-id]'));
+      items.sort((a, b) => {
+        const da = a.getAttribute(mode === 'released' ? 'data-released' : 'data-modified') || '';
+        const db = b.getAttribute(mode === 'released' ? 'data-released' : 'data-modified') || '';
+        if (db !== da) return db.localeCompare(da);
+        const ta = a.getAttribute('data-title') || '';
+        const tb = b.getAttribute('data-title') || '';
+        return ta.localeCompare(tb);
+      });
+      items.forEach((item) => list.appendChild(item));
+
+      items.forEach((item) => {
+        const iso = item.getAttribute(mode === 'released' ? 'data-released' : 'data-modified');
+        if (!iso) return;
+        const time = item.querySelector('.demo-meta time');
+        const modeEl = item.querySelector('.demo-meta-mode');
+        if (time) {
+          time.setAttribute('datetime', iso);
+          time.textContent = formatDate(iso);
+        }
+        if (modeEl) modeEl.textContent = label;
+      });
+    });
+
+    const panels = Array.from(wrap.querySelectorAll(':scope > details.demo-accordion'));
+    panels.sort((a, b) => {
+      const aEmpty = !a.querySelector('[data-demo-id]');
+      const bEmpty = !b.querySelector('[data-demo-id]');
+      if (aEmpty !== bEmpty) return aEmpty ? 1 : -1;
+      const da = categoryMaxDate(a, mode);
+      const db = categoryMaxDate(b, mode);
+      if (db !== da) return db.localeCompare(da);
+      const ta = a.querySelector('.demo-accordion-title')?.textContent || '';
+      const tb = b.querySelector('.demo-accordion-title')?.textContent || '';
+      return ta.localeCompare(tb);
+    });
+    panels.forEach((panel) => wrap.appendChild(panel));
+  }
+
+  const initial = readMode();
+  applyMode(initial);
+
+  document.querySelector('[data-date-mode-root]')?.addEventListener('click', (e) => {
+    const btn = e.target instanceof Element ? e.target.closest('[data-date-mode]') : null;
+    if (!btn) return;
+    const mode = btn.getAttribute('data-date-mode');
+    if (mode !== 'released' && mode !== 'modified') return;
+    writeMode(mode);
+    applyMode(mode);
+  });
+
+  // Deep-link: open the matching accordion when hash is a category id.
+  function openFromHash() {
+    const id = location.hash.replace(/^#/, '');
+    if (!id) return;
+    const panel = document.getElementById(id);
+    if (panel instanceof HTMLDetailsElement) {
+      panel.open = true;
+      panel.scrollIntoView({ block: 'start' });
+    }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+</script>
+
 <style>
-  .demo-toc {
-    margin: 0 0 0.5rem;
-    padding: 1rem 0 1.5rem;
+  .demos-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin: 0 0 0.25rem;
+    padding: 0.85rem 0 1.1rem;
     border-top: 1px solid var(--line);
   }
 
-  .demo-toc ol {
-    display: grid;
-    gap: 0.45rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .date-mode {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
   }
 
-  .demo-toc li {
+  .date-mode-label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--paper-muted);
+    margin-right: 0.15rem;
+  }
+
+  .date-mode-btn {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 650;
+    height: 2.2rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: transparent;
+    color: var(--paper);
+    cursor: pointer;
+  }
+
+  .date-mode-btn:hover {
+    background: color-mix(in srgb, var(--paper) 8%, transparent);
+  }
+
+  .date-mode-btn[aria-pressed='true'] {
+    border-color: color-mix(in srgb, var(--paper) 45%, var(--line));
+    background: color-mix(in srgb, var(--paper) 10%, transparent);
+  }
+
+  .date-mode-btn:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--focus) 60%, transparent);
+    outline-offset: 2px;
+  }
+
+  .demo-accordions {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .demo-accordion {
+    border-top: 1px solid var(--line);
+  }
+
+  .demo-accordion:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .demo-accordion-summary {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
+    padding: 0.95rem 0;
+    cursor: pointer;
+    list-style: none;
     font-family: var(--font-display);
-    font-weight: 600;
   }
 
-  .demo-toc a {
+  .demo-accordion-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .demo-accordion-summary::before {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-right: 0.55rem;
+    border-right: 1.5px solid var(--paper-muted);
+    border-bottom: 1.5px solid var(--paper-muted);
+    transform: rotate(-45deg);
+    flex-shrink: 0;
+    align-self: center;
+    transition: transform 0.15s ease;
+  }
+
+  .demo-accordion[open] > .demo-accordion-summary::before {
+    transform: rotate(45deg);
+    margin-top: -0.15rem;
+  }
+
+  .demo-accordion-title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 1.15rem;
     color: var(--paper);
-    text-decoration: none;
   }
 
-  .demo-toc a:hover {
+  .demo-accordion-count {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--paper-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .demo-accordion-summary:hover .demo-accordion-title {
     color: var(--focus);
   }
 
-  .demo-toc .count {
-    font-size: 0.85rem;
+  .demo-accordion-body {
+    padding: 0 0 1.25rem;
+  }
+
+  .demo-accordion-desc {
+    margin: 0 0 0.85rem;
+    max-width: 42rem;
     color: var(--paper-muted);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .demo-category.section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .demo-category h2 {
-    scroll-margin-top: 5rem;
-  }
-
-  .demo-related {
-    margin: 0.25rem 0 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 0.35rem;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--paper-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .empty-slot {
     margin: 0;
-    padding: 0.85rem 0;
-    border-top: 1px dashed var(--line);
+    padding: 0.65rem 0 0.25rem;
     color: var(--paper-muted);
     font-size: 0.95rem;
+  }
+
+  .demo-timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .demo-timeline-item {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .demo-timeline-item :global(.viz-card),
+  .demo-timeline-item :global(.demo-family) {
+    margin: 0;
+  }
+
+  .demo-related-inline {
+    margin: 0;
+    padding: 0 0.15rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--paper-muted);
   }
 </style>

@@ -1,0 +1,9 @@
+= Demos index taxonomy and timeline
+
+`/demos/` is reorganized around familiar UI domains and a dated accordion catalog.
+
+* Categories are industry topics (Navigation, Windowing & spatial UI, Settings & context, …), not the pattern names themselves. Theme slot retitled *Theming & visual contracts*.
+* Each catalog entry stores `releasedAt` and `modifiedAt` (ISO `YYYY-MM-DD`); backfilled from news, changelog, and git.
+* Index UI: Released | Updated toggle (`localStorage` `hci-demos-date-mode`) sorts demos and categories by the chosen date and shows that date on each card.
+* Categories render as native `<details>` accordions (multi-open; newest non-empty domain open by default; hash deep-links open the matching panel). Counts read as “3 demos” / “no demos yet” — bare TOC tallies removed.
+* Homepage domains map updated to the new ids.

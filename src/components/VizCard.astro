@@ -1,11 +1,18 @@
 ---
-import type { Demo } from '../lib/demos';
+import type { Demo, DemoDateMode } from '../lib/demos';
+import { dateModeLabel, formatDemoDate } from '../lib/demos';
 
 interface Props {
   demo: Demo;
+  dateMode?: DemoDateMode;
+  activeDate?: string;
+  categoryTitle?: string;
 }
 
-const { demo } = Astro.props;
+const { demo, dateMode, activeDate, categoryTitle } = Astro.props;
+const showMeta = Boolean(dateMode && activeDate);
+const modeText = dateMode ? dateModeLabel(dateMode) : '';
+const dateText = activeDate ? formatDemoDate(activeDate) : '';
 ---
 
 <a class="viz-card" href={demo.href}>
@@ -63,6 +70,15 @@ const { demo } = Astro.props;
       )
     }
   </span>
+  {
+    showMeta ? (
+      <p class="demo-meta">
+        <time datetime={activeDate}>{dateText}</time>
+        <span class="demo-meta-mode">{modeText}</span>
+        {categoryTitle ? <span class="demo-meta-cat">{categoryTitle}</span> : null}
+      </p>
+    ) : null
+  }
   <strong>{demo.title}</strong>
   <span>{demo.summary}</span>
 </a>

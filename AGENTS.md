@@ -17,7 +17,7 @@ Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/) · http
 
 - News: `src/content/news/` · RSS `/news/rss.xml` — outward / shared record
 - Blog: `src/content/blog/` · RSS `/blog/rss.xml` — inward / essays
-- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`). Cards use resting-lanczos WebP tiers (`public/demo-shots/`, `pnpm shots`). Context Edge is a **family** (Map / Modal / Path shots) — do not thumb only the desk or hub href. CSS `VizCard` is the fallback when tiers are missing.
+- Demos: `/demos/` via `src/lib/demos.ts` (in-site under `/demos/<slug>/`). Categories are **industry-familiar UI domains** (navigation, windowing, settings, …) — not the pattern names. Each demo requires `releasedAt` + `modifiedAt` (ISO `YYYY-MM-DD`). Index: accordion per domain; Released | Updated toggle sorts + shows that date (`localStorage` `hci-demos-date-mode`). Cards use resting-lanczos WebP tiers (`public/demo-shots/`, `pnpm shots`). Context Edge is a **family** (Map / Modal / Path shots) — do not thumb only the desk or hub href. CSS `VizCard` is the fallback when tiers are missing.
 - Docs hub: `https://hci-nerdz.github.io/docs/`
 - Deploy: Astro 5 → `dist/` via GitHub Pages Actions
 
