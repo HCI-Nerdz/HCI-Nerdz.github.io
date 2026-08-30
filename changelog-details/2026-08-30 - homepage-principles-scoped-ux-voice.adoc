@@ -1,0 +1,9 @@
+= Homepage principles from Scoped UX voice — changelog detail
+:description: Front-page principles shortlist rewritten in plain language from the Gemini scoped-UX thread.
+
+== Changed
+
+* Replaced “Human intuition over backwards convention” with **UIs that promote good habits** and a plain sub-line about fixing backwards conventions.
+* Replaced “Many small tools under one roof” jargon with **Scoped UX** (narrow tools under one roof for a shared workflow).
+* Added **Discoverability** and **Transferable knowledge** as first-class principles.
+* Kept Search, don't sort and Respect user attention.

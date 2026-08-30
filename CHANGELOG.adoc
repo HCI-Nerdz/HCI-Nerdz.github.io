@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Homepage principles from Scoped UX voice
+
+* Principles shortlist: Discoverability; UIs that promote good habits; Search, don't sort; Respect user attention; Scoped UX; Transferable knowledge — modeled on the original Gemini scoped-UX prompts.
+* link:changelog-details/2026-08-30%20-%20homepage-principles-scoped-ux-voice.adoc[Details]
+
 == 2026-08-30 — Respect user attention principle
 
 * Homepage principle retitled from “Attention is not inventory” to Respect user attention.
