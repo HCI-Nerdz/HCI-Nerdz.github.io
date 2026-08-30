@@ -1,0 +1,4 @@
+= 2026-08-30 - House editorial pointer
+
+* Thinned `STYLE.adoc` to a pointer at `dev-centr/agent-rules` `agents/editorial/titles.md`.
+* `AGENTS.md` editorial section no longer duplicates title shapes or legacy `MEMORIES.md`; content map kept.

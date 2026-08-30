@@ -1,16 +1,17 @@
 # Agent notes — HCI-Nerdz.github.io
 
-## Editorial titles
+## House rules (do not fork here)
 
-Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/).
+Editorial titles and channel voice live in **`dev-centr/agent-rules`**:
 
-- **News faces outward** (what entered the record); **blog faces inward** (ideas, ideals, philosophy, craft tutorials, thinking in public). Stance essay: https://ryanjohnson.dev/blog/posts/blog-as-inner-thought/
-- First-party news omits the org — `Instruction flows added to the repertoire`, not `HCI Nerdz adds…`.
-- Essay action: implied **[On]**; drop surplus *the* — `Navigating by content`.
-- Prefer *as* / process / *a X* / *when* / disproof over rigid `X is Y`.
-- Attach floating modifiers to an object.
-- Antora topics: concept names.
-- Machine/env facts: `$CODE_ROOT/MEMORIES.md` only — do not recreate per-repo `MEMORIES.md`.
+- `$AGENT_RULES_PATH/agents/editorial/titles.md` — cold-reader gate; no forced `When …`
+- Skills `writing-news` / `writing-blog`
+- Org overlay: `HCI-Nerdz/agent-rules` (pointer only)
+
+`STYLE.adoc` in this repo is a **human-facing pointer**, not agent doctrine.
+Workstation facts: `$CODE_ROOT/machine.md` + `$CODE_ROOT/harness.md` — never commit; never invent a per-repo copy (legacy name `MEMORIES.md` is abandoned).
+
+Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/) · https://ryanjohnson.dev/blog/posts/blog-as-inner-thought/
 
 ## Content map
 
@@ -31,7 +32,7 @@ Follow **STYLE.adoc**. Philosophy: [/blog/titles-as-orientation/](/blog/titles-a
 - Context-bound settings: essay `/blog/when-settings-live-across-town/`; docs `context-bound-settings`; demo `/demos/context-bound-settings/`
 - Config field vocabulary: essay `/blog/when-config-files-withhold-the-vocabulary/` (companion to UniConfig Config Panel)
 - Context Edge: essay `/blog/when-platforms-overload-the-entrypoint/`; docs `context-edge`; demo `/demos/context-edge/`; MVP `https://hci-nerdz.github.io/context-edge/`
-- Labels versus wires: symptom essay `/blog/when-renaming-a-page-breaks-half-your-docs/` + demo `/demos/navigating-by-content/`; diagnosis essay `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content` (concept title Labels versus wires); Mermaid via `MermaidBoot`. Symptom ↔ diagnosis/treatment dialectic — see STYLE. **Systems umbrella:** Internet Reliability @ DevCentr (not this site). Instruction-flows keeps *Navigating by content*.
+- Labels versus wires: symptom essay `/blog/when-renaming-a-page-breaks-half-your-docs/` + demo `/demos/navigating-by-content/`; diagnosis essay `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content` (concept title Labels versus wires); Mermaid via `MermaidBoot`. Pair symptom ↔ diagnosis surfaces when useful — titles still obey house cold-reader gate. **Systems umbrella:** Internet Reliability @ DevCentr (not this site). Instruction-flows keeps *Navigating by content*.
 - Spatial web windows: essay `/blog/when-the-browser-flattens-working-memory/`; docs `spatial-web-windows`; demo `/demos/spatial-web-windows/`; fork `Desktop-Tooling/spatial-browser`
 - Grounded tokens: essay `/blog/making-model-assumptions-transparent/` (legacy slug redirects); docs `grounded-tokens`; demo `/demos/grounded-tokens/`; literature `HCI-Nerdz/docs` `literature/grounded-tokens/`
 - Homepage domains map orients HCI lanes (including naming & reference); keep out of the hero
