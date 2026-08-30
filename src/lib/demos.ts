@@ -362,6 +362,43 @@ export const demoCategories: DemoCategory[] = [
           },
         ],
       },
+      {
+        id: "virtual-pages",
+        title: "Virtual pages",
+        summary:
+          "Decision backbone for deep subtrees: parent steps as edge layers or a top-bar preview stack. Soft SPA routes and hard document loads share one chrome — mega-directory content without mega-page scanning.",
+        viz: "rails",
+        href: "https://hci-nerdz.github.io/virtual-pages/",
+        shots: [
+          {
+            id: "virtual-pages",
+            label: "Virtual pages desk",
+            href: "https://hci-nerdz.github.io/virtual-pages/",
+          },
+        ],
+        related: [
+          {
+            label: "Edge layers",
+            href: "https://hci-nerdz.github.io/virtual-pages/#/edge",
+          },
+          {
+            label: "Preview stack",
+            href: "https://hci-nerdz.github.io/virtual-pages/#/preview",
+          },
+          {
+            label: "Flat contrast",
+            href: "https://hci-nerdz.github.io/virtual-pages/#/contrast",
+          },
+          {
+            label: "Browser notes",
+            href: "https://github.com/HCI-Nerdz/virtual-pages/blob/main/docs/browser-vpages.adoc",
+          },
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/virtual-pages",
+          },
+        ],
+      },
     ],
   },
   {
