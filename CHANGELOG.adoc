@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Partner footer single entry points
+
+* Footers and Partners: one homepage (or GitHub-only) link per org; no stacked docs/GitHub beside homepage.
+* link:changelog-details/2026-08-30%20-%20partner-footer-entrypoints.adoc[Details]
+
 == 2026-08-30 -- Context Edge entry copy for cold readers
 
 * Desk, catalog, and essay openers ramp from stuffed suite headers before naming rails / wireframe map.

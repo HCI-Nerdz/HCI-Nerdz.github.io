@@ -1,0 +1,5 @@
+= Partner footer single entry points — changelog detail
+:description: Collapse org chrome to one homepage link per partner.
+
+* Partner / related footers and homepage partner rows use one entry point per org (homepage preferred).
+* Dropped stacked docs hubs and GitHub org links beside those homepages.

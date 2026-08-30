@@ -772,7 +772,7 @@ html[data-theme="dark"] .hero-eye {
   color: var(--paper-muted);
 }
 
-.fight-copy {
+.principles-copy {
   display: grid;
   gap: 0.9rem;
   margin: 0 0 1.5rem;
@@ -782,7 +782,7 @@ html[data-theme="dark"] .hero-eye {
   line-height: 1.55;
 }
 
-.fight-copy p {
+.principles-copy p {
   margin: 0;
 }
 
