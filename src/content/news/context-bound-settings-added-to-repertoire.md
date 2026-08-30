@@ -10,6 +10,6 @@ Context-bound settings entered the repertoire: configuration as a **dependent pr
 
 When the main surface is on a selected user, the settings pane shows user controls. When it moves to editing a group, the same pane rebinds. The global catalog stays; the default altitude changes.
 
-- **Essay** — [When settings live across town](/blog/when-settings-live-across-town/)
+- **Essay** — [Making settings follow the activity](/blog/making-settings-follow-the-activity/)
 - **Docs** — [Context-bound settings](https://hci-nerdz.github.io/docs/hci-nerdz/context-bound-settings.html)
 - **Demo** — [Context-bound settings desk](/demos/context-bound-settings/)

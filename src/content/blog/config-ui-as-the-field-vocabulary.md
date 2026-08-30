@@ -1,10 +1,12 @@
 ---
-title: "When config files withhold the vocabulary"
-description: "A settings UI is not chrome on a text file. It is the shared list of legal fields — including the ones the author never wrote. Generic config panels exist in fragments; the missing product treats schema minus instance as the default altitude."
+title: "Config UI as the field vocabulary"
+description: "A settings UI is not chrome on a text file. It is the shared list of legal fields — including the ones the author never wrote."
 pubDate: 2026-08-17
 draft: false
 tags: ["settings", "config", "schema", "field-discovery", "product-representation", "dconf"]
 ---
+
+A config file shows what was saved. A **config UI should show the vocabulary** — every legal field, including ones never written to disk yet.
 
 Ada opens `terraform.tfvars`. Two keys: `region` and `environment`. The rest of the module's inputs — the ones reused across every stack she has ever copied — live in `variables.tf`, in the provider schema, in last quarter's example that someone deleted. The file reflects what she saved. It is silent about what she is *allowed* to save.
 
@@ -14,7 +16,7 @@ That silence is not a personality trait of Terraform. It is the natural state of
 
 ## Settings as a shared field list
 
-[When settings live across town](/blog/when-settings-live-across-town/) is about *where* a settings surface sits relative to work. This is the cousin problem: *what the surface is allowed to name* when the artifact is a file some other team authored.
+[Making settings follow the activity](/blog/making-settings-follow-the-activity/) is about *where* a settings surface sits relative to work. This is the cousin problem: *what the surface is allowed to name* when the artifact is a file some other team authored.
 
 GNOME already answers it for apps that opt in. Ship a `.gschema.xml`; `dconf-editor` renders keys the application never wrote to disk. KDE's KConfigXT is the same contract in XML. Windows ADMX templates generate Policy UI from a catalog. Developers get SchemaStore plus hover text inside the editor — discovery as autocomplete, not as a Control Panel.
 

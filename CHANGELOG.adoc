@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Cold-reader essay retitles
+
+* Seven opaque `When…` essays retitled to claim/job titles; 301 from old slugs.
+* link:changelog-details/2026-08-30%20-%20cold-reader-essay-retitles.adoc[Details]
+
 == 2026-08-30 — AGENTS / STYLE point at house titles
 
 * `AGENTS.md` and `STYLE.adoc` stop carrying a forked title bible / `MEMORIES.md` line; house `agents/editorial/titles.md` is canonical.

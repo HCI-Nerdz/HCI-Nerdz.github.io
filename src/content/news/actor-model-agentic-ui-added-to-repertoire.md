@@ -10,7 +10,7 @@ Actor-model agentic UI entered the repertoire: agent chat is a **graph of nodes 
 
 Each node is an actor (`discussion`, `task`, `coordinator`, …) with spawn lineage, mailbox summaries, and a task-grid view for parallel repo work. Chat drift spawns child nodes; parent and child record each other's address before accepting traffic.
 
-- **Essay** — [When chat should spawn a node](/blog/when-chat-should-spawn-a-node/)
+- **Essay** — [Persisting agent work as a node graph](/blog/persisting-agent-work-as-a-node-graph/)
 - **Docs** — [Actor-model agentic UI](https://hci-nerdz.github.io/docs/hci-nerdz/actor-model-agentic-ui.html)
 - **Demo** — [Actor-model agentic UI desk](/demos/actor-model-agentic-ui/)
 - **Harness** — [DevCentr — Actor-model agentic UI](https://docs.devcentr.org/agent-rules/actor-model-agentic-ui.html)

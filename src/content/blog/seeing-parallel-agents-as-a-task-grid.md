@@ -1,10 +1,12 @@
 ---
-title: "When parallel agents still read as one thread"
-description: "Project inbox — a task grid with status lights and cosmetic fork chats — so twelve concurrent repo jobs do not serialize into one scrollable wall of repeated headers and Done cards."
+title: "Seeing parallel agents as a task grid"
+description: "Twelve concurrent repo jobs should not serialize into one scroll. A task grid with status lights and fork chats shows parallel work as parallel."
 pubDate: 2026-08-28
 draft: false
 tags: ["ai-assistants", "project-inbox", "attention", "scoped-ux", "actor-model", "cursor"]
 ---
+
+When many agent jobs run at once, a single chat scroll lies about the work. You need a **task grid** — status per job, click into a fork — so parallel work looks parallel.
 
 You connect every org to Cursor. The bot reports **9 of 12 running**, blocked on `openshellorg/prohelp#1`, `libmir/asdf#30`, and `atilaneves/unit-thr…`. Then it reports **9 of 12 running** again. And again. A Done card for **Merge docs#3 onto main** slides past. Then the same Done card. Somewhere above that, a paragraph about Bitwarden permissions you already read twice.
 
@@ -73,3 +75,4 @@ We are biased toward hierarchical coordinator + inbox first; the storage model a
 - **Docs** — [Project inbox](https://hci-nerdz.github.io/docs/hci-nerdz/project-inbox.html)
 - **Harness** — [DevCentr project inbox](https://docs.devcentr.org/agent-rules/project-inbox.html)
 - **News** — [Project inbox added to the repertoire](/news/project-inbox-added-to-repertoire/)
+- **Related** — [Persisting agent work as a node graph](/blog/persisting-agent-work-as-a-node-graph/)

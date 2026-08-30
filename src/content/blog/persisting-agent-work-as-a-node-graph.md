@@ -1,10 +1,12 @@
 ---
-title: "When chat should spawn a node"
-description: "Actor-model agentic UI — chats drift, parallel jobs branch, and linear threads lie about all of it. Persist a node graph on disk; spawn children when topic forks; parent and child record each other's address."
+title: "Persisting agent work as a node graph"
+description: "Linear chat lies about parallel agent work. Persist a node graph on disk; spawn children when topic forks; parent and child record each other's address."
 pubDate: 2026-08-28
 draft: false
 tags: ["ai-assistants", "actor-model", "agentic-ui", "nodes", "attention", "cursor"]
 ---
+
+Agent harnesses run many jobs at once, but the product still looks like one scrolling chat. When topics drift, the right move is to **persist a node graph** — spawn a child context on disk — not to pretend every line still belongs to one thread.
 
 You connect every org to Cursor. The bot reports **9 of 12 running** — then reports it again. And again. A Done card for **Merge docs#3** slides past, duplicated. A paragraph about Bitwarden permissions you already read twice sits between two unrelated repo updates.
 
@@ -77,4 +79,4 @@ Use both.
 - **Demo** — [Actor-model agentic UI desk](/demos/actor-model-agentic-ui/)
 - **Docs** — [Actor-model agentic UI](https://hci-nerdz.github.io/docs/hci-nerdz/actor-model-agentic-ui.html)
 - **Harness** — [DevCentr — Actor-model agentic UI](https://docs.devcentr.org/agent-rules/actor-model-agentic-ui.html)
-- **Prior essay** — [When parallel agents still read as one thread](/blog/when-parallel-agents-still-read-as-one-thread/) (grid symptom; this essay names the graph)
+- **Prior essay** — [Seeing parallel agents as a task grid](/blog/seeing-parallel-agents-as-a-task-grid/) (grid symptom; this essay names the graph)

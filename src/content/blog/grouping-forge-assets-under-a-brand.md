@@ -1,10 +1,12 @@
 ---
-title: "When forges lack super-orgs"
-description: "GitHub called them Projects, but humans needed a word for grouping assets under a brand. The missing hierarchy between company, product family, and repository is a schema failure with UX teeth."
+title: "Grouping forge assets under a brand"
+description: "Humans nest brand → product family → repository. Forges flatten that into org → repo and spend “Projects” on boards instead. The missing middle layer is a schema failure with UX teeth."
 pubDate: 2026-08-09
 draft: false
 tags: ["schema", "github", "information-architecture", "product-representation"]
 ---
+
+People group work as **brand → product family → repository**. Forges usually give you only org → repo — and spend the word “Projects” on boards. The missing middle layer is why assets scatter under the wrong roofs.
 
 Platforms keep forcing a flat story onto a nested world.
 

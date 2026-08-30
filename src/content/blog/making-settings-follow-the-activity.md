@@ -1,10 +1,12 @@
 ---
-title: "When settings live across town"
-description: "Settings that leave the here-and-now force users to rebuild mental context from scratch. Context-bound settings treat configuration as a dependent process that follows the activity UI — not a storage room behind other businesses."
+title: "Making settings follow the activity"
+description: "Settings far from the work force you to rebuild context. Context-bound settings show only what applies to the current activity — beside it, not across town."
 pubDate: 2026-08-10
 draft: false
 tags: ["settings", "context", "product-representation", "progressive-disclosure", "adaptive-ui", "admin-console"]
 ---
+
+Settings that live far from the thing you are changing force you to rebuild context from scratch. **Make settings follow the activity**: a dependent pane that shows only what applies right now.
 
 One of the biggest problems with apps — and web apps in particular — is that you cannot tell what a setting will *do*, because the settings surface has to recreate the mental context you already held while working. That tax is at its worst in systems like Google Admin Console and cloud consoles: deep trees, walls of toggles, and a long walk back to the thing you were actually changing.
 

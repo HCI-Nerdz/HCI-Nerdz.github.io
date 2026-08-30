@@ -1,10 +1,12 @@
 ---
-title: "When platforms overload the entrypoint"
-description: "Cloud consoles and suite apps keep stuffing new platforms into the entrypoint header. Context Edge puts ecosystem nav at the edges — streets under skyscrapers — with stable color overlays so you know which world you are in."
+title: "Ecosystem nav at the screen edge"
+description: "Suite apps stuff new platforms into the header until context is unclear. Context Edge puts ecosystem navigation on the screen edges — thin rails, wireframe maps, stable color overlays."
 pubDate: 2026-08-10
 draft: false
 tags: ["navigation", "context", "ecosystem", "progressive-disclosure", "desktop", "product-representation"]
 ---
+
+Suite products keep stuffing new platforms into one header until you cannot tell which world you are in. Put **ecosystem navigation on the screen edges** instead — Context Edge: thin rails, a wireframe map, stable overlays.
 
 Google's cloud console — and a lot of other suite apps — follow a design philosophy of embedding new platforms inside the entrypoint platform without properly separating the interface design language. The new surface *overloads* the old one. Controls no longer make clear which platform is providing the current context.
 
@@ -83,4 +85,4 @@ The pattern shines where shell state can sit next to routed content — **Solid 
 - **Demo** — [Context Edge desk](/demos/context-edge/)
 - **MVP** — [Multi-framework Astro islands](https://hci-nerdz.github.io/context-edge/) · [repo](https://github.com/HCI-Nerdz/context-edge)
 - **Path Edge** — [breadcrumb colors](https://hci-nerdz.github.io/context-edge/demos/path-edge/)
-- **Sibling** — [When settings live across town](/blog/when-settings-live-across-town/) (bind settings to activity; rails bind *platforms* to the shell)
+- **Sibling** — [Making settings follow the activity](/blog/making-settings-follow-the-activity/) (bind settings to activity; rails bind *platforms* to the shell)

@@ -1,10 +1,12 @@
 ---
-title: "When the name is not the wire"
-description: "NDN, content-addressing, and CONSUMERS.md solve different bounds of the same human want: stop treating pretty names as system identity."
+title: "Labels versus wires"
+description: "Stop treating pretty names as system identity. NDN, content-addressing, and CONSUMERS.md attack different bounds of the same want."
 pubDate: 2026-08-11
 draft: false
 tags: ["architecture", "ndn", "cas", "devx", "labels-versus-wires", "connectome-fs"]
 ---
+
+Pretty names are for people. Systems that treat those names as identity break when a rename ripples through dependents. This essay is the **diagnosis**: **labels versus wires**.
 
 The web taught us a bad habit: treat the human-readable path as the thing itself.
 Rename the path, and every dependent that baked the string becomes a broken promise.

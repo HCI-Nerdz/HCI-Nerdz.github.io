@@ -29,10 +29,10 @@ Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/) · http
 - Pass-through extensions: demo `/demos/pass-through-extensions/`; Windows helper `HCI-Nerdz/pass-through-extensions`
 - Open-with interrupt: essay `/blog/when-double-click-skips-the-choice/`; docs `open-with-interrupt` (implementation recipes)
 - Visitor-first repo homepage: essay `/blog/when-the-file-tree-owns-the-first-viewport/`; docs `visitor-first-repo-homepage`; upstream https://github.com/orgs/community/discussions/204347
-- Context-bound settings: essay `/blog/when-settings-live-across-town/`; docs `context-bound-settings`; demo `/demos/context-bound-settings/`
-- Config field vocabulary: essay `/blog/when-config-files-withhold-the-vocabulary/` (companion to UniConfig Config Panel)
-- Context Edge: essay `/blog/when-platforms-overload-the-entrypoint/`; docs `context-edge`; demo `/demos/context-edge/`; MVP `https://hci-nerdz.github.io/context-edge/`
-- Labels versus wires: symptom essay `/blog/when-renaming-a-page-breaks-half-your-docs/` + demo `/demos/navigating-by-content/`; diagnosis essay `/blog/when-the-name-is-not-the-wire/`; docs `navigating-by-content` (concept title Labels versus wires); Mermaid via `MermaidBoot`. Pair symptom ↔ diagnosis surfaces when useful — titles still obey house cold-reader gate. **Systems umbrella:** Internet Reliability @ DevCentr (not this site). Instruction-flows keeps *Navigating by content*.
+- Context-bound settings: essay `/blog/making-settings-follow-the-activity/`; docs `context-bound-settings`; demo `/demos/context-bound-settings/`
+- Config field vocabulary: essay `/blog/config-ui-as-the-field-vocabulary/` (companion to UniConfig Config Panel)
+- Context Edge: essay `/blog/ecosystem-nav-at-the-screen-edge/`; docs `context-edge`; demo `/demos/context-edge/`; MVP `https://hci-nerdz.github.io/context-edge/`
+- Labels versus wires: symptom essay `/blog/when-renaming-a-page-breaks-half-your-docs/` + demo `/demos/navigating-by-content/`; diagnosis essay `/blog/labels-versus-wires/`; docs `navigating-by-content` (concept title Labels versus wires); Mermaid via `MermaidBoot`. Pair symptom ↔ diagnosis surfaces when useful — titles still obey house cold-reader gate. **Systems umbrella:** Internet Reliability @ DevCentr (not this site). Instruction-flows keeps *Navigating by content*.
 - Spatial web windows: essay `/blog/when-the-browser-flattens-working-memory/`; docs `spatial-web-windows`; demo `/demos/spatial-web-windows/`; fork `Desktop-Tooling/spatial-browser`
 - Grounded tokens: essay `/blog/making-model-assumptions-transparent/` (legacy slug redirects); docs `grounded-tokens`; demo `/demos/grounded-tokens/`; literature `HCI-Nerdz/docs` `literature/grounded-tokens/`
 - Homepage domains map orients HCI lanes (including naming & reference); keep out of the hero

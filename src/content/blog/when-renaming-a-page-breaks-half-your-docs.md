@@ -47,7 +47,7 @@ More attention on the change you meant to make.
 | Face | Where |
 | --- | --- |
 | Symptom (this piece) | The gut check |
-| Diagnosis | [When the name is not the wire](/blog/when-the-name-is-not-the-wire/) |
+| Diagnosis | [Labels versus wires](/blog/labels-versus-wires/) |
 | Diagnosis + treatment | Docs: [Labels versus wires](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) |
 | Symptom demo | [Rename simulation](/demos/navigating-by-content/) |
 

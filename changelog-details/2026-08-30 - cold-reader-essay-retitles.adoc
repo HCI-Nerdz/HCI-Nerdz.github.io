@@ -1,0 +1,13 @@
+= 2026-08-30 - Cold-reader essay retitles
+
+Retitled opaque situation essays so title + lede name the topic for a stranger:
+
+* `persisting-agent-work-as-a-node-graph` (was when-chat-should-spawn-a-node)
+* `seeing-parallel-agents-as-a-task-grid` (was when-parallel-agents-still-read-as-one-thread; also 301 from when-parallel-agents-fill-one-chat)
+* `ecosystem-nav-at-the-screen-edge` (was when-platforms-overload-the-entrypoint)
+* `making-settings-follow-the-activity` (was when-settings-live-across-town)
+* `config-ui-as-the-field-vocabulary` (was when-config-files-withhold-the-vocabulary)
+* `labels-versus-wires` (was when-the-name-is-not-the-wire)
+* `grouping-forge-assets-under-a-brand` (was when-forges-lack-super-orgs)
+
+Cross-links updated in demos catalog, news cards, AGENTS content map, and docs topics.

@@ -10,7 +10,7 @@ Project inbox entered the repertoire: subagent work gets a glanceable task grid 
 
 Each cell carries a status light, summary, and click-through fork chat. Chapters freeze layout when coherence breaks. Dev-Centr's agent harness documents `PROJECT_INBOX` as the second cross-org UX contract after grounded tokens.
 
-- **Essay** — [When parallel agents fill one chat](/blog/when-parallel-agents-fill-one-chat/)
+- **Essay** — [Seeing parallel agents as a task grid](/blog/seeing-parallel-agents-as-a-task-grid/)
 - **Docs** — [Project inbox](https://hci-nerdz.github.io/docs/hci-nerdz/project-inbox.html)
 - **Demo** — [Project inbox desk](/demos/project-inbox/)
 - **Harness** — [DevCentr agent harness — Project inbox](https://docs.devcentr.org/agent-rules/agent-harness.html#project-inbox)

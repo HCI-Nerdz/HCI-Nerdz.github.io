@@ -346,7 +346,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Essay",
-            href: "/blog/when-platforms-overload-the-entrypoint/",
+            href: "/blog/ecosystem-nav-at-the-screen-edge/",
           },
           {
             label: "Docs",
@@ -424,7 +424,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Essay",
-            href: "/blog/when-chat-should-spawn-a-node/",
+            href: "/blog/persisting-agent-work-as-a-node-graph/",
           },
           {
             label: "Docs",
@@ -521,7 +521,7 @@ export const demoCategories: DemoCategory[] = [
           },
           {
             label: "Diagnosis essay",
-            href: "/blog/when-the-name-is-not-the-wire/",
+            href: "/blog/labels-versus-wires/",
           },
           {
             label: "Treatment docs",
@@ -554,7 +554,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Essay",
-            href: "/blog/when-settings-live-across-town/",
+            href: "/blog/making-settings-follow-the-activity/",
           },
           {
             label: "Docs",
