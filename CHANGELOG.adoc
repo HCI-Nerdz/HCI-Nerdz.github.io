@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Inline partner footer flex
+
+* Partner footer is a wrapping flex row: bold name, description, · between items (no columns).
+* link:changelog-details/2026-08-30%20-%20inline-partner-footer-flex.adoc[Details]
+
 == 2026-08-30 — Compact partner footer columns
 
 * Partner footer uses multi-column layout with name · title on one line.

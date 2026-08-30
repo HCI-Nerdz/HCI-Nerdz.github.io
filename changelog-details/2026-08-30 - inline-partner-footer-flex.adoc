@@ -1,0 +1,7 @@
+= Inline partner footer flex — changelog detail
+:description: Partner list flows as bold name + description, separated by dots.
+
+== Changed
+
+* Dropped multi-column grid; `.footer-partners` is `display: flex; flex-wrap: wrap`.
+* Each item reads **Name** description, with `·` between items via `li + li::before`.
