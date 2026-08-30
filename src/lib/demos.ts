@@ -132,15 +132,15 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Edge layers",
-            href: "https://hci-nerdz.github.io/virtual-pages/#/edge",
+            href: "https://hci-nerdz.github.io/virtual-pages/edge/",
           },
           {
             label: "Preview stack",
-            href: "https://hci-nerdz.github.io/virtual-pages/#/preview",
+            href: "https://hci-nerdz.github.io/virtual-pages/preview/",
           },
           {
             label: "Flat contrast",
-            href: "https://hci-nerdz.github.io/virtual-pages/#/contrast",
+            href: "https://hci-nerdz.github.io/virtual-pages/contrast/",
           },
           {
             label: "Browser notes",

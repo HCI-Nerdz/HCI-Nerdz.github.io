@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Virtual-pages variant page URLs
+
+* Catalog related links for Virtual pages point at `/edge/`, `/preview/`, `/contrast/` (no longer hash routes).
+
 == 2026-08-30 — Detecting AI lies + spatial desk publish
 
 * Catalog/demo title: Grounded tokens → Detecting AI lies (slug unchanged).
