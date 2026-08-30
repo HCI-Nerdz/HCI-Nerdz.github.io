@@ -1,0 +1,7 @@
+= Drop homepage Partners section — changelog detail
+:description: Homepage stops duplicating the partner list already in the footer.
+
+== Changed
+
+* Removed the Partners section from `src/pages/index.astro`.
+* Partner organizations remain in the shared site footer (`BaseLayout.astro`).
