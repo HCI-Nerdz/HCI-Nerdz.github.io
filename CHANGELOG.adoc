@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Compact partner footer columns
+
+* Partner footer uses multi-column layout with name · title on one line.
+* link:changelog-details/2026-08-30%20-%20compact-partner-footer-columns.adoc[Details]
+
 == 2026-08-30 — Demos index sort chrome
 
 * Sort by Release Date | Updated; accordions closed by default; related links inside cards; solo thumbs capped to one family-column width.

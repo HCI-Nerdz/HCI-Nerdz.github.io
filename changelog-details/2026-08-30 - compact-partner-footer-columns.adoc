@@ -1,0 +1,7 @@
+= Compact partner footer columns — changelog detail
+:description: Partner footer packs name and title into multi-column rows.
+
+== Changed
+
+* `.footer-partners` uses `auto-fit` columns; each row is `Name · title` inline instead of stacked.
+* Same layout applied on the Astro site footer and docs Valentus footer.
