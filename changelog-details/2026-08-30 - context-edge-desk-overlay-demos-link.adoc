@@ -1,0 +1,8 @@
+= Context Edge desk overlay + demos link — changelog detail
+:description: Fix nav overlay close, CTA contrast, and homepage demos category link placement.
+
+== Changed
+
+* Homepage Demos section: “All demos by category” moved immediately under the description.
+* Context Edge desk overlay: `.nav-overlay[hidden] { display: none !important }` so Close and platform picks dismiss the map (class `display: grid` was overriding `[hidden]`).
+* CTA text color light on honesty teal for light-mode contrast; label “Full package demos”; intro says the desk is the live pattern on this page.

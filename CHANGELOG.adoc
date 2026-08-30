@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-08-30 — Context Edge desk overlay + demos link
+
+* Homepage Demos: category link sits under the lede, before the card grid.
+* Context Edge desk: Close/map `[hidden]` no longer fights `display: grid`; CTA uses light text on honesty; copy clarifies desk vs full package.
+* link:changelog-details/2026-08-30%20-%20context-edge-desk-overlay-demos-link.adoc[Details]
+
 == 2026-08-30 — Homepage principles from Scoped UX voice
 
 * Principles shortlist: Discoverability; UIs that promote good habits; Search, don't sort; Respect user attention; Scoped UX; Transferable knowledge — modeled on the original Gemini scoped-UX prompts.

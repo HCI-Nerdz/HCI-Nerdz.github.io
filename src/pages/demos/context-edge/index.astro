@@ -43,11 +43,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <p class="lede">
         <strong>Context Edge</strong> moves that travel off the header. Thin rails on the top and
         left of the shell stay almost invisible until you need them; hover expands them, click opens
-        a wireframe map of the platforms you can enter. Use the toggle below to put the old tab strip
-        back on the roof and feel the difference on this desk.
+        a wireframe map of the platforms you can enter. The desk below is that pattern live on this
+        page — use the toggle to put the old tab strip back on the roof and feel the difference.
       </p>
       <p class="cta-row">
-        <a class="cta-primary" href="https://hci-nerdz.github.io/context-edge/">Open demos</a>
+        <a class="cta-primary" href="https://hci-nerdz.github.io/context-edge/">Full package demos</a>
       </p>
       <p class="related-links">
         <a href="/blog/ecosystem-nav-at-the-screen-edge/">Essay</a>
@@ -211,7 +211,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     padding: 0.65rem 1.15rem;
     border-radius: 0.35rem;
     background: var(--honesty, #3d9b8f);
-    color: #041012;
+    color: #f4f1e8;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1rem;
@@ -497,6 +497,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     backdrop-filter: blur(4px);
   }
 
+  .nav-overlay[hidden] {
+    display: none !important;
+  }
+
   .nav-panel {
     width: min(36rem, 100%);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -750,19 +754,23 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       b.classList.toggle('is-current', p.id === activeId);
       b.innerHTML = `<strong>${p.label}</strong><small>${p.role}</small>`;
       b.addEventListener('click', () => {
-        applyPlatform(p.id);
         setNav(false);
+        applyPlatform(p.id);
       });
       wire.appendChild(b);
     }
   }
 
   function setNav(open: boolean) {
-    if (overloadMode.checked) return;
+    if (open && overloadMode.checked) return;
     navOpen = open;
     navOverlay.hidden = !open;
     const p = active();
-    status.textContent = open ? `Map open · ${p.label}` : `Rails idle · ${p.label}`;
+    status.textContent = open
+      ? `Map open · ${p.label}`
+      : overloadMode.checked
+        ? `Header overloaded · ${p.label}`
+        : `Rails idle · ${p.label}`;
     if (open) navClose.focus();
   }
 
