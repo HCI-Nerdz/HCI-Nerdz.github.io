@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Drop “Surfaces tell the truth” principle
+
+* Removed that homepage bullet; remaining principles list starts at intuition over convention.
+
 == 2026-08-30 — Drop rhetorical bug line from homepage
 
 * Removed the “bug is often discoverability…” lede above the principles list.
