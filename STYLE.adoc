@@ -3,7 +3,7 @@
 
 **Pointer only.** Agents and authors follow the house module in `dev-centr/agent-rules`:
 
-* link:https://github.com/dev-centr/agent-rules/blob/main/agents/editorial/titles.md[`agents/editorial/titles.md`] — cold-reader gate; no forced `When …` titles
+* link:https://github.com/dev-centr/agent-rules/blob/main/agents/editorial/titles.md[`agents/editorial/titles.md`] — cold-reader gate
 * Skills `writing-news` / `writing-blog` for channel bodies
 * Philosophy: link:https://hci-nerdz.github.io/blog/titles-as-orientation/[Titles as orientation]
   (and link:https://ryanjohnson.dev/blog/posts/titles-as-orientation/[ryanjohnson.dev])

@@ -4,7 +4,7 @@
 
 Editorial titles and channel voice live in **`dev-centr/agent-rules`**:
 
-- `$AGENT_RULES_PATH/agents/editorial/titles.md` — cold-reader gate; no forced `When …`
+- `$AGENT_RULES_PATH/agents/editorial/titles.md` — cold-reader gate
 - Skills `writing-news` / `writing-blog`
 - Org overlay: `HCI-Nerdz/agent-rules` (pointer only)
 
