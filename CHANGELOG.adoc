@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Drop rhetorical bug line from homepage
+
+* Removed the “bug is often discoverability…” lede above the principles list.
+
 == 2026-08-30 — Drop homepage Partners section
 
 * Partners live in the site footer only; homepage no longer repeats the list.
