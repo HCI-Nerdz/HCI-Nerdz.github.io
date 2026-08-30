@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Context Edge rename
+
+* Catalog, desk, essay links, and image paths use Context Edge (`context-edge`); MVP / repo URLs follow `HCI-Nerdz/context-edge`
+
 == 2026-08-29 — Actor-model harness canvas
 
 * Demo `/demos/actor-model-agentic-ui/`: Canvas variant — conversation preview thumbs, email-like PM statuses, drag rearrange, archive with position restore, title-history index; Grid variant retained.

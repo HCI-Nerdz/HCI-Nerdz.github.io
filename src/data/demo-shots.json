@@ -35,21 +35,21 @@
     {
       "id": "edge-bar-map",
       "label": "Map Edge",
-      "url": "https://hci-nerdz.github.io/context-rails/demos/vanilla-mature/",
+      "url": "https://hci-nerdz.github.io/context-edge/demos/vanilla-mature/",
       "selector": ".cr-stage",
       "hover": ".cr-rail-top"
     },
     {
       "id": "edge-bar-modal",
       "label": "Modal Edge",
-      "url": "https://hci-nerdz.github.io/context-rails/demos/modal-edge/",
+      "url": "https://hci-nerdz.github.io/context-edge/demos/modal-edge/",
       "selector": ".me-viewport",
       "hover": ".cr-rail-top"
     },
     {
       "id": "edge-bar-path",
       "label": "Path Edge",
-      "url": "https://hci-nerdz.github.io/context-rails/demos/path-edge/",
+      "url": "https://hci-nerdz.github.io/context-edge/demos/path-edge/",
       "selector": "#rest-color .pe-stage, .pe-stage"
     },
     {

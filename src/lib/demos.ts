@@ -24,7 +24,7 @@ export interface Demo {
   viz: DemoViz;
   /**
    * Capture targets for the catalog card.
-   * One shot = screenshot of that surface. Several = a family (Edge Bar variants),
+   * One shot = screenshot of that surface. Several = a family (Context Edge variants),
    * not one thumb of the family landing page.
    */
   shots?: DemoShot[];
@@ -320,27 +320,27 @@ export const demoCategories: DemoCategory[] = [
         ],
       },
       {
-        id: "context-rails",
-        title: "Edge Bar",
+        id: "context-edge",
+        title: "Context Edge",
         summary:
           "Map, Modal, and Path variants — hover rails, click-through map, and framework islands. The desk page is the essay mock; the family below is the shipped MVP.",
         viz: "rails",
-        href: "https://hci-nerdz.github.io/context-rails/",
+        href: "https://hci-nerdz.github.io/context-edge/",
         shots: [
           {
             id: "edge-bar-map",
             label: "Map Edge",
-            href: "https://hci-nerdz.github.io/context-rails/demos/vanilla-mature/",
+            href: "https://hci-nerdz.github.io/context-edge/demos/vanilla-mature/",
           },
           {
             id: "edge-bar-modal",
             label: "Modal Edge",
-            href: "https://hci-nerdz.github.io/context-rails/demos/modal-edge/",
+            href: "https://hci-nerdz.github.io/context-edge/demos/modal-edge/",
           },
           {
             id: "edge-bar-path",
             label: "Path Edge",
-            href: "https://hci-nerdz.github.io/context-rails/demos/path-edge/",
+            href: "https://hci-nerdz.github.io/context-edge/demos/path-edge/",
           },
         ],
         related: [
@@ -350,15 +350,15 @@ export const demoCategories: DemoCategory[] = [
           },
           {
             label: "Docs",
-            href: "https://hci-nerdz.github.io/docs/hci-nerdz/context-rails.html",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/context-edge.html",
           },
           {
             label: "Desk mock",
-            href: "/demos/context-rails/",
+            href: "/demos/context-edge/",
           },
           {
             label: "Repo",
-            href: "https://github.com/HCI-Nerdz/context-rails",
+            href: "https://github.com/HCI-Nerdz/context-edge",
           },
         ],
       },
