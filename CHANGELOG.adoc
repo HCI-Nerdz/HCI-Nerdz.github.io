@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — OpenShellOrg links use opensh.org
+
+* Partner footer and site links point at https://opensh.org/ instead of openshellorg.github.io.
+
 == 2026-08-30 — Principles intro advocates and demonstrates
 
 * “What we care about” opens with advocating for and investing in discoverable surfaces; prior body paragraphs folded into one flowing lede (en/es/fr).

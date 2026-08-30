@@ -253,7 +253,7 @@ export const demoCategories: DemoCategory[] = [
           },
           {
             label: "OpenShellOrg host",
-            href: "https://openshellorg.github.io/docs/shell-architecture/open-terminal-host.html",
+            href: "https://opensh.org/docs/shell-architecture/open-terminal-host.html",
           },
           {
             label: "Repo",

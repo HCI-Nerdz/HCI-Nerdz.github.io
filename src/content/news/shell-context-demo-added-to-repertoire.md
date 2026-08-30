@@ -12,5 +12,5 @@ These pages are **desk mocks**. Real multi-window host behavior stays in open-te
 
 - **Demo** — [Open Terminal layout desk](https://hci-nerdz.github.io/shell-context-demo/)
 - **Demos index** — [/demos/](/demos/) (Spatial windowing)
-- **OpenShellOrg** — [open-terminal host](https://openshellorg.github.io/docs/shell-architecture/open-terminal-host.html) · [layout demos](https://openshellorg.github.io/docs/shell-architecture/layout-demos.html)
+- **OpenShellOrg** — [open-terminal host](https://opensh.org/docs/shell-architecture/open-terminal-host.html) · [layout demos](https://opensh.org/docs/shell-architecture/layout-demos.html)
 - **Repo** — [HCI-Nerdz/shell-context-demo](https://github.com/HCI-Nerdz/shell-context-demo)
