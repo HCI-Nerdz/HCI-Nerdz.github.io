@@ -1054,7 +1054,7 @@ html[data-theme="dark"] .hero-eye {
 
 .footer-partners li + li::before {
   content: "·";
-  margin: 0 0.55rem 0 0.35rem;
+  margin-inline: 0.65rem;
   color: var(--paper-muted);
   font-weight: 400;
 }
