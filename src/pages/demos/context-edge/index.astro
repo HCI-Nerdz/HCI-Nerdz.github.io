@@ -4,37 +4,67 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Context Edge desk · HCI Nerdz"
-  description="Interactive demo: edge-summoned ecosystem navigation — thin rails, wireframe platform map, stable overlay colors."
+  description="You open Mail and the header already hosts Drive, Admin, Cloud, Docs — until you lose which product you are in. Context Edge moves that travel to thin edge rails and a wireframe map."
   active="demos"
 >
   <main class="shell page desk-page">
-    <p class="back-row">
-      <a class="back" href="/demos/">← Demos</a>
+    <nav class="id-strip" aria-label="Location">
+      <a href="/">HCI Nerdz</a>
+      <span class="id-sep" aria-hidden="true">/</span>
+      <a href="/demos/">Demos</a>
+      <span class="id-sep" aria-hidden="true">/</span>
+      <a href="https://github.com/HCI-Nerdz/context-edge">context-edge</a>
+    </nav>
+    <p class="vcs-row">
+      <a
+        class="vcs-mark"
+        href="https://github.com/HCI-Nerdz/context-edge"
+        aria-label="context-edge on GitHub"
+      >
+        <svg viewBox="0 0 98 96" width="28" height="28" aria-hidden="true">
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+          ></path>
+        </svg>
+      </a>
     </p>
+
     <header class="desk-intro">
       <p class="eyebrow">Demo · Context Edge</p>
       <h1>Context Edge desk</h1>
       <p class="lede">
-        Content is the skyscraper. Rails are the streets. Hover an edge to expand it; click to
-        summon the wireframe ecosystem map. Toggle <em>overload header</em> to feel platforms
-        painted on the roof.
+        You open Mail to answer a thread. The header already hosts Drive, Admin, Cloud, Docs — and
+        after two clicks you are not sure which product owns the chrome under your cursor. Suites
+        keep stuffing new platforms into that same strip until the room itself loses its name.
+      </p>
+      <p class="lede">
+        <strong>Context Edge</strong> moves that travel off the header. Thin rails on the top and
+        left of the shell stay almost invisible until you need them; hover expands them, click opens
+        a wireframe map of the platforms you can enter. Use the toggle below to put the old tab strip
+        back on the roof and feel the difference on this desk.
+      </p>
+      <p class="cta-row">
+        <a class="cta-primary" href="https://hci-nerdz.github.io/context-edge/">Open demos</a>
       </p>
       <p class="related-links">
         <a href="/blog/ecosystem-nav-at-the-screen-edge/">Essay</a>
         ·
         <a href="https://hci-nerdz.github.io/docs/hci-nerdz/context-edge.html">Docs</a>
         ·
-        <a href="https://hci-nerdz.github.io/context-edge/">MVP islands</a>
+        <a href="https://github.com/HCI-Nerdz/context-edge">Repo</a>
       </p>
     </header>
 
-    <section class="desk" id="desk" aria-label="Context Edge desk">
+    <section class="desk" id="desk" aria-label="Context Edge facsimile">
       <div class="controls">
         <label class="mode-toggle">
           <input type="checkbox" id="overload-mode" />
           <span>Overload header (anti-pattern)</span>
         </label>
-        <p class="hint" id="status" role="status">Rails idle · platform: Mail</p>
+        <p class="hint" id="status" role="status">Rails idle · Mail</p>
       </div>
 
       <div
@@ -44,36 +74,40 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         style="--overlay: 210 55% 42%; --overlay-2: 200 40% 28%;"
       >
         <div class="overload-bar" id="overload-bar" hidden>
-          <span class="overload-brand">Entrypoint</span>
+          <span class="overload-brand">Suite home</span>
           <div class="overload-tabs" id="overload-tabs"></div>
         </div>
 
         <button
           type="button"
+          class="rail rail-corner"
+          id="rail-corner"
+          aria-label="Open platform map from the corner"
+        ></button>
+        <button
+          type="button"
           class="rail rail-top"
           id="rail-top"
-          aria-label="Open ecosystem navigation from top edge"
+          aria-label="Open platform map from the top edge"
         >
-          <span class="rail-label">Ecosystem</span>
+          <span class="rail-label" id="rail-label">Mail</span>
         </button>
         <button
           type="button"
           class="rail rail-left"
           id="rail-left"
-          aria-label="Open ecosystem navigation from left edge"
+          aria-label="Open platform map from the left edge"
         ></button>
 
-        <div class="content" id="content" aria-live="polite">
-          <!-- filled by script -->
-        </div>
+        <div class="content" id="content" aria-live="polite"></div>
 
         <div class="nav-overlay" id="nav-overlay" hidden>
           <div class="nav-panel" role="dialog" aria-modal="true" aria-labelledby="nav-title">
             <header class="nav-head">
-              <h2 id="nav-title">Wireframe ecosystem nav</h2>
+              <h2 id="nav-title">Pick a platform</h2>
               <button type="button" class="nav-close" id="nav-close">Close</button>
             </header>
-            <p class="nav-lede">Streets between buildings — pick a platform.</p>
+            <p class="nav-lede">Wireframe map — leave this activity without stuffing the header.</p>
             <div class="wire" id="wire"></div>
           </div>
         </div>
@@ -84,20 +118,22 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <h2>What you are seeing</h2>
       <ul>
         <li>
-          <strong>Edge substrate</strong> — top and left rails summon ecosystem context; they do
-          not live in the content header.
+          <strong>Rails on the shell</strong> — top and left edges open travel between products;
+          they do not live in the content header.
         </li>
         <li>
-          <strong>Hover expand</strong> — rails widen for a label; color alone still signals the
-          affordance.
+          <strong>Hover expand</strong> — both edges widen together; the label stays on top.
         </li>
         <li>
-          <strong>Wireframe nav</strong> — click opens a map of platforms, not another ephemeral
-          tab strip on the roof.
+          <strong>Wireframe map</strong> — click opens platforms as a place you visit, not another
+          ephemeral tab strip.
         </li>
         <li>
-          <strong>Overlay identity</strong> — each platform washes the shell with a stable
-          duo-tone so activity stays visually bound.
+          <strong>Overlay identity</strong> — each platform washes the room so you can tell which
+          world you are in without reading the header.
+        </li>
+        <li>
+          <strong>Overload toggle</strong> — puts the old header tab strip back on, for contrast.
         </li>
       </ul>
     </aside>
@@ -109,8 +145,43 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     max-width: 64rem;
   }
 
-  .back-row {
-    margin: 0 0 0.5rem;
+  .id-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.45rem;
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .id-strip a {
+    color: var(--muted, inherit);
+    text-decoration: none;
+  }
+
+  .id-strip a:hover {
+    color: var(--ink, inherit);
+    text-decoration: underline;
+  }
+
+  .id-sep {
+    opacity: 0.45;
+  }
+
+  .vcs-row {
+    margin: 0 0 1.1rem;
+  }
+
+  .vcs-mark {
+    display: inline-flex;
+    color: var(--ink, inherit);
+    opacity: 0.85;
+  }
+
+  .vcs-mark:hover {
+    opacity: 1;
   }
 
   .desk-intro .eyebrow {
@@ -123,8 +194,36 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     color: var(--honesty);
   }
 
+  .desk-intro .lede {
+    margin: 0 0 0.85rem;
+    max-width: 42rem;
+    line-height: 1.55;
+  }
+
+  .cta-row {
+    margin: 0 0 0.85rem;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: 0.35rem;
+    background: var(--honesty, #3d9b8f);
+    color: #041012;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  .cta-primary:hover {
+    filter: brightness(1.08);
+  }
+
   .related-links {
-    margin: -0.5rem 0 1.75rem;
+    margin: 0 0 1.75rem;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.95rem;
@@ -139,7 +238,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     background:
       linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
       rgba(255, 255, 255, 0.02);
-    animation: rise 0.7s ease both;
   }
 
   .controls {
@@ -167,43 +265,40 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   .stage {
-    --rail-idle: 0.35rem;
-    --rail-hover: 2.75rem;
+    --rail-idle: 0.4rem;
+    --rail-hover: 2.6rem;
     --rail-top: var(--rail-idle);
     --rail-left: var(--rail-idle);
     position: relative;
-    min-height: 26rem;
+    min-height: 28rem;
     border: 1px solid var(--line);
     border-radius: 0.4rem;
     overflow: hidden;
-    background:
-      radial-gradient(
-        120% 90% at 10% 0%,
-        hsl(var(--overlay) / 0.35),
-        transparent 55%
-      ),
-      linear-gradient(
-        145deg,
-        hsl(var(--overlay) / 0.22),
-        hsl(var(--overlay-2) / 0.35) 55%,
-        rgba(0, 0, 0, 0.35)
-      );
-    transition: background 0.45s ease;
+    background: #0b1014;
+    color: #e8eceb;
+  }
+
+  .stage:has(.rail:hover),
+  .stage:has(.rail:focus-visible) {
+    --rail-top: var(--rail-hover);
+    --rail-left: var(--rail-hover);
   }
 
   .stage.is-overload .rail {
-    opacity: 0.25;
+    opacity: 0;
     pointer-events: none;
   }
 
   .overload-bar {
+    position: relative;
+    z-index: 4;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
     padding: 0.55rem 0.75rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.55);
   }
 
   .overload-brand {
@@ -246,14 +341,16 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     margin: 0;
     cursor: pointer;
     color: #f4f7f6;
-    background: hsl(var(--overlay) / 0.92);
+    background: hsl(var(--overlay) / 0.95);
+    display: grid;
+    place-items: center;
     transition:
       width 0.22s ease,
       height 0.22s ease,
+      left 0.22s ease,
+      top 0.22s ease,
       background 0.3s ease,
       opacity 0.2s ease;
-    display: grid;
-    place-items: center;
   }
 
   .rail:focus-visible {
@@ -261,30 +358,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     outline-offset: 2px;
   }
 
-  .stage.is-pair-hover,
-  .stage:has(.rail:focus-visible) {
-    --rail-top: var(--rail-hover);
-    --rail-left: var(--rail-hover);
-  }
-
-  .stage::before {
-    content: '';
-    position: absolute;
+  .rail-corner {
     top: 0;
     left: 0;
-    z-index: 4;
     width: var(--rail-left);
     height: var(--rail-top);
-    pointer-events: none;
-    background:
-      linear-gradient(
-        135deg,
-        transparent calc(50% - 0.6px),
-        rgba(0, 0, 0, 0.35) 50%,
-        transparent calc(50% + 0.6px)
-      ),
-      hsl(var(--overlay) / 0.92);
-    transition: width 0.22s ease, height 0.22s ease, background 0.3s ease;
+    z-index: 4;
   }
 
   .rail-top {
@@ -293,10 +372,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     right: 0;
     height: var(--rail-top);
     width: auto;
-  }
-
-  .stage.is-overload .rail-top {
-    top: auto;
   }
 
   .rail-left {
@@ -312,78 +387,103 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.78rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     white-space: nowrap;
     transition: opacity 0.18s ease;
     pointer-events: none;
   }
 
-  .rail-top,
-  .rail-left {
-    transition:
-      width 0.22s ease,
-      height 0.22s ease,
-      left 0.22s ease,
-      top 0.22s ease,
-      background 0.3s ease,
-      opacity 0.2s ease;
-  }
-
-  .stage.is-pair-hover .rail-top .rail-label,
-  .rail-top:focus-visible .rail-label {
+  .stage:has(.rail:hover) .rail-top .rail-label,
+  .stage:has(.rail:focus-visible) .rail-top .rail-label {
     opacity: 1;
   }
 
   .content {
     position: relative;
     z-index: 1;
-    margin: calc(var(--rail-idle) + 0.85rem) 1rem 1rem calc(var(--rail-idle) + 0.85rem);
-    padding: 1.15rem 1.2rem 1.35rem;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    margin: calc(var(--rail-idle) + 0.75rem) 0.9rem 0.9rem calc(var(--rail-idle) + 0.75rem);
+    min-height: 22rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.35rem;
-    background: rgba(8, 12, 14, 0.55);
-    backdrop-filter: blur(6px);
-    min-height: 18rem;
+    background:
+      radial-gradient(120% 80% at 0% 0%, hsl(var(--overlay) / 0.28), transparent 55%),
+      linear-gradient(160deg, hsl(var(--overlay) / 0.18), #0e1418 55%);
+    overflow: hidden;
   }
 
   .stage.is-overload .content {
-    margin-top: 0.85rem;
+    margin: 0.75rem 0.9rem 0.9rem;
   }
 
-  .content h2 {
-    margin: 0 0 0.35rem;
+  .app-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.28);
+  }
+
+  .app-chrome strong {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 0.95rem;
   }
 
-  .content .meta {
-    margin: 0 0 1rem;
-    font-size: 0.85rem;
-    opacity: 0.7;
+  .app-chrome span {
+    font-size: 0.78rem;
+    opacity: 0.65;
   }
 
-  .content p {
+  .app-body {
+    padding: 0.85rem 0.95rem 1.1rem;
+  }
+
+  .app-body p {
     margin: 0 0 0.75rem;
-    line-height: 1.55;
-    max-width: 40rem;
+    line-height: 1.5;
+    max-width: 38rem;
+    font-size: 0.92rem;
+    opacity: 0.9;
   }
 
-  .fake-rows {
+  .mail-list,
+  .file-list,
+  .admin-list {
     display: grid;
-    gap: 0.4rem;
-    margin-top: 1rem;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .fake-row {
-    height: 2.1rem;
+  .mail-list li,
+  .file-list li,
+  .admin-list li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.65rem;
+    align-items: center;
+    padding: 0.55rem 0.65rem;
     border-radius: 0.3rem;
-    background: linear-gradient(
-      90deg,
-      hsl(var(--overlay) / 0.18),
-      rgba(255, 255, 255, 0.06)
-    );
     border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.86rem;
+  }
+
+  .mail-list li em,
+  .file-list li em,
+  .admin-list li em {
+    font-style: normal;
+    opacity: 0.55;
+    font-size: 0.75rem;
+  }
+
+  .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: hsl(var(--overlay));
   }
 
   .nav-overlay {
@@ -505,52 +605,82 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   type Platform = {
     id: string;
     label: string;
-    blurb: string;
     role: string;
     overlay: string;
     overlay2: string;
+    body: string;
   };
 
   const platforms: Platform[] = [
     {
       id: 'mail',
       label: 'Mail',
-      blurb: 'Inbox and threads — a familiar building in the suite.',
-      role: 'Messaging',
+      role: 'Inbox',
       overlay: '210 55% 42%',
       overlay2: '200 40% 28%',
+      body: `
+        <p>Unread threads stay in this activity. Cross-platform moves go through the rails.</p>
+        <ul class="mail-list">
+          <li><span class="dot"></span><span>Q2 planning — can you review before Thursday?</span><em>Northwind</em></li>
+          <li><span class="dot"></span><span>GKE project near CPU cap</span><em>Priya S.</em></li>
+          <li><span class="dot"></span><span>Hold: design critique Tue 2:00</span><em>Calendar</em></li>
+        </ul>`,
     },
     {
       id: 'drive',
       label: 'Drive',
-      blurb: 'Files and shared folders as the activity plane.',
-      role: 'Storage',
+      role: 'Files',
       overlay: '28 70% 42%',
       overlay2: '18 45% 28%',
+      body: `
+        <p>Shared folders as the activity plane — not another tab welded into Mail’s header.</p>
+        <ul class="file-list">
+          <li><span class="dot"></span><span>Context Edge mockups</span><em>Folder</em></li>
+          <li><span class="dot"></span><span>northwind-prod quotas.csv</span><em>Sheet</em></li>
+          <li><span class="dot"></span><span>Q2 planning.doc</span><em>Doc</em></li>
+        </ul>`,
     },
     {
       id: 'admin',
       label: 'Admin',
-      blurb: 'Directory and policy work without stealing Mail’s chrome.',
-      role: 'Control plane',
+      role: 'Directory',
       overlay: '160 40% 36%',
       overlay2: '170 30% 22%',
+      body: `
+        <p>Policy work without stealing Mail’s chrome.</p>
+        <ul class="admin-list">
+          <li><span class="dot"></span><span>Users · 1,204</span><em>Directory</em></li>
+          <li><span class="dot"></span><span>Groups · engineering</span><em>ACL</em></li>
+          <li><span class="dot"></span><span>Devices · 88 enrolled</span><em>MDM</em></li>
+        </ul>`,
     },
     {
       id: 'cloud',
       label: 'Cloud',
-      blurb: 'Compute and projects — a different world, same streets.',
-      role: 'Infrastructure',
+      role: 'Projects',
       overlay: '265 45% 42%',
       overlay2: '250 35% 26%',
+      body: `
+        <p>Compute and projects — a different world, same rails.</p>
+        <ul class="admin-list">
+          <li><span class="dot"></span><span>northwind-prod</span><em>Project</em></li>
+          <li><span class="dot"></span><span>web-01 · running</span><em>VM</em></li>
+          <li><span class="dot"></span><span>assets · bucket</span><em>Storage</em></li>
+        </ul>`,
     },
     {
       id: 'docs',
       label: 'Docs',
-      blurb: 'Authoring surface with its own overlay identity.',
-      role: 'Creation',
+      role: 'Authoring',
       overlay: '145 45% 34%',
       overlay2: '155 30% 22%',
+      body: `
+        <p>Authoring with its own overlay identity.</p>
+        <ul class="file-list">
+          <li><span class="dot"></span><span>Untitled document</span><em>Editing</em></li>
+          <li><span class="dot"></span><span>Shared outline</span><em>Comment</em></li>
+          <li><span class="dot"></span><span>Export PDF</span><em>Action</em></li>
+        </ul>`,
     },
   ];
 
@@ -560,17 +690,21 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   const stage = document.getElementById('stage')!;
   const content = document.getElementById('content')!;
   const status = document.getElementById('status')!;
+  const railLabel = document.getElementById('rail-label')!;
   const overloadMode = document.getElementById('overload-mode') as HTMLInputElement;
   const overloadBar = document.getElementById('overload-bar')!;
   const overloadTabs = document.getElementById('overload-tabs')!;
   const navOverlay = document.getElementById('nav-overlay')!;
   const wire = document.getElementById('wire')!;
-  const railTop = document.getElementById('rail-top')!;
-  const railLeft = document.getElementById('rail-left')!;
+  const rails = [
+    document.getElementById('rail-corner')!,
+    document.getElementById('rail-top')!,
+    document.getElementById('rail-left')!,
+  ];
   const navClose = document.getElementById('nav-close')!;
 
   function active(): Platform {
-    return platforms.find((p) => p.id === activeId) ?? platforms[0];
+    return platforms.find((p) => p.id === activeId) ?? platforms[0]!;
   }
 
   function applyPlatform(id: string) {
@@ -579,23 +713,19 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     stage.dataset.platform = p.id;
     stage.style.setProperty('--overlay', p.overlay);
     stage.style.setProperty('--overlay-2', p.overlay2);
+    railLabel.textContent = p.label;
     content.innerHTML = `
-      <h2>${p.label}</h2>
-      <p class="meta">Platform overlay · ${p.role}</p>
-      <p>${p.blurb}</p>
-      <p>
-        Local page chrome can stay here. Cross-platform moves go through the rails —
-        streets under the skyscraper, not tabs on the roof.
-      </p>
-      <div class="fake-rows" aria-hidden="true">
-        <div class="fake-row"></div>
-        <div class="fake-row"></div>
-        <div class="fake-row"></div>
+      <div class="app-chrome">
+        <strong>${p.label}</strong>
+        <span>${p.role}</span>
       </div>
+      <div class="app-body">${p.body}</div>
     `;
     status.textContent = navOpen
-      ? `Wireframe nav open · platform: ${p.label}`
-      : `Rails idle · platform: ${p.label}`;
+      ? `Map open · ${p.label}`
+      : overloadMode.checked
+        ? `Header overloaded · ${p.label}`
+        : `Rails idle · ${p.label}`;
     renderOverloadTabs();
     renderWire();
   }
@@ -628,33 +758,24 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   function setNav(open: boolean) {
+    if (overloadMode.checked) return;
     navOpen = open;
     navOverlay.hidden = !open;
     const p = active();
-    status.textContent = open
-      ? `Wireframe nav open · platform: ${p.label}`
-      : `Rails idle · platform: ${p.label}`;
-    if (open) {
-      navClose.focus();
-    }
+    status.textContent = open ? `Map open · ${p.label}` : `Rails idle · ${p.label}`;
+    if (open) navClose.focus();
   }
 
   function setOverload(on: boolean) {
     stage.classList.toggle('is-overload', on);
     overloadBar.hidden = !on;
-    status.textContent = on
-      ? `Header overloaded · platform: ${active().label}`
-      : `Rails idle · platform: ${active().label}`;
     if (on) setNav(false);
+    status.textContent = on
+      ? `Header overloaded · ${active().label}`
+      : `Rails idle · ${active().label}`;
   }
 
-  const pairOn = () => stage.classList.add('is-pair-hover');
-  const pairOff = () => stage.classList.remove('is-pair-hover');
-  for (const rail of [railTop, railLeft]) {
-    rail.addEventListener('mouseenter', pairOn);
-    rail.addEventListener('mouseleave', pairOff);
-    rail.addEventListener('focus', pairOn);
-    rail.addEventListener('blur', pairOff);
+  for (const rail of rails) {
     rail.addEventListener('click', () => setNav(true));
   }
   navClose.addEventListener('click', () => setNav(false));

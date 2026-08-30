@@ -73,7 +73,7 @@ export const demoCategories: DemoCategory[] = [
       {
         id: "context-edge",
         title: "Context Edge",
-        summary: "Map, Modal, and Path variants — hover rails, click-through map, and framework islands. The desk page is the essay mock; the family below is the shipped MVP.",
+        summary: "When suite headers stuff every product into one tab strip, you lose which world you are in. Context Edge puts that travel on thin edge rails instead — hover to expand, click for a wireframe map. Desk mock on this site; Map, Modal, and Path demos in the family below.",
         viz: "rails",
         href: "https://hci-nerdz.github.io/context-edge/",
         releasedAt: "2026-08-10",

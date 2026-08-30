@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 -- Context Edge entry copy for cold readers
+
+* Desk, catalog, and essay openers ramp from stuffed suite headers before naming rails / wireframe map.
+* link:changelog-details/2026-08-30%20-%20context-edge-entry-copy.adoc[Details]
+
 == 2026-08-30 — Demos index timeline
 
 * Catalog categories become familiar UI domains; Theme → Theming; accordion index with Released/Updated dates.

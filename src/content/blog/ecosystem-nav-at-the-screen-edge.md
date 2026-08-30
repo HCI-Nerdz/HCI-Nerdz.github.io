@@ -1,88 +1,70 @@
 ---
 title: "Ecosystem nav at the screen edge"
-description: "Suite apps stuff new platforms into the header until context is unclear. Context Edge puts ecosystem navigation on the screen edges — thin rails, wireframe maps, stable color overlays."
+description: "Suite apps stuff new platforms into the header until you lose which world you are in. Context Edge moves that travel to thin rails on the shell — wireframe maps, stable overlays, optional path color."
 pubDate: 2026-08-10
 draft: false
 tags: ["navigation", "context", "ecosystem", "progressive-disclosure", "desktop", "product-representation"]
 ---
 
-Suite products keep stuffing new platforms into one header until you cannot tell which world you are in. Put **ecosystem navigation on the screen edges** instead — Context Edge: thin rails, a wireframe map, stable overlays.
+You open a cloud console to resize a VM. Before you get there, the top of the window already hosts Compute, Storage, Networking, IAM, Billing, Monitoring, and something called “Marketplace,” all fighting the page title for the same strip of pixels. Mid-task you click Storage — fine — then realize you are no longer sure which product owns the chrome under your cursor. The header did not fail at density. It failed at *whose room you are in*.
 
-Google's cloud console — and a lot of other suite apps — follow a design philosophy of embedding new platforms inside the entrypoint platform without properly separating the interface design language. The new surface *overloads* the old one. Controls no longer make clear which platform is providing the current context.
+**Context Edge** is the fix I want for that class of product: keep the activity plane, and put *ecosystem* travel on the shell’s top and left edges — thin rails that expand on hover, open a wireframe map on click, and wash each platform with a stable overlay so the room itself carries identity.
 
-I want a more intelligent way to deal with that context problem, at least on desktop: put a **context navigation system** on the top edge, the left edge, or both (same or different context types). The edge reveals itself when you need it. Hover makes the bar bigger — enough space for a label — or, in a mature system, the mere presence of a colored (or dark/white) bar is enough. Click opens a full wireframe nav between platforms and modes, instead of overloading the website header with subsection duty it was never meant to carry.
+## The header stopped being a place
 
-Call the pattern **context edge**. Nav becomes substrate again.
+Google’s cloud console — and plenty of suite apps — keep embedding new platforms inside the entrypoint without separating design language. The new surface overloads the old one. Controls no longer say which platform is providing the current context.
 
-## Streets under skyscrapers
+Microsoft-scale ecosystems get the same disease with more buildings. Reddit and Stack Overflow shove subsection and role chrome into one ephemeral strip. Users relearn how to move because the map is never a place — it is a rotating sticker on whatever they happened to open.
 
-Cities already know the split. Streets are how you get between places. Skyscrapers are the places. Streets do not get summoned on top of the skyscrapers. The skyscrapers are features; the streets are the nav substrate, at the bottom.
-
-![City street canyon as circulation under skyscrapers — streets as substrate](/images/context-edge/streets-as-substrate.png)
-
-Digital products keep drawing the street map across the roof. Designers park subsections in the top navbar because it is the only chrome they trust. It is ephemeral. It is ugly when dense. It is illogical: the nav shows *on top of* the content when navigation is really the substrate for access to different activities.
-
-## Platforms overload the entrypoint
-
-The anti-pattern is easy to recognize once you name it. A cloud console header carries Compute, Storage, Networking, IAM, Billing, Monitoring — plus the page title — as if every building in the district needed a signboard nailed to the same lintel.
+Designers park subsections in the top navbar because it is the only chrome they trust. Dense, it looks desperate. Structurally, it is upside down: navigation for *other activities* sits on top of the activity you came to do.
 
 ![Cloud-console-style header stuffed with subsection platform tabs](/images/context-edge/platforms-overload-entrypoint.png)
 
-Microsoft-scale ecosystems have the same disease with more buildings. Reddit and Stack Overflow push subsection and role chrome into the same ephemeral strip. Users keep relearning how to move because the map is never a place — it is a rotating sticker on whatever you happened to open.
+## Rails on the shell
 
-## Rails at the edges
+Leave the page alone. Add thin rails on the top edge, the left edge, or both. Idle, they are almost nothing — a presence and a color. If both edges mean the same nav node, they share that color; hover either and both present. Labels stay on the **top** edge (readable). Do not rotate type up the left. A mature product can drop the label entirely: the bar alone means “summon context here.”
 
-Keep the activity plane. Put thin rails on the top and/or left edges. Idle, they are almost nothing — a presence, a color. If both edges are the *same* kind of nav node, they share a color. Hover *either* and *both* present their stuff. Labels stay on the top edge — readable, not rotated up the left. Mature systems can drop the label: the bar alone suggests “summon context here.”
-
-The left edge is not a modern icon sidebar. Those glyphs rarely carry their own meaning; designers then park a cue word under a bigger icon so the *combination of shapes* becomes distinguishable. That is a patch. Here the job is to *identify the level and click into it*. At most one mark per level.
+The left edge is not another icon sidebar. Glyphs rarely carry meaning alone; teams then stuff a cue word under a bigger icon so the *shape combo* becomes distinguishable. That is a patch. Here the job is to identify the level and enter it. At most one mark per level.
 
 ![Desktop shell with thin top and left Context Edge rails idle](/images/context-edge/rails-idle-edges.png)
 
 ![Same shell: top and left rails expanded together, same color](/images/context-edge/rails-hover-expand.png)
 
-Clicking the rail does not dump another row of tabs onto the header. It opens a **wireframe navigation interface** — a street map of platforms and modes you can traverse without relearning each product's local chrome.
+Click does not dump another row of tabs onto the header. It opens a **wireframe navigation surface** — platforms and modes you can traverse without relearning each product’s local chrome.
 
 ![Full-screen wireframe ecosystem navigation summoned from the rails](/images/context-edge/wireframe-ecosystem-nav.png)
 
-That is the job split: content owns the skyscraper; rails summon the streets.
+## Color that sticks to the room
 
-## Color as platform identity
-
-Different platforms or apps in the ecosystem should assume a different base color that reads as an *overlay* on the ultimate base. Users associate activity in a subplatform with a stable, non-competing visual field. Duo-tone schemes and soft radial gradients multiply the ways to differentiate without turning every header into a logo parade.
+Each platform should carry a different base wash that reads as an overlay on the ultimate shell. Duo-tone and soft radials give you more identity without turning every header into a logo parade. When the wash is stable, you do not need the navbar to scream the product name on every pixel — the room already did.
 
 ![Three shells with distinct duo-tone platform overlays](/images/context-edge/platform-overlay-colors.png)
 
-When the overlay is stable, you do not need the navbar to scream the product name on every pixel. The room itself tells you which building you are in.
-
 ## Path as a color series
 
-A third variant treats the edge as a *path trace*. Instead of one wash around the frame, the L-edge shows a *series* of unique colors for the hops in the org tree — Home → Cloud → Console → Billing → Accounts. That sequence orients you faster than a crumb string, and it can still borrow an org’s primary hues for early hops without collapsing “different app = different color”: the *sequence* is the identity, not a single swatch.
+A third variant treats the L-edge as the hops you took. Instead of one wash, you get a *sequence* of unique colors for Home → Cloud → Console → Billing → Accounts (or your own tree). That sequence orients faster than a crumb string. Early hops can borrow org primary hues without collapsing to “different app = different single swatch”: the *series* is the identity.
 
 ![Idle L-rails striped with the path’s colors](/images/context-edge/path-edge-idle.png)
 
-Hover expands both edges. Words on the top. Left edge: current level top-most (one mark), ancestors stacking down. A setting can cap how far those ancestor bands climb before they compress; expand the rail and scroll to unfold toward the root. File explorers grow downward from the root. You want to see *where you are* first — so the current mark owns the top-left corner.
+Hover expands both edges. Words on top. Left: current level top-most (one mark), ancestors stacking down. Cap how far ancestors climb before they compress; expand and scroll to unfold toward the root. File explorers grow downward from the root. You want *where you are* first — so the current mark owns the top-left corner.
 
 ![Expanded path rails: top labels, current mark at top-left](/images/context-edge/path-edge-hover.png)
 
 ## What has to be true underneath
 
-Rails belong to the *ecosystem shell*, not to each page's DIY header.
+Rails belong to the *ecosystem shell*, not to each page’s DIY header.
 
 1. **Shell chrome** owns edge sides, hover expand, and the wireframe nav.
 2. **Platform registry** carries id, label, route/entry, and overlay tokens.
 3. **Activity UI** stays local — in-app sections can remain in-page; *cross-platform* moves go through rails.
 4. **Keyboard and explicit activate** matter — hover expand is desktop progressive enhancement, not the only door.
 
-This is progressive disclosure for ecosystems: the map is available without living permanently on top of the work.
-
-## Framework fit (short)
-
-The pattern shines where shell state can sit next to routed content — **Solid / SolidStart** (signals for hover, open, overlay), **React / Next.js** (client layout wrapper; watch the RSC boundary), **Svelte / SvelteKit** (motion-friendly layouts). **Astro islands** are excellent for demos and docs sites. Full notes live in the docs.
+You still get progressive disclosure: the map is available without living permanently on top of the work.
 
 ## Where to go next
 
 - **Docs** — [Context Edge](https://hci-nerdz.github.io/docs/hci-nerdz/context-edge.html)
-- **Demo** — [Context Edge desk](/demos/context-edge/)
-- **MVP** — [Multi-framework Astro islands](https://hci-nerdz.github.io/context-edge/) · [repo](https://github.com/HCI-Nerdz/context-edge)
+- **Desk** — [Context Edge desk](/demos/context-edge/)
+- **Demos** — [Map / Modal / Path islands](https://hci-nerdz.github.io/context-edge/) · [repo](https://github.com/HCI-Nerdz/context-edge)
 - **Path Edge** — [breadcrumb colors](https://hci-nerdz.github.io/context-edge/demos/path-edge/)
 - **Sibling** — [Making settings follow the activity](/blog/making-settings-follow-the-activity/) (bind settings to activity; rails bind *platforms* to the shell)
