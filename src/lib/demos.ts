@@ -517,7 +517,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Symptom essay",
-            href: "/blog/when-renaming-a-page-breaks-half-your-docs/",
+            href: "/blog/docs-path-renames-as-unpaid-chores/",
           },
           {
             label: "Diagnosis essay",

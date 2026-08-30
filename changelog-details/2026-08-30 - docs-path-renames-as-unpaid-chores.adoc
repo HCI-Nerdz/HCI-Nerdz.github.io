@@ -1,0 +1,6 @@
+= 2026-08-30 - Docs path renames as unpaid chores
+
+* Retitled symptom essay from situation `When…` title to cold-reader claim: *Docs path renames as unpaid chores*.
+* Rewrote the URL beat: URLs are for people (not "pretty vs ugly" branding), then into labels-as-wires.
+* 301 from `/blog/when-renaming-a-page-breaks-half-your-docs/` to `/blog/docs-path-renames-as-unpaid-chores/`.
+* Cross-links updated (news, demos catalog, diagnosis essay, AGENTS content map).

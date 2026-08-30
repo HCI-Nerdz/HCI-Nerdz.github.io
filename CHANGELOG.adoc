@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-08-30 — Docs path renames as unpaid chores
+
+* Symptom essay retitled for cold-reader orientation; URL beat drops "pretty" framing; 301 from old slug.
+* link:changelog-details/2026-08-30%20-%20docs-path-renames-as-unpaid-chores.adoc[Details]
+
 == 2026-08-30 — Cold-reader essay retitles
 
 * Seven opaque `When…` essays retitled to claim/job titles; 301 from old slugs.
