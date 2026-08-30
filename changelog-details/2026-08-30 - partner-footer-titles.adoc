@@ -1,0 +1,8 @@
+= Partner footer titles — changelog detail
+:description: Site footer shows one link per partner plus a short focus title.
+
+== Changed
+
+* Replaced the flat partner link row with a titled list (name + one-line focus).
+* Added Desktop Tooling; kept a single homepage/GitHub entry point per org.
+* Homepage Partners section adds the same missing orgs for parity.

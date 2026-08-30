@@ -136,21 +136,40 @@ const {
     <slot />
     <footer class="site-footer" aria-label="Site footer">
       <p class="footer-related-label">Partner organizations</p>
-      <p class="footer-related-links">
-        <a href="https://openshellorg.github.io/">OpenShellOrg</a>
-        ·
-        <a href="https://devcentr.org">DevCentr</a>
-        ·
-        <a href="https://github.com/antora-supplemental">antora-supplemental</a>
-        ·
-        <a href="https://github.com/dlang-supplemental">dlang-supplemental</a>
-        ·
-        <a href="https://github.com/formatte">formatte</a>
-        ·
-        <a href="https://github.com/LinxPhotos">LinxPhotos</a>
-        ·
-        <a href="https://github.com/FoodTruckNerdz">FoodTruckNerdz</a>
-      </p>
+      <ul class="footer-partners">
+        <li>
+          <a href="https://desktop-tooling.github.io/">Desktop Tooling</a>
+          <span>OS-level desktop utilities</span>
+        </li>
+        <li>
+          <a href="https://openshellorg.github.io/">OpenShellOrg</a>
+          <span>How CLIs and shells speak and compose</span>
+        </li>
+        <li>
+          <a href="https://devcentr.org">DevCentr</a>
+          <span>Environments, orchestration, toolchain management</span>
+        </li>
+        <li>
+          <a href="https://github.com/antora-supplemental">antora-supplemental</a>
+          <span>AsciiDoc / Antora publishing UX</span>
+        </li>
+        <li>
+          <a href="https://github.com/dlang-supplemental">dlang-supplemental</a>
+          <span>D libraries and native tooling</span>
+        </li>
+        <li>
+          <a href="https://github.com/formatte">formatte</a>
+          <span>Formatting ecosystem</span>
+        </li>
+        <li>
+          <a href="https://github.com/LinxPhotos">LinxPhotos</a>
+          <span>Photo / portfolio hosting</span>
+        </li>
+        <li>
+          <a href="https://github.com/FoodTruckNerdz">FoodTruckNerdz</a>
+          <span>Product domain (food trucks)</span>
+        </li>
+      </ul>
     </footer>
     <ImageLightbox />
     <script is:inline define:vars={{ I18N }}>
