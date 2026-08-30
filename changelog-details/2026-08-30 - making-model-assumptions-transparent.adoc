@@ -1,0 +1,7 @@
+= 2026-08-30 - Making model assumptions transparent
+
+* Retitled grounded-tokens essay from cryptic fork scene to job/claim orientation.
+* Intro leads with trust and invisible provenance; Bitwarden fork-name stays as the case study.
+* 301 from `/blog/when-the-agent-names-a-fork-before-it-looks/` to `/blog/making-model-assumptions-transparent/`.
+* Cross-links updated (news, demos catalog, sibling essays, docs literature).
+* STYLE.adoc: cold-reader test for `When …` situation titles.

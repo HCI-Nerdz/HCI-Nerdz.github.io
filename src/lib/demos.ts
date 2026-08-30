@@ -480,7 +480,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Essay",
-            href: "/blog/when-the-agent-names-a-fork-before-it-looks/",
+            href: "/blog/making-model-assumptions-transparent/",
           },
           {
             label: "Docs",

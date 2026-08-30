@@ -66,7 +66,7 @@ DevCentr's harness documents the schema and `ACTOR_AGENTIC_UI` variables. HCI Ne
 
 ## Grounded tokens inside nodes
 
-[Grounded tokens](/blog/when-the-agent-names-a-fork-before-it-looks/) mark *how a span was produced* inside a message.
+[Grounded tokens](/blog/making-model-assumptions-transparent/) mark *how a span was produced* inside a message.
 
 Actor-model UI marks *which node owns the message* across the graph.
 

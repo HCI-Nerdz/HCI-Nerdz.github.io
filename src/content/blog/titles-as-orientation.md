@@ -54,6 +54,8 @@ Concepts live in a rigid part of the mind. *A theme* declares a variable and lea
 
 **When 'non-technical' products lie** works because *when* situates a class of events. The reader is placed in a scene, not handed an identity equation.
 
+That only works when a cold reader can recognize the class *from the title*. A private case-study shorthand (*When the agent names a fork before it looks*) fails the same test a floating modifier fails: the reader cannot enter until they already know the story. Prefer a job or claim (*Making model assumptions transparent*) and keep the scene for the body.
+
 ## Floating modifiers disorient
 
 *Sequence as the top-level* leaves *top-level* without an object. Readers ask: top-level *what?*

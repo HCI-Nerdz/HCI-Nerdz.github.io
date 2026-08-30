@@ -46,7 +46,7 @@ DevCentr's lightweight harness implements routing and storage; this essay and th
 
 ## Grounded tokens inside forks
 
-[Grounded tokens](/blog/when-the-agent-names-a-fork-before-it-looks/) mark *how a span was produced* inside a message.
+[Grounded tokens](/blog/making-model-assumptions-transparent/) mark *how a span was produced* inside a message.
 
 Project inbox marks *which job a message belongs to* across messages.
 

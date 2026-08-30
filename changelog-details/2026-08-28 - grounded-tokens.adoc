@@ -1,6 +1,7 @@
 = 2026-08-28 - Grounded tokens
 
-* Essay: When the agent names a fork before it looks (grounded tokens framing)
+* Essay: Making model assumptions transparent (was: When the agent names a fork before it looks)
 * News: grounded tokens added to the repertoire
 * Interactive demo at `/demos/grounded-tokens/` - context-bound desk chrome, fork-name replay, Show provenance toggle
 * Demo assets and cross-links to docs topic
+* 2026-08-30: essay retitled for cold-reader orientation; legacy slug redirects

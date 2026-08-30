@@ -10,6 +10,6 @@ Grounded tokens entered the repertoire: salient assistant spans carry **how they
 
 Heuristic tokens get a dashed warm underline; researched tokens get a solid cool underline with source on hover. The Bitwarden fork-name case study (`AMDphreak/clients` versus `AMDphreak/bitwarden-clients`) anchors the demo.
 
-- **Essay** - [When the agent names a fork before it looks](/blog/when-the-agent-names-a-fork-before-it-looks/)
+- **Essay** - [Making model assumptions transparent](/blog/making-model-assumptions-transparent/)
 - **Docs** - [Grounded tokens](https://hci-nerdz.github.io/docs/hci-nerdz/grounded-tokens.html)
 - **Demo** - [Grounded tokens desk](/demos/grounded-tokens/)

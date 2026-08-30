@@ -109,6 +109,11 @@ Prefer orientation over identity equations for abstract essays.
 
 Avoid commitment without a finding (dictation) and floating jargon without an object.
 
+Situation (`When …`) titles still have to orient a *cold* reader.
+The class of failure must be recognizable before the body scene.
+Prefer a claim or job title when the scene only makes sense after you already know the product:
+`Making model assumptions transparent`, not a private shorthand for one case study.
+
 == Attach floating modifiers
 
 `Sequence as the top-level` disorients — top-level *what?*
@@ -164,7 +169,7 @@ Do not steal *Navigating by content* for the reference-identity topic — that t
 . Abstract claim → *as* / process / *a* / question / *when* / disproof instead of rigid *X is Y*?
 . Modifiers attached to an object?
 . One idea per news item? Big idea first?
-. Sentence case? Orienting? Accurate enough?
+. Sentence case? Orienting out of thin air (including `When …` titles)? Accurate enough?
 
 == Examples for this org
 

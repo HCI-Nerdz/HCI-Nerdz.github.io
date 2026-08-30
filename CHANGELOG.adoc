@@ -1,5 +1,12 @@
 = Changelog
 
+== 2026-08-30 — Grounded-tokens essay retitle
+
+* Essay retitled *Making model assumptions transparent* (trust / provenance first; fork scene as evidence).
+* Legacy URL `/blog/when-the-agent-names-a-fork-before-it-looks/` redirects 301.
+* STYLE: situation (`When …`) titles must orient a cold reader.
+* link:changelog-details/2026-08-30%20-%20making-model-assumptions-transparent.adoc[Details]
+
 == 2026-08-30 — Context Edge rename
 
 * Catalog, desk, essay links, and image paths use Context Edge (`context-edge`); MVP / repo URLs follow `HCI-Nerdz/context-edge`
