@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Principles intro advocates and demonstrates
+
+* “What we care about” opens with advocating for and investing in discoverable surfaces; prior body paragraphs folded into one flowing lede (en/es/fr).
+
 == 2026-08-30 — Context Edge desk overlay + demos link
 
 * Homepage Demos: category link sits under the lede, before the card grid.

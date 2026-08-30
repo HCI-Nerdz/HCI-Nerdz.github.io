@@ -16,13 +16,8 @@ export const I18N: Record<Lang, Record<string, string>> = {
     'hero.note_prefix': 'Shell and CLI standards live at our sibling org,',
     'hero.note_org': 'openshellorg.',
     'principles.heading': 'What we care about',
-    'principles.intro': 'Discoverable surfaces. Lower cognitive tax.',
-    'principles.body_1':
-      'Human-Computer Interaction (HCI) and User Interface/User Experience (UI/UX) design principles are foundational to how computers fit into our lives.',
-    'principles.body_2':
-      'Software should be respectful of our cognitive limitations and attentional resources, and intuitively take advantage of mental models that already exist, or teach the user new mental models that are superior.',
-    'principles.body_3':
-      'Features and usage should follow the principles of discoverability and least surprise.',
+    'principles.intro':
+      'We advocate for and invest in demonstrating discoverable surfaces that lower cognitive tax. Human-Computer Interaction (HCI) and User Interface/User Experience (UI/UX) design are foundational to how computers fit into our lives: software should respect our cognitive limits and attentional resources, lean on mental models people already have or teach better ones, and keep features and usage on the path of discoverability and least surprise.',
     'theme.switch_to_dark': 'Switch to dark mode',
     'theme.switch_to_light': 'Switch to light mode',
     'lang.label': 'Language',
@@ -43,13 +38,8 @@ export const I18N: Record<Lang, Record<string, string>> = {
     'hero.note_prefix': 'Las normas de Shell y CLI viven en nuestra organización hermana,',
     'hero.note_org': 'openshellorg.',
     'principles.heading': 'Lo que nos importa',
-    'principles.intro': 'Superficies descubribles. Menor carga cognitiva.',
-    'principles.body_1':
-      'Los principios de interacción persona-computadora (HCI) y de diseño de interfaz y experiencia de usuario (UI/UX) son la base de cómo encajan las computadoras en nuestras vidas.',
-    'principles.body_2':
-      'El software debería respetar nuestros límites cognitivos y nuestros recursos atencionales, y aprovechar de forma intuitiva los modelos mentales que ya existen, o enseñar al usuario modelos nuevos que sean mejores.',
-    'principles.body_3':
-      'Las funciones y el uso deberían seguir los principios de descubribilidad y de mínima sorpresa.',
+    'principles.intro':
+      'Abogamos por — e invertimos en demostrar — superficies descubribles que bajan la carga cognitiva. La interacción persona-computadora (HCI) y el diseño de interfaz y experiencia de usuario (UI/UX) son la base de cómo encajan las computadoras en nuestras vidas: el software debería respetar nuestros límites cognitivos y atencionales, apoyarse en modelos mentales que ya existen o enseñar mejores, y mantener funciones y uso en el camino de la descubribilidad y la mínima sorpresa.',
     'theme.switch_to_dark': 'Cambiar a modo oscuro',
     'theme.switch_to_light': 'Cambiar a modo claro',
     'lang.label': 'Idioma',
@@ -70,13 +60,8 @@ export const I18N: Record<Lang, Record<string, string>> = {
     'hero.note_prefix': 'Les standards Shell et CLI vivent dans notre organisation sœur,',
     'hero.note_org': 'openshellorg.',
     'principles.heading': 'Ce qui nous tient à cœur',
-    'principles.intro': 'Surfaces découvrables. Moins de charge cognitive.',
-    'principles.body_1':
-      'Les principes d’interaction humain-ordinateur (HCI) et de conception d’interface et d’expérience utilisateur (UI/UX) sont fondamentaux dans la façon dont les ordinateurs s’insèrent dans nos vies.',
-    'principles.body_2':
-      'Les logiciels devraient respecter nos limites cognitives et nos ressources attentionnelles, et s’appuyer intuitivement sur les modèles mentaux déjà présents, ou enseigner à l’utilisateur des modèles nouveaux et meilleurs.',
-    'principles.body_3':
-      'Les fonctions et l’usage devraient suivre les principes de découvrabilité et de moindre surprise.',
+    'principles.intro':
+      'Nous défendons et investissons dans la démonstration de surfaces découvrables qui réduisent la charge cognitive. L’interaction humain-ordinateur (HCI) et la conception d’interface et d’expérience utilisateur (UI/UX) sont fondamentales dans la façon dont les ordinateurs s’insèrent dans nos vies : les logiciels devraient respecter nos limites cognitives et attentionnelles, s’appuyer sur les modèles mentaux déjà présents ou en enseigner de meilleurs, et garder fonctions et usage sur la voie de la découvrabilité et de la moindre surprise.',
     'theme.switch_to_dark': 'Passer en mode sombre',
     'theme.switch_to_light': 'Passer en mode clair',
     'lang.label': 'Langue',
