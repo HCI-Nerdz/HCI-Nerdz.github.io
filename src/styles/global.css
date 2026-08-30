@@ -1052,7 +1052,7 @@ html[data-theme="dark"] .hero-eye {
   gap: 0.35rem;
 }
 
-.footer-partners li + li::before {
+.footer-partners li:not(:last-child)::after {
   content: "·";
   margin-inline: 0.65rem;
   color: var(--paper-muted);
