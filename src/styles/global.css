@@ -1049,12 +1049,11 @@ html[data-theme="dark"] .hero-eye {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.35rem;
 }
 
 .footer-partners li:not(:last-child)::after {
   content: "·";
-  margin-inline: 0.65rem;
+  margin-inline: 0.4rem;
   color: var(--paper-muted);
   font-weight: 400;
 }
@@ -1070,6 +1069,7 @@ html[data-theme="dark"] .hero-eye {
 }
 
 .footer-partners span {
+  margin-left: 0.3rem;
   color: var(--paper-muted);
   font-size: 0.92rem;
   font-weight: 400;
