@@ -9,7 +9,7 @@ Editorial titles and channel voice live in **`dev-centr/agent-rules`**:
 - Org overlay: `HCI-Nerdz/agent-rules` (pointer only)
 
 `STYLE.adoc` in this repo is a **human-facing pointer**, not agent doctrine.
-Workstation facts: `$CODE_ROOT/machine.md` + `$CODE_ROOT/harness.md` — never commit; never invent a per-repo copy (legacy name `MEMORIES.md` is abandoned).
+Workstation facts: `$CODE_ROOT/machine.md` + `$CODE_ROOT/harness.md` — never commit; never invent a per-repo copy.
 
 Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/) · https://ryanjohnson.dev/blog/posts/blog-as-inner-thought/
 

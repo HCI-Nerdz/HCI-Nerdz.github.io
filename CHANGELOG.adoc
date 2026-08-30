@@ -2,7 +2,7 @@
 
 == 2026-08-30 — AGENTS / STYLE point at house titles
 
-* `AGENTS.md` and `STYLE.adoc` stop carrying a forked title bible / `MEMORIES.md` line; house `agents/editorial/titles.md` is canonical.
+* `AGENTS.md` and `STYLE.adoc` stop carrying a forked title bible; house `agents/editorial/titles.md` is canonical.
 * link:changelog-details/2026-08-30%20-%20house-editorial-pointer.adoc[Details]
 
 == 2026-08-30 — Grounded-tokens essay retitle
