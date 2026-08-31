@@ -2,6 +2,6 @@
 
 Published the open-with interrupt pattern for file managers.
 
-* Essay: `when-double-click-skips-the-choice.md`
+* Essay: `choosing-a-file-handler-without-the-context-menu.md` (was `when-double-click-skips-the-choice.md`; 301 redirect kept)
 * News: `open-with-interrupt-added-to-repertoire.md`
 * Points at docs topic `open-with-interrupt` for implementation recipes

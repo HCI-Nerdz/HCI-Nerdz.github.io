@@ -1,11 +1,13 @@
 ---
-title: "When double-click skips the choice"
-description: "Default open is a one-way handoff. Across Windows, macOS, and major Linux file managers, there is still no first-class gesture that interrupts it and asks which app should run — Ctrl+double-click and middle-click on files are unused candidates."
+title: "Choosing a file handler without the context menu"
+description: "Default open is a one-way handoff. Desktops still lack a first-class gesture that asks which app should run — Ctrl+double-click and middle-click on files are unused candidates for an open-with interrupt."
 pubDate: 2026-08-04
 tags: ["file-explorer", "open-with", "windows", "desktop", "gestures", "product-representation"]
 ---
 
-You know what you want: open *this* file with *that* app, just this once. The shell already knows several handlers exist. Double-click (or Enter) does not ask. It commits.
+**Open-with interrupt** is the missing click: stop default file-handler handoff and ask which app should open *this* file *now* — without digging through the context menu or Properties.
+
+You already know the job. Open *this* file with *that* app, just this once. The shell already lists several handlers. Double-click (or Enter) does not ask. It commits.
 
 There is no native modifier on Windows File Explorer that intercepts that handoff and forces the **Open with** dialog. Same story on macOS Finder and on the usual Linux file managers (Nautilus, Dolphin, and friends). You get there through the context menu, Properties / Get Info, or a third-party default-handler wrapper — never through a gesture that means *choose now* at the moment of open.
 

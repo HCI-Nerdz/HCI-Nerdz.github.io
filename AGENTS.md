@@ -27,7 +27,7 @@ Philosophy: [/blog/titles-as-orientation/](/blog/titles-as-orientation/) · http
 - Literature for Scoped UX: `HCI-Nerdz/docs` `literature/scoped-ux-architecture/` (Gemini export + PDF); catalog `/docs/hci-nerdz/literature.html`
 - Instruction flows: demo `/demos/instruction-flow/`; Antora package `@antora-supplemental/instruction-flow` (`asciidoc-interactive`); literature `HCI-Nerdz/docs` `literature/instruction-flows/`
 - Pass-through extensions: demo `/demos/pass-through-extensions/`; Windows helper `HCI-Nerdz/pass-through-extensions`
-- Open-with interrupt: essay `/blog/when-double-click-skips-the-choice/`; docs `open-with-interrupt` (implementation recipes)
+- Open-with interrupt: essay `/blog/choosing-a-file-handler-without-the-context-menu/` (301 from `/blog/when-double-click-skips-the-choice/`); docs `open-with-interrupt` (implementation recipes)
 - Visitor-first repo homepage: essay `/blog/when-the-file-tree-owns-the-first-viewport/`; docs `visitor-first-repo-homepage`; upstream https://github.com/orgs/community/discussions/204347
 - Context-bound settings: essay `/blog/making-settings-follow-the-activity/`; docs `context-bound-settings`; demo `/demos/context-bound-settings/`
 - Config field vocabulary: essay `/blog/config-ui-as-the-field-vocabulary/` (companion to UniConfig Config Panel)

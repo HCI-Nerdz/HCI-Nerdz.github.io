@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-08-30 — Open-with interrupt cold-reader retitle
+
+* link:changelog-details/2026-08-30%20-%20open-with-interrupt-cold-reader-retitle.adoc[Details]
+
 == 2026-08-30 — Virtual-pages variant page URLs
 
 * Catalog related links for Virtual pages point at `/edge/`, `/preview/`, `/contrast/` (no longer hash routes).

@@ -1,0 +1,8 @@
+= 2026-08-30 — Open-with interrupt cold-reader retitle
+
+Retitled the open-with interrupt essay for the house cold-reader gate:
+
+* Essay: `choosing-a-file-handler-without-the-context-menu.md` (was `when-double-click-skips-the-choice.md`)
+* 301 from `/blog/when-double-click-skips-the-choice/`
+* News body tightened to outward repertoire voice; links updated
+* AGENTS content map updated
