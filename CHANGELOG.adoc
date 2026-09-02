@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-09-02 — Path renames that break dependents
+
+* link:changelog-details/2026-09-02%20-%20path-renames-that-break-dependents.adoc[Details]
+
 == 2026-08-30 — Open-with interrupt cold-reader retitle
 
 * link:changelog-details/2026-08-30%20-%20open-with-interrupt-cold-reader-retitle.adoc[Details]

@@ -1,0 +1,9 @@
+= 2026-09-02 — Path renames that break dependents
+
+Retitled the labels-versus-wires **symptom** essay for the house cold-reader gate:
+
+* Essay: `path-renames-that-break-dependents.md` (was `docs-path-renames-as-unpaid-chores.md`; earlier `when-renaming-a-page-breaks-half-your-docs`)
+* Claim-first lede (path rename as label change vs identity breakage)
+* 301 from `/blog/docs-path-renames-as-unpaid-chores/` and `/blog/when-renaming-a-page-breaks-half-your-docs/`
+* Demo catalog + desk H1 aligned to the same title
+* Cross-links: diagnosis essay, news repertoire note, AGENTS map

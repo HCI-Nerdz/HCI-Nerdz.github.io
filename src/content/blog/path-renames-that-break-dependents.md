@@ -1,14 +1,14 @@
 ---
-title: "Docs path renames as unpaid chores"
-description: "You may not believe it, but URLs are really for people. Wire systems to those names as identity, though, and a rename becomes unpaid chores across every project that trusted the string."
+title: "Path renames that break dependents"
+description: "Pretty docs paths are for people. Treat them as identity, and a rename becomes unpaid string archaeology across every project that trusted the old URL."
 pubDate: 2026-08-11
 draft: false
 tags: ["devx", "naming", "docs", "reference-integrity", "labels-versus-wires"]
 ---
 
-I am tired of updating URLs.
+A docs path rename should change a **human label**. Too often it breaks every dependent that treated that path as identity — READMEs, Antora nav, blog citations, CI configs that baked `https://…/old-path` as if it were an API.
 
-Not the thoughtful kind of tired — the kind where you rename one docs path for clarity, then spend the afternoon grepping sibling repos because somebody pasted `https://…/old-path` into a README six months ago. The rename was correct. The breakage was predictable. The work is still yours.
+That breakage is the symptom. The rename was usually correct. The work cleaning up strangers' strings is still yours.
 
 <img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Stable content core with a detachable name tag" />
 

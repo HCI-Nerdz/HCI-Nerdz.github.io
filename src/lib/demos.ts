@@ -362,23 +362,23 @@ export const demoCategories: DemoCategory[] = [
     demos: [
       {
         id: "navigating-by-content",
-        title: "When the rename breaks the README",
+        title: "Path renames that break dependents",
         summary: "Symptom demo: flip between string-wired URLs and content hashes. Rename the pretty path and watch who breaks — or who doesn't.",
         viz: "rails",
         href: "/demos/navigating-by-content/",
         releasedAt: "2026-08-11",
-        modifiedAt: "2026-08-11",
+        modifiedAt: "2026-09-02",
         shots: [
           {
             id: "navigating-by-content",
-            label: "When the rename breaks the README",
+            label: "Path renames that break dependents",
             href: "/demos/navigating-by-content/",
           },
         ],
         related: [
           {
             label: "Symptom essay",
-            href: "/blog/docs-path-renames-as-unpaid-chores/",
+            href: "/blog/path-renames-that-break-dependents/",
           },
           {
             label: "Diagnosis essay",

@@ -11,7 +11,7 @@ Pretty names are for people. Systems that treat those names as identity break wh
 The web taught us a bad habit: treat the human-readable path as the thing itself.
 Rename the path, and every dependent that baked the string becomes a broken promise.
 
-This essay is the **diagnosis** face — paired with the symptom entry [Docs path renames as unpaid chores](/blog/docs-path-renames-as-unpaid-chores/).
+This essay is the **diagnosis** face — paired with the symptom entry [Path renames that break dependents](/blog/path-renames-that-break-dependents/).
 Full diagrams and the **treatment** ladder live in the docs: [Labels versus wires](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
 Either face can revise without forcing a retitle of the other.
 
