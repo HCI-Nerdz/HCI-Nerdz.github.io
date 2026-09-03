@@ -1,0 +1,4 @@
+﻿= 2026-09-03 — Docs treatment URL an-alternative-to-urls
+
+* Treatment docs links and concept icons now use `/docs/hci-nerdz/an-alternative-to-urls.html` and `/images/an-alternative-to-urls/`
+* No redirects from the old navigating-by-content wiki path

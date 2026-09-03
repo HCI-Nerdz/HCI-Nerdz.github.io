@@ -14,12 +14,12 @@ Pretty URLs are fine for people.
 They are a poor sole wire for systems.
 
 This essay is the **diagnosis** face — paired with the symptom entry [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/).
-Full diagrams and the **treatment** ladder live in the docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
+Full diagrams and the **treatment** ladder live in the docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html).
 Either face can revise without forcing a retitle of the other.
 
 After the hook, the in-house nickname for the mistake is **labels versus wires**: labels for people, wires for identity.
 
-<img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Hash core with detachable /docs/api label" />
+<img class="concept-icon" src="/images/an-alternative-to-urls/icon.svg" width="168" height="128" alt="Hash core with detachable /docs/api label" />
 
 ## Two naming problems, not one solution
 

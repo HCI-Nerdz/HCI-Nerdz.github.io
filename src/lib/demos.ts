@@ -386,7 +386,7 @@ export const demoCategories: DemoCategory[] = [
           },
           {
             label: "Treatment docs",
-            href: "https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html",
           },
         ],
       },

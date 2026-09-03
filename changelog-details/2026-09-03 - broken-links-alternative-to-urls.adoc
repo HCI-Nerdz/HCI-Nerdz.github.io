@@ -5,6 +5,6 @@ Public titles for the URL-identity cluster (enthymeme + concrete hook; no redire
 * Symptom essay: `broken-links-after-a-url-rename.md` — *Broken links after a URL rename*
 * Diagnosis essay: `an-alternative-to-urls.md` — *An alternative to URLs* (nickname: labels versus wires)
 * Demo: `/demos/broken-links-after-a-url-rename/`
-* Docs H1 on slug `navigating-by-content` updated to match diagnosis
+* Docs page slug `an-alternative-to-urls` matches diagnosis title
 * Cross-links, news repertoire note, AGENTS map updated
 * House title doctrine: `dev-centr/agent-rules` `agents/editorial/titles.md` + hub page `editorial-titles.adoc`

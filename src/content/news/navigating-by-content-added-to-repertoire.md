@@ -10,6 +10,6 @@ tags: ["repertoire", "devx", "naming", "docs", "demos"]
 
 - **Symptom essay** — [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/)
 - **Diagnosis essay** — [An alternative to URLs](/blog/an-alternative-to-urls/)
-- **Diagnosis + treatment (docs)** — [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) (slug kept)
+- **Diagnosis + treatment (docs)** — [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html) 
 - **Symptom demo** — [Broken links after a URL rename](/demos/broken-links-after-a-url-rename/)
 - **Sibling** — connectome-fs explanation + blog on the same identity mistake

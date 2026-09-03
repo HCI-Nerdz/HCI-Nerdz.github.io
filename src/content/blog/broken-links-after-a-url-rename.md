@@ -10,7 +10,7 @@ A docs URL rename should change a **human label**. Too often it leaves **broken 
 
 That breakage is the symptom. The rename was usually correct. The afternoon of grepping strangers' strings is still yours.
 
-<img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Stable content core with a detachable name tag" />
+<img class="concept-icon" src="/images/an-alternative-to-urls/icon.svg" width="168" height="128" alt="Stable content core with a detachable name tag" />
 
 ## Symptom face
 
@@ -48,7 +48,7 @@ More attention on the change you meant to make.
 | --- | --- |
 | Symptom (this piece) | The gut check |
 | Diagnosis | [An alternative to URLs](/blog/an-alternative-to-urls/) |
-| Diagnosis + treatment | Docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) |
+| Diagnosis + treatment | Docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html) |
 | Symptom demo | [Broken links after a URL rename](/demos/broken-links-after-a-url-rename/) |
 
 connectome-fs is the long game on the same mistake: paths as navigation, nodes as truth.
