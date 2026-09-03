@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-09-03 — Reader voice on URL essays and news
+
+* link:changelog-details/2026-09-03%20-%20reader-voice-url-essays.adoc[Details]
+
 == 2026-09-03 — Docs slug an-alternative-to-urls
 
 * link:changelog-details/2026-09-03%20-%20docs-slug-an-alternative-to-urls.adoc[Details]

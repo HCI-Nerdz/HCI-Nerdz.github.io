@@ -1,15 +1,15 @@
 ---
 title: "An alternative to URLs added to the repertoire"
-description: "Symptom entry for broken links after a URL rename, paired with a revisable diagnosis: content identity, mutable pointers, and reverse consumers."
+description: "Essays, docs, and a demo on broken links after URL renames — and why systems need another way to find a resource besides the pretty path."
 pubDate: 2026-08-11
 draft: false
 tags: ["repertoire", "devx", "naming", "docs", "demos"]
 ---
 
-**An alternative to URLs** entered the repertoire as a symptom ↔ diagnosis/treatment pair: start from the broken links people already feel after a rename, then name the mistake and the stack of fixes.
+**An alternative to URLs** joined the repertoire: why a docs rename leaves broken links behind, and what to do when the pretty path should not be the only address systems use.
 
-- **Symptom essay** — [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/)
-- **Diagnosis essay** — [An alternative to URLs](/blog/an-alternative-to-urls/)
-- **Diagnosis + treatment (docs)** — [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html) 
-- **Symptom demo** — [Broken links after a URL rename](/demos/broken-links-after-a-url-rename/)
-- **Sibling** — connectome-fs explanation + blog on the same identity mistake
+- Essay — [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/)
+- Essay — [An alternative to URLs](/blog/an-alternative-to-urls/)
+- Docs — [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html)
+- Demo — [Broken links after a URL rename](/demos/broken-links-after-a-url-rename/)
+- Related — connectome-fs on the same identity mistake

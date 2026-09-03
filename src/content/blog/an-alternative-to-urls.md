@@ -1,6 +1,6 @@
 ---
 title: "An alternative to URLs"
-description: "Why treat the string you typed as the thing itself? Pretty URLs stay for people — systems need another way to wire identity, fetch, and dependents."
+description: "Why treat the string you typed as the thing itself? Pretty URLs stay for people — systems need another way to find, cite, and depend on a resource."
 pubDate: 2026-08-11
 draft: false
 tags: ["architecture", "ndn", "cas", "devx", "labels-versus-wires", "connectome-fs", "url"]
@@ -11,13 +11,11 @@ Why would anyone need **an alternative to URLs**?
 Because the web taught a bad habit: treat the human-readable path as the thing itself.
 Rename the path, and every project that baked the string becomes a broken promise.
 Pretty URLs are fine for people.
-They are a poor sole wire for systems.
+They are a poor sole address for systems.
 
-This essay is the **diagnosis** face — paired with the symptom entry [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/).
-Full diagrams and the **treatment** ladder live in the docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html).
-Either face can revise without forcing a retitle of the other.
-
-After the hook, the in-house nickname for the mistake is **labels versus wires**: labels for people, wires for identity.
+If you already feel that ache, start with [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/) (and the [demo](/demos/broken-links-after-a-url-rename/)).
+This essay is the diagnosis: what went wrong, and what to stack instead.
+Full diagrams and the treatment ladder live in the docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/an-alternative-to-urls.html).
 
 <img class="concept-icon" src="/images/an-alternative-to-urls/icon.svg" width="168" height="128" alt="Hash core with detachable /docs/api label" />
 
@@ -55,7 +53,7 @@ Complementary in UX: both serve “I should not have to care where it lives or w
 
 1. **Content-addressed identity (CAS)** — bind to `hash(bytes)` (or a graph node id). Moves and renames with identical content do not break fetch: $Hash(Bytes_{old}) = Hash(Bytes_{new})$.
 2. **Mutable human pointer** — a stable semantic name resolves to the *current* hash when content updates. Without this, CAS freezes you on $v1$ because $Hash(Bytes_{v1}) \neq Hash(Bytes_{v2})$.
-3. **Reverse consumer graph** — producers list who still holds labels (`CONSUMERS.md`). Agents search those trees instead of guessing.
+3. **Reverse consumer graph** — producers list who still holds the pretty names (`CONSUMERS.md`). Agents search those trees instead of guessing.
 4. **Absorb layer** — redirects, Antora aliases, “cool URIs don’t change.” Required on today's IP web.
 
 ```mermaid
@@ -69,7 +67,6 @@ flowchart LR
 
 Unison shows the destination for *code* identity.
 [connectome-fs](https://github.com/connectome-fs/connectome-fs) aims at the filesystem and association plane underneath many languages and non-code artifacts — path as projection, graph as truth.
-See its explanation *Labels versus wires* beside *Semantic change units*.
 
 ## Near-term practice
 
@@ -82,4 +79,4 @@ Until CAS is ordinary:
 - Leave redirects forever.
 
 Pretty URLs stay.
-They just stop being the only wire.
+They just stop being the only address.

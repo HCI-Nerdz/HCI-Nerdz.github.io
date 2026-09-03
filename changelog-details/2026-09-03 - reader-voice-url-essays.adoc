@@ -1,0 +1,4 @@
+﻿= 2026-09-03 — Reader voice on URL essays and news
+
+* Rewrote openings on `broken-links-after-a-url-rename` and `an-alternative-to-urls` (no symptom/diagnosis face briefing)
+* News repertoire note: outward lead without dialectic jargon
