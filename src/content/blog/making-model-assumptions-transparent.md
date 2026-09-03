@@ -38,7 +38,7 @@ On a real desktop, dangerous controls look different from safe ones. Red delete 
 
 Agent chat inverted that. The harness knows tool calls, retries, and HTTP status codes. The transcript renders every token as plain prose with equal weight. You become the diff engine: mine each slug wondering whether GitHub was consulted or the model free-associated from upstream naming.
 
-That mining tax is the same product-representation failure [attention is not inventory](/blog/attention-is-not-inventory/) and [product representation is the bug](/blog/product-representation-is-the-bug/) describe elsewhere. Capability exists; the surface lies about what was exercised.
+That mining tax is the same product-representation failure [attention is not inventory](/blog/attention-is-not-inventory/) and [when the UI hides what counts](/blog/when-the-ui-hides-what-counts/) describe elsewhere. Capability exists; the surface lies about what was exercised.
 
 ## Visual language
 

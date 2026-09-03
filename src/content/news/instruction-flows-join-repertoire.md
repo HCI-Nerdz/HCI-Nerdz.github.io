@@ -8,7 +8,7 @@ pubDate: 2026-08-02
 
 ## What shipped
 
-- An [essay](/blog/instruction-flows/) on navigating by the content itself
+- An [essay](/blog/navigating-by-content/) on navigating by the content itself
 - An [interactive demo](/demos/instruction-flow/) with nested continuations, rewind, and shareable URL state
 - A docs topic with a live `[instructionflow]` block on the [Antora hub](https://hci-nerdz.github.io/docs/hci-nerdz/instruction-flows.html)
 - Wiring for [`@antora-supplemental/instruction-flow`](https://github.com/antora-supplemental/asciidoc-interactive) so the Antora sample is real generator output, not a mock

@@ -36,7 +36,7 @@ Either binding should open the system app picker for the selected file — tempo
 
 ## Product representation again
 
-Association databases already list multiple capable apps. The first-class open gesture pretends there is only one. That is the same class of bug as [hiding a real option the engine already knows](/blog/product-representation-is-the-bug/): knowledge exists behind the glass; the interrupt never arrives at the fingertip.
+Association databases already list multiple capable apps. The first-class open gesture pretends there is only one. That is the same class of bug as [hiding a real option the engine already knows](/blog/when-the-ui-hides-what-counts/): knowledge exists behind the glass; the interrupt never arrives at the fingertip.
 
 Intuition over backwards convention applies. Teaching everyone a deeper context-menu path forever is temporary theater. A one-gesture interrupt compounds across every file type, every day, on every desktop that still treats double-click as an unstoppable commitment.
 

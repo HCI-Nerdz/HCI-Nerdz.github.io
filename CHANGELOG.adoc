@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-09-03 — Blog slug/title alignment
+
+* link:changelog-details/2026-09-03%20-%20blog-slug-title-alignment.adoc[Details]
+
 == 2026-09-02 — Path renames that break dependents
 
 * link:changelog-details/2026-09-02%20-%20path-renames-that-break-dependents.adoc[Details]

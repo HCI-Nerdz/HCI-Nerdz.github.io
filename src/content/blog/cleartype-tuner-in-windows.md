@@ -52,7 +52,7 @@ Classic **GDI** text follows session-wide font-smoothing parameters exposed thro
 
 So the ClearType Text Tuner writes across more than one plane. Some of what it writes is global. Some is labeled per display. Whether your *reading app* honors the per-display half is a property of that app, not of the wizard’s checklist.
 
-That gap—UI that offers per-monitor tuning while large parts of the text stack still behave as one session-wide choice—is a [product representation](/blog/product-representation-is-the-bug/) problem. The structure behind the glass is richer than the story the first-class surface tells, and also poorer than the story implies, depending on which plane you look at.
+That gap—UI that offers per-monitor tuning while large parts of the text stack still behave as one session-wide choice—is a [product representation](/blog/when-the-ui-hides-what-counts/) problem. The structure behind the glass is richer than the story the first-class surface tells, and also poorer than the story implies, depending on which plane you look at.
 
 ## Tools with different fidelity
 

@@ -125,5 +125,5 @@ Comments and prototypes welcome. This page will move as [`pipeline-composer`](ht
 
 - Strategy template: [Sharing the IR, not the pixels](/blog/share-the-ir-not-the-pixels/)
 - Docs: [Prototype strategy](https://hci-nerdz.github.io/docs/hci-nerdz/prototype-strategy.html) · [Fundamental contexts (stub)](https://hci-nerdz.github.io/docs/hci-nerdz/fundamental-contexts.html)
-- Processing maps: [Sequence as top-level organization](/blog/pipeline-composer-interfaces/) · [Docs topic](https://hci-nerdz.github.io/docs/hci-nerdz/processing-maps.html)
+- Processing maps: [Sequence as top-level organization](/blog/sequence-as-top-level-organization/) · [Docs topic](https://hci-nerdz.github.io/docs/hci-nerdz/processing-maps.html)
 - Demo: [pipeline-composer](https://hci-nerdz.github.io/pipeline-composer/) · [Demos index](/demos/)

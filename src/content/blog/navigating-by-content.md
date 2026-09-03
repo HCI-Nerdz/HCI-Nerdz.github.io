@@ -46,7 +46,7 @@ That package already ships an MVP: `[instructionflow]` example blocks with JSON5
 | --- | --- |
 | [Progressive disclosure](/blog/attention-is-not-inventory/) | Budget the first screen; deepen on demand |
 | [Scoped UX architecture](/blog/scoped-ux-architecture/) | Keep each tool (here: each decision) from becoming a junk drawer |
-| [Processing maps](/blog/pipeline-composer-interfaces/) | When the *runtime* is ordered; instruction flows are when the *reading path* is ordered |
+| [Processing maps](/blog/sequence-as-top-level-organization/) | When the *runtime* is ordered; instruction flows are when the *reading path* is ordered |
 
 Instruction flows are progressive disclosure for documentation jobs that are really decision trees.
 

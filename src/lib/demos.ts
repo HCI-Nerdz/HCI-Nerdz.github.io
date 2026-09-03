@@ -170,7 +170,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Essay",
-            href: "/blog/instruction-flows/",
+            href: "/blog/navigating-by-content/",
           },
           {
             label: "Docs",
@@ -438,7 +438,7 @@ export const demoCategories: DemoCategory[] = [
         related: [
           {
             label: "Essay",
-            href: "/blog/pipeline-composer-interfaces/",
+            href: "/blog/sequence-as-top-level-organization/",
           },
           {
             label: "Strategy",

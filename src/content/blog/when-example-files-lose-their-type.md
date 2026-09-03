@@ -50,7 +50,7 @@ Compression tails (`.gz`, `.bz2`, `.xz`) are not pass-through. Different problem
 
 ## Product representation again
 
-The filesystem already encodes the type in the stem. Humans already read it. Only the shell throws it away at the last mile. That is the same class of bug as [hiding Commenter when search already knows](/blog/product-representation-is-the-bug/): the engine (here, the name) knows; the first-class surface refuses to ask.
+The filesystem already encodes the type in the stem. Humans already read it. Only the shell throws it away at the last mile. That is the same class of bug as [hiding Commenter when search already knows](/blog/when-the-ui-hides-what-counts/): the engine (here, the name) knows; the first-class surface refuses to ask.
 
 Intuition over backwards convention applies. Migrating association metadata is temporary. Living with “every example file is unopenable” is permanent and compounding across every repo on every Windows machine.
 

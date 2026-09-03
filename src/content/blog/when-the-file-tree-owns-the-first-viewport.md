@@ -9,7 +9,7 @@ Most people who land on a GitHub repository are not there to publish a release. 
 
 Empty **Releases** and **Packages** keep their slots. “No releases published” is not a visitor fact — it is an owner onboarding CTA wearing the clothes of information. The About column often repeats stars, watching, and forks already in the header, and offers a **Readme** jump that is redundant when a README exists and wrong when it does not. Above all, the **file browser owns the first viewport**. The project story waits below a directory dump that owners already know how to find under Code.
 
-That is the wrong altitude for the larger audience. Same class of mismatch as product vocabulary centered on the person who created the repository rather than people joining later — and adjacent to [when the UI hides what counts](/blog/product-representation-is-the-bug/).
+That is the wrong altitude for the larger audience. Same class of mismatch as product vocabulary centered on the person who created the repository rather than people joining later — and adjacent to [when the UI hides what counts](/blog/when-the-ui-hides-what-counts/).
 
 I filed the ask upstream as [Repo homepage should be visitor-first…](https://github.com/orgs/community/discussions/204347). Outside GitHub, Anish made a related meaning-first case in early 2026: [GitHub Needs a Meaning First Makeover](https://anish95.medium.com/github-needs-a-meaning-first-makeover-in-2026-d3fb4d42e27d).
 

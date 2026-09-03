@@ -56,7 +56,7 @@ Progressive disclosure still matters on a single screen. Scoped architecture ans
 - Not “delete features until the app is empty”
 - Not micro-frontends (a delivery tactic, not an experience stance)
 - Not a free pass to hide capability behind power-user syntax — that is still a product-representation bug
-- Not the same claim as [sequence-first processing maps](/blog/pipeline-composer-interfaces/) — maps are for ordered runtimes; scoped tools are for multi-job products
+- Not the same claim as [sequence-first processing maps](/blog/sequence-as-top-level-organization/) — maps are for ordered runtimes; scoped tools are for multi-job products
 
 ## Try the desk
 

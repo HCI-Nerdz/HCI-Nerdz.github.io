@@ -119,6 +119,6 @@ Skip the split for static marketing pages and one-off demos with no reuse story.
 - Demo: [hci-nerdz.github.io/pipeline-composer](https://hci-nerdz.github.io/pipeline-composer/)
 - Repository: [github.com/HCI-Nerdz/pipeline-composer](https://github.com/HCI-Nerdz/pipeline-composer)
 - Docs template: [Prototype strategy: core, controller, renderers](https://hci-nerdz.github.io/docs/hci-nerdz/prototype-strategy.html)
-- Sibling essay: [Sequence as top-level organization](/blog/pipeline-composer-interfaces/)
+- Sibling essay: [Sequence as top-level organization](/blog/sequence-as-top-level-organization/)
 - Discussion: [Fundamental contexts for portable UI](/blog/fundamental-contexts-for-portable-ui/)
 - Demos index: [/demos/](/demos/)
