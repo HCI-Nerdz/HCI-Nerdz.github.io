@@ -4,7 +4,7 @@
 == Added
 
 * Blog: `when-renaming-a-page-breaks-half-your-docs` (relatable) and `when-the-name-is-not-the-wire` (technical, Mermaid)
-* Demo `/demos/navigating-by-content/` with mode toggle + rename animation
+* Demo `/demos/broken-links-after-a-url-rename/` with mode toggle + rename animation
 * News repertoire note; icon under `public/images/navigating-by-content/`
 * Homepage *Domains of HCI we work in* section (second altitude, hero unchanged)
 * Demo catalog category `naming-reference`

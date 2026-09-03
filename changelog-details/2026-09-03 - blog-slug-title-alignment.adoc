@@ -7,4 +7,4 @@ Aligned four essay filenames with their wired titles (no redirects; old URLs int
 * `when-the-ui-hides-what-counts.md` (was `product-representation-is-the-bug.md`)
 * `color-fonts-as-theme-integrity-colrv1-and-nabla.md` (was `when-colrv1-and-nabla-bridge-the-theme.md`)
 
-Cross-links updated in demos catalog, philosophy page, related essays, news, and AGENTS. Note: blog `/blog/navigating-by-content/` is instruction flows; demo `/demos/navigating-by-content/` remains Labels versus wires symptom demo.
+Cross-links updated in demos catalog, philosophy page, related essays, news, and AGENTS. Note: blog `/blog/navigating-by-content/` is instruction flows; demo `/demos/broken-links-after-a-url-rename/` remains Labels versus wires symptom demo.

@@ -1,19 +1,23 @@
 ---
-title: "Labels versus wires"
-description: "Stop treating pretty names as system identity. NDN, content-addressing, and CONSUMERS.md attack different bounds of the same want."
+title: "An alternative to URLs"
+description: "Why treat the string you typed as the thing itself? Pretty URLs stay for people — systems need another way to wire identity, fetch, and dependents."
 pubDate: 2026-08-11
 draft: false
-tags: ["architecture", "ndn", "cas", "devx", "labels-versus-wires", "connectome-fs"]
+tags: ["architecture", "ndn", "cas", "devx", "labels-versus-wires", "connectome-fs", "url"]
 ---
 
-Pretty names are for people. Systems that treat those names as identity break when a rename ripples through dependents. This essay is the **diagnosis**: **labels versus wires**.
+Why would anyone need **an alternative to URLs**?
 
-The web taught us a bad habit: treat the human-readable path as the thing itself.
-Rename the path, and every dependent that baked the string becomes a broken promise.
+Because the web taught a bad habit: treat the human-readable path as the thing itself.
+Rename the path, and every project that baked the string becomes a broken promise.
+Pretty URLs are fine for people.
+They are a poor sole wire for systems.
 
-This essay is the **diagnosis** face — paired with the symptom entry [Path renames that break dependents](/blog/path-renames-that-break-dependents/).
-Full diagrams and the **treatment** ladder live in the docs: [Labels versus wires](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
+This essay is the **diagnosis** face — paired with the symptom entry [Broken links after a URL rename](/blog/broken-links-after-a-url-rename/).
+Full diagrams and the **treatment** ladder live in the docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html).
 Either face can revise without forcing a retitle of the other.
+
+After the hook, the in-house nickname for the mistake is **labels versus wires**: labels for people, wires for identity.
 
 <img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Hash core with detachable /docs/api label" />
 
@@ -78,4 +82,4 @@ Until CAS is ordinary:
 - Leave redirects forever.
 
 Pretty URLs stay.
-They just stop being the wire.
+They just stop being the only wire.

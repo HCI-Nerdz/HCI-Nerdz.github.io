@@ -361,28 +361,28 @@ export const demoCategories: DemoCategory[] = [
     description: "How content is labeled, typed, and composed — identity vs pretty paths, peelable types, and sequence maps.",
     demos: [
       {
-        id: "navigating-by-content",
-        title: "Path renames that break dependents",
+        id: "broken-links-after-a-url-rename",
+        title: "Broken links after a URL rename",
         summary: "Symptom demo: flip between string-wired URLs and content hashes. Rename the pretty path and watch who breaks — or who doesn't.",
         viz: "rails",
-        href: "/demos/navigating-by-content/",
+        href: "/demos/broken-links-after-a-url-rename/",
         releasedAt: "2026-08-11",
-        modifiedAt: "2026-09-02",
+        modifiedAt: "2026-09-03",
         shots: [
           {
-            id: "navigating-by-content",
-            label: "Path renames that break dependents",
-            href: "/demos/navigating-by-content/",
+            id: "broken-links-after-a-url-rename",
+            label: "Broken links after a URL rename",
+            href: "/demos/broken-links-after-a-url-rename/",
           },
         ],
         related: [
           {
             label: "Symptom essay",
-            href: "/blog/path-renames-that-break-dependents/",
+            href: "/blog/broken-links-after-a-url-rename/",
           },
           {
             label: "Diagnosis essay",
-            href: "/blog/labels-versus-wires/",
+            href: "/blog/an-alternative-to-urls/",
           },
           {
             label: "Treatment docs",

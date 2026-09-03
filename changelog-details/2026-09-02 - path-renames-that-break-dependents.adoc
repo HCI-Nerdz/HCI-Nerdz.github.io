@@ -1,4 +1,4 @@
-= 2026-09-02 — Path renames that break dependents
+= 2026-09-02 — Broken links after a URL rename
 
 Retitled the labels-versus-wires **symptom** essay for the house cold-reader gate:
 

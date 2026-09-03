@@ -1,21 +1,21 @@
 ---
-title: "Path renames that break dependents"
-description: "Pretty docs paths are for people. Treat them as identity, and a rename becomes unpaid string archaeology across every project that trusted the old URL."
+title: "Broken links after a URL rename"
+description: "A docs URL rename should change a human label. Treat that string as identity, and every README that trusted it becomes a broken link."
 pubDate: 2026-08-11
 draft: false
-tags: ["devx", "naming", "docs", "reference-integrity", "labels-versus-wires"]
+tags: ["devx", "naming", "docs", "reference-integrity", "labels-versus-wires", "url"]
 ---
 
-A docs path rename should change a **human label**. Too often it breaks every dependent that treated that path as identity — READMEs, Antora nav, blog citations, CI configs that baked `https://…/old-path` as if it were an API.
+A docs URL rename should change a **human label**. Too often it leaves **broken links** everywhere that baked `https://…/old-path` as if it were an API — READMEs, Antora nav, blog citations, CI configs.
 
-That breakage is the symptom. The rename was usually correct. The work cleaning up strangers' strings is still yours.
+That breakage is the symptom. The rename was usually correct. The afternoon of grepping strangers' strings is still yours.
 
 <img class="concept-icon" src="/images/navigating-by-content/icon.svg" width="168" height="128" alt="Stable content core with a detachable name tag" />
 
 ## Symptom face
 
 This essay is the **symptom** entry: what you already feel.
-URL rot, rename fallout, string archaeology — the waiting-room complaint.
+Broken links after a rename, URL rot, string archaeology — the waiting-room complaint.
 Diagnosis and treatment live elsewhere so we can revise the theory without renaming the ache, and revise the ache without moving the architecture page.
 
 ## URLs are for people
@@ -47,9 +47,9 @@ More attention on the change you meant to make.
 | Face | Where |
 | --- | --- |
 | Symptom (this piece) | The gut check |
-| Diagnosis | [Labels versus wires](/blog/labels-versus-wires/) |
-| Diagnosis + treatment | Docs: [Labels versus wires](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) |
-| Symptom demo | [Rename simulation](/demos/navigating-by-content/) |
+| Diagnosis | [An alternative to URLs](/blog/an-alternative-to-urls/) |
+| Diagnosis + treatment | Docs: [An alternative to URLs](https://hci-nerdz.github.io/docs/hci-nerdz/navigating-by-content.html) |
+| Symptom demo | [Broken links after a URL rename](/demos/broken-links-after-a-url-rename/) |
 
 connectome-fs is the long game on the same mistake: paths as navigation, nodes as truth.
 If you live in graphs and editions, start there after the gut check.
