@@ -1,0 +1,3 @@
+= 2026-09-05 — Path Edge essay: top or side
+
+* Essay Path section matches single-edge demos (Top or Side, not paired L hops)

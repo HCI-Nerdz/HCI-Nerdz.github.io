@@ -1,100 +1,105 @@
 = Changelog
 
-== 2026-09-03 � Reader voice on URL essays and news
+== 2026-09-05 ? Path Edge essay: top or side
+
+* Essay Path section matches single-edge demos (Top or Side, not paired L hops)
+* link:changelog-details/2026-09-05%20-%20path-edge-top-or-side.adoc[Details]
+
+== 2026-09-03 ? Reader voice on URL essays and news
 
 * link:changelog-details/2026-09-03%20-%20reader-voice-url-essays.adoc[Details]
 
-== 2026-09-03 � Docs slug an-alternative-to-urls
+== 2026-09-03 ? Docs slug an-alternative-to-urls
 
 * link:changelog-details/2026-09-03%20-%20docs-slug-an-alternative-to-urls.adoc[Details]
 
-== 2026-09-03 — Broken links / alternative to URLs retitle
+== 2026-09-03 ? Broken links / alternative to URLs retitle
 
 * link:changelog-details/2026-09-03%20-%20broken-links-alternative-to-urls.adoc[Details]
 
-== 2026-09-03 — Blog slug/title alignment
+== 2026-09-03 ? Blog slug/title alignment
 
 * link:changelog-details/2026-09-03%20-%20blog-slug-title-alignment.adoc[Details]
 
-== 2026-09-02 — Broken links after a URL rename
+== 2026-09-02 ? Broken links after a URL rename
 
 * link:changelog-details/2026-09-02%20-%20path-renames-that-break-dependents.adoc[Details]
 
-== 2026-08-30 — Open-with interrupt cold-reader retitle
+== 2026-08-30 ? Open-with interrupt cold-reader retitle
 
 * link:changelog-details/2026-08-30%20-%20open-with-interrupt-cold-reader-retitle.adoc[Details]
 
-== 2026-08-30 — Virtual-pages variant page URLs
+== 2026-08-30 ? Virtual-pages variant page URLs
 
 * Catalog related links for Virtual pages point at `/edge/`, `/preview/`, `/contrast/` (no longer hash routes).
 
-== 2026-08-30 — Detecting AI lies + spatial desk publish
+== 2026-08-30 ? Detecting AI lies + spatial desk publish
 
-* Catalog/demo title: Grounded tokens → Detecting AI lies (slug unchanged).
-* Publish Spatial web windows desk, essay, news, and shots (was local-only → 404).
+* Catalog/demo title: Grounded tokens ? Detecting AI lies (slug unchanged).
+* Publish Spatial web windows desk, essay, news, and shots (was local-only ? 404).
 * link:changelog-details/2026-08-30%20-%20detecting-ai-lies-spatial-publish.adoc[Details]
 
-== 2026-08-30 — OpenShellOrg links use opensh.org
+== 2026-08-30 ? OpenShellOrg links use opensh.org
 
 * Partner footer and site links point at https://opensh.org/ instead of openshellorg.github.io.
 
-== 2026-08-30 — Principles intro advocates and demonstrates
+== 2026-08-30 ? Principles intro advocates and demonstrates
 
-* “What we care about” opens with advocating for and investing in discoverable surfaces; prior body paragraphs folded into one flowing lede (en/es/fr).
+* ?What we care about? opens with advocating for and investing in discoverable surfaces; prior body paragraphs folded into one flowing lede (en/es/fr).
 
-== 2026-08-30 — Context Edge desk overlay + demos link
+== 2026-08-30 ? Context Edge desk overlay + demos link
 
 * Homepage Demos: category link sits under the lede, before the card grid.
 * Context Edge desk: Close/map `[hidden]` no longer fights `display: grid`; CTA uses light text on honesty; copy clarifies desk vs full package.
 * link:changelog-details/2026-08-30%20-%20context-edge-desk-overlay-demos-link.adoc[Details]
 
-== 2026-08-30 — Homepage principles from Scoped UX voice
+== 2026-08-30 ? Homepage principles from Scoped UX voice
 
-* Principles shortlist: Discoverability; UIs that promote good habits; Search, don't sort; Respect user attention; Scoped UX; Transferable knowledge — modeled on the original Gemini scoped-UX prompts.
+* Principles shortlist: Discoverability; UIs that promote good habits; Search, don't sort; Respect user attention; Scoped UX; Transferable knowledge ? modeled on the original Gemini scoped-UX prompts.
 * link:changelog-details/2026-08-30%20-%20homepage-principles-scoped-ux-voice.adoc[Details]
 
-== 2026-08-30 — Respect user attention principle
+== 2026-08-30 ? Respect user attention principle
 
-* Homepage principle retitled from “Attention is not inventory” to Respect user attention.
+* Homepage principle retitled from ?Attention is not inventory? to Respect user attention.
 
-== 2026-08-30 — Search, don't sort principle
+== 2026-08-30 ? Search, don't sort principle
 
-* Homepage principle retitled from “First-class UI for real jobs” to the classic Search, don't sort: filters above the list, not side chrome or cryptic syntax.
+* Homepage principle retitled from ?First-class UI for real jobs? to the classic Search, don't sort: filters above the list, not side chrome or cryptic syntax.
 
-== 2026-08-30 — Drop “Surfaces tell the truth” principle
+== 2026-08-30 ? Drop ?Surfaces tell the truth? principle
 
 * Removed that homepage bullet; remaining principles list starts at intuition over convention.
 
-== 2026-08-30 — Drop rhetorical bug line from homepage
+== 2026-08-30 ? Drop rhetorical bug line from homepage
 
-* Removed the “bug is often discoverability…” lede above the principles list.
+* Removed the ?bug is often discoverability?? lede above the principles list.
 
-== 2026-08-30 — Drop homepage Partners section
+== 2026-08-30 ? Drop homepage Partners section
 
 * Partners live in the site footer only; homepage no longer repeats the list.
 * link:changelog-details/2026-08-30%20-%20drop-homepage-partners-section.adoc[Details]
 
-== 2026-08-30 — Inline partner footer flex
+== 2026-08-30 ? Inline partner footer flex
 
-* Partner footer is a wrapping flex row: bold name, description, · between items (no columns).
+* Partner footer is a wrapping flex row: bold name, description, ? between items (no columns).
 * link:changelog-details/2026-08-30%20-%20inline-partner-footer-flex.adoc[Details]
 
-== 2026-08-30 — Compact partner footer columns
+== 2026-08-30 ? Compact partner footer columns
 
-* Partner footer uses multi-column layout with name · title on one line.
+* Partner footer uses multi-column layout with name ? title on one line.
 * link:changelog-details/2026-08-30%20-%20compact-partner-footer-columns.adoc[Details]
 
-== 2026-08-30 — Demos index sort chrome
+== 2026-08-30 ? Demos index sort chrome
 
 * Sort by Release Date | Updated; accordions closed by default; related links inside cards; solo thumbs capped to one family-column width.
 * link:changelog-details/2026-08-30%20-%20demos-index-sort-chrome.adoc[Details]
 
-== 2026-08-30 — Partner footer titles
+== 2026-08-30 ? Partner footer titles
 
 * Footer lists each partner once with a short title; adds Desktop Tooling; homepage Partners aligned.
 * link:changelog-details/2026-08-30%20-%20partner-footer-titles.adoc[Details]
 
-== 2026-08-30 — Partner footer single entry points
+== 2026-08-30 ? Partner footer single entry points
 
 * Footers and Partners: one homepage (or GitHub-only) link per org; no stacked docs/GitHub beside homepage.
 * link:changelog-details/2026-08-30%20-%20partner-footer-entrypoints.adoc[Details]
@@ -104,41 +109,41 @@
 * Desk, catalog, and essay openers ramp from stuffed suite headers before naming rails / wireframe map.
 * link:changelog-details/2026-08-30%20-%20context-edge-entry-copy.adoc[Details]
 
-== 2026-08-30 — Demos index timeline
+== 2026-08-30 ? Demos index timeline
 
-* Catalog categories become familiar UI domains; Theme → Theming; accordion index with Released/Updated dates.
-* Bare category count badges removed (counts now say “N demos” / “no demos yet”).
+* Catalog categories become familiar UI domains; Theme ? Theming; accordion index with Released/Updated dates.
+* Bare category count badges removed (counts now say ?N demos? / ?no demos yet?).
 * link:changelog-details/2026-08-30%20-%20demos-index-timeline.adoc[Details]
 
-== 2026-08-30 — Docs path renames as unpaid chores
+== 2026-08-30 ? Docs path renames as unpaid chores
 
 * Symptom essay retitled for cold-reader orientation; URL beat drops "pretty" framing; 301 from old slug.
 * link:changelog-details/2026-08-30%20-%20docs-path-renames-as-unpaid-chores.adoc[Details]
 
-== 2026-08-30 — Cold-reader essay retitles
+== 2026-08-30 ? Cold-reader essay retitles
 
-* Seven opaque `When…` essays retitled to claim/job titles; 301 from old slugs.
+* Seven opaque `When?` essays retitled to claim/job titles; 301 from old slugs.
 * link:changelog-details/2026-08-30%20-%20cold-reader-essay-retitles.adoc[Details]
 
-== 2026-08-30 — AGENTS / STYLE point at house titles
+== 2026-08-30 ? AGENTS / STYLE point at house titles
 
 * `AGENTS.md` and `STYLE.adoc` stop carrying a forked title bible / `MEMORIES.md` line; house `agents/editorial/titles.md` is canonical.
 * link:changelog-details/2026-08-30%20-%20house-editorial-pointer.adoc[Details]
 
-== 2026-08-30 — Grounded-tokens essay retitle
+== 2026-08-30 ? Grounded-tokens essay retitle
 
 * Essay retitled *Making model assumptions transparent* (trust / provenance first; fork scene as evidence).
 * Legacy URL `/blog/when-the-agent-names-a-fork-before-it-looks/` redirects 301.
-* STYLE: situation (`When …`) titles must orient a cold reader.
+* STYLE: situation (`When ?`) titles must orient a cold reader.
 * link:changelog-details/2026-08-30%20-%20making-model-assumptions-transparent.adoc[Details]
 
-== 2026-08-30 — Context Edge rename
+== 2026-08-30 ? Context Edge rename
 
 * Catalog, desk, essay links, and image paths use Context Edge (`context-edge`); MVP / repo URLs follow `HCI-Nerdz/context-edge`
 
-== 2026-08-29 — Actor-model harness canvas
+== 2026-08-29 ? Actor-model harness canvas
 
-* Demo `/demos/actor-model-agentic-ui/`: Canvas variant — conversation preview thumbs, email-like PM statuses, drag rearrange, archive with position restore, title-history index; Grid variant retained.
+* Demo `/demos/actor-model-agentic-ui/`: Canvas variant ? conversation preview thumbs, email-like PM statuses, drag rearrange, archive with position restore, title-history index; Grid variant retained.
 * Catalog blurb updated; identity strip + VCS mark on the demo page.
 
 == 2026-08-28 -- Open Terminal layout desk
@@ -147,154 +152,154 @@
 * Thin desk `/demos/shell-context/` + news card.
 * Live suite: https://hci-nerdz.github.io/shell-context-demo/ (screenshots re-capture later after windowing chrome).
 
-== 2026-08-28 — Project inbox
+== 2026-08-28 ? Project inbox
 
-* Essay, news, demo `/demos/project-inbox/` — parallel task grid with fork panel, chapter bar, serialized-mode contrast
+* Essay, news, demo `/demos/project-inbox/` ? parallel task grid with fork panel, chapter bar, serialized-mode contrast
 * link:changelog-details/2026-08-28%20-%20project-inbox.adoc[Details]
 
-== 2026-08-28 — Grounded tokens
+== 2026-08-28 ? Grounded tokens
 
-* Essay, news, demo `/demos/grounded-tokens/` — fork-name case study with provenance toggle
+* Essay, news, demo `/demos/grounded-tokens/` ? fork-name case study with provenance toggle
 * link:changelog-details/2026-08-28%20-%20grounded-tokens.adoc[Details]
 
-== 2026-08-24 — Labels versus wires dialectic
+== 2026-08-24 ? Labels versus wires dialectic
 
 * Repertoire framing: symptom entry (rename essay + demo) paired with revisable diagnosis/treatment (technical essay + docs *Labels versus wires*).
-* STYLE documents symptom ↔ diagnosis/treatment for repertoire topics.
+* STYLE documents symptom ? diagnosis/treatment for repertoire topics.
 * News title updated; demo eyebrow/title are symptom-facing.
 * link:changelog-details/2026-08-24%20-%20labels-versus-wires-dialectic.adoc[Details]
 
-== 2026-08-18 — Continuous HCI extrusion loop
+== 2026-08-18 ? Continuous HCI extrusion loop
 
 * Homepage Nabla `EDPT` animation no longer flips sign every 6.2s, so extrusion depth does not snap at the cycle boundary.
 * link:changelog-details/2026-08-18%20-%20continuous-hci-extrusion-loop.adoc[Details]
 
-== 2026-08-18 — Larger transparent eye mark
+== 2026-08-18 ? Larger transparent eye mark
 
-* Site header and favicon use the eye on alpha — no rounded-square tile in chrome. Iris, pupil, and stroke are larger so the mark reads at 16px.
+* Site header and favicon use the eye on alpha ? no rounded-square tile in chrome. Iris, pupil, and stroke are larger so the mark reads at 16px.
 * Padded dark tile kept as `logo-mark-avatar.svg` for GitHub, social, and apple-touch.
 * link:changelog-details/2026-08-18%20-%20larger-transparent-eye-mark.adoc[Details]
 
-== 2026-08-18 — What we fight for
+== 2026-08-18 ? What we fight for
 
 * Homepage manifesto under the existing heading: HCI/UI/UX as how computers fit into our lives; respect for cognition and attention; mental models; discoverability and least surprise. Short hero tagline stays.
 * Philosophy page aligns the cognition section with those same principles without reprinting the homepage paragraph.
-* EN/ES/FR strings: `fight.heading`, `fight.body_1`–`fight.body_3`.
+* EN/ES/FR strings: `fight.heading`, `fight.body_1`?`fight.body_3`.
 * link:changelog-details/2026-08-18%20-%20what-we-fight-for.adoc[Details]
 
-== 2026-08-18 — Header chrome: theme, language, GitHub
+== 2026-08-18 ? Header chrome: theme, language, GitHub
 
-* Theme icon toggle (system default, light/dark override); compact language dropdown (EN/ES/FR + flags); GitHub always visible — nav links only in hamburger.
+* Theme icon toggle (system default, light/dark override); compact language dropdown (EN/ES/FR + flags); GitHub always visible ? nav links only in hamburger.
 * Header order: brand, nav links, hamburger, language, GitHub, theme toggle.
 * link:changelog-details/2026-08-18%20-%20header-chrome-theme-lang-github.adoc[Details]
 
-== 2026-08-13 — Equal homepage CTAs
+== 2026-08-13 ? Equal homepage CTAs
 
-* Hero links (Blog, Demos, News, Docs, Philosophy) share one button style — no filled “current page” CTA.
+* Hero links (Blog, Demos, News, Docs, Philosophy) share one button style ? no filled ?current page? CTA.
 * link:changelog-details/2026-08-13%20-%20equal-homepage-ctas.adoc[Details]
 
-== 2026-08-11 — Navigating by content
+== 2026-08-11 ? Navigating by content
 
 * Paired essays, docs link, rename demo, Mermaid on blog, homepage HCI domains map
 * link:changelog-details/2026-08-11%20-%20navigating-by-content.adoc[Details]
 
-== 2026-08-11 — Resting-lanczos demo family shots
+== 2026-08-11 ? Resting-lanczos demo family shots
 
 * Catalog cards use Lanczos3 `srcset` thumbs. Edge Bar is a family (Map / Modal / Path), not a screenshot of the desk href.
 * link:changelog-details/2026-08-11%20-%20resting-lanczos-demo-families.adoc[Details]
 
-== 2026-08-11 — Visual demo cards on home and /demos
+== 2026-08-11 ? Visual demo cards on home and /demos
 
 * Home and Demos use 16:10 CSS stages (painted at display size). Context rails is on the home grid.
 
-== 2026-08-10 — Context rails
+== 2026-08-10 ? Context rails
 
 * link:changelog-details/2026-08-10%20-%20context-rails.adoc[Details]
 
-== 2026-08-10 — Context-bound settings
+== 2026-08-10 ? Context-bound settings
 
 * link:changelog-details/2026-08-10%20-%20context-bound-settings.adoc[Details]
 
-== 2026-08-08 — Blog / news as inner vs outer
+== 2026-08-08 ? Blog / news as inner vs outer
 
 * link:changelog-details/2026-08-08%20-%20blog-news-inner-outer.adoc[Details]
 
-== 2026-08-08 — Visitor-first repo homepage
+== 2026-08-08 ? Visitor-first repo homepage
 
 * link:changelog-details/2026-08-08%20-%20visitor-first-repo-homepage.adoc[Details]
 
-== 2026-08-08 — Audio lexicon on demos
+== 2026-08-08 ? Audio lexicon on demos
 
 * link:changelog-details/2026-08-08%20-%20audio-lexicon-demos.adoc[Details]
 
-== 2026-08-05 — ClearType Tuner in Windows
+== 2026-08-05 ? ClearType Tuner in Windows
 
 * link:changelog-details/2026-08-05%20-%20cleartype-tuner-in-windows.adoc[Details]
 
-== 2026-08-04 — Open-with interrupt
+== 2026-08-04 ? Open-with interrupt
 
 * link:changelog-details/2026-08-04%20-%20open-with-interrupt.adoc[Details]
 
-== 2026-08-03 — Literature link on Scoped UX essay
+== 2026-08-03 ? Literature link on Scoped UX essay
 
 * link:changelog-details/2026-08-03%20-%20literature-scoped-ux.adoc[Details]
 
-== 2026-08-03 — Restore Explorer screenshot crops
+== 2026-08-03 ? Restore Explorer screenshot crops
 
 * link:changelog-details/2026-08-03%20-%20restore-explorer-crops.adoc[Details]
 
-== 2026-08-03 — Image lightbox
+== 2026-08-03 ? Image lightbox
 
 * link:changelog-details/2026-08-03%20-%20image-lightbox.adoc[Details]
 
-== 2026-08-03 — Pass-through compare as HTML
+== 2026-08-03 ? Pass-through compare as HTML
 
 * link:changelog-details/2026-08-03%20-%20pass-through-compare-html.adoc[Details]
 
-== 2026-08-03 — Pass-through screenshots
+== 2026-08-03 ? Pass-through screenshots
 
 * link:changelog-details/2026-08-03%20-%20pass-through-screenshots.adoc[Details]
 
-== 2026-08-02 — Pass-through extensions
+== 2026-08-02 ? Pass-through extensions
 
 * link:changelog-details/2026-08-02%20-%20pass-through-extensions.adoc[Details]
 
-== 2026-08-03 — Titles as orientation
+== 2026-08-03 ? Titles as orientation
 
 * link:changelog-details/2026-08-03%20-%20titles-as-orientation.adoc[Details]
 
-== 2026-08-02 — Instruction flows news and title style
+== 2026-08-02 ? Instruction flows news and title style
 
 * link:changelog-details/2026-08-02%20-%20instruction-flows-news-and-title-style.adoc[Details]
 
-== 2026-08-02 — Instruction flows
+== 2026-08-02 ? Instruction flows
 
 * link:changelog-details/2026-08-02%20-%20instruction-flows.adoc[Details]
 
-== 2026-08-01 — Scoped UX architecture
+== 2026-08-01 ? Scoped UX architecture
 
 * link:changelog-details/2026-08-01%20-%20scoped-ux-architecture.adoc[Details]
 
-== 2026-08-01 — Pipeline composer essay scope
+== 2026-08-01 ? Pipeline composer essay scope
 
 * link:changelog-details/2026-08-01%20-%20pipeline-composer-essay-scope.adoc[Details]
 
-== 2026-08-02 — Prototype strategy essays
+== 2026-08-02 ? Prototype strategy essays
 
 * link:changelog-details/2026-08-02%20-%20prototype-strategy-essays.adoc[Details]
 
-== 2026-08-02 — Demos index
+== 2026-08-02 ? Demos index
 
 * link:changelog-details/2026-08-02%20-%20demos-index.adoc[Details]
 
-== 2026-08-02 — Pipeline composer essay
+== 2026-08-02 ? Pipeline composer essay
 
 * link:changelog-details/2026-08-02%20-%20pipeline-composer-essay.adoc[Details]
 
-== 2026-08-01 — Blog route and essays
+== 2026-08-01 ? Blog route and essays
 
 * link:changelog-details/2026-08-01%20-%20blog%20route%20and%20essays.adoc[Details]
 
-== 2026-08-01 — Site bootstrap
+== 2026-08-01 ? Site bootstrap
 
 * link:changelog-details/2026-08-01%20-%20site%20bootstrap.adoc[Details]

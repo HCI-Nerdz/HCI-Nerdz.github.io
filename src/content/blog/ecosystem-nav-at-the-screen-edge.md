@@ -42,13 +42,13 @@ Each platform should carry a different base wash that reads as an overlay on the
 
 ## Path as a color series
 
-A third variant treats the L-edge as the hops you took. Instead of one wash, you get a *sequence* of unique colors for Home → Cloud → Console → Billing → Accounts (or your own tree). That sequence orients faster than a crumb string. Early hops can borrow org primary hues without collapsing to “different app = different single swatch”: the *series* is the identity.
+A third variant treats *one* edge as the hops you took — top *or* side, not the same hops mirrored on both. Instead of one wash, you get a *sequence* of unique colors for Home → Cloud → Console → Billing → Accounts (or your own tree). That sequence orients faster than a crumb string. Early hops can borrow org primary hues without collapsing to “different app = different single swatch”: the *series* is the identity.
 
-![Idle L-rails striped with the path’s colors](/images/context-edge/path-edge-idle.png)
+![Idle path edge striped with the path’s colors](/images/context-edge/path-edge-idle.png)
 
-Hover expands both edges. Words on top. Left: current level top-most (one mark), ancestors stacking down. Cap how far ancestors climb before they compress; expand and scroll to unfold toward the root. File explorers grow downward from the root. You want *where you are* first — so the current mark owns the top-left corner.
+Hover expands that single full-length edge. Top placement: words. Side placement: current level first (one mark), ancestors stacking away from you. Cap how far ancestors climb before they compress. File explorers grow downward from the root. You want *where you are* first — so the current mark leads the side sequence.
 
-![Expanded path rails: top labels, current mark at top-left](/images/context-edge/path-edge-hover.png)
+![Expanded path rail: top labels or side marks](/images/context-edge/path-edge-hover.png)
 
 ## What has to be true underneath
 
