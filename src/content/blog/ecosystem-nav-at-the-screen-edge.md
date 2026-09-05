@@ -65,6 +65,6 @@ You still get progressive disclosure: the map is available without living perman
 
 - **Docs** — [Context Edge](https://hci-nerdz.github.io/docs/hci-nerdz/context-edge.html)
 - **Desk** — [Context Edge desk](/demos/context-edge/)
-- **Demos** — [Map / Modal / Path islands](https://hci-nerdz.github.io/context-edge/) · [repo](https://github.com/HCI-Nerdz/context-edge)
+- **Demos** — [Map / Modal / Path implementations](https://hci-nerdz.github.io/context-edge/) · [repo](https://github.com/HCI-Nerdz/context-edge)
 - **Path Edge** — [breadcrumb colors](https://hci-nerdz.github.io/context-edge/demos/path-edge/)
 - **Sibling** — [Making settings follow the activity](/blog/making-settings-follow-the-activity/) (bind settings to activity; rails bind *platforms* to the shell)
