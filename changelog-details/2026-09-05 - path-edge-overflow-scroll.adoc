@@ -1,0 +1,4 @@
+= 2026-09-05 — Path Edge essay: overflow scroll
+
+* Essay Path section: overflow under pinned Home / drag-swipe scroll (not compress caps)
+* Top marks with quieter labels; Home stays pinned at the start of the edge

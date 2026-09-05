@@ -1,6 +1,11 @@
 = Changelog
 
-== 2026-09-05 ? Path Edge essay: workshop wording
+== 2026-09-05 — Path Edge essay: overflow scroll
+
+* Essay Path section: overflow under pinned Home / drag-swipe (not compress caps)
+* link:changelog-details/2026-09-05%20-%20path-edge-overflow-scroll.adoc[Details]
+
+== 2026-09-05 — Path Edge essay: workshop wording
 
 * Essay demos link says implementations (not islands) for the Path / Map / Modal hub
 * link:changelog-details/2026-09-05%20-%20path-edge-workshop-wording.adoc[Details]

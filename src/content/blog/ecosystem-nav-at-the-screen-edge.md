@@ -46,7 +46,7 @@ A third variant treats *one* edge as the hops you took — top *or* side, not th
 
 ![Idle path edge striped with the path’s colors](/images/context-edge/path-edge-idle.png)
 
-Hover expands that single full-length edge. Top placement: words. Side placement: current level first (one mark), ancestors stacking away from you. Cap how far ancestors climb before they compress. File explorers grow downward from the root. You want *where you are* first — so the current mark leads the side sequence.
+Hover expands that single full-length edge. Top placement: marks with quieter labels. Side placement: one mark per level, Home pinned at the start. When hops do not fit they overflow under Home — drag or swipe to scroll them out. File explorers grow downward from the root; Path Edge keeps Home as the sticky entry while the current hop trails toward the far end of the rail.
 
 ![Expanded path rail: top labels or side marks](/images/context-edge/path-edge-hover.png)
 
