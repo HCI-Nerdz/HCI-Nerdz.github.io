@@ -77,7 +77,7 @@ export const demoCategories: DemoCategory[] = [
         viz: "rails",
         href: "https://hci-nerdz.github.io/context-edge/",
         releasedAt: "2026-08-10",
-        modifiedAt: "2026-08-30",
+        modifiedAt: "2026-09-05",
         shots: [
           {
             id: "edge-bar-map",

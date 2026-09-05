@@ -1,0 +1,6 @@
+= 2026-09-05 — Context Edge desk facsimile fix
+
+* Root bugs: page `<style>` was Astro-scoped, so JS-injected Mail rows / wire tiles never matched — list meta smashed into subjects; `.overload-bar { display: flex }` overrode `[hidden]`, so the anti-pattern tab strip always showed
+* Styles moved to `is:global` under `.desk-page`; overload bar uses `[hidden] { display: none !important }`
+* Facsimile polish: thicker idle rails, sheer primary CTA, flex list rows, sheer selected overload tabs
+* Identity strip ends on **Context Edge** (current page); GitHub stays on the VCS mark only

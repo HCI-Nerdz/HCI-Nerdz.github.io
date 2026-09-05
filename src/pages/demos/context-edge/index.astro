@@ -13,7 +13,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <span class="id-sep" aria-hidden="true">/</span>
       <a href="/demos/">Demos</a>
       <span class="id-sep" aria-hidden="true">/</span>
-      <a href="https://github.com/HCI-Nerdz/context-edge">context-edge</a>
+      <span aria-current="page">Context Edge</span>
     </nav>
     <p class="vcs-row">
       <a
@@ -64,7 +64,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           <input type="checkbox" id="overload-mode" />
           <span>Overload header (anti-pattern)</span>
         </label>
-        <p class="hint" id="status" role="status">Rails idle · Mail</p>
+        <p class="hint" id="status" role="status">Rails idle · Mail — hover the edge rails</p>
       </div>
 
       <div
@@ -140,12 +140,13 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   </main>
 </BaseLayout>
 
-<style>
+<style is:global>
+  /* is:global: JS injects .app-chrome / list rows / wire tiles without Astro scope attrs. */
   .desk-page {
     max-width: 64rem;
   }
 
-  .id-strip {
+  .desk-page .id-strip {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -156,35 +157,39 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-weight: 600;
   }
 
-  .id-strip a {
-    color: var(--muted, inherit);
+  .desk-page .id-strip a {
+    color: var(--paper-muted);
     text-decoration: none;
   }
 
-  .id-strip a:hover {
-    color: var(--ink, inherit);
+  .desk-page .id-strip a:hover {
+    color: var(--paper);
     text-decoration: underline;
   }
 
-  .id-sep {
+  .desk-page .id-strip [aria-current='page'] {
+    color: var(--paper);
+  }
+
+  .desk-page .id-sep {
     opacity: 0.45;
   }
 
-  .vcs-row {
+  .desk-page .vcs-row {
     margin: 0 0 1.1rem;
   }
 
-  .vcs-mark {
+  .desk-page .vcs-mark {
     display: inline-flex;
-    color: var(--ink, inherit);
+    color: var(--paper);
     opacity: 0.85;
   }
 
-  .vcs-mark:hover {
+  .desk-page .vcs-mark:hover {
     opacity: 1;
   }
 
-  .desk-intro .eyebrow {
+  .desk-page .desk-intro .eyebrow {
     margin: 0 0 0.5rem;
     font-family: var(--font-display);
     font-size: 0.85rem;
@@ -194,53 +199,54 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     color: var(--honesty);
   }
 
-  .desk-intro .lede {
+  .desk-page .desk-intro .lede {
     margin: 0 0 0.85rem;
     max-width: 42rem;
     line-height: 1.55;
   }
 
-  .cta-row {
+  .desk-page .cta-row {
     margin: 0 0 0.85rem;
   }
 
-  .cta-primary {
+  .desk-page .cta-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     padding: 0.65rem 1.15rem;
     border-radius: 0.35rem;
-    background: var(--honesty, #3d9b8f);
-    color: #f4f1e8;
+    border: 1px solid color-mix(in srgb, var(--honesty) 55%, transparent);
+    background: color-mix(in srgb, var(--honesty) 32%, transparent);
+    color: var(--paper);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1rem;
     text-decoration: none;
   }
 
-  .cta-primary:hover {
-    filter: brightness(1.08);
+  .desk-page .cta-primary:hover {
+    background: color-mix(in srgb, var(--honesty) 44%, transparent);
   }
 
-  .related-links {
+  .desk-page .related-links {
     margin: 0 0 1.75rem;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.95rem;
   }
 
-  .desk {
+  .desk-page .desk {
     display: grid;
     gap: 1rem;
     padding: 1.25rem;
     border: 1px solid var(--line);
     border-radius: 0.5rem;
     background:
-      linear-gradient(160deg, rgba(61, 155, 143, 0.08), transparent 45%),
-      rgba(255, 255, 255, 0.02);
+      linear-gradient(160deg, color-mix(in srgb, var(--honesty) 12%, transparent), transparent 45%),
+      color-mix(in srgb, var(--paper) 4%, transparent);
   }
 
-  .controls {
+  .desk-page .controls {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -248,7 +254,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     gap: 0.75rem 1.25rem;
   }
 
-  .mode-toggle {
+  .desk-page .mode-toggle {
     display: flex;
     align-items: center;
     gap: 0.55rem;
@@ -257,39 +263,44 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     user-select: none;
   }
 
-  .hint {
+  .desk-page .hint {
     margin: 0;
     font-size: 0.85rem;
-    opacity: 0.75;
+    color: var(--paper-muted);
     font-family: var(--font-display);
   }
 
-  .stage {
-    --rail-idle: 0.4rem;
-    --rail-hover: 2.6rem;
+  .desk-page .stage {
+    --rail-idle: 0.55rem;
+    --rail-hover: 2.55rem;
     --rail-top: var(--rail-idle);
     --rail-left: var(--rail-idle);
+    --overlay: 210 55% 42%;
+    --overlay-2: 200 40% 28%;
     position: relative;
     min-height: 28rem;
-    border: 1px solid var(--line);
-    border-radius: 0.4rem;
+    border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
+    border-radius: 0.45rem;
     overflow: hidden;
-    background: #0b1014;
+    background: #12171c;
     color: #e8eceb;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 18px 40px rgba(0, 0, 0, 0.28);
   }
 
-  .stage:has(.rail:hover),
-  .stage:has(.rail:focus-visible) {
+  .desk-page .stage:has(.rail:hover),
+  .desk-page .stage:has(.rail:focus-visible) {
     --rail-top: var(--rail-hover);
     --rail-left: var(--rail-hover);
   }
 
-  .stage.is-overload .rail {
+  .desk-page .stage.is-overload .rail {
     opacity: 0;
     pointer-events: none;
   }
 
-  .overload-bar {
+  .desk-page .overload-bar {
     position: relative;
     z-index: 4;
     display: flex;
@@ -298,10 +309,15 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     gap: 0.5rem;
     padding: 0.55rem 0.75rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(8, 10, 12, 0.72);
   }
 
-  .overload-brand {
+  /* Author `display:flex` must not defeat the hidden attribute. */
+  .desk-page .overload-bar[hidden] {
+    display: none !important;
+  }
+
+  .desk-page .overload-brand {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.8rem;
@@ -311,29 +327,29 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     opacity: 0.85;
   }
 
-  .overload-tabs {
+  .desk-page .overload-tabs {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
   }
 
-  .overload-tabs button {
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.06);
+  .desk-page .overload-tabs button {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
     color: inherit;
-    border-radius: 999px;
-    padding: 0.25rem 0.65rem;
+    border-radius: 0.3rem;
+    padding: 0.28rem 0.7rem;
     font-size: 0.75rem;
     cursor: pointer;
     font-family: var(--font-display);
   }
 
-  .overload-tabs button.is-active {
-    border-color: hsl(var(--overlay));
-    background: hsl(var(--overlay) / 0.35);
+  .desk-page .overload-tabs button.is-active {
+    border-color: color-mix(in srgb, hsl(var(--overlay)) 55%, transparent);
+    background: color-mix(in srgb, hsl(var(--overlay)) 38%, transparent);
   }
 
-  .rail {
+  .desk-page .rail {
     position: absolute;
     z-index: 3;
     border: 0;
@@ -341,7 +357,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     margin: 0;
     cursor: pointer;
     color: #f4f7f6;
-    background: hsl(var(--overlay) / 0.95);
+    background: hsl(var(--overlay) / 0.92);
+    box-shadow: inset 0 0 0 1px hsl(var(--overlay) / 0.45);
     display: grid;
     place-items: center;
     transition:
@@ -353,12 +370,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       opacity 0.2s ease;
   }
 
-  .rail:focus-visible {
+  .desk-page .rail:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
   }
 
-  .rail-corner {
+  .desk-page .rail-corner {
     top: 0;
     left: 0;
     width: var(--rail-left);
@@ -366,7 +383,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     z-index: 4;
   }
 
-  .rail-top {
+  .desk-page .rail-top {
     top: 0;
     left: var(--rail-left);
     right: 0;
@@ -374,7 +391,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     width: auto;
   }
 
-  .rail-left {
+  .desk-page .rail-left {
     top: var(--rail-top);
     left: 0;
     bottom: 0;
@@ -382,7 +399,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     height: auto;
   }
 
-  .rail-label {
+  .desk-page .rail-label {
     opacity: 0;
     font-family: var(--font-display);
     font-weight: 700;
@@ -394,99 +411,108 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     pointer-events: none;
   }
 
-  .stage:has(.rail:hover) .rail-top .rail-label,
-  .stage:has(.rail:focus-visible) .rail-top .rail-label {
+  .desk-page .stage:has(.rail:hover) .rail-top .rail-label,
+  .desk-page .stage:has(.rail:focus-visible) .rail-top .rail-label {
     opacity: 1;
   }
 
-  .content {
+  .desk-page .content {
     position: relative;
     z-index: 1;
-    margin: calc(var(--rail-idle) + 0.75rem) 0.9rem 0.9rem calc(var(--rail-idle) + 0.75rem);
+    margin: calc(var(--rail-idle) + 0.7rem) 0.85rem 0.85rem calc(var(--rail-idle) + 0.7rem);
     min-height: 22rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.35rem;
     background:
-      radial-gradient(120% 80% at 0% 0%, hsl(var(--overlay) / 0.28), transparent 55%),
-      linear-gradient(160deg, hsl(var(--overlay) / 0.18), #0e1418 55%);
+      radial-gradient(120% 80% at 0% 0%, hsl(var(--overlay) / 0.3), transparent 55%),
+      linear-gradient(160deg, hsl(var(--overlay) / 0.16), #0e1418 58%);
     overflow: hidden;
+    transition: margin 0.22s ease;
   }
 
-  .stage.is-overload .content {
-    margin: 0.75rem 0.9rem 0.9rem;
+  .desk-page .stage.is-overload .content {
+    margin: 0.75rem 0.85rem 0.85rem;
   }
 
-  .app-chrome {
+  .desk-page .app-chrome {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.65rem;
-    padding: 0.65rem 0.85rem;
+    padding: 0.7rem 0.9rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.28);
   }
 
-  .app-chrome strong {
+  .desk-page .app-chrome strong {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
   }
 
-  .app-chrome span {
+  .desk-page .app-chrome span {
     font-size: 0.78rem;
     opacity: 0.65;
   }
 
-  .app-body {
-    padding: 0.85rem 0.95rem 1.1rem;
+  .desk-page .app-body {
+    padding: 0.9rem 0.95rem 1.15rem;
   }
 
-  .app-body p {
-    margin: 0 0 0.75rem;
+  .desk-page .app-body p {
+    margin: 0 0 0.85rem;
     line-height: 1.5;
     max-width: 38rem;
     font-size: 0.92rem;
     opacity: 0.9;
   }
 
-  .mail-list,
-  .file-list,
-  .admin-list {
+  .desk-page .mail-list,
+  .desk-page .file-list,
+  .desk-page .admin-list {
     display: grid;
-    gap: 0.35rem;
+    gap: 0.4rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .mail-list li,
-  .file-list li,
-  .admin-list li {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 0.65rem;
+  .desk-page .mail-list li,
+  .desk-page .file-list li,
+  .desk-page .admin-list li {
+    display: flex;
     align-items: center;
-    padding: 0.55rem 0.65rem;
+    gap: 0.7rem;
+    padding: 0.6rem 0.7rem;
     border-radius: 0.3rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.045);
     font-size: 0.86rem;
   }
 
-  .mail-list li em,
-  .file-list li em,
-  .admin-list li em {
+  .desk-page .mail-list li > span:nth-child(2),
+  .desk-page .file-list li > span:nth-child(2),
+  .desk-page .admin-list li > span:nth-child(2) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .desk-page .mail-list li em,
+  .desk-page .file-list li em,
+  .desk-page .admin-list li em {
+    flex-shrink: 0;
     font-style: normal;
     opacity: 0.55;
     font-size: 0.75rem;
   }
 
-  .dot {
+  .desk-page .dot {
+    flex-shrink: 0;
     width: 0.55rem;
     height: 0.55rem;
     border-radius: 50%;
     background: hsl(var(--overlay));
   }
 
-  .nav-overlay {
+  .desk-page .nav-overlay {
     position: absolute;
     inset: 0;
     z-index: 5;
@@ -497,11 +523,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     backdrop-filter: blur(4px);
   }
 
-  .nav-overlay[hidden] {
+  .desk-page .nav-overlay[hidden] {
     display: none !important;
   }
 
-  .nav-panel {
+  .desk-page .nav-panel {
     width: min(36rem, 100%);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 0.45rem;
@@ -512,22 +538,22 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
   }
 
-  .nav-head {
+  .desk-page .nav-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
   }
 
-  .nav-head h2 {
+  .desk-page .nav-head h2 {
     margin: 0;
     font-family: var(--font-display);
     font-size: 1.1rem;
   }
 
-  .nav-close {
+  .desk-page .nav-close {
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background: transparent;
+    background: color-mix(in srgb, hsl(var(--overlay)) 18%, transparent);
     color: inherit;
     border-radius: 0.3rem;
     padding: 0.35rem 0.65rem;
@@ -535,19 +561,19 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     font-family: var(--font-display);
   }
 
-  .nav-lede {
+  .desk-page .nav-lede {
     margin: 0.5rem 0 1rem;
     font-size: 0.9rem;
     opacity: 0.75;
   }
 
-  .wire {
+  .desk-page .wire {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
     gap: 0.65rem;
   }
 
-  .wire button {
+  .desk-page .wire button {
     display: grid;
     gap: 0.2rem;
     text-align: left;
@@ -561,43 +587,43 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
   }
 
-  .wire button:hover,
-  .wire button:focus-visible {
+  .desk-page .wire button:hover,
+  .desk-page .wire button:focus-visible {
     border-style: solid;
     border-color: hsl(var(--overlay));
     background: hsl(var(--overlay) / 0.2);
     transform: translateY(-1px);
   }
 
-  .wire button strong {
+  .desk-page .wire button strong {
     font-family: var(--font-display);
     font-size: 0.95rem;
   }
 
-  .wire button small {
+  .desk-page .wire button small {
     opacity: 0.65;
     font-size: 0.75rem;
   }
 
-  .wire button.is-current {
+  .desk-page .wire button.is-current {
     border-style: solid;
     border-color: hsl(var(--overlay));
     background: hsl(var(--overlay) / 0.28);
   }
 
-  .lesson {
+  .desk-page .lesson {
     margin-top: 1.75rem;
     padding: 1.1rem 1.2rem;
     border-left: 3px solid var(--honesty);
   }
 
-  .lesson h2 {
+  .desk-page .lesson h2 {
     margin: 0 0 0.65rem;
     font-family: var(--font-display);
     font-size: 1.05rem;
   }
 
-  .lesson ul {
+  .desk-page .lesson ul {
     margin: 0;
     padding-left: 1.15rem;
     display: grid;
@@ -729,7 +755,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       ? `Map open · ${p.label}`
       : overloadMode.checked
         ? `Header overloaded · ${p.label}`
-        : `Rails idle · ${p.label}`;
+        : `Rails idle · ${p.label} — hover the edge rails`;
     renderOverloadTabs();
     renderWire();
   }
@@ -770,7 +796,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       ? `Map open · ${p.label}`
       : overloadMode.checked
         ? `Header overloaded · ${p.label}`
-        : `Rails idle · ${p.label}`;
+        : `Rails idle · ${p.label} — hover the edge rails`;
     if (open) navClose.focus();
   }
 
@@ -780,7 +806,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     if (on) setNav(false);
     status.textContent = on
       ? `Header overloaded · ${active().label}`
-      : `Rails idle · ${active().label}`;
+      : `Rails idle · ${active().label} — hover the edge rails`;
   }
 
   for (const rail of rails) {

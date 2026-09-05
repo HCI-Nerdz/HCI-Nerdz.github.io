@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-09-05 — Context Edge desk facsimile fix
+
+* Site desk mock: Astro-scoped CSS now reaches JS-injected rows; overload header respects `hidden`
+* Stronger idle rails, sheer CTA, identity crumb no longer points at GitHub
+* link:changelog-details/2026-09-05%20-%20context-edge-desk-facsimile.adoc[Details]
+
 == 2026-09-05 — Path Edge essay: overflow scroll
 
 * Essay Path section: overflow under pinned Home / drag-swipe (not compress caps)
