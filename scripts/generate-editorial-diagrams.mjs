@@ -49,12 +49,23 @@ try {
     securityLevel: 'strict',
     theme: 'default',
   }, null, 2)}\n`);
+  const puppeteerConfig = join(temp, 'puppeteer-config.json');
+  await writeFile(puppeteerConfig, `${JSON.stringify({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  }, null, 2)}\n`);
 
   for (const diagram of diagrams) {
     const base = join(images, diagram.name, diagram.name);
     const manifest = JSON.parse(await readFile(`${base}.theme.json`, 'utf8'));
     const raw = join(temp, `${basename(base)}.raw.svg`);
-    await run('pnpm', ['exec', 'mmdc', '-i', `${base}.mmd`, '-o', raw, '-c', config, '-b', 'transparent']);
+    await run('pnpm', [
+      'exec', 'mmdc',
+      '-i', `${base}.mmd`,
+      '-o', raw,
+      '-c', config,
+      '-b', 'transparent',
+      ...(process.env.CI ? ['-p', puppeteerConfig] : []),
+    ]);
     const result = prepareThemedMermaidSvgDualOutput(await readFile(raw, 'utf8'), manifest, {
       metadata: { role: 'img', title: diagram.title, description: diagram.description },
     });
