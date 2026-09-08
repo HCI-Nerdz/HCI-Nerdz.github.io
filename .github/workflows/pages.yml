@@ -37,7 +37,7 @@ jobs:
         env:
           HCI_DOCS_ROOT: ${{ github.workspace }}/.diagram-sources/hci-docs/docs/modules/ROOT/images
         run: |
-          pnpm install --frozen-lockfile
+          PUPPETEER_SKIP_DOWNLOAD=true pnpm install --frozen-lockfile
           pnpm exec puppeteer browsers install chrome-headless-shell
           pnpm build
 
