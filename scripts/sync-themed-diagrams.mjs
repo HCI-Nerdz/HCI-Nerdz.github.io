@@ -13,6 +13,7 @@ const copies = [
   ['spatial-web-windows/communication-topology.svg', 'public/demos/spatial-web-windows/communication-topology.svg'],
   ['spatial-web-windows/communication-topology.host.svg', 'public/demos/spatial-web-windows/communication-topology.host.svg'],
   ['grounded-tokens/provenance-legend.svg', 'public/images/grounded-tokens/provenance-legend.svg'],
+  ['grounded-tokens/provenance-legend.host.svg', 'public/images/grounded-tokens/provenance-legend.host.svg'],
   [
     'an-alternative-to-urls/label-wire-breakage/label-wire-breakage.svg',
     'public/images/an-alternative-to-urls/label-wire-breakage/label-wire-breakage.svg',
