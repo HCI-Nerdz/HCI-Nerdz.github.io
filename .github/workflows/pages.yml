@@ -38,6 +38,7 @@ jobs:
           HCI_DOCS_ROOT: ${{ github.workspace }}/.diagram-sources/hci-docs/docs/modules/ROOT/images
         run: |
           pnpm install --frozen-lockfile
+          pnpm exec puppeteer browsers install chrome-headless-shell
           pnpm build
 
       - uses: actions/upload-pages-artifact@v3

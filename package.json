@@ -24,6 +24,7 @@
     "@dev-centr/mermaid-svg-css-vars": "0.1.2",
     "@mermaid-js/mermaid-cli": "11.12.0",
     "playwright": "^1.62.1",
+    "puppeteer": "23.11.1",
     "sharp": "^0.35.3",
     "typescript": "^5.8.3"
   },
