@@ -30,7 +30,7 @@ Those are different names.
 **Application reverse-dependency tracking** attacks *semantic life cycle*: when a symbol, path, or doc label changes, who breaks?
 Kythe/Sourcegraph graphs, OpenRewrite recipes, Unison's content-addressed definitions, and a humble producer-owned `CONSUMERS.md` all live here.
 
-<img data-themed-svg src="/images/an-alternative-to-urls/editorial-naming-layers/editorial-naming-layers.svg" alt="Application graph and network delivery remain separate naming layers" />
+<img data-themed-svg src="/images/an-alternative-to-urls/application-vs-network-naming/application-vs-network-naming.svg" alt="Application graph and network delivery remain separate naming layers" />
 
 Architecturally orthogonal.
 Complementary in UX: both serve “I should not have to care where it lives or what we currently call it,” if we stack them instead of collapsing them.
@@ -42,7 +42,7 @@ Complementary in UX: both serve “I should not have to care where it lives or w
 3. **Reverse consumer graph** — producers list who still holds the pretty names (`CONSUMERS.md`). Agents search those trees instead of guessing.
 4. **Absorb layer** — redirects, Antora aliases, “cool URIs don’t change.” Required on today's IP web.
 
-<img data-themed-svg src="/images/an-alternative-to-urls/editorial-identity-stack/editorial-identity-stack.svg" alt="Consumer identity stack with hashes, mutable pointers, metadata, and reverse consumers" />
+<img data-themed-svg src="/images/an-alternative-to-urls/content-identity-resolution-stack/content-identity-resolution-stack.svg" alt="Consumer identity stack with hashes, mutable pointers, metadata, and reverse consumers" />
 
 Unison shows the destination for *code* identity.
 [connectome-fs](https://github.com/connectome-fs/connectome-fs) aims at the filesystem and association plane underneath many languages and non-code artifacts — path as projection, graph as truth.
