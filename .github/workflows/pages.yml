@@ -20,6 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check out canonical diagram sources
+        uses: actions/checkout@v4
+        with:
+          repository: HCI-Nerdz/docs
+          path: .diagram-sources/hci-docs
+
       - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v4
@@ -28,6 +34,8 @@ jobs:
           cache: "pnpm"
 
       - name: Install and build
+        env:
+          HCI_DOCS_ROOT: ${{ github.workspace }}/.diagram-sources/hci-docs/docs/modules/ROOT/images
         run: |
           pnpm install --frozen-lockfile
           pnpm build
