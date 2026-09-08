@@ -3,8 +3,9 @@
 == 2026-09-08 -- Synced adaptive diagrams
 
 * Seven adaptive and host artifact pairs synchronize deterministically from canonical HCI Nerdz docs sources.
-* The site contains consumer artifacts only; Mermaid sources and manifests are not duplicated.
+* Two separate editorial Mermaid source, theme manifest, adaptive, and host families remain locally generated for the blog.
 * The runtime registers once in `BaseLayout` and reruns after Astro navigation.
+* Pages CI installs the pinned headless browser explicitly before checking diagram freshness.
 * link:changelog-details/2026-09-08%20-%20synced-adaptive-diagrams.adoc[Details]
 
 

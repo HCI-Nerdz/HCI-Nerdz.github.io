@@ -1,3 +1,5 @@
 = Synced adaptive diagrams
 
-The site now progressively upgrades marked portable SVG images into sanitized host-themed diagrams. A deterministic synchronization script checks and copies all seven adaptive and host artifact pairs from the HCI docs repository, which remains the sole owner of Mermaid sources and Themed SVG manifests.
+The site now progressively upgrades marked portable SVG images into sanitized host-themed diagrams. A deterministic synchronization script checks and copies all seven adaptive and host artifact pairs from the HCI docs repository.
+
+The blog also owns two distinct editorial diagram families. Their Mermaid sources and theme manifests deterministically generate separate adaptive and host SVG outputs. Pages CI installs the pinned headless browser explicitly and runs both synchronization and generation freshness checks before the Astro build.
