@@ -8,8 +8,8 @@
     "build": "pnpm diagrams:check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "diagrams:generate": "node scripts/sync-themed-diagrams.mjs",
-    "diagrams:check": "node scripts/sync-themed-diagrams.mjs --check",
+    "diagrams:generate": "node scripts/sync-themed-diagrams.mjs && node scripts/generate-editorial-diagrams.mjs",
+    "diagrams:check": "node scripts/sync-themed-diagrams.mjs --check && node scripts/generate-editorial-diagrams.mjs --check",
     "shots": "node scripts/capture-demo-shots.mjs",
     "favicons": "node scripts/render-favicons.mjs"
   },
@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@dev-centr/mermaid-svg-css-vars": "0.1.2",
+    "@mermaid-js/mermaid-cli": "11.12.0",
     "playwright": "^1.62.1",
     "sharp": "^0.35.3",
     "typescript": "^5.8.3"
@@ -28,6 +30,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
+      "puppeteer",
       "sharp"
     ]
   }
