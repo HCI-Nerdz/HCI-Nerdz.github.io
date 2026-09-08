@@ -30,21 +30,7 @@ Those are different names.
 **Application reverse-dependency tracking** attacks *semantic life cycle*: when a symbol, path, or doc label changes, who breaks?
 Kythe/Sourcegraph graphs, OpenRewrite recipes, Unison's content-addressed definitions, and a humble producer-owned `CONSUMERS.md` all live here.
 
-```mermaid
-flowchart TB
-  subgraph app [Application graph]
-    Labels[Human labels / URLs]
-    Graph[AST + docs + manifests]
-    Consumers[Reverse consumers]
-    Labels --> Graph --> Consumers
-  end
-  subgraph net [Network delivery]
-    Name[Content or hierarchical name]
-    Cache[Nearest cache]
-    Name --> Cache
-  end
-  app -.->|opaque string| net
-```
+<img data-themed-svg src="/images/an-alternative-to-urls/editorial-naming-layers/editorial-naming-layers.svg" alt="Application graph and network delivery remain separate naming layers" />
 
 Architecturally orthogonal.
 Complementary in UX: both serve “I should not have to care where it lives or what we currently call it,” if we stack them instead of collapsing them.
@@ -56,14 +42,7 @@ Complementary in UX: both serve “I should not have to care where it lives or w
 3. **Reverse consumer graph** — producers list who still holds the pretty names (`CONSUMERS.md`). Agents search those trees instead of guessing.
 4. **Absorb layer** — redirects, Antora aliases, “cool URIs don’t change.” Required on today's IP web.
 
-```mermaid
-flowchart LR
-  C[Consumer] -->|prefer| H[Content hash]
-  C -->|or| P[Mutable pointer]
-  P --> H
-  H --> M[Metadata: path, aliases]
-  R[CONSUMERS.md] -->|label moves| C
-```
+<img data-themed-svg src="/images/an-alternative-to-urls/editorial-identity-stack/editorial-identity-stack.svg" alt="Consumer identity stack with hashes, mutable pointers, metadata, and reverse consumers" />
 
 Unison shows the destination for *code* identity.
 [connectome-fs](https://github.com/connectome-fs/connectome-fs) aims at the filesystem and association plane underneath many languages and non-code artifacts — path as projection, graph as truth.

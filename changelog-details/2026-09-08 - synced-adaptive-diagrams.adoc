@@ -1,0 +1,3 @@
+= Synced adaptive diagrams
+
+The site now progressively upgrades marked portable SVG images into sanitized host-themed diagrams. A deterministic synchronization script checks and copies all seven adaptive and host artifact pairs from the HCI docs repository, which remains the sole owner of Mermaid sources and Themed SVG manifests.

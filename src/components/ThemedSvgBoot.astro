@@ -1,0 +1,10 @@
+<script>
+  import { defineThemedSvgElement, upgradeThemedSvgImages } from '@dev-centr/themed-svg/runtime';
+
+  const upgrade = () => {
+    defineThemedSvgElement();
+    upgradeThemedSvgImages(document);
+  };
+  upgrade();
+  document.addEventListener('astro:page-load', upgrade);
+</script>

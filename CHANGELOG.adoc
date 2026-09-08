@@ -1,5 +1,13 @@
 = Changelog
 
+== 2026-09-08 -- Synced adaptive diagrams
+
+* Seven adaptive and host artifact pairs synchronize deterministically from canonical HCI Nerdz docs sources.
+* The site contains consumer artifacts only; Mermaid sources and manifests are not duplicated.
+* The runtime registers once in `BaseLayout` and reruns after Astro navigation.
+* link:changelog-details/2026-09-08%20-%20synced-adaptive-diagrams.adoc[Details]
+
+
 == 2026-09-05 — Context Edge desk facsimile fix
 
 * Site desk mock: Astro-scoped CSS now reaches JS-injected rows; overload header respects `hidden`

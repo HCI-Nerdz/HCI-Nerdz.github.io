@@ -3,6 +3,7 @@ import GitHubLink from '../components/GitHubLink.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
 import LangSwitcher from '../components/LangSwitcher.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import ThemedSvgBoot from '../components/ThemedSvgBoot.astro';
 import { I18N } from '../lib/i18n';
 
 interface Props {
@@ -172,6 +173,7 @@ const {
       </ul>
     </footer>
     <ImageLightbox />
+    <ThemedSvgBoot />
     <script is:inline define:vars={{ I18N }}>
       (function () {
         const SUPPORTED = ['en', 'es', 'fr'];

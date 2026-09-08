@@ -1,0 +1,9 @@
+flowchart LR
+  Consumer[Consumer] -->|prefer| Hash[Content hash]
+  Consumer -->|or| Pointer[Mutable pointer]
+  Pointer --> Hash
+  Hash --> Metadata[Metadata: path, aliases]
+  Reverse[CONSUMERS.md] -->|label moves| Consumer
+  class Consumer primary
+  class Hash accent
+  class Pointer,Metadata,Reverse secondary
