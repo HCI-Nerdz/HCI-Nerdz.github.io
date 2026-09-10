@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import GitHubLink from '../../../components/GitHubLink.astro';
+---
+
+<BaseLayout
+  title="plan-stack · HCI Nerdz"
+  description="Speculative agentic wait queue — ETA-sized plan stacks, session columns, and live recalc when estimates break."
+  active="demos"
+>
+  <main class="shell page desk-page">
+    <nav class="identity-strip" aria-label="Demo identity">
+      <a href="/">HCI Nerdz</a>
+      <span class="identity-sep" aria-hidden="true">/</span>
+      <a href="/demos/">Demos</a>
+      <span class="identity-sep" aria-hidden="true">/</span>
+      <span aria-current="page">plan-stack</span>
+    </nav>
+    <p class="vcs-row">
+      <GitHubLink href="https://github.com/HCI-Nerdz/plan-stack" showStars={false} />
+    </p>
+
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · plan-stack</p>
+      <h1>plan-stack</h1>
+      <p class="lede">
+        Agents wait on CI and other remote work for most of their wall-clock time — but they can still
+        plan ahead. plan-stack keeps that speculative plan as a fixed visual queue: taller cells for
+        longer waits, columns per session, and animated insert when an expectation breaks.
+      </p>
+      <p class="cta-row">
+        <a class="cta-primary" href="https://hci-nerdz.github.io/plan-stack/">Open interactive suite</a>
+      </p>
+      <p class="related-links">
+        <a href="/demos/actor-model-agentic-ui/">Actor-model desk</a>
+        ·
+        <a href="https://github.com/dev-centr/plan-stack">DevCentr product</a>
+        ·
+        <a href="https://github.com/dev-centr/wait-hub">wait-hub</a>
+        ·
+        <a href="https://github.com/HCI-Nerdz/plan-stack">Repo</a>
+      </p>
+    </header>
+
+    <figure class="case-shot lede-shot">
+      <img
+        src="https://hci-nerdz.github.io/plan-stack/public/mock/columns.svg"
+        alt="Harness window with three session columns and wait-sized phase cells"
+        width="1122"
+        height="585"
+        loading="eager"
+      />
+      <figcaption>
+        Harness columns variant — one window, h-scroll sessions, cell height tracks estimated wait.
+      </figcaption>
+    </figure>
+  </main>
+</BaseLayout>

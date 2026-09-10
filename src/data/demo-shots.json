@@ -63,6 +63,24 @@
       "label": "Spatial web windows desk",
       "url": "https://hci-nerdz.github.io/demos/spatial-web-windows/",
       "selector": "main"
+    },
+    {
+      "id": "plan-stack-session",
+      "label": "Session stack",
+      "url": "https://hci-nerdz.github.io/plan-stack/session/",
+      "selector": ".facsimile-bezel"
+    },
+    {
+      "id": "plan-stack-columns",
+      "label": "Harness columns",
+      "url": "https://hci-nerdz.github.io/plan-stack/columns/",
+      "selector": ".facsimile-bezel"
+    },
+    {
+      "id": "plan-stack-recalc",
+      "label": "Recalc & insert",
+      "url": "https://hci-nerdz.github.io/plan-stack/recalc/",
+      "selector": ".facsimile-bezel"
     }
   ]
 }

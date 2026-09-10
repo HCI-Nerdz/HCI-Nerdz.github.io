@@ -537,6 +537,58 @@ export const demoCategories: DemoCategory[] = [
             label: "DevCentr harness",
             href: "https://docs.devcentr.org/agent-rules/actor-model-agentic-ui.html",
           },
+          {
+            label: "plan-stack",
+            href: "https://hci-nerdz.github.io/plan-stack/",
+          },
+        ],
+      },
+      {
+        id: "plan-stack",
+        title: "plan-stack",
+        summary: "Speculative agentic wait queue — ETA-sized phase stacks, harness session columns, and live recalc/insert when estimates break. Sibling to actor-model cadence modes; product daemon in DevCentr.",
+        viz: "flow",
+        href: "https://hci-nerdz.github.io/plan-stack/",
+        releasedAt: "2026-09-10",
+        modifiedAt: "2026-09-10",
+        shots: [
+          {
+            id: "plan-stack-session",
+            label: "Session stack",
+            href: "https://hci-nerdz.github.io/plan-stack/session/",
+          },
+          {
+            id: "plan-stack-columns",
+            label: "Harness columns",
+            href: "https://hci-nerdz.github.io/plan-stack/columns/",
+          },
+          {
+            id: "plan-stack-recalc",
+            label: "Recalc & insert",
+            href: "https://hci-nerdz.github.io/plan-stack/recalc/",
+          },
+        ],
+        related: [
+          {
+            label: "Desk card",
+            href: "/demos/plan-stack/",
+          },
+          {
+            label: "Actor-model desk",
+            href: "/demos/actor-model-agentic-ui/",
+          },
+          {
+            label: "DevCentr product",
+            href: "https://github.com/dev-centr/plan-stack",
+          },
+          {
+            label: "wait-hub",
+            href: "https://github.com/dev-centr/wait-hub",
+          },
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/plan-stack",
+          },
         ],
       },
     ],
