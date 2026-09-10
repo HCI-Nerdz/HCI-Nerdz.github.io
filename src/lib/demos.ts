@@ -512,11 +512,11 @@ export const demoCategories: DemoCategory[] = [
       {
         id: "actor-model-agentic-ui",
         title: "Actor-model agentic UI",
-        summary: "Harness canvas of conversation previews (PM statuses, drag, archive with position memory) plus classic task grid, fork panel, epochs, and serialized contrast. Same node graph; Piles is the email-canvas sibling.",
+        summary: "Linear coordinator chat, parallel task grid, and spawn tree over one node graph — cadence separation: discussion in the main thread, workers as tiles you fork for full transcript; temporal scrubber spans all modes.",
         viz: "piles",
         href: "/demos/actor-model-agentic-ui/",
         releasedAt: "2026-08-28",
-        modifiedAt: "2026-08-29",
+        modifiedAt: "2026-09-10",
         shots: [
           {
             id: "actor-model-agentic-ui",

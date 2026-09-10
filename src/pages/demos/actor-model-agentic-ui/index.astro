@@ -5,14 +5,16 @@ import GitHubLink from '../../../components/GitHubLink.astro';
 
 <BaseLayout
   title="Actor-model agentic UI desk · HCI Nerdz"
-  description="Agent conversations on a rearrangeable canvas — preview thumbs, PM statuses, archive with position memory — plus the classic parallel task grid."
+  description="Linear coordinator chat, parallel task grid, and spawn tree — same node graph with cadence separation: discussion in the main thread, workers as tiles you fork for full transcript."
   active="demos"
 >
   <main class="shell page desk-page pi-page shell-prov">
     <nav class="identity-strip" aria-label="Demo identity">
-      <a href="/demos/">HCI-Nerdz</a>
+      <a href="/">HCI Nerdz</a>
       <span class="identity-sep" aria-hidden="true">/</span>
-      <a href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io">HCI-Nerdz.github.io</a>
+      <a href="/demos/">Demos</a>
+      <span class="identity-sep" aria-hidden="true">/</span>
+      <span aria-current="page">Actor-model agentic UI</span>
     </nav>
     <p class="vcs-row">
       <GitHubLink href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io" showStars={false} />
@@ -22,10 +24,11 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       <p class="eyebrow">Demo · Actor-model agentic UI</p>
       <h1>Actor-model agentic UI desk</h1>
       <p class="lede">
-        Agent chats are project work, not a scroll wall. On the canvas, each conversation is a
-        preview thumb plus a clipped blurb you can rearrange — statuses read like mail (working,
-        waiting, unread, needs you, completed). The grid variant keeps the parallel job view.
-        Same node graph; different projections.
+        Main and discussion chat stay on a different cadence than worker output. The coordinator
+        thread carries summaries and planning — not every agent line. Workers appear as tiles and
+        status chips; fork a node when you need the full transcript. Linear, grid, and tree are
+        projections over the same persisted graph; a temporal scrubber spans all modes when you
+        need to rewind activity across parallel nodes.
       </p>
       <p class="related-links">
         <a href="/blog/persisting-agent-work-as-a-node-graph/">Essay</a>
@@ -53,15 +56,18 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     </figure>
 
     <div class="variant-switch" role="tablist" aria-label="Desk layout">
-      <button type="button" class="variant-tab is-active" role="tab" aria-selected="true" data-variant="canvas" id="tab-canvas">
-        Canvas
+      <button type="button" class="variant-tab is-active" role="tab" aria-selected="true" data-variant="linear" id="tab-linear">
+        Linear
       </button>
       <button type="button" class="variant-tab" role="tab" aria-selected="false" data-variant="grid" id="tab-grid">
         Grid
       </button>
+      <button type="button" class="variant-tab" role="tab" aria-selected="false" data-variant="tree" id="tab-tree">
+        Tree
+      </button>
     </div>
     <p class="variant-blurb" id="variant-blurb">
-      Harness canvas — drag conversation cards, colorized PM statuses, archive remembers position.
+      Linear — coordinator and discussion nodes in a sidebar; main thread is discussion only; workers as compact status.
     </p>
 
     <section class="desk" id="desk" aria-label="Actor-model agentic UI demo">
@@ -72,10 +78,10 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           <span class="phase" id="epoch-label">Epoch 1</span>
         </div>
         <div class="shell-controls">
-          <label class="mode-toggle">
-            <input type="checkbox" id="serialized-mode" />
-            <span>Serialized (old way)</span>
-          </label>
+          <div class="temporal-hint" id="temporal-hint" title="Temporal scrubber — rewind activity across nodes (planned)">
+            <span class="temporal-label">Temporal</span>
+            <input type="range" id="temporal-scrubber" min="0" max="100" value="100" aria-label="Temporal scrubber (demo)" />
+          </div>
           <button type="button" id="btn-next-epoch" class="epoch-btn">Next epoch</button>
         </div>
       </div>
@@ -91,9 +97,14 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         <span class="leg pm-completed"><i></i> Completed</span>
       </div>
 
+      <div class="worker-strip" id="worker-strip" aria-label="Worker status"></div>
+
       <div class="inbox-region" id="inbox-region" aria-label="Conversation surface">
+        <div class="inbox-linear is-hidden" id="inbox-linear">
+          <aside class="linear-nodes" id="linear-nodes" aria-label="Discussion nodes"></aside>
+        </div>
         <div class="inbox-grid is-hidden" id="inbox-grid" role="list"></div>
-        <div class="inbox-canvas" id="inbox-canvas" role="list"></div>
+        <div class="inbox-tree is-hidden" id="inbox-tree" aria-label="Spawn tree"></div>
       </div>
 
       <aside class="archive-bin" id="archive-bin" aria-label="Archive bin">
@@ -132,31 +143,39 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         <ol class="chat-lines" id="main-lines" aria-live="polite"></ol>
       </section>
 
-      <p class="bus-strip" id="bus-strip" role="status">Canvas mode — rearrange previews; statuses are agent PM, not only job dots.</p>
+      <p class="bus-strip" id="bus-strip" role="status">Linear mode — main thread is discussion only; worker output lives in tiles and forks.</p>
     </section>
 
     <aside class="lesson">
       <h2>What you are seeing</h2>
       <ul>
         <li>
-          <strong>Canvas of chats</strong> — each card is a conversation preview + blurb; drag to
-          rearrange (Piles spatial pattern; agent PM domain).
+          <strong>Cadence separation</strong> — main and discussion chat carry coordinator voice;
+          worker agents do not flood the scroll. Workers show as tiles and status chips; fork for
+          the full transcript.
         </li>
         <li>
-          <strong>PM statuses</strong> — working, waiting, unread, read, needs you, user-marked
-          completed — colorized like mail, not only done/running/blocked.
+          <strong>Linear</strong> — discussion/coordinator nodes in a sidebar; main thread stays
+          thin; workers as compact PM status, not transcript lines.
         </li>
         <li>
-          <strong>Archive remembers position</strong> — restore layered by recency onto the saved
-          canvas spot.
+          <strong>Grid</strong> — parallel task tiles with job dots and summaries; fork on click;
+          same store as linear.
         </li>
         <li>
-          <strong>Title index</strong> — topic changes leave a bookmark stack (latest on top) beside
-          the fork.
+          <strong>Tree</strong> — left-to-right spawn lineage; <code>+</code> adds a demo child
+          node. Spawn-on-drift without polluting the parent log.
         </li>
         <li>
-          <strong>Grid + serialized</strong> — classic parallel job tiles, or the wall again via the
-          toggle.
+          <strong>PM statuses</strong> — working, waiting, unread, read, needs you, completed —
+          colorized like mail, not only done/running/blocked.
+        </li>
+        <li>
+          <strong>Temporal scrubber</strong> — spans linear, grid, and tree to rewind activity
+          across parallel nodes (demo slider; full widget planned in harness).
+        </li>
+        <li>
+          <strong>Title index</strong> — topic renames leave a bookmark stack beside the fork panel.
         </li>
       </ul>
     </aside>
@@ -318,15 +337,19 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     gap: 0.75rem 1rem;
   }
 
-  .mode-toggle {
+  .temporal-hint {
     display: flex;
     align-items: center;
     gap: 0.55rem;
-    font-size: 0.92rem;
-    cursor: pointer;
-    user-select: none;
     font-family: var(--font-display);
+    font-size: 0.78rem;
     font-weight: 600;
+    color: var(--paper-muted);
+  }
+
+  .temporal-hint input[type='range'] {
+    width: 6rem;
+    accent-color: var(--focus);
   }
 
   .epoch-btn,
@@ -376,32 +399,38 @@ import GitHubLink from '../../../components/GitHubLink.astro';
 
   .pm-working i,
   .status-working .status-dot,
-  .canvas-card.status-working {
+  .worker-chip.status-working,
+  .linear-node.status-working {
     --pm: #e8a54b;
   }
   .pm-waiting i,
   .status-waiting .status-dot,
-  .canvas-card.status-waiting {
+  .worker-chip.status-waiting,
+  .linear-node.status-waiting {
     --pm: #8b9dc3;
   }
   .pm-unread i,
   .status-unread .status-dot,
-  .canvas-card.status-unread {
+  .worker-chip.status-unread,
+  .linear-node.status-unread {
     --pm: #6eb5ff;
   }
   .pm-read i,
   .status-read .status-dot,
-  .canvas-card.status-read {
+  .worker-chip.status-read,
+  .linear-node.status-read {
     --pm: #9aa3ad;
   }
   .pm-needs_you i,
   .status-needs_you .status-dot,
-  .canvas-card.status-needs_you {
+  .worker-chip.status-needs_you,
+  .linear-node.status-needs_you {
     --pm: #c97b7b;
   }
   .pm-completed i,
   .status-completed .status-dot,
-  .canvas-card.status-completed {
+  .worker-chip.status-completed,
+  .linear-node.status-completed {
     --pm: #5ecf9a;
   }
 
@@ -431,19 +460,181 @@ import GitHubLink from '../../../components/GitHubLink.astro';
   }
 
   .inbox-grid.is-hidden,
-  .inbox-canvas.is-hidden,
-  .archive-bin.is-hidden {
+  .inbox-linear.is-hidden,
+  .inbox-tree.is-hidden,
+  .archive-bin.is-hidden,
+  .worker-strip.is-hidden {
     display: none;
   }
 
-  .inbox-canvas {
-    position: relative;
-    min-height: 18rem;
-    height: 18rem;
+  .worker-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(0, 0, 0, 0.12);
   }
 
-  .task-card,
-  .canvas-card {
+  .worker-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--pm, var(--line));
+    border-radius: 0.3rem;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    color: inherit;
+  }
+
+  .worker-chip:hover,
+  .worker-chip.is-selected {
+    border-color: var(--focus);
+  }
+
+  .inbox-linear {
+    display: grid;
+    grid-template-columns: minmax(9rem, 12rem) 1fr;
+    gap: 0.75rem;
+    min-height: 8rem;
+  }
+
+  .linear-nodes {
+    display: grid;
+    gap: 0.45rem;
+    align-content: start;
+  }
+
+  .linear-node {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--pm, var(--line));
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+  }
+
+  .linear-node.is-active {
+    border-color: var(--focus);
+    background: rgba(110, 181, 255, 0.1);
+  }
+
+  .linear-node-kind {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  .linear-node-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+
+  .inbox-tree {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    min-height: 14rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .tree-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    flex-shrink: 0;
+  }
+
+  .tree-node-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tree-card {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 9rem;
+    max-width: 10.5rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+  }
+
+  .tree-card.is-selected {
+    border-color: var(--focus);
+  }
+
+  .tree-card-kind {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .tree-card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .tree-card-status {
+    font-size: 0.68rem;
+    color: var(--paper-muted);
+  }
+
+  .tree-add {
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+    padding: 0;
+    border: 1px dashed var(--line);
+    border-radius: 0.3rem;
+    background: transparent;
+    color: var(--focus);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .tree-add:hover {
+    border-color: var(--focus);
+    background: rgba(110, 181, 255, 0.08);
+  }
+
+  .tree-connector {
+    width: 1.25rem;
+    height: 2px;
+    background: var(--line);
+    flex-shrink: 0;
+  }
+
+  .task-card {
     display: grid;
     gap: 0.4rem;
     padding: 0.7rem;
@@ -458,49 +649,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
   }
 
   .task-card:hover,
-  .task-card.is-selected,
-  .canvas-card:hover,
-  .canvas-card.is-selected {
+  .task-card.is-selected {
     border-color: var(--focus);
-  }
-
-  .canvas-card {
-    position: absolute;
-    width: 11.5rem;
-    border-left: 3px solid var(--pm, var(--line));
-    cursor: grab;
-    touch-action: none;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
-  }
-
-  .canvas-card.is-dragging {
-    cursor: grabbing;
-    opacity: 0.92;
-    z-index: 40 !important;
-  }
-
-  .preview-thumb {
-    height: 3.4rem;
-    border-radius: 0.3rem;
-    border: 1px solid var(--line);
-    background:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 42%, transparent 42%),
-      linear-gradient(90deg, transparent 0 18%, rgba(110, 181, 255, 0.35) 18% 78%, transparent 78%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
-    background-size: 100% 28%, 100% 28%, 100% 100%;
-    background-position: 8% 22%, 55% 62%, 0 0;
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .preview-thumb::after {
-    content: '';
-    position: absolute;
-    inset: auto 12% 18% 12%;
-    height: 0.35rem;
-    border-radius: 0.2rem;
-    background: rgba(255, 255, 255, 0.18);
   }
 
   .task-title {
@@ -784,10 +934,9 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     font-weight: 600;
   }
 
-  .chat-lines li.is-serialized {
-    font-size: 0.85rem;
-    padding-left: 0.65rem;
-    border-left: 2px solid var(--line);
+  .chat-lines li.is-user {
+    color: var(--focus);
+    font-weight: 600;
   }
 
   .bus-strip {
@@ -835,10 +984,20 @@ import GitHubLink from '../../../components/GitHubLink.astro';
 <script>
   type JobStatus = 'done' | 'running' | 'blocked' | 'failed';
   type PmStatus = 'working' | 'waiting' | 'unread' | 'read' | 'needs_you' | 'completed';
+  type NodeKind = 'coordinator' | 'discussion' | 'task';
+  type Layout = 'linear' | 'grid' | 'tree';
 
   interface ForkLine {
     role: 'agent' | 'user';
     text: string;
+  }
+
+  interface DiscussionNode {
+    id: string;
+    kind: 'coordinator' | 'discussion';
+    title: string;
+    pmStatus?: PmStatus;
+    lines: ForkLine[];
   }
 
   interface Task {
@@ -848,11 +1007,10 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     summary: string;
     jobStatus: JobStatus;
     pmStatus: PmStatus;
+    nodeKind: NodeKind;
+    parentId: string | null;
     action?: string;
     fork: ForkLine[];
-    x: number;
-    y: number;
-    z: number;
     archived?: boolean;
     archivedAt?: number;
   }
@@ -861,8 +1019,9 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     id: number;
     label: string;
     runChip: string;
+    discussionNodes: DiscussionNode[];
     tasks: Task[];
-    mainLines: { kind: 'coordinator' | 'serialized'; text: string }[];
+    mainLines: { kind: 'coordinator'; text: string }[];
   }
 
   const epochs: Epoch[] = [
@@ -870,6 +1029,28 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       id: 1,
       label: 'Epoch 1',
       runChip: '9 of 12 running',
+      discussionNodes: [
+        {
+          id: 'coord-001',
+          kind: 'coordinator',
+          title: 'Coordinator',
+          lines: [
+            { role: 'agent', text: 'Connected orgs to Cursor. Twelve repo jobs spawned; workers hold live status.' },
+            { role: 'agent', text: 'PM statuses on tiles — needs-you and waiting are not the same as blocked job dots.' },
+          ],
+        },
+        {
+          id: 'disc-org-connect',
+          kind: 'discussion',
+          title: 'Org connection plan',
+          pmStatus: 'read',
+          lines: [
+            { role: 'agent', text: 'Mapping which orgs get the Cursor GitHub App first.' },
+            { role: 'user', text: 'Prioritize dev-centr and openshellorg.' },
+            { role: 'agent', text: 'Spawned task nodes per repo — see worker strip, not this thread.' },
+          ],
+        },
+      ],
       tasks: [
         {
           id: 'docs-3',
@@ -878,10 +1059,9 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Branch pushed; GitHub is source of truth.',
           jobStatus: 'done',
           pmStatus: 'read',
+          nodeKind: 'task',
+          parentId: 'disc-org-connect',
           action: 'Open in Cursor',
-          x: 24,
-          y: 18,
-          z: 1,
           fork: [
             { role: 'agent', text: 'Merged dev-centr/docs#3 onto main. No conflicts.' },
             { role: 'agent', text: 'Pushed branch. CI green. Nothing for you to approve.' },
@@ -894,10 +1074,9 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'One-line docs tweak; already approved upstream.',
           jobStatus: 'done',
           pmStatus: 'completed',
+          nodeKind: 'task',
+          parentId: 'disc-org-connect',
           action: 'Open in Cursor',
-          x: 220,
-          y: 28,
-          z: 2,
           fork: [
             { role: 'agent', text: 'Virtualization-Documentation#2002 was approved by Niels last week.' },
             { role: 'agent', text: 'Synced fork; push complete. Inspect diff only if curious.' },
@@ -910,9 +1089,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Retrying on AMDphreak/bitwarden-clients…',
           jobStatus: 'running',
           pmStatus: 'working',
-          x: 420,
-          y: 40,
-          z: 3,
+          nodeKind: 'task',
+          parentId: 'coord-001',
           fork: [
             { role: 'agent', text: 'First attempt used heuristic slug AMDphreak/clients — rejected.' },
             { role: 'agent', text: 'Verified AMDphreak/bitwarden-clients via gh repo view. Retrying push.' },
@@ -925,9 +1103,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Blocked — unsigned CLA on org.',
           jobStatus: 'blocked',
           pmStatus: 'needs_you',
-          x: 48,
-          y: 150,
-          z: 4,
+          nodeKind: 'task',
+          parentId: 'disc-org-connect',
           fork: [
             { role: 'agent', text: 'You own openshellorg but the Cursor GitHub App lacks write on prohelp until CLA bot clears.' },
             { role: 'agent', text: 'Mailbox: status=blocked reason=cla. Siblings should not assume this repo is green.' },
@@ -940,9 +1117,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Waiting before execute — need your token scope decision.',
           jobStatus: 'blocked',
           pmStatus: 'waiting',
-          x: 250,
-          y: 165,
-          z: 5,
+          nodeKind: 'task',
+          parentId: 'coord-001',
           fork: [
             { role: 'agent', text: 'Not your org. App installed but cannot push without upstream merge permissions.' },
             { role: 'agent', text: 'Paused before retry. Reply with fork strategy or abort.' },
@@ -955,9 +1131,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'New mailbox summary since you last opened this card.',
           jobStatus: 'blocked',
           pmStatus: 'unread',
-          x: 450,
-          y: 175,
-          z: 6,
+          nodeKind: 'task',
+          parentId: 'disc-org-connect',
           fork: [
             { role: 'agent', text: 'Fork exists; PR needs maintainer review before agent can merge.' },
             { role: 'agent', text: 'Maintainer commented overnight — unread until you open the fork.' },
@@ -965,14 +1140,35 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         },
       ],
       mainLines: [
-        { kind: 'coordinator', text: 'Connected orgs to Cursor. Twelve repo jobs spawned; canvas holds live status.' },
-        { kind: 'coordinator', text: 'PM statuses on cards — needs-you and waiting are not the same as blocked job dots.' },
+        { kind: 'coordinator', text: 'Connected orgs to Cursor. Twelve repo jobs spawned; workers hold live status in tiles.' },
+        { kind: 'coordinator', text: 'Discussion stays here — fork a worker when you need its full transcript.' },
       ],
     },
     {
       id: 2,
       label: 'Epoch 2',
       runChip: '2 of 4 running',
+      discussionNodes: [
+        {
+          id: 'coord-001',
+          kind: 'coordinator',
+          title: 'Coordinator',
+          lines: [
+            { role: 'agent', text: 'Epoch 2 — CLA unblocked openshellorg. Prior epoch frozen in selector.' },
+            { role: 'agent', text: 'Wait graph active: batch tag will not finalize until prohelp merge completes.' },
+          ],
+        },
+        {
+          id: 'disc-batch-tag',
+          kind: 'discussion',
+          title: 'Batch release framing',
+          pmStatus: 'working',
+          lines: [
+            { role: 'agent', text: 'Reframed the release as a batch tag once dependencies clear.' },
+            { role: 'agent', text: 'Spawned batch-tag task — status in worker strip only.' },
+          ],
+        },
+      ],
       tasks: [
         {
           id: 'openshellorg-prohelp',
@@ -981,9 +1177,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'CLA signed — merge retry in progress.',
           jobStatus: 'running',
           pmStatus: 'working',
-          x: 40,
-          y: 36,
-          z: 1,
+          nodeKind: 'task',
+          parentId: 'disc-org-connect',
           fork: [
             { role: 'agent', text: 'CLA cleared overnight. Re-queued from mailbox summary v2.' },
             { role: 'agent', text: 'Wait graph: bitwarden-22642 must finish before batch tag.' },
@@ -996,10 +1191,9 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Done — on real fork slug.',
           jobStatus: 'done',
           pmStatus: 'completed',
+          nodeKind: 'task',
+          parentId: 'coord-001',
           action: 'Open in Cursor',
-          x: 260,
-          y: 48,
-          z: 2,
           fork: [{ role: 'agent', text: 'Push succeeded on AMDphreak/bitwarden-clients.' }],
         },
         {
@@ -1009,9 +1203,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Waiting on openshellorg + CI before execute.',
           jobStatus: 'running',
           pmStatus: 'waiting',
-          x: 460,
-          y: 40,
-          z: 3,
+          nodeKind: 'task',
+          parentId: 'disc-batch-tag',
           fork: [
             {
               role: 'agent',
@@ -1026,29 +1219,31 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           summary: 'Unread — queued when batch tag completes.',
           jobStatus: 'blocked',
           pmStatus: 'unread',
-          x: 180,
-          y: 170,
-          z: 4,
+          nodeKind: 'task',
+          parentId: 'disc-batch-tag',
           fork: [
             { role: 'agent', text: 'Harness warn-mode: partial dependency if started early. Holding until batch tag mailbox=done.' },
           ],
         },
       ],
       mainLines: [
-        { kind: 'coordinator', text: 'Epoch 2 — CLA unblocked openshellorg. Canvas re-issued; prior epoch frozen in selector.' },
-        { kind: 'coordinator', text: 'Wait graph active: batch tag will not finalize until prohelp merge completes.' },
+        { kind: 'coordinator', text: 'Epoch 2 — CLA unblocked openshellorg. Workers re-issued; discussion thread stays thin.' },
+        { kind: 'coordinator', text: 'Temporal scrubber would rewind both epochs — same feature across linear, grid, and tree.' },
       ],
     },
   ];
 
   let epochIdx = 0;
   let selectedId: string | null = null;
-  let layout: 'canvas' | 'grid' = 'canvas';
-  let zTop = 10;
-  let drag: { id: string; ox: number; oy: number; moved: boolean } | null = null;
+  let selectedDiscussionId: string = 'coord-001';
+  let layout: Layout = 'linear';
+  let demoChildCounter = 0;
 
   const gridEl = document.getElementById('inbox-grid')!;
-  const canvasEl = document.getElementById('inbox-canvas')!;
+  const linearEl = document.getElementById('inbox-linear')!;
+  const linearNodesEl = document.getElementById('linear-nodes')!;
+  const treeEl = document.getElementById('inbox-tree')!;
+  const workerStripEl = document.getElementById('worker-strip')!;
   const inboxRegion = document.getElementById('inbox-region')!;
   const archiveBin = document.getElementById('archive-bin')!;
   const archiveList = document.getElementById('archive-list')!;
@@ -1064,7 +1259,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
   const chapterLabel = document.getElementById('epoch-label')!;
   const busEl = document.getElementById('bus-strip')!;
   const variantBlurb = document.getElementById('variant-blurb')!;
-  const serializedToggle = document.getElementById('serialized-mode') as HTMLInputElement;
+  const temporalScrubber = document.getElementById('temporal-scrubber') as HTMLInputElement;
 
   function currentEpoch() {
     return epochs[epochIdx];
@@ -1100,23 +1295,45 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  function setVariant(next: 'canvas' | 'grid') {
+  function findDiscussion(id: string): DiscussionNode | undefined {
+    return currentEpoch().discussionNodes.find((n) => n.id === id);
+  }
+
+  function allTreeNodes(): Array<{ id: string; kind: NodeKind; title: string; parentId: string | null; pmStatus?: PmStatus; jobStatus?: JobStatus; summary?: string }> {
+    const ch = currentEpoch();
+    const nodes: Array<{ id: string; kind: NodeKind; title: string; parentId: string | null; pmStatus?: PmStatus; jobStatus?: JobStatus; summary?: string }> = [];
+    ch.discussionNodes.forEach((d) => {
+      nodes.push({ id: d.id, kind: d.kind, title: d.title, parentId: d.kind === 'coordinator' ? null : 'coord-001', pmStatus: d.pmStatus });
+    });
+    ch.tasks.filter((t) => !t.archived).forEach((t) => {
+      nodes.push({ id: t.id, kind: 'task', title: t.title, parentId: t.parentId, pmStatus: t.pmStatus, jobStatus: t.jobStatus, summary: t.summary });
+    });
+    return nodes;
+  }
+
+  function childrenOf(parentId: string | null) {
+    return allTreeNodes().filter((n) => n.parentId === parentId);
+  }
+
+  function setVariant(next: Layout) {
     layout = next;
     document.querySelectorAll('.variant-tab').forEach((tab) => {
       const on = (tab as HTMLElement).dataset.variant === next;
       tab.classList.toggle('is-active', on);
       tab.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    variantBlurb.textContent =
-      next === 'canvas'
-        ? 'Harness canvas — drag conversation cards, colorized PM statuses, archive remembers position.'
-        : 'Parallel job grid — status dots per task; fork on click; epochs re-issue the batch.';
+    const blurbs: Record<Layout, string> = {
+      linear: 'Linear — coordinator and discussion nodes in a sidebar; main thread is discussion only; workers as compact status.',
+      grid: 'Grid — parallel task tiles with job dots; fork on click; main thread stays thin.',
+      tree: 'Tree — left-to-right spawn lineage; + adds a demo child; fork any node for full transcript.',
+    };
+    variantBlurb.textContent = blurbs[next];
     paint();
   }
 
   function renderArchive() {
     const items = archivedTasks();
-    if (layout !== 'canvas' || serializedToggle.checked) {
+    if (layout !== 'grid') {
       archiveBin.classList.add('is-hidden');
       return;
     }
@@ -1140,11 +1357,143 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         if (!task) return;
         task.archived = false;
         delete task.archivedAt;
-        task.z = ++zTop;
         selectedId = id;
         paint();
       });
     });
+  }
+
+  function renderWorkerStrip() {
+    const tasks = activeTasks();
+    const show = layout === 'linear' || layout === 'tree';
+    workerStripEl.classList.toggle('is-hidden', !show);
+    if (!show) return;
+    workerStripEl.innerHTML = tasks
+      .map(
+        (t) => `
+      <button type="button" class="worker-chip status-${t.pmStatus}${selectedId === t.id ? ' is-selected' : ''}" data-id="${t.id}">
+        <span class="status-dot" aria-hidden="true"></span>
+        ${t.title} · ${pmLabel(t.pmStatus)}
+      </button>`,
+      )
+      .join('');
+    workerStripEl.querySelectorAll('.worker-chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        selectedId = (btn as HTMLElement).dataset.id ?? null;
+        if (selectedId) {
+          const task = findTask(selectedId);
+          if (task?.pmStatus === 'unread') task.pmStatus = 'read';
+        }
+        paint();
+      });
+    });
+  }
+
+  function renderLinear() {
+    const nodes = currentEpoch().discussionNodes;
+    linearNodesEl.innerHTML = nodes
+      .map(
+        (n) => `
+      <button type="button" class="linear-node${n.pmStatus ? ` status-${n.pmStatus}` : ''}${selectedDiscussionId === n.id ? ' is-active' : ''}" data-disc-id="${n.id}">
+        <span class="linear-node-kind">${n.kind}</span>
+        <span class="linear-node-title">${n.title}</span>
+      </button>`,
+      )
+      .join('');
+    linearNodesEl.querySelectorAll('[data-disc-id]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        selectedDiscussionId = (btn as HTMLElement).dataset.discId!;
+        selectedId = null;
+        paint();
+      });
+    });
+  }
+
+  function renderTreeNode(node: ReturnType<typeof allTreeNodes>[0], showConnector: boolean) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tree-node-wrap';
+    if (showConnector) {
+      const conn = document.createElement('span');
+      conn.className = 'tree-connector';
+      conn.setAttribute('aria-hidden', 'true');
+      wrap.appendChild(conn);
+    }
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = `tree-card${selectedId === node.id || (node.kind !== 'task' && selectedDiscussionId === node.id) ? ' is-selected' : ''}`;
+    const statusText =
+      node.kind === 'task' && node.jobStatus
+        ? `${jobLabel(node.jobStatus)} · ${node.pmStatus ? pmLabel(node.pmStatus) : ''}`
+        : node.pmStatus
+          ? pmLabel(node.pmStatus)
+          : node.kind;
+    card.innerHTML = `
+      <span class="tree-card-kind">${node.kind}</span>
+      <span class="tree-card-title">${node.title}</span>
+      <span class="tree-card-status">${statusText}</span>`;
+    card.addEventListener('click', () => {
+      if (node.kind === 'task') {
+        selectedId = node.id;
+        const task = findTask(node.id);
+        if (task?.pmStatus === 'unread') task.pmStatus = 'read';
+      } else {
+        selectedDiscussionId = node.id;
+        selectedId = null;
+      }
+      paint();
+    });
+    wrap.appendChild(card);
+    const addBtn = document.createElement('button');
+    addBtn.type = 'button';
+    addBtn.className = 'tree-add';
+    addBtn.title = 'Spawn demo child';
+    addBtn.textContent = '+';
+    addBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      spawnDemoChild(node.id);
+    });
+    wrap.appendChild(addBtn);
+    return wrap;
+  }
+
+  function spawnDemoChild(parentId: string) {
+    demoChildCounter += 1;
+    const id = `demo-spawn-${demoChildCounter}`;
+    currentEpoch().tasks.push({
+      id,
+      title: `Demo spawn #${demoChildCounter}`,
+      titleHistory: [`Demo spawn #${demoChildCounter}`],
+      summary: 'Local demo child — no harness API.',
+      jobStatus: 'running',
+      pmStatus: 'working',
+      nodeKind: 'task',
+      parentId,
+      fork: [{ role: 'agent', text: 'Spawned from tree + — transcript lives in fork only.' }],
+    });
+    selectedId = id;
+    paint();
+  }
+
+  function renderTree() {
+    treeEl.innerHTML = '';
+    let frontier: Array<string | null> = [null];
+    let depth = 0;
+    while (frontier.length > 0) {
+      const col = document.createElement('div');
+      col.className = 'tree-col';
+      const nextFrontier: string[] = [];
+      for (const parentId of frontier) {
+        const kids = childrenOf(parentId);
+        for (const node of kids) {
+          col.appendChild(renderTreeNode(node, depth > 0));
+          nextFrontier.push(node.id);
+        }
+      }
+      if (col.childElementCount === 0) break;
+      treeEl.appendChild(col);
+      frontier = nextFrontier;
+      depth += 1;
+    }
   }
 
   function renderGrid() {
@@ -1171,74 +1520,6 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     });
   }
 
-  function renderCanvas() {
-    const tasks = activeTasks();
-    canvasEl.innerHTML = tasks
-      .map(
-        (t) => `
-      <article
-        class="canvas-card status-${t.pmStatus}${selectedId === t.id ? ' is-selected' : ''}"
-        data-id="${t.id}"
-        role="listitem"
-        style="left:${t.x}px;top:${t.y}px;z-index:${t.z}"
-        tabindex="0"
-      >
-        <div class="preview-thumb" aria-hidden="true"></div>
-        <span class="task-title">${t.title}</span>
-        <span class="task-summary">${t.summary}</span>
-        <span class="task-foot">
-          <span><span class="status-dot" aria-hidden="true"></span> ${pmLabel(t.pmStatus)}</span>
-        </span>
-      </article>`,
-      )
-      .join('');
-
-    canvasEl.querySelectorAll('.canvas-card').forEach((el) => {
-      const card = el as HTMLElement;
-      const id = card.dataset.id!;
-      card.addEventListener('pointerdown', (e) => {
-        const task = findTask(id);
-        if (!task) return;
-        const pe = e as PointerEvent;
-        card.setPointerCapture(pe.pointerId);
-        drag = { id, ox: pe.clientX - task.x, oy: pe.clientY - task.y, moved: false };
-        task.z = ++zTop;
-        card.style.zIndex = String(task.z);
-        card.classList.add('is-dragging');
-      });
-      card.addEventListener('pointermove', (e) => {
-        if (!drag || drag.id !== id) return;
-        const task = findTask(id);
-        if (!task) return;
-        const pe = e as PointerEvent;
-        const nx = Math.max(0, pe.clientX - drag.ox);
-        const ny = Math.max(0, pe.clientY - drag.oy);
-        if (Math.abs(nx - task.x) > 3 || Math.abs(ny - task.y) > 3) drag.moved = true;
-        task.x = nx;
-        task.y = ny;
-        card.style.left = `${task.x}px`;
-        card.style.top = `${task.y}px`;
-      });
-      card.addEventListener('pointerup', () => {
-        card.classList.remove('is-dragging');
-        if (drag && drag.id === id && !drag.moved) {
-          selectedId = id;
-          const task = findTask(id);
-          if (task && task.pmStatus === 'unread') task.pmStatus = 'read';
-          paint();
-        }
-        drag = null;
-      });
-      card.addEventListener('keydown', (e) => {
-        if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
-          e.preventDefault();
-          selectedId = id;
-          paint();
-        }
-      });
-    });
-  }
-
   function renderFork() {
     if (!selectedId) {
       forkPanel.classList.add('is-hidden');
@@ -1251,11 +1532,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     }
     forkPanel.classList.remove('is-hidden');
     forkTitle.textContent = task.title;
-    const statusText =
-      layout === 'canvas'
-        ? `${pmLabel(task.pmStatus)} — fork view (cosmetic)`
-        : `${jobLabel(task.jobStatus)} — fork view (cosmetic)`;
-    forkStatus.textContent = statusText;
+    forkStatus.textContent = `${jobLabel(task.jobStatus)} · ${pmLabel(task.pmStatus)} — fork view (cosmetic)`;
     titleIndex.innerHTML = [...task.titleHistory]
       .reverse()
       .map((t, i) => `<li>${i === 0 ? t : `↳ ${t}`}</li>`)
@@ -1263,41 +1540,52 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     forkLinesEl.innerHTML = task.fork.map((l) => `<li class="is-${l.role}">${l.text}</li>`).join('');
   }
 
+  function discussionLinesForMain(): ForkLine[] {
+    const disc = findDiscussion(selectedDiscussionId);
+    if (disc) return disc.lines;
+    return currentEpoch().mainLines.map((l) => ({ role: 'agent' as const, text: l.text }));
+  }
+
   function renderMain() {
     const ch = currentEpoch();
-    const serialized = serializedToggle.checked;
+    inboxRegion.classList.remove('is-hidden');
 
-    if (serialized) {
-      inboxRegion.classList.add('is-hidden');
-      forkPanel.classList.add('is-hidden');
-      statusLegend.classList.add('is-hidden');
-      archiveBin.classList.add('is-hidden');
-      const flat: string[] = [];
-      ch.mainLines.forEach((l) => flat.push(l.text));
-      ch.tasks.forEach((t) => {
-        flat.push(`🔄 ${ch.runChip}. ${t.title} — ${jobLabel(t.jobStatus)} / ${pmLabel(t.pmStatus)}: ${t.summary}`);
-        t.fork.forEach((f) => flat.push(`  ↳ ${f.text}`));
-      });
-      mainLinesEl.innerHTML = flat.map((text) => `<li class="is-serialized">${text}</li>`).join('');
-      busEl.textContent = 'Serialized mode — the wall returns. Scroll to reconstruct parallel state.';
-    } else {
-      inboxRegion.classList.remove('is-hidden');
-      const useCanvas = layout === 'canvas';
-      gridEl.classList.toggle('is-hidden', useCanvas);
-      canvasEl.classList.toggle('is-hidden', !useCanvas);
-      statusLegend.classList.toggle('is-hidden', !useCanvas);
-      if (useCanvas) renderCanvas();
-      else renderGrid();
-      mainLinesEl.innerHTML = ch.mainLines.map((l) => `<li class="is-coordinator">${l.text}</li>`).join('');
-      busEl.textContent = useCanvas
-        ? 'Canvas mode — rearrange previews; statuses are agent PM, not only job dots.'
-        : 'Grid mode — cards update in place; main thread stays thin.';
-      renderFork();
-      renderArchive();
-    }
+    linearEl.classList.toggle('is-hidden', layout !== 'linear');
+    gridEl.classList.toggle('is-hidden', layout !== 'grid');
+    treeEl.classList.toggle('is-hidden', layout !== 'tree');
+    statusLegend.classList.toggle('is-hidden', layout !== 'grid');
+
+    renderWorkerStrip();
+    if (layout === 'linear') renderLinear();
+    else if (layout === 'grid') renderGrid();
+    else renderTree();
+
+    const lines =
+      layout === 'linear'
+        ? discussionLinesForMain()
+        : ch.mainLines.map((l) => ({ role: 'agent' as const, text: l.text }));
+    mainLinesEl.innerHTML = lines
+      .map((l) => `<li class="is-${l.role === 'user' ? 'user' : 'coordinator'}">${l.text}</li>`)
+      .join('');
+
+    const busMessages: Record<Layout, string> = {
+      linear: 'Linear mode — main thread is discussion only; worker output lives in status chips and forks.',
+      grid: 'Grid mode — task tiles update in place; main thread stays coordinator summaries only.',
+      tree: 'Tree mode — spawn lineage left-to-right; + adds demo child; fork for full worker transcript.',
+    };
+    busEl.textContent = busMessages[layout];
+
+    renderFork();
+    renderArchive();
 
     runChipEl.textContent = ch.runChip;
     chapterLabel.textContent = ch.label;
+
+    const scrubVal = Number(temporalScrubber.value);
+    document.getElementById('thread-meta')!.textContent =
+      scrubVal < 100
+        ? `Temporal rewind ${100 - scrubVal}% — discussion only at this scrub`
+        : 'Coordinator summaries only — workers not inlined';
   }
 
   function paint() {
@@ -1306,7 +1594,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
 
   document.querySelectorAll('.variant-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
-      setVariant(((tab as HTMLElement).dataset.variant as 'canvas' | 'grid') ?? 'canvas');
+      setVariant(((tab as HTMLElement).dataset.variant as Layout) ?? 'linear');
     });
   });
 
@@ -1351,17 +1639,16 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     renderFork();
   });
 
-  serializedToggle.addEventListener('change', () => {
-    if (serializedToggle.checked) selectedId = null;
-    paint();
-  });
+  temporalScrubber.addEventListener('input', () => paint());
 
   document.getElementById('btn-next-epoch')!.addEventListener('click', () => {
     if (epochIdx < epochs.length - 1) epochIdx += 1;
     else epochIdx = 0;
     selectedId = null;
+    selectedDiscussionId = 'coord-001';
+    demoChildCounter = 0;
     paint();
   });
 
-  setVariant('canvas');
+  setVariant('linear');
 </script>

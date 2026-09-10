@@ -1,5 +1,12 @@
 = Changelog
 
+== 2026-09-10 — Actor-model Linear / Grid / Tree views
+
+* Demo `/demos/actor-model-agentic-ui/`: identity strip follows site nav (HCI Nerdz → Demos → demo home); VCS logo is the only repo link.
+* View modes: Linear (discussion sidebar + worker status chips), Grid (parallel task tiles), Tree (L→R spawn with + child).
+* Cadence separation in lede and lesson: main/discussion chat ≠ worker output; temporal scrubber demo control spans modes.
+* Removed serialized-wall toggle; problem screenshot stays in lede. Catalog `modifiedAt` 2026-09-10.
+
 == 2026-09-08 -- Synced adaptive diagrams
 
 * Seven adaptive and host artifact pairs synchronize deterministically from canonical HCI Nerdz docs sources.
