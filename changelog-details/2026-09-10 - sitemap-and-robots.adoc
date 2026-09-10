@@ -1,0 +1,3 @@
+= Sitemap and robots.txt
+
+The org site now generates an Astro sitemap at build time and publishes `robots.txt` pointing crawlers at `https://hci-nerdz.github.io/sitemap-index.xml`.

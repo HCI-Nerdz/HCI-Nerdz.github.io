@@ -1,5 +1,11 @@
 = Changelog
 
+== 2026-09-10 — Sitemap and robots.txt
+
+* Add `@astrojs/sitemap` (build emits `sitemap-index.xml`).
+* Add `public/robots.txt` with `Sitemap: https://hci-nerdz.github.io/sitemap-index.xml`.
+* link:changelog-details/2026-09-10%20-%20sitemap-and-robots.adoc[Details]
+
 == 2026-09-10 — Actor-model Linear / Grid / Tree views
 
 * Demo `/demos/actor-model-agentic-ui/`: identity strip follows site nav (HCI Nerdz → Demos → demo home); VCS logo is the only repo link.

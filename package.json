@@ -14,6 +14,7 @@
     "favicons": "node scripts/render-favicons.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@dev-centr/themed-svg": "0.1.1",
     "astro": "^5.12.0",
     "rehype-katex": "^7.0.1",
