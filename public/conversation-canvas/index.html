@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function () {
+        var k = "conversation-canvas-theme";
+        var t = localStorage.getItem(k);
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversation canvas · HCI Nerdz</title>
@@ -8,8 +18,8 @@
       name="description"
       content="Agent chats as movable preview cards on a canvas, with inbox statuses, an archive bin, and file-to-chat links."
     />
-    <script type="module" crossorigin src="./assets/index-KQLBeY20.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BezjzC98.css">
+    <script type="module" crossorigin src="./assets/index-ikuixAVX.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BIJeI-63.css">
   </head>
   <body>
     <div id="root"></div>
