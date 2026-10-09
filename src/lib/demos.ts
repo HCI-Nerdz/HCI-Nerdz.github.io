@@ -225,7 +225,7 @@ export const demoCategories: DemoCategory[] = [
       },
       {
         id: "conversation-canvas",
-        title: "Conversation canvas",
+        title: "Agent Chat - canvas",
         summary: "Agent chats as movable preview cards. Color shows working, waiting, unread, read, needs a response, or completed. The archive bin remembers where a card sat. Drop a file and link it to the chat that should start from it.",
         viz: "spatial",
         href: "/conversation-canvas/",
