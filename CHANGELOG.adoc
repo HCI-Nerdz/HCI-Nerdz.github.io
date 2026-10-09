@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-10-09 — Conversation canvas demo
+
+* Catalog entry and `/conversation-canvas/` desk: movable agent cards, inbox statuses, archive bin, file links, topic list.
+* `/demos/conversation-canvas/` redirects to that desk.
+
 == 2026-09-10 — Sitemap and robots.txt
 
 * Add `@astrojs/sitemap` (build emits `sitemap-index.xml`).

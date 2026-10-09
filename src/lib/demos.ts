@@ -224,6 +224,25 @@ export const demoCategories: DemoCategory[] = [
         ],
       },
       {
+        id: "conversation-canvas",
+        title: "Conversation canvas",
+        summary: "Agent chats as movable preview cards. Color shows working, waiting, unread, read, needs a response, or completed. The archive bin remembers where a card sat. Drop a file and link it to the chat that should start from it.",
+        viz: "spatial",
+        href: "/conversation-canvas/",
+        releasedAt: "2026-10-09",
+        modifiedAt: "2026-10-09",
+        related: [
+          {
+            label: "Docs",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/conversation-canvas.html",
+          },
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/conversation-canvas",
+          },
+        ],
+      },
+      {
         id: "shell-context-demo",
         title: "Open Terminal layout desk",
         summary: "Facsimile desk for how terminals fit real work: prompt context while you type, tabs in one window, a calling window that indexes separate sessions, a project manager next to a DevCentr grid, contained tiling zones you can spawn and delete, and session re-association. Desk mocks only — native windowing stays in open-terminal.",
