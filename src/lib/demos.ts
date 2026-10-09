@@ -224,17 +224,17 @@ export const demoCategories: DemoCategory[] = [
         ],
       },
       {
-        id: "conversation-canvas",
-        title: "Agent Chat - canvas",
-        summary: "Agent chats as movable preview cards. Color shows working, waiting, unread, read, needs a response, or completed. The archive bin remembers where a card sat. Drop a file and link it to the chat that should start from it.",
+        id: "agent-canvas",
+        title: "Agent Canvas",
+        summary: "Agent chats as movable preview cards on a desk. Status lamps, archive bin, floating chat panels, and file-to-chat links.",
         viz: "spatial",
-        href: "/conversation-canvas/",
+        href: "/agent-canvas/",
         releasedAt: "2026-10-09",
         modifiedAt: "2026-10-09",
         related: [
           {
             label: "Docs",
-            href: "https://hci-nerdz.github.io/docs/hci-nerdz/conversation-canvas.html",
+            href: "https://hci-nerdz.github.io/docs/hci-nerdz/agent-canvas.html",
           },
           {
             label: "Repo",

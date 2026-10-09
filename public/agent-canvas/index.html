@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function () {
+        var k = "agent-canvas-theme";
+        var legacy = "conversation-canvas-theme";
+        var t = localStorage.getItem(k);
+        if (t !== "light" && t !== "dark") {
+          t = localStorage.getItem(legacy);
+        }
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Canvas · HCI Nerdz</title>
+    <meta
+      name="description"
+      content="Agent chats as movable preview cards on a canvas, with inbox statuses, an archive bin, and file-to-chat links."
+    />
+    <script type="module" crossorigin src="./assets/index-DcTsa-Te.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dzmy-cM9.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
