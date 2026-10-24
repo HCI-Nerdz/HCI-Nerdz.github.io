@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-10-23 — When the same menu means two things
+
+* Blog essay `/blog/when-the-same-menu-means-two-things/` on menus whose meaning depends on hidden scope; links the docs page Location overloading.
+* link:changelog-details/2026-10-23%20-%20when-the-same-menu-means-two-things.adoc[Details]
+
 == 2026-10-09 — Conversation canvas demo
 
 * Catalog entry and `/conversation-canvas/` desk: movable agent cards, inbox statuses, archive bin, file links, topic list.

@@ -1,0 +1,4 @@
+= 2026-10-23 — When the same menu means two things
+
+* Blog essay `/blog/when-the-same-menu-means-two-things/`: location overloading as a mode, with the Vercel dashboard sidebar as the example.
+* Links the docs reference page `location-overloading`.
