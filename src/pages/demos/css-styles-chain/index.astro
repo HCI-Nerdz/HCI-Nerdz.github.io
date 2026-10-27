@@ -92,7 +92,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         </li>
         <li>
           <strong>The chain is a number, not the selector.</strong>
-          <code>class #5</code> is one stylesheet rule. The line stays short enough to scan.
+          <code>class 5</code> is one stylesheet rule. The line stays short enough to scan.
           Opening the number, or <code>&lt;|</code> at the end of that line, inserts the
           selector under that property. The cards are indented by how far the selector
           reaches into the element tree. A loss says which number beat it, in that card,
@@ -891,7 +891,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
   }
 
   function chipText(d: Decl): string {
-    return d.inline ? 'inline' : `class #${ruleSerial(d)}`;
+    return d.inline ? 'inline' : `class ${ruleSerial(d)}`;
   }
 
   function slotKey(property: string, serial: number): string {
