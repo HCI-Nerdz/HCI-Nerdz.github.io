@@ -1,0 +1,1244 @@
+---
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS styles chain</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style is:global>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        color-scheme: dark;
+        background: #202124;
+        color: #e8eaed;
+        font: 13px/1.4 "Segoe UI", system-ui, sans-serif;
+        display: grid;
+        grid-template-rows: minmax(9rem, 34vh) auto minmax(0, 1fr);
+        height: 100vh;
+        box-sizing: border-box;
+        padding-bottom: 2.5rem;
+      }
+
+      .preview {
+        position: relative;
+        min-height: 0;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .preview iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #fff;
+      }
+
+      #hl {
+        position: absolute;
+        pointer-events: none;
+        box-sizing: border-box;
+        border: 2px solid #1a73e8;
+        background: rgba(26, 115, 232, 0.18);
+      }
+
+      .tools-bar {
+        display: flex;
+        align-items: end;
+        gap: 0.25rem;
+        background: #292a2d;
+        border-top: 1px solid #3c4043;
+        border-bottom: 1px solid #3c4043;
+        padding: 0 0.5rem;
+      }
+
+      .tools-tab {
+        padding: 0.35rem 0.75rem 0.3rem;
+        border: 1px solid #3c4043;
+        border-bottom: 0;
+        border-radius: 4px 4px 0 0;
+        background: #202124;
+        color: #e8eaed;
+        font-size: 12px;
+      }
+
+      .dock {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(14rem, 22rem) minmax(0, 1fr);
+      }
+
+      .pane {
+        min-height: 0;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .pane h2 {
+        margin: 0;
+        padding: 0.35rem 0.7rem;
+        font-size: 12px;
+        font-weight: 600;
+        color: #9aa0a6;
+        border-bottom: 1px solid #3c4043;
+      }
+
+      .tree-pane {
+        border-right: 1px solid #3c4043;
+        background: #1e1e1e;
+      }
+
+      #tree,
+      #styles {
+        overflow: auto;
+        min-height: 0;
+        flex: 1;
+        padding: 0.4rem 0.5rem 1rem;
+      }
+
+      .node {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: transparent;
+        color: #e8eaed;
+        font: 12px/1.45 Consolas, ui-monospace, monospace;
+        padding: 0.05rem 0.3rem;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+
+      .node .tag {
+        color: #5db0d7;
+      }
+
+      .node .idname {
+        color: #9cdcfe;
+      }
+
+      .node .cls {
+        color: #e8a54b;
+      }
+
+      .node[aria-selected='true'] {
+        background: #094771;
+      }
+
+      .status-line,
+      .legend {
+        margin: 0 0 0.6rem;
+        color: #9aa0a6;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+      }
+
+      .prop {
+        margin: 0 0 0.85rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid #3c4043;
+      }
+
+      .prop-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .prop-name {
+        border: 0;
+        background: transparent;
+        color: #7dd3c0;
+        font: 12px Consolas, ui-monospace, monospace;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .prop-row input[type='text'] {
+        flex: 1 1 12rem;
+        min-width: 8rem;
+        background: #292a2d;
+        color: #e8eaed;
+        border: 1px solid #3c4043;
+        border-radius: 3px;
+        font: 12px Consolas, ui-monospace, monospace;
+        padding: 0.15rem 0.35rem;
+      }
+
+      .imp {
+        color: #9aa0a6;
+        font-size: 12px;
+      }
+
+      .chain {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.28rem;
+        margin: 0.4rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .chain li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.28rem;
+      }
+
+      .chain-sep {
+        color: #6e7378;
+      }
+
+      .crumb {
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 0.1rem 0.45rem;
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .crumb-important-lost {
+        background: #5c2b2b;
+        color: #f5b4b4;
+      }
+
+      .crumb-active {
+        background: #1e4d32;
+        color: #9be7b5;
+        font-weight: 700;
+      }
+
+      .crumb-natural-lost {
+        background: #3c3c3c;
+        color: #9aa0a6;
+      }
+
+      .crumb[aria-pressed='true'] {
+        outline: 2px solid #e8a54b;
+      }
+
+      .expand-all {
+        width: 1.35rem;
+        height: 1.35rem;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .expand-all::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0.32rem 0.46rem 0.32rem 0;
+        border-color: transparent #e8eaed transparent transparent;
+      }
+
+      .expand-all[aria-expanded='true']::before {
+        border-width: 0.46rem 0.32rem 0 0.32rem;
+        border-color: #e8eaed transparent transparent transparent;
+      }
+
+      .class-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        margin-top: 0.4rem;
+      }
+
+      .class-card {
+        border: 1px solid #3c4043;
+        border-radius: 6px;
+        padding: 0.4rem 0.5rem;
+        background: #292a2d;
+      }
+
+      .class-card.is-active {
+        border-color: #1f7a3a;
+      }
+
+      .class-card.is-important-lost {
+        border-color: #9b2c2c;
+      }
+
+      .class-card h3 {
+        margin: 0 0 0.25rem;
+        font-size: 13px;
+      }
+
+      .selector {
+        margin: 0;
+        font-family: Consolas, ui-monospace, monospace;
+        color: #d7aefb;
+      }
+
+      .meta,
+      .reason,
+      .beaten-by {
+        margin: 0.3rem 0 0;
+        color: #9aa0a6;
+      }
+
+      .anatomy {
+        list-style: none;
+        margin: 0.35rem 0 0;
+        padding: 0;
+      }
+
+      .anatomy li {
+        display: grid;
+        grid-template-columns: minmax(8rem, 14rem) 1fr;
+        gap: 0.4rem;
+        padding: 0.15rem 0;
+        border-top: 1px solid #3c4043;
+      }
+
+      .anatomy code {
+        font-size: 12px;
+        color: #d7aefb;
+      }
+
+      .related {
+        margin-top: 0.55rem;
+        color: #6e7378;
+      }
+
+      .related ul {
+        list-style: none;
+        margin: 0.25rem 0 0;
+        padding: 0;
+      }
+
+      .related button {
+        border: 0;
+        background: transparent;
+        color: #6e7378;
+        font: 12px Consolas, ui-monospace, monospace;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .toolbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 0.8rem;
+        background: #292a2d;
+        border-top: 1px solid #3c4043;
+      }
+
+      .toolbar-label {
+        color: #9aa0a6;
+      }
+
+      .toolbar label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      @media (max-width: 720px) {
+        .dock {
+          grid-template-columns: 1fr;
+        }
+
+        .tree-pane {
+          border-right: 0;
+          border-bottom: 1px solid #3c4043;
+          max-height: 30vh;
+        }
+
+        .anatomy li {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preview">
+      <iframe id="page" title="Sample page" src="/demos/css-styles-chain/sample.html"></iframe>
+      <div id="hl" hidden></div>
+    </div>
+    <div class="tools-bar">
+      <span class="tools-tab">Elements</span>
+    </div>
+    <div class="dock">
+      <section class="pane tree-pane" aria-label="Elements">
+        <h2>Elements</h2>
+        <div id="tree"></div>
+      </section>
+      <section class="pane styles-pane" aria-label="Styles">
+        <h2>Styles</h2>
+        <div id="styles"></div>
+      </section>
+    </div>
+    <footer class="toolbar">
+      <div role="radiogroup" aria-label="Page theme">
+        <span class="toolbar-label">Page</span>
+        <label><input type="radio" name="page-theme" value="light" checked /> Light</label>
+        <label><input type="radio" name="page-theme" value="dark" /> Dark</label>
+      </div>
+    </footer>
+    <script>
+      type Kind = 'important-lost' | 'active' | 'natural-lost';
+
+      interface Decl {
+        prop: string;
+        value: string;
+        important: boolean;
+        order: number;
+      }
+
+      interface RuleRec {
+        selector: string;
+        serial: number;
+        sheet: string;
+        active: boolean;
+        decls: Decl[];
+      }
+
+      interface Piece {
+        combinator: string;
+        text: string;
+      }
+
+      interface Crumb {
+        prop: string;
+        value: string;
+        important: boolean;
+        spec: [number, number, number];
+        order: number;
+        sheet: string;
+        selector: string;
+        serial: number;
+        inline: boolean;
+        depth: number;
+        pieces: Piece[];
+        kind: Kind;
+      }
+
+      const INHERITABLE = new Set([
+        'color', 'cursor', 'direction', 'font', 'font-family', 'font-size', 'font-style',
+        'font-variant', 'font-weight', 'font-stretch', 'letter-spacing', 'line-height',
+        'list-style', 'list-style-image', 'list-style-position', 'list-style-type',
+        'quotes', 'text-align', 'text-indent', 'text-transform', 'visibility',
+        'white-space', 'word-break', 'word-spacing', 'tab-size',
+      ]);
+
+      const LONGHANDS: Record<string, string[]> = {
+        background: [
+          'background-color', 'background-image', 'background-repeat', 'background-attachment',
+          'background-position', 'background-size', 'background-clip', 'background-origin',
+        ],
+        border: [
+          'border-color', 'border-width', 'border-style',
+          'border-top', 'border-right', 'border-bottom', 'border-left',
+          'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color',
+          'border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width',
+          'border-top-style', 'border-right-style', 'border-bottom-style', 'border-left-style',
+        ],
+        font: ['font-family', 'font-size', 'font-weight', 'font-style', 'font-variant', 'line-height', 'font-stretch'],
+        margin: ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'],
+        padding: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'],
+      };
+
+      const iframe = document.querySelector('#page') as HTMLIFrameElement;
+      const treeEl = document.querySelector('#tree') as HTMLElement;
+      const stylesEl = document.querySelector('#styles') as HTMLElement;
+      const highlight = document.querySelector('#hl') as HTMLElement;
+
+      let rules: RuleRec[] = [];
+      let selected: Element | null = null;
+      let subject = 'background';
+      const openSlots = new Set<string>();
+      const expanded = new Set<string>();
+      let nodeIndex: Element[] = [];
+      let booted = false;
+
+      function esc(value: string): string {
+        return value.replace(/[&<>"']/g, (ch) => (
+          { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch] || ch
+        ));
+      }
+
+      function eventElement(event: Event): Element | null {
+        const target = event.target;
+        if (target instanceof Element) return target;
+        if (target instanceof Node) return target.parentElement;
+        return null;
+      }
+
+      function splitSelectorList(selector: string): string[] {
+        const parts: string[] = [];
+        let current = '';
+        let depth = 0;
+        let quote = '';
+        for (let i = 0; i < selector.length; i++) {
+          const ch = selector[i];
+          if (quote) {
+            current += ch;
+            if (ch === quote && selector[i - 1] !== '\\') quote = '';
+            continue;
+          }
+          if (ch === '"' || ch === "'") {
+            quote = ch;
+            current += ch;
+            continue;
+          }
+          if (ch === '(' || ch === '[') depth += 1;
+          if ((ch === ')' || ch === ']') && depth > 0) depth -= 1;
+          if (ch === ',' && depth === 0) {
+            if (current.trim()) parts.push(current.trim());
+            current = '';
+            continue;
+          }
+          current += ch;
+        }
+        if (current.trim()) parts.push(current.trim());
+        return parts;
+      }
+
+      function readIdent(source: string, index: number): [string, number] {
+        let name = '';
+        if (source[index] === '\\') {
+          index += 1;
+          if (/[0-9a-fA-F]/.test(source[index] || '')) {
+            while (index < source.length && /[0-9a-fA-F]/.test(source[index]) && name.length < 6) {
+              name += source[index];
+              index += 1;
+            }
+            if (source[index] === ' ') index += 1;
+          } else if (index < source.length) {
+            name += source[index];
+            index += 1;
+          }
+          return [name, index];
+        }
+        while (index < source.length && /[A-Za-z0-9_-]/.test(source[index])) {
+          name += source[index];
+          index += 1;
+        }
+        return [name, index];
+      }
+
+      function skipBlock(source: string, index: number, open: string, close: string): number {
+        let depth = 0;
+        let quote = '';
+        for (let i = index; i < source.length; i++) {
+          const ch = source[i];
+          if (quote) {
+            if (ch === quote && source[i - 1] !== '\\') quote = '';
+            continue;
+          }
+          if (ch === '"' || ch === "'") {
+            quote = ch;
+            continue;
+          }
+          if (ch === open) depth += 1;
+          if (ch === close) {
+            depth -= 1;
+            if (depth === 0) return i + 1;
+          }
+        }
+        return source.length;
+      }
+
+      function specOf(selector: string): [number, number, number] {
+        let a = 0;
+        let b = 0;
+        let c = 0;
+        let i = 0;
+        const add = (ids: number, classes: number, types: number) => {
+          a += ids;
+          b += classes;
+          c += types;
+        };
+        while (i < selector.length) {
+          const ch = selector[i];
+          if (ch === ' ' || ch === '>' || ch === '+' || ch === '~' || ch === '*') {
+            i += 1;
+            continue;
+          }
+          if (ch === '#') {
+            const read = readIdent(selector, i + 1);
+            i = read[1];
+            add(1, 0, 0);
+            continue;
+          }
+          if (ch === '.') {
+            const read = readIdent(selector, i + 1);
+            i = read[1];
+            add(0, 1, 0);
+            continue;
+          }
+          if (ch === '[') {
+            i = skipBlock(selector, i, '[', ']');
+            add(0, 1, 0);
+            continue;
+          }
+          if (ch === ':') {
+            if (selector[i + 1] === ':') {
+              const read = readIdent(selector, i + 2);
+              i = read[1];
+              if (selector[i] === '(') i = skipBlock(selector, i, '(', ')');
+              add(0, 0, 1);
+              continue;
+            }
+            const read = readIdent(selector, i + 1);
+            const name = read[0];
+            i = read[1];
+            if (selector[i] === '(') {
+              const start = i + 1;
+              const end = skipBlock(selector, i, '(', ')');
+              const inner = selector.slice(start, end - 1);
+              i = end;
+              if (name === 'is' || name === 'not' || name === 'has' || name === 'matches') {
+                let best: [number, number, number] = [0, 0, 0];
+                for (const part of splitSelectorList(inner)) {
+                  const spec = specOf(part);
+                  if (compareList(spec, best) > 0) best = spec;
+                }
+                add(best[0], best[1], best[2]);
+              } else if (name !== 'where') {
+                add(0, 1, 0);
+              }
+              continue;
+            }
+            const legacy = new Set(['before', 'after', 'first-line', 'first-letter']);
+            if (legacy.has(name)) add(0, 0, 1);
+            else add(0, 1, 0);
+            continue;
+          }
+          if (/[A-Za-z_\\]/.test(ch)) {
+            const read = readIdent(selector, i);
+            i = read[1];
+            if (selector[i] === '|' && selector[i + 1] !== '|') {
+              i += 1;
+              const next = readIdent(selector, i);
+              i = next[1];
+            }
+            add(0, 0, 1);
+            continue;
+          }
+          i += 1;
+        }
+        return [a, b, c];
+      }
+
+      function compareList(left: number[], right: number[]): number {
+        const width = Math.max(left.length, right.length);
+        for (let i = 0; i < width; i++) {
+          const diff = (left[i] || 0) - (right[i] || 0);
+          if (diff !== 0) return diff;
+        }
+        return 0;
+      }
+
+      function compounds(selector: string): Piece[] {
+        const parts: Piece[] = [];
+        let buf = '';
+        let comb = '';
+        let depth = 0;
+        let quote = '';
+        const flush = () => {
+          const text = buf.trim();
+          if (text) parts.push({ combinator: comb, text });
+          buf = '';
+        };
+        for (let i = 0; i < selector.length; i++) {
+          const ch = selector[i];
+          if (quote) {
+            buf += ch;
+            if (ch === quote && selector[i - 1] !== '\\') quote = '';
+            continue;
+          }
+          if (ch === '"' || ch === "'") {
+            quote = ch;
+            buf += ch;
+            continue;
+          }
+          if (ch === '(' || ch === '[') {
+            depth += 1;
+            buf += ch;
+            continue;
+          }
+          if ((ch === ')' || ch === ']') && depth > 0) {
+            depth -= 1;
+            buf += ch;
+            continue;
+          }
+          if (depth === 0 && (ch === '>' || ch === '+' || ch === '~')) {
+            flush();
+            comb = ch;
+            continue;
+          }
+          if (depth === 0 && /\s/.test(ch)) {
+            let j = i;
+            while (j < selector.length && /\s/.test(selector[j])) j += 1;
+            if (j < selector.length && '>+~'.includes(selector[j])) {
+              i = j - 1;
+              continue;
+            }
+            if (buf.trim()) {
+              flush();
+              comb = ' ';
+            }
+            i = j - 1;
+            continue;
+          }
+          buf += ch;
+        }
+        flush();
+        return parts;
+      }
+
+      function parseDecls(cssText: string): Omit<Decl, 'order'>[] {
+        const out: Omit<Decl, 'order'>[] = [];
+        let current = '';
+        let depth = 0;
+        let quote = '';
+        const push = (raw: string) => {
+          const text = raw.trim();
+          if (!text) return;
+          const important = /!important\s*$/i.test(text);
+          const body = text.replace(/!important\s*$/i, '').trim();
+          const colon = body.indexOf(':');
+          if (colon < 1) return;
+          out.push({
+            prop: body.slice(0, colon).trim(),
+            value: body.slice(colon + 1).trim(),
+            important,
+          });
+        };
+        for (let i = 0; i < cssText.length; i++) {
+          const ch = cssText[i];
+          if (quote) {
+            current += ch;
+            if (ch === quote && cssText[i - 1] !== '\\') quote = '';
+            continue;
+          }
+          if (ch === '"' || ch === "'") {
+            quote = ch;
+            current += ch;
+            continue;
+          }
+          if (ch === '(') depth += 1;
+          if (ch === ')' && depth > 0) depth -= 1;
+          if (ch === ';' && depth === 0) {
+            push(current);
+            current = '';
+            continue;
+          }
+          current += ch;
+        }
+        push(current);
+        return out;
+      }
+
+      function sheetName(sheet: CSSStyleSheet): string {
+        if (!sheet.href) return 'style';
+        try {
+          return new URL(sheet.href).pathname.split('/').pop() || sheet.href;
+        } catch {
+          return sheet.href;
+        }
+      }
+
+      function extractStyleRules(css: string, doc: Document): { selector: string; body: string; active: boolean }[] {
+        const text = css.replace(/\/\*[\s\S]*?\*\//g, '');
+        const out: { selector: string; body: string; active: boolean }[] = [];
+        const walk = (source: string, mediaOk: boolean) => {
+          let i = 0;
+          while (i < source.length) {
+            const open = source.indexOf('{', i);
+            if (open < 0) break;
+            const selector = source.slice(i, open).replace(/\s+/g, ' ').trim();
+            let depth = 1;
+            let j = open + 1;
+            let quote = '';
+            while (j < source.length && depth > 0) {
+              const ch = source[j];
+              if (quote) {
+                if (ch === quote && source[j - 1] !== '\\') quote = '';
+              } else if (ch === '"' || ch === "'") quote = ch;
+              else if (ch === '{') depth += 1;
+              else if (ch === '}') depth -= 1;
+              j += 1;
+            }
+            const body = source.slice(open + 1, j - 1);
+            if (selector.startsWith('@media')) {
+              const cond = selector.replace(/^@media/i, '').trim();
+              const ok = doc.defaultView?.matchMedia(cond).matches ?? false;
+              walk(body, mediaOk && ok);
+            } else if (selector.startsWith('@supports')) {
+              const cond = selector.replace(/^@supports/i, '').trim();
+              walk(body, mediaOk && CSS.supports(cond));
+            } else if (selector.startsWith('@')) {
+              walk(body, mediaOk);
+            } else if (selector) {
+              out.push({ selector, body, active: mediaOk });
+            }
+            i = j;
+          }
+        };
+        walk(text, true);
+        return out;
+      }
+
+      async function sheetText(sheet: CSSStyleSheet): Promise<string> {
+        if (sheet.href) {
+          const response = await fetch(sheet.href);
+          return response.text();
+        }
+        const node = sheet.ownerNode;
+        if (node instanceof HTMLStyleElement) return node.textContent || '';
+        return '';
+      }
+
+      async function collectRules(doc: Document): Promise<RuleRec[]> {
+        const out: RuleRec[] = [];
+        let serial = 1;
+        let order = 1;
+        for (const sheet of [...doc.styleSheets]) {
+          if (sheet.disabled) continue;
+          let css = '';
+          try {
+            css = await sheetText(sheet);
+          } catch {
+            continue;
+          }
+          for (const rule of extractStyleRules(css, doc)) {
+            const decls = parseDecls(rule.body).map((decl) => ({ ...decl, order: order++ }));
+            out.push({
+              selector: rule.selector,
+              serial: serial++,
+              sheet: sheetName(sheet),
+              active: rule.active,
+              decls,
+            });
+          }
+        }
+        return out;
+      }
+
+      function rank(crumb: Crumb): number[] {
+        return [
+          crumb.important ? 1 : 0,
+          crumb.inline ? 1 : 0,
+          crumb.spec[0],
+          crumb.spec[1],
+          crumb.spec[2],
+          crumb.order,
+        ];
+      }
+
+      function better(left: Crumb, right: Crumb): Crumb {
+        return compareList(rank(left), rank(right)) >= 0 ? left : right;
+      }
+
+      function specWords(spec: [number, number, number]): string {
+        const [ids, classes, types] = spec;
+        const bits: string[] = [];
+        if (ids) bits.push(`${ids} ${ids === 1 ? 'id' : 'ids'}`);
+        if (classes) bits.push(`${classes} ${classes === 1 ? 'class' : 'classes'}`);
+        if (types) bits.push(`${types} ${types === 1 ? 'element' : 'elements'}`);
+        return `${bits.join(', ') || 'no weight'} (${ids}, ${classes}, ${types})`;
+      }
+
+      function slotKey(prop: string, serial: number): string {
+        return `${prop}:${serial}`;
+      }
+
+      function clearSlots(prop: string): void {
+        for (const key of [...openSlots]) {
+          if (key.startsWith(`${prop}:`)) openSlots.delete(key);
+        }
+      }
+
+      function showOnly(prop: string, serial: number): void {
+        const key = slotKey(prop, serial);
+        const mine = [...openSlots].filter((slot) => slot.startsWith(`${prop}:`));
+        const alone = !expanded.has(prop) && mine.length === 1 && mine[0] === key;
+        expanded.delete(prop);
+        clearSlots(prop);
+        if (!alone) openSlots.add(key);
+        subject = prop;
+      }
+
+      function slotOpen(prop: string, serial: number): boolean {
+        return expanded.has(prop) || openSlots.has(slotKey(prop, serial));
+      }
+
+      function matches(el: Element, selector: string): string[] {
+        return splitSelectorList(selector).filter((part) => {
+          try {
+            return el.matches(part);
+          } catch {
+            return false;
+          }
+        });
+      }
+
+      function crumbsFor(el: Element): Map<string, Crumb[]> {
+        const map = new Map<string, Crumb[]>();
+        const add = (node: Element, depth: number) => {
+          const inline = parseDecls(node.style.cssText).map((decl, index) => ({
+            ...decl,
+            order: 1_000_000 + index + depth,
+          }));
+          for (const decl of inline) {
+            if (decl.prop.startsWith('--')) continue;
+            if (depth > 0 && !INHERITABLE.has(decl.prop)) continue;
+            pushCrumb(map, crumbFrom(decl, depth, true, 'element.style', 0, 'inline', []));
+          }
+          for (const rule of rules) {
+            if (!rule.active) continue;
+            const hit = matches(node, rule.selector);
+            if (!hit.length) continue;
+            const spec = hit.map((part) => specOf(part)).reduce((best, spec) => (
+              compareList(spec, best) > 0 ? spec : best
+            ));
+            const pieces = compounds(hit[0]);
+            for (const decl of rule.decls) {
+              if (decl.prop.startsWith('--')) continue;
+              if (depth > 0 && !INHERITABLE.has(decl.prop)) continue;
+              pushCrumb(map, crumbFrom(decl, depth, false, hit.join(', '), rule.serial, rule.sheet, pieces, spec));
+            }
+          }
+        };
+        const walk = (node: Element, depth: number) => {
+          add(node, depth);
+          if (node.parentElement) walk(node.parentElement, depth + 1);
+        };
+        walk(el, 0);
+        for (const [prop, list] of map) map.set(prop, orderChain(list));
+        return map;
+      }
+
+      function crumbFrom(
+        decl: Decl,
+        depth: number,
+        inline: boolean,
+        selector: string,
+        serial: number,
+        sheet: string,
+        pieces: Piece[],
+        spec: [number, number, number] = [1, 0, 0],
+      ): Crumb {
+        return {
+          prop: decl.prop,
+          value: decl.value,
+          important: decl.important,
+          spec: inline ? [1, 0, 0] : spec,
+          order: decl.order,
+          sheet,
+          selector,
+          serial,
+          inline,
+          depth,
+          pieces,
+          kind: 'natural-lost',
+        };
+      }
+
+      function pushCrumb(map: Map<string, Crumb[]>, crumb: Crumb): void {
+        const list = map.get(crumb.prop) || [];
+        list.push(crumb);
+        map.set(crumb.prop, list);
+      }
+
+      function orderChain(crumbs: Crumb[]): Crumb[] {
+        const own = crumbs.filter((crumb) => crumb.depth === 0);
+        const pool = own.length ? own : nearest(crumbs);
+        if (!pool.length) return [];
+        const win = pool.reduce((best, crumb) => better(crumb, best));
+        const rest = pool.filter((crumb) => crumb !== win);
+        const important = rest.filter((crumb) => crumb.important).sort((a, b) => compareList(rank(b), rank(a)));
+        const natural = rest.filter((crumb) => !crumb.important).sort((a, b) => compareList(rank(b), rank(a)));
+        const further = own.length
+          ? crumbs.filter((crumb) => crumb.depth > 0)
+          : crumbs.filter((crumb) => crumb.depth > pool[0].depth);
+        further.sort((a, b) => a.depth - b.depth || compareList(rank(b), rank(a)));
+        const ordered = [...important, win, ...natural, ...further];
+        for (const crumb of ordered) {
+          if (crumb === win) crumb.kind = 'active';
+          else if (crumb.important && crumb.depth === win.depth) crumb.kind = 'important-lost';
+          else crumb.kind = 'natural-lost';
+        }
+        return ordered;
+      }
+
+      function nearest(crumbs: Crumb[]): Crumb[] {
+        if (!crumbs.length) return [];
+        const depth = Math.min(...crumbs.map((crumb) => crumb.depth));
+        return crumbs.filter((crumb) => crumb.depth === depth);
+      }
+
+      function chipText(crumb: Crumb): string {
+        return crumb.inline ? 'inline' : `class ${crumb.serial}`;
+      }
+
+      function reason(crumb: Crumb): string {
+        const variable = crumb.value.includes('var(') && crumb.kind !== 'active'
+          ? ' A variable in the value is not why the line is inactive.'
+          : '';
+        if (crumb.kind === 'active' && crumb.important) {
+          return 'This declaration is !important, and no stronger !important matches this element.';
+        }
+        if (crumb.kind === 'active' && crumb.depth > 0) {
+          return 'This element does not set the property. The value comes from this ancestor.';
+        }
+        if (crumb.kind === 'active') return 'This is the declaration in effect.';
+        if (crumb.kind === 'important-lost') return `This !important lost to a stronger !important.${variable}`;
+        if (crumb.depth > 0) return `An ancestor set this. A nearer declaration is in effect.${variable}`;
+        return `An ordinary declaration on this element. A matching !important, or an equal selector later in the file, beat it.${variable}`;
+      }
+
+      function pieceRole(pieces: Piece[], index: number): string {
+        if (index === pieces.length - 1) return 'The element you picked matches this.';
+        const next = pieces[index + 1];
+        if (next && index === pieces.length - 2 && next.combinator === '>') return 'The parent matches this.';
+        return 'An ancestor matches this.';
+      }
+
+      function isLonghand(prop: string, shorthand: string): boolean {
+        return (LONGHANDS[shorthand] || []).includes(prop);
+      }
+
+      function topLevel(props: string[]): string[] {
+        return props.filter((prop) => prop === subject || !props.some((other) => isLonghand(prop, other)));
+      }
+
+      function renderTree(doc: Document): void {
+        nodeIndex = [];
+        const root = doc.documentElement;
+        treeEl.innerHTML = root ? renderNode(root, 0) : '';
+      }
+
+      function renderNode(el: Element, depth: number): string {
+        const id = nodeIndex.length;
+        nodeIndex.push(el);
+        const tag = el.tagName.toLowerCase();
+        const idName = el.id ? `<span class="idname">#${esc(el.id)}</span>` : '';
+        const classes = [...el.classList].map((name) => `<span class="cls">.${esc(name)}</span>`).join('');
+        const selectedAttr = el === selected ? ' aria-selected="true"' : '';
+        const kids = el.tagName === 'HEAD'
+          ? ''
+          : [...el.children].map((child) => renderNode(child, depth + 1)).join('');
+        return `<div>${'<button type="button" class="node" style="padding-left:' + (0.4 + depth * 0.85) + 'rem" data-nid="' + id + '"' + selectedAttr + '><span class="tag">' + tag + '</span>' + idName + classes + '</button>'}${kids}</div>`;
+      }
+
+      function renderStyles(doc: Document): void {
+        if (!selected) {
+          stylesEl.textContent = 'Click an element.';
+          return;
+        }
+        const map = crumbsFor(selected);
+        const props = [...map.keys()];
+        if (!props.includes(subject)) subject = props.includes('background') ? 'background' : (props[0] || '');
+        const classes = [...selected.classList];
+        const rows = topLevel(props).map((prop) => propRow(prop, map)).join('');
+        const classLine = classes.length ? classes.join('  ') : '(no classes)';
+        stylesEl.innerHTML = `
+          <p class="status-line">Classes on this element: ${esc(classLine)}. A class button opens only that rule. The triangle opens every rule on the line.</p>
+          <p class="legend"><span class="crumb crumb-important-lost">! lost</span><span class="crumb crumb-active">in effect</span><span class="crumb crumb-natural-lost">ordinary or inherited, inactive</span></p>
+          ${rows || '<p class="status-line">No author declaration applies to this element.</p>'}
+        `;
+        void doc;
+      }
+
+      function propRow(prop: string, map: Map<string, Crumb[]>): string {
+        const crumbs = map.get(prop) || [];
+        const active = crumbs.find((crumb) => crumb.kind === 'active');
+        if (!active) return '';
+        const chain = crumbs.map((crumb, index) => {
+          const sep = index === 0 ? '' : '<span class="chain-sep">&gt;</span>';
+          const pressed = slotOpen(prop, crumb.serial);
+          return `<li>${sep}<button type="button" class="crumb crumb-${crumb.kind}" data-slot="${esc(slotKey(prop, crumb.serial))}" aria-pressed="${pressed}">${esc(chipText(crumb))}</button></li>`;
+        }).join('');
+        const allOpen = expanded.has(prop);
+        const cards = crumbs.filter((crumb) => slotOpen(prop, crumb.serial)).map((crumb) => cardHtml(prop, crumb, active)).join('');
+        const related = prop === subject ? relatedHtml(prop, map) : '';
+        return `
+          <div class="prop">
+            <div class="prop-row">
+              <button type="button" class="prop-name" data-subject="${esc(prop)}">${esc(prop)}</button>
+              <input type="text" data-prop="${esc(prop)}" value="${esc(active.value)}" spellcheck="false" autocomplete="off" aria-label="${esc(prop)}" />
+              <label class="imp"><input type="checkbox" data-imp="${esc(prop)}" ${active.important ? 'checked' : ''} /> !important</label>
+            </div>
+            <ol class="chain">${chain}<li><button type="button" class="expand-all" data-expand="${esc(prop)}" aria-expanded="${allOpen}" aria-label="${allOpen ? 'Hide every class on ' + prop : 'Show every class on ' + prop}"></button></li></ol>
+            ${cards ? `<div class="class-stack">${cards}</div>` : ''}
+            ${related}
+          </div>
+        `;
+      }
+
+      function cardHtml(prop: string, crumb: Crumb, winner: Crumb): string {
+        const indent = Math.max(0, crumb.pieces.length - 1);
+        const lines = crumb.pieces.map((piece, index) => {
+          return `<li><code>${esc(piece.text)}</code><span>${esc(pieceRole(crumb.pieces, index))}</span></li>`;
+        }).join('');
+        const beaten = crumb !== winner
+          ? `<p class="beaten-by">Beaten by <button type="button" data-slot="${esc(slotKey(prop, winner.serial))}">${esc(chipText(winner))}</button></p>`
+          : '';
+        const selector = crumb.inline ? 'element.style' : crumb.selector;
+        return `
+          <article class="class-card is-${crumb.kind}" style="margin-left:${indent * 0.85}rem">
+            ${beaten}
+            <h3>${esc(chipText(crumb))}</h3>
+            <p class="selector">${esc(selector)}</p>
+            <p class="meta">${esc(crumb.value)} · ${esc(specWords(crumb.spec))} · ${esc(crumb.sheet)}</p>
+            ${lines ? `<ol class="anatomy">${lines}</ol>` : ''}
+            <p class="reason">${esc(reason(crumb))}</p>
+          </article>
+        `;
+      }
+
+      function relatedHtml(prop: string, map: Map<string, Crumb[]>): string {
+        const names = [...map.keys()].filter((name) => isLonghand(name, prop));
+        if (!names.length) return '';
+        const items = names.map((name) => {
+          const active = (map.get(name) || []).find((crumb) => crumb.kind === 'active');
+          return `<li><button type="button" data-subject="${esc(name)}">${esc(name)}</button> <span>${esc(active?.value || '')}</span></li>`;
+        }).join('');
+        return `<div class="related"><p>Same word in the name. Not ${esc(prop)}.</p><ul>${items}</ul></div>`;
+      }
+
+      function placeHighlight(): void {
+        if (!selected) {
+          highlight.hidden = true;
+          return;
+        }
+        const rect = selected.getBoundingClientRect();
+        const frame = iframe.getBoundingClientRect();
+        const host = iframe.parentElement?.getBoundingClientRect();
+        if (!host) return;
+        highlight.hidden = false;
+        highlight.style.left = `${rect.left + frame.left - host.left}px`;
+        highlight.style.top = `${rect.top + frame.top - host.top}px`;
+        highlight.style.width = `${Math.max(rect.width, 0)}px`;
+        highlight.style.height = `${Math.max(rect.height, 0)}px`;
+      }
+
+      function render(): void {
+        const doc = iframe.contentDocument;
+        if (!doc || !selected) return;
+        renderTree(doc);
+        renderStyles(doc);
+        placeHighlight();
+      }
+
+      function commit(prop: string): void {
+        if (!selected) return;
+        const field = stylesEl.querySelector<HTMLInputElement>(`input[data-prop="${CSS.escape(prop)}"]`);
+        const imp = stylesEl.querySelector<HTMLInputElement>(`input[data-imp="${CSS.escape(prop)}"]`);
+        const value = field?.value.trim() ?? '';
+        if (!value) selected.style.removeProperty(prop);
+        else selected.style.setProperty(prop, value, imp?.checked ? 'important' : '');
+        render();
+      }
+
+      async function boot(): Promise<void> {
+        if (booted) return;
+        const doc = iframe.contentDocument;
+        if (!doc?.body) return;
+        booted = true;
+        rules = await collectRules(doc);
+        selected = doc.querySelector('.exampleblock.tile > .content') || doc.body;
+        doc.addEventListener('click', (event) => {
+          const el = eventElement(event);
+          if (!el || el.ownerDocument !== doc) return;
+          event.preventDefault();
+          selected = el;
+          render();
+        }, true);
+        doc.defaultView?.addEventListener('scroll', placeHighlight, true);
+        render();
+      }
+
+      document.body.addEventListener('change', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+        if (target.name === 'page-theme') {
+          iframe.contentDocument?.documentElement.classList.toggle('dark-theme', target.value === 'dark');
+          render();
+          return;
+        }
+        if (target.dataset.prop) commit(target.dataset.prop);
+        if (target.dataset.imp) commit(target.dataset.imp);
+      });
+
+      document.body.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter') return;
+        const target = event.target;
+        if (target instanceof HTMLInputElement && target.dataset.prop) target.blur();
+      });
+
+      document.body.addEventListener('click', (event) => {
+        const target = eventElement(event);
+        if (!target || !document.body.contains(target)) return;
+        const nodeBtn = target.closest<HTMLElement>('[data-nid]');
+        if (nodeBtn?.dataset.nid) {
+          selected = nodeIndex[Number(nodeBtn.dataset.nid)] || selected;
+          render();
+          return;
+        }
+        const expandBtn = target.closest<HTMLElement>('[data-expand]');
+        if (expandBtn?.dataset.expand) {
+          const prop = expandBtn.dataset.expand;
+          if (expanded.has(prop)) {
+            expanded.delete(prop);
+            clearSlots(prop);
+          } else {
+            clearSlots(prop);
+            expanded.add(prop);
+          }
+          subject = prop;
+          render();
+          return;
+        }
+        const subjectBtn = target.closest<HTMLElement>('[data-subject]');
+        if (subjectBtn?.dataset.subject) {
+          subject = subjectBtn.dataset.subject;
+          render();
+          return;
+        }
+        const slotBtn = target.closest<HTMLElement>('[data-slot]');
+        if (slotBtn?.dataset.slot) {
+          const [prop, serialText] = slotBtn.dataset.slot.split(':');
+          showOnly(prop, Number(serialText));
+          render();
+        }
+      });
+
+      window.addEventListener('resize', placeHighlight);
+      if (iframe.contentDocument?.readyState === 'complete' && iframe.contentDocument.body) boot();
+      else iframe.addEventListener('load', boot);
+    </script>
+  </body>
+</html>

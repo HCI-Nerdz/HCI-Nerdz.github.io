@@ -657,7 +657,7 @@ export const demoCategories: DemoCategory[] = [
       {
         id: "css-styles-chain",
         title: "CSS styles chain",
-        summary: "The styles panel should list properties on the element you clicked, then one chain per property: important rules that lost, the one in effect, and ordinary or inherited values that no longer apply. Selectors that missed stay out.",
+        summary: "Opens a DevTools window on a real sample page. Each property is a chain of the rules that tried to set it. A second window is that page alone, for Chrome’s Styles pane. An in-page layout keeps the earlier fixed example.",
         viz: "settings",
         href: "/demos/css-styles-chain/",
         releasedAt: "2026-10-27",

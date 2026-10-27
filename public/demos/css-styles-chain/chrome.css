@@ -1,0 +1,72 @@
+/* First stylesheet. The tile rule is ordinary. The dark rule is the later !important copy. */
+
+html {
+  --valentus-elevated: #f4f0e6;
+  --valentus-border: #d9d3c7;
+  --valentus-radius: 8px;
+  --valentus-ink: #1c1915;
+  --doc-tile-background: #fffdf8;
+  --doc-tile-border-color: #c9b99a;
+  --doc-tile-radius: 10px;
+  --doc-tile-shadow: 0 1px 2px rgba(28, 25, 21, 0.08);
+  --doc-tile-transition: background 120ms ease, border-color 120ms ease;
+  background: #f7f4ee;
+  color: #3a342c;
+  font-family: Georgia, "Iowan Old Style", serif;
+}
+
+html.dark-theme {
+  --valentus-elevated: #2c2824;
+  --valentus-border: #5c5348;
+  --valentus-ink: #f3efe6;
+  --doc-tile-background: #1c1916;
+  --doc-tile-border-color: #6b5e48;
+  --doc-tile-shadow: none;
+  background: #141210;
+  color: #d9d0c4;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1.5rem;
+  color: var(--valentus-ink);
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+.doc .openblock.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.25rem;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.doc .openblock.cards .exampleblock.tile {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.doc .openblock.cards .exampleblock.tile > .content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 7.5rem;
+  margin: 0;
+  background: var(--doc-tile-background);
+  border: 1px solid var(--doc-tile-border-color);
+  border-radius: var(--doc-tile-radius);
+  box-shadow: var(--doc-tile-shadow);
+  padding: 1.25rem 1.25rem 1rem;
+  transition: var(--doc-tile-transition);
+}
+
+/* Beat generic `.doc .exampleblock > .content` !important for project tiles */
+html.dark-theme .doc .openblock.cards .exampleblock.tile > .content {
+  background: var(--doc-tile-background) !important;
+  background-color: var(--doc-tile-background) !important;
+  border-color: var(--doc-tile-border-color) !important;
+}

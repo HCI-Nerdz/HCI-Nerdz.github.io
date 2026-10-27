@@ -1,0 +1,15 @@
+/* Later stylesheet. Same selector as chrome.css, so source order beats that earlier copy. */
+
+.doc .openblock.cards .exampleblock.tile > .content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 7.5rem;
+  margin: 0;
+  background: var(--doc-tile-background, Canvas);
+  border: 1px solid var(--doc-tile-border-color);
+  border-radius: var(--doc-tile-radius);
+  box-shadow: var(--doc-tile-shadow);
+  padding: 1.25rem 1.25rem 1rem;
+}
