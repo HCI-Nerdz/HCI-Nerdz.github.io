@@ -91,6 +91,14 @@ import GitHubLink from '../../../components/GitHubLink.astro';
           tree keeps the ancestry.
         </li>
         <li>
+          <strong>The chain is a number, not the selector.</strong>
+          <code>class #5</code> is one stylesheet rule. The line stays short enough to scan.
+          Opening the number, or <code>&lt;|</code> at the end of that line, inserts the
+          selector under that property. The cards are indented by how far the selector
+          reaches into the element tree. A loss says which number beat it, in that card,
+          not under the rest of the list.
+        </li>
+        <li>
           <strong>The property you asked about stays the subject.</strong>
           In DevTools, the jump is named “View computed value”, sits last in the right-click
           menu, and has no icon. It opens a tab called Computed, leaves the box-model diagram
@@ -510,10 +518,51 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     max-width: 100%;
   }
 
-  .css-styles-chain-page .crumb small {
-    display: block;
+  .css-styles-chain-page .expand-all {
     font-family: Consolas, ui-monospace, monospace;
-    font-size: 0.72rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1;
+    border: 1px dashed #8a8478;
+    background: #f7f4ee;
+    color: #3f3b36;
+    border-radius: 4px;
+    padding: 0.18rem 0.4rem;
+    cursor: pointer;
+  }
+
+  .css-styles-chain-page .expand-all[aria-expanded='true'] {
+    background: #3f3b36;
+    color: #f7f4ee;
+    border-style: solid;
+  }
+
+  .css-styles-chain-page .class-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.45rem;
+  }
+
+  .css-styles-chain-page .class-card {
+    border: 1px solid #e4dfd4;
+    border-radius: 6px;
+    padding: 0.45rem 0.55rem;
+    background: #fff;
+    font-size: 0.84rem;
+  }
+
+  .css-styles-chain-page .class-card.is-active {
+    border-color: #1f7a3a;
+  }
+
+  .css-styles-chain-page .class-card.is-important-lost {
+    border-color: #9b2c2c;
+  }
+
+  .css-styles-chain-page .class-card h3 {
+    margin: 0 0 0.3rem;
+    font-size: 0.88rem;
   }
 
   .css-styles-chain-page .crumb-important-lost {
@@ -823,8 +872,43 @@ import GitHubLink from '../../../components/GitHubLink.astro';
   let selected: NodeId = 'content';
   let theme = 'light';
   const inline = new Map<string, { value: string; important: boolean }>();
-  let openCrumb: string | null = 'brand-bg';
+  const openSlots = new Set<string>();
+  const expanded = new Set<string>();
+  let litSerial: number | null = null;
   let subject = 'background';
+  const serialByRule = new Map<string, number>();
+  let primed = false;
+
+  function ruleSerial(d: Decl): number {
+    if (d.inline) return 0;
+    const key = `${d.source}\n${d.selector}`;
+    let n = serialByRule.get(key);
+    if (!n) {
+      n = serialByRule.size + 1;
+      serialByRule.set(key, n);
+    }
+    return n;
+  }
+
+  function chipText(d: Decl): string {
+    return d.inline ? 'inline' : `class #${ruleSerial(d)}`;
+  }
+
+  function slotKey(property: string, serial: number): string {
+    return `${property}:${serial}`;
+  }
+
+  function prime(): void {
+    if (primed) return;
+    primed = true;
+    for (const decl of DECLS) ruleSerial(decl);
+    const brand = DECLS.find((decl) => decl.id === 'brand-bg');
+    if (brand) {
+      const serial = ruleSerial(brand);
+      openSlots.add(slotKey('background', serial));
+      litSerial = serial;
+    }
+  }
 
   function ancestors(id: NodeId): NodeId[] {
     const list: NodeId[] = [];
@@ -975,27 +1059,28 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     </li>`;
   }
 
+  function slotOpen(property: string, serial: number): boolean {
+    return expanded.has(property) || openSlots.has(slotKey(property, serial));
+  }
+
   function render(keepProp: string | null = null): void {
+    prime();
     const body = document.getElementById('inspector-body');
     if (!body) return;
-    const open = openCrumb ? findCrumb(openCrumb) : null;
-    const hits = new Set<NodeId>(open?.decl.hits ?? []);
+    const lit = DECLS.find((decl) => ruleSerial(decl) === litSerial);
+    const hits = new Set<NodeId>(lit?.hits ?? []);
     const props = PROP_ORDER.filter((p) => chainFor(selected, p).length);
     const rows = props.map((property) => rowHtml(property)).join('');
-    const detail = open ? detailHtml(open) : '<p class="pane-label">Click a crumb to see which elements that selector requires.</p>';
     body.innerHTML = `
       <div class="inspector-grid">
         <div class="tree-pane">
           <p class="pane-label">Elements</p>
           <ul class="elem-tree" role="tree">${treeHtml('body', hits)}</ul>
         </div>
-        <div>
-          <div class="prop-pane">
-            <p class="pane-label">Properties on ${NODE_LABEL[selected]}</p>
-            <p class="status-line">Classes on this element: ${OWN_CLASSES[selected]}. The chain only lists declarations that match it, plus inherited values when this element did not set the property.</p>
-            ${rows || '<p>No authored properties on this element. Pick the card content or the tile.</p>'}
-          </div>
-          <div class="crumb-detail">${detail}</div>
+        <div class="prop-pane">
+          <p class="pane-label">Properties on ${NODE_LABEL[selected]}</p>
+          <p class="status-line">Classes on this element: ${OWN_CLASSES[selected]}. Each number is one rule. Open it under the property, or use &lt;| at the end of the line.</p>
+          ${rows || '<p>No authored properties on this element. Pick the card content or the tile.</p>'}
         </div>
       </div>`;
     if (keepProp) {
@@ -1014,23 +1099,44 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     const typed = inline.get(`${selected}:${property}`);
     const shown = typed ? typed.value : active?.decl.value ?? '';
     const imp = typed ? typed.important : false;
+    const allOpen = expanded.has(property);
     const chain = crumbs.map((c, i) => {
       const sep = i === 0 ? '' : '<span class="chain-sep" aria-hidden="true">›</span>';
-      const from = c.inheritedFrom ? ` · inherited from ${c.inheritedFrom}` : '';
-      return `<li>${sep}<button type="button" class="crumb crumb-${c.kind}" data-crumb="${c.decl.id}" aria-pressed="${openCrumb === c.decl.id}">
-        <span>${c.decl.label}</span>
-        <small>${c.decl.value}${from}</small>
-      </button></li>`;
+      const serial = ruleSerial(c.decl);
+      const pressed = slotOpen(property, serial);
+      return `<li>${sep}<button type="button" class="crumb crumb-${c.kind}" data-slot="${slotKey(property, serial)}" aria-pressed="${pressed}">${chipText(c.decl)}</button></li>`;
     }).join('');
+    const cards = crumbs.filter((c) => slotOpen(property, ruleSerial(c.decl))).map((c) => cardHtml(property, c)).join('');
     return `<div class="prop-row${property === subject ? ' is-subject' : ''}">
       <div class="prop-head">
         <button type="button" class="prop-name" data-subject="${property}">${property}</button>
         <input id="prop-${property}" data-prop="${property}" type="text" value="${escapeAttr(shown)}" aria-label="${property}" spellcheck="false" />
         <label class="imp-toggle"><input type="checkbox" data-imp="${property}" ${imp ? 'checked' : ''} /> !important</label>
       </div>
-      <ol class="chain">${chain}</ol>
+      <ol class="chain">${chain}<li><button type="button" class="expand-all" data-expand="${property}" aria-expanded="${allOpen}" aria-label="${allOpen ? 'Hide every class on ' + property : 'Show every class on ' + property}">${allOpen ? '|&gt;' : '&lt;|'}</button></li></ol>
+      ${cards ? `<div class="class-stack">${cards}</div>` : ''}
       ${property === subject ? relatedHtml(property) : ''}
     </div>`;
+  }
+
+  function cardHtml(property: string, crumb: Crumb): string {
+    const indent = Math.max(0, crumb.decl.anatomy.length - 1);
+    const winner = chainFor(selected, property).find((c) => c.kind === 'active');
+    const beaten = crumb.kind !== 'active' && winner
+      ? `<p class="beaten-by">Beaten by <button type="button" data-open="${slotKey(property, ruleSerial(winner.decl))}">${chipText(winner.decl)}</button></p>`
+      : '';
+    const lines = crumb.decl.anatomy.map((row) =>
+      `<li><code>${escapeHtml(row.piece)}</code><span>${escapeHtml(row.need)}</span></li>`,
+    ).join('');
+    const where = crumb.inheritedFrom ? ` · inherited from ${NODE_LABEL[crumb.inheritedFrom]}` : '';
+    return `<article class="class-card is-${crumb.kind}" style="margin-left: ${indent * 0.85}rem">
+      ${beaten}
+      <h3>${chipText(crumb.decl)}${where}</h3>
+      <p><code>${escapeHtml(crumb.decl.selector)}</code></p>
+      <p>${escapeHtml(crumb.decl.value)} · ${escapeHtml(specWords(crumb.decl))} · ${escapeHtml(crumb.decl.source)}</p>
+      <ol class="anatomy">${lines}</ol>
+      <p class="reason">${escapeHtml(reason(crumb))}</p>
+    </article>`;
   }
 
   function relatedHtml(property: string): string {
@@ -1041,29 +1147,6 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       <p>Same word in the name. Not ${escapeHtml(property)}.</p>
       <ul>${items}</ul>
     </div>`;
-  }
-
-  function findCrumb(id: string): Crumb | null {
-    for (const property of PROP_ORDER) {
-      const hit = chainFor(selected, property).find((c) => c.decl.id === id);
-      if (hit) return hit;
-    }
-    return null;
-  }
-
-  function detailHtml(crumb: Crumb): string {
-    const lines = crumb.decl.anatomy.map((row) =>
-      `<li><code>${escapeHtml(row.piece)}</code><span>${escapeHtml(row.need)}</span></li>`,
-    ).join('');
-    const winner = chainFor(selected, crumb.decl.property).find((c) => c.kind === 'active');
-    const beaten = crumb.kind !== 'active' && winner
-      ? `<p class="beaten-by">Beaten by <button type="button" data-crumb="${escapeAttr(winner.decl.id)}">${escapeHtml(winner.decl.label)}</button></p>`
-      : '';
-    return `${beaten}<h3>${escapeHtml(crumb.decl.label)}</h3>
-      <p><code>${escapeHtml(crumb.decl.selector)}</code></p>
-      <p>${escapeHtml(specWords(crumb.decl))} · ${escapeHtml(crumb.decl.source)}</p>
-      <ol class="anatomy">${lines}</ol>
-      <p class="reason">${escapeHtml(reason(crumb))}</p>`;
   }
 
   function escapeHtml(s: string): string {
@@ -1088,7 +1171,6 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       const target = event.target as HTMLInputElement;
       if (target.name === 'page-theme') {
         theme = target.value;
-        if (theme === 'light' && openCrumb === 'dark-bg') openCrumb = 'example-bg';
         render();
       }
       if (target.dataset.imp) {
@@ -1110,7 +1192,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         value: target.value,
         important: Boolean(imp?.checked),
       });
-      openCrumb = `inline:${selected}:${property}`;
+      openSlots.add(slotKey(property, 0));
+      litSerial = 0;
       subject = property;
       render(property);
     });
@@ -1120,7 +1203,25 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       const nodeBtn = target.closest<HTMLElement>('[data-node]');
       if (nodeBtn?.dataset.node) {
         selected = nodeBtn.dataset.node as NodeId;
-        openCrumb = null;
+        render();
+        return;
+      }
+      const expandBtn = target.closest<HTMLElement>('[data-expand]');
+      if (expandBtn?.dataset.expand) {
+        const property = expandBtn.dataset.expand;
+        if (expanded.has(property)) expanded.delete(property);
+        else expanded.add(property);
+        subject = property;
+        render();
+        return;
+      }
+      const openBtn = target.closest<HTMLElement>('[data-open]');
+      if (openBtn?.dataset.open) {
+        const key = openBtn.dataset.open;
+        const [property, serialText] = key.split(':');
+        openSlots.add(key);
+        litSerial = Number(serialText);
+        subject = property;
         render();
         return;
       }
@@ -1130,11 +1231,16 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         render();
         return;
       }
-      const crumbBtn = target.closest<HTMLElement>('[data-crumb]');
-      if (crumbBtn?.dataset.crumb) {
-        openCrumb = openCrumb === crumbBtn.dataset.crumb ? null : crumbBtn.dataset.crumb;
-        const opened = openCrumb ? findCrumb(openCrumb) : null;
-        if (opened) subject = opened.decl.property;
+      const slotBtn = target.closest<HTMLElement>('[data-slot]');
+      if (slotBtn?.dataset.slot) {
+        const key = slotBtn.dataset.slot;
+        const [property, serialText] = key.split(':');
+        const serial = Number(serialText);
+        if (openSlots.has(key) && !expanded.has(property)) openSlots.delete(key);
+        else openSlots.add(key);
+        if (expanded.has(property)) expanded.delete(property);
+        litSerial = serial;
+        subject = property;
         render();
       }
     });

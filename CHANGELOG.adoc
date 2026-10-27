@@ -4,7 +4,7 @@
 
 * Demo `/demos/css-styles-chain/`: properties on the clicked element, each with a chain of important losses, the winner, and ordinary or inherited losses.
 * Light and dark harness follows the real card rules. A less specific `!important` paints the background until the dark-theme rule outranks it.
-* A losing crumb names what beat it. Names that only share the word, such as `background-color`, sit under that property in grey.
+* A chain shows class numbers. Opening a number, or `&lt;|` at the end of the line, inserts that rule under the property.
 * Catalog entry under Theming and visual contracts.
 * link:changelog-details/2026-10-27%20-%20css-styles-chain.adoc[Details]
 
