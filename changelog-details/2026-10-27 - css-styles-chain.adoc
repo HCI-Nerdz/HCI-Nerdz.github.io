@@ -1,0 +1,6 @@
+= 2026-10-27 — CSS styles chain demo
+
+* `/demos/css-styles-chain/` lists properties that apply to the element you pick, with an editable value for prototyping.
+* Each property is a chain: red for an `!important` declaration that lost, green for the one in effect, grey for ordinary and inherited declarations that lost.
+* The element tree is separate from that chain. Clicking a crumb lights the ancestors that selector requires.
+* A losing crumb names what beat it. Related names that only share the word sit under that property, in grey, after the chain.

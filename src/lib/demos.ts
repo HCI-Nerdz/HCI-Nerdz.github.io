@@ -653,7 +653,23 @@ export const demoCategories: DemoCategory[] = [
     id: "theming-visual-contracts",
     title: "Theming & visual contracts",
     description: "Previews, diagrams, and chrome that inherit the host theme — immersion as a contract, not a preference.",
-    demos: [],
+    demos: [
+      {
+        id: "css-styles-chain",
+        title: "CSS styles chain",
+        summary: "The styles panel should list properties on the element you clicked, then one chain per property: important rules that lost, the one in effect, and ordinary or inherited values that no longer apply. Selectors that missed stay out.",
+        viz: "settings",
+        href: "/demos/css-styles-chain/",
+        releasedAt: "2026-10-27",
+        modifiedAt: "2026-10-27",
+        related: [
+          {
+            label: "Repo",
+            href: "https://github.com/HCI-Nerdz/HCI-Nerdz.github.io",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "selection-dialogs",

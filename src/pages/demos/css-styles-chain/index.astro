@@ -1,0 +1,1145 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import GitHubLink from '../../../components/GitHubLink.astro';
+---
+
+<BaseLayout
+  title="CSS styles chain · HCI Nerdz"
+  description="Inspect the element you clicked as properties with a chain: important rules that lost, the one in effect, and inherited values that no longer apply."
+  active="demos"
+>
+  <main class="shell page desk-page css-styles-chain-page">
+    <nav class="identity-strip" aria-label="Demo identity">
+      <a href="/">HCI Nerdz</a>
+      <span class="identity-sep" aria-hidden="true">/</span>
+      <a href="/demos/">Demos</a>
+      <span class="identity-sep" aria-hidden="true">/</span>
+      <span aria-current="page">CSS styles chain</span>
+    </nav>
+    <p class="vcs-row">
+      <GitHubLink href="https://github.com/HCI-Nerdz/HCI-Nerdz.github.io" showStars={false} />
+    </p>
+
+    <header class="desk-intro">
+      <p class="eyebrow">Demo · CSS styles chain</p>
+      <h1>CSS styles chain</h1>
+      <p class="lede">
+        Pick an element and edit the properties that actually apply to it. Each property is a chain:
+        important declarations that lost, the one in effect, then ordinary and inherited declarations
+        that no longer apply. A selector that missed this element never appears.
+      </p>
+    </header>
+
+    <section class="demo-controls" aria-label="Demo controls">
+      <h2>Demo controls</h2>
+      <p>
+        Theme is the page under inspection, not a switch in the inspector. Dark adds one real rule
+        from the stylesheet. Light leaves it out, because it does not match.
+      </p>
+      <div class="theme-picks" role="radiogroup" aria-label="Page theme">
+        <label><input type="radio" name="page-theme" value="light" checked /> Light page</label>
+        <label><input type="radio" name="page-theme" value="dark" /> Dark page</label>
+      </div>
+    </section>
+
+    <div class="facsimile-bezel">
+      <div class="win-caption">
+        <span class="win-title">CSS styles chain</span>
+        <span class="win-controls" aria-hidden="true"><i></i><i></i><i class="win-close"></i></span>
+      </div>
+      <div class="inspector">
+        <p class="legend" aria-hidden="true">
+          <span class="key key-lost-imp">! lost</span>
+          <span class="key key-active">in effect</span>
+          <span class="key key-natural">ordinary or inherited, inactive</span>
+        </p>
+        <div id="inspector-body"></div>
+      </div>
+    </div>
+
+    <aside class="lesson">
+      <h2>What the long selector is</h2>
+      <ul>
+        <li>
+          <strong>One test, read from the outside in.</strong>
+          <code>.doc .openblock.cards .exampleblock.tile &gt; .content</code>
+          matches only if every piece matches. The div you clicked has class
+          <code>content</code>. <code>tile</code> and <code>exampleblock</code> are on its parent.
+          <code>openblock</code> and <code>cards</code> are on a further ancestor.
+          <code>doc</code> is further still. It does not mean the div carries all of those classes,
+          and one class on the div is not enough.
+        </li>
+        <li>
+          <strong>Grey names after a comma are a failed alternative.</strong>
+          <code>.doc .exampleblock &gt; .content, .doc details.result &gt; .content</code>
+          is two selectors. The comma means “or”. DevTools greys
+          <code>.doc details.result &gt; .content</code> because this div is not inside
+          <code>details.result</code>. Those grey tokens are not classes on your element.
+          This desk omits the half that missed.
+        </li>
+        <li>
+          <strong>(0, 6, 0) is six classes.</strong>
+          The hover triple is (ids, classes, element names).
+          <code>.content</code> is a class, so it counts in the middle number.
+          The <code>&gt;</code> adds nothing. DevTools prints the triple and does not say that.
+        </li>
+        <li>
+          <strong>The nest is two trees drawn as one list.</strong>
+          Ancestry is a tree. Each property is a short stack of declarations that matched.
+          DevTools flattens both into selector cards, including rules that matched an ancestor
+          and alternatives that matched nothing. The chain keeps the stack, and the element
+          tree keeps the ancestry.
+        </li>
+        <li>
+          <strong>The property you asked about stays the subject.</strong>
+          In DevTools, the jump is named “View computed value”, sits last in the right-click
+          menu, and has no icon. It opens a tab called Computed, leaves the box-model diagram
+          up, and filters by that word. Asking about <code>background</code> then lists
+          <code>background-color</code>, <code>background-image</code>, and every other name
+          that contains the word, at the same weight. Here, a losing crumb says what beat it.
+          Names that only share the word sit under that property, in grey, after the chain.
+        </li>
+      </ul>
+    </aside>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .css-styles-chain-page {
+    max-width: 72rem;
+  }
+
+  .css-styles-chain-page .identity-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.5rem;
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .css-styles-chain-page .identity-strip a {
+    color: var(--paper-muted);
+    text-decoration: none;
+  }
+
+  .css-styles-chain-page .identity-strip a:hover {
+    color: var(--focus);
+  }
+
+  .css-styles-chain-page .identity-sep {
+    opacity: 0.45;
+  }
+
+  .css-styles-chain-page .vcs-row {
+    margin: 0 0 1rem;
+  }
+
+  .css-styles-chain-page .desk-intro .eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--honesty);
+  }
+
+  .css-styles-chain-page .lede-shot {
+    margin: 0 0 1.5rem;
+  }
+
+  .css-styles-chain-page .lede-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .css-styles-chain-page .lede-shot figcaption {
+    margin-top: 0.5rem;
+    color: var(--paper-muted);
+    font-size: 0.92rem;
+  }
+
+  .css-styles-chain-page .demo-controls {
+    margin: 0 0 1rem;
+    padding: 0.85rem 1rem;
+    border: 1px dashed color-mix(in srgb, var(--paper) 35%, transparent);
+    border-radius: 12px;
+    font-family: var(--font-display);
+  }
+
+  .css-styles-chain-page .demo-controls h2 {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  .css-styles-chain-page .demo-controls p {
+    margin: 0 0 0.65rem;
+  }
+
+  .css-styles-chain-page .theme-picks {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .css-styles-chain-page .theme-picks label {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  .css-styles-chain-page .facsimile-bezel {
+    border: 1px solid #c5c1b6;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f4f2ec;
+    color: #1c1b19;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .css-styles-chain-page .win-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e1e1e1;
+    font-family: "Segoe UI", var(--font-display);
+    font-size: 0.78rem;
+  }
+
+  .css-styles-chain-page .win-controls {
+    display: flex;
+  }
+
+  .css-styles-chain-page .win-controls i {
+    width: 2.4rem;
+    height: 1.55rem;
+    border: 1px solid transparent;
+    position: relative;
+  }
+
+  .css-styles-chain-page .win-controls i::before,
+  .css-styles-chain-page .win-controls i::after {
+    content: "";
+    position: absolute;
+    background: #1c1b19;
+  }
+
+  .css-styles-chain-page .win-controls i:nth-child(1)::before {
+    left: 0.7rem;
+    right: 0.7rem;
+    top: 0.85rem;
+    height: 1px;
+  }
+
+  .css-styles-chain-page .win-controls i:nth-child(2)::before {
+    left: 0.75rem;
+    top: 0.45rem;
+    width: 0.7rem;
+    height: 0.55rem;
+    background: transparent;
+    border: 1px solid #1c1b19;
+  }
+
+  .css-styles-chain-page .win-controls i:nth-child(3)::before,
+  .css-styles-chain-page .win-controls i:nth-child(3)::after {
+    left: 0.7rem;
+    top: 0.7rem;
+    width: 0.85rem;
+    height: 1px;
+  }
+
+  .css-styles-chain-page .win-controls i:nth-child(3)::before {
+    transform: rotate(45deg);
+  }
+
+  .css-styles-chain-page .win-controls i:nth-child(3)::after {
+    transform: rotate(-45deg);
+  }
+
+  .css-styles-chain-page .inspector {
+    padding: 0.75rem;
+    font-family: "Segoe UI", var(--font-display);
+    font-size: 0.92rem;
+  }
+
+  .css-styles-chain-page .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .css-styles-chain-page .key {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .css-styles-chain-page .key::before {
+    content: "";
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 2px;
+  }
+
+  .css-styles-chain-page .key-lost-imp::before {
+    background: #9b2c2c;
+  }
+
+  .css-styles-chain-page .key-active::before {
+    background: #1f7a3a;
+  }
+
+  .css-styles-chain-page .key-natural::before {
+    background: #8a8478;
+  }
+
+  .css-styles-chain-page .inspector-grid {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 800px) {
+    .css-styles-chain-page .inspector-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .css-styles-chain-page .tree-pane,
+  .css-styles-chain-page .prop-pane,
+  .css-styles-chain-page .crumb-detail {
+    background: #fff;
+    border: 1px solid #ddd8ce;
+    border-radius: 8px;
+    padding: 0.65rem 0.7rem;
+  }
+
+  .css-styles-chain-page .pane-label {
+    margin: 0 0 0.45rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6d675f;
+  }
+
+  .css-styles-chain-page .elem-tree,
+  .css-styles-chain-page .elem-tree ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .css-styles-chain-page .elem-tree ul {
+    margin-left: 0.85rem;
+    border-left: 1px solid #e4dfd4;
+    padding-left: 0.45rem;
+  }
+
+  .css-styles-chain-page .elem-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 6px;
+    padding: 0.2rem 0.35rem;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .css-styles-chain-page .elem-btn code {
+    font-size: 0.82rem;
+  }
+
+  .css-styles-chain-page .is-selected > .elem-btn {
+    background: #e7f5ec;
+    border-color: #1f7a3a;
+  }
+
+  .css-styles-chain-page .is-hit > .elem-btn {
+    background: #fff4e5;
+  }
+
+  .css-styles-chain-page .is-selected.is-hit > .elem-btn {
+    background: #e7f5ec;
+  }
+
+  .css-styles-chain-page .status-line {
+    margin: 0 0 0.6rem;
+    color: #5c574f;
+    font-size: 0.82rem;
+  }
+
+  .css-styles-chain-page .prop-row {
+    padding: 0.55rem 0;
+    border-top: 1px solid #eeeae2;
+  }
+
+  .css-styles-chain-page .prop-row:first-of-type {
+    border-top: 0;
+  }
+
+  .css-styles-chain-page .prop-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+    align-items: center;
+  }
+
+  .css-styles-chain-page .prop-name {
+    font-family: Consolas, ui-monospace, monospace;
+    font-weight: 700;
+    min-width: 7.5rem;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .css-styles-chain-page .prop-row.is-subject {
+    background: #fffdf8;
+    margin: 0 -0.35rem;
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+    border-radius: 6px;
+  }
+
+  .css-styles-chain-page .related {
+    margin: 0.45rem 0 0;
+    padding: 0.4rem 0.55rem;
+    background: #f3f1ec;
+    color: #8a8478;
+    border-radius: 6px;
+    font-size: 0.78rem;
+  }
+
+  .css-styles-chain-page .related p {
+    margin: 0;
+  }
+
+  .css-styles-chain-page .related ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.7rem;
+    margin: 0.35rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .css-styles-chain-page .related li {
+    font-family: Consolas, ui-monospace, monospace;
+  }
+
+  .css-styles-chain-page .beaten-by {
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+  }
+
+  .css-styles-chain-page .beaten-by button {
+    font: inherit;
+    font-weight: 700;
+    color: #1f7a3a;
+    background: #e5f6ea;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.12rem 0.55rem;
+    cursor: pointer;
+  }
+
+  .css-styles-chain-page .prop-head input[type='text'] {
+    flex: 1 1 12rem;
+    font-family: Consolas, ui-monospace, monospace;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.4rem;
+    border: 1px solid #d5d0c6;
+    border-radius: 4px;
+    background: #fff;
+    color: #1c1b19;
+  }
+
+  .css-styles-chain-page .imp-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: #6d675f;
+  }
+
+  .css-styles-chain-page .chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0.4rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .css-styles-chain-page .chain li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .css-styles-chain-page .chain-sep {
+    color: #b0aaa0;
+    font-size: 0.8rem;
+  }
+
+  .css-styles-chain-page .crumb {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.12rem 0.5rem;
+    font: inherit;
+    font-size: 0.78rem;
+    cursor: pointer;
+    max-width: 100%;
+  }
+
+  .css-styles-chain-page .crumb small {
+    display: block;
+    font-family: Consolas, ui-monospace, monospace;
+    font-size: 0.72rem;
+  }
+
+  .css-styles-chain-page .crumb-important-lost {
+    background: #f8e8e8;
+    color: #9b2c2c;
+  }
+
+  .css-styles-chain-page .crumb-active {
+    background: #e5f6ea;
+    color: #1f7a3a;
+    font-weight: 700;
+  }
+
+  .css-styles-chain-page .crumb-natural-lost {
+    background: #f3f1ec;
+    color: #8a8478;
+  }
+
+  .css-styles-chain-page .crumb[aria-pressed='true'] {
+    outline: 2px solid #e8a54b;
+  }
+
+  .css-styles-chain-page .crumb-detail {
+    margin-top: 0.75rem;
+  }
+
+  .css-styles-chain-page .crumb-detail h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  .css-styles-chain-page .anatomy {
+    list-style: none;
+    margin: 0.4rem 0;
+    padding: 0;
+  }
+
+  .css-styles-chain-page .anatomy li {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    gap: 0.5rem;
+    padding: 0.2rem 0;
+    border-top: 1px solid #eeeae2;
+    font-size: 0.84rem;
+  }
+
+  @media (max-width: 700px) {
+    .css-styles-chain-page .anatomy li {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .css-styles-chain-page .anatomy code {
+    font-size: 0.8rem;
+  }
+
+  .css-styles-chain-page .reason {
+    margin: 0.4rem 0 0;
+  }
+</style>
+
+<script>
+  type NodeId = 'body' | 'article' | 'cards' | 'tile' | 'content';
+  type Kind = 'important-lost' | 'active' | 'natural-lost';
+
+  interface Anatomy {
+    piece: string;
+    need: string;
+  }
+
+  interface Decl {
+    id: string;
+    property: string;
+    value: string;
+    important: boolean;
+    specificity: [number, number, number];
+    order: number;
+    source: string;
+    selector: string;
+    label: string;
+    hits: NodeId[];
+    inline?: boolean;
+    match: (id: NodeId, theme: string) => boolean;
+    anatomy: Anatomy[];
+  }
+
+  const PARENT: Record<NodeId, NodeId | null> = {
+    body: null,
+    article: 'body',
+    cards: 'article',
+    tile: 'cards',
+    content: 'tile',
+  };
+
+  const NODE_LABEL: Record<NodeId, string> = {
+    body: 'body',
+    article: 'article.doc.valentus-article',
+    cards: 'div.openblock.cards',
+    tile: 'div.exampleblock.tile',
+    content: 'div.content',
+  };
+
+  const OWN_CLASSES: Record<NodeId, string> = {
+    body: '(no classes)',
+    article: 'doc  valentus-article',
+    cards: 'openblock  cards',
+    tile: 'exampleblock  tile',
+    content: 'content',
+  };
+
+  const tileAnatomy: Anatomy[] = [
+    { piece: '.doc', need: 'An ancestor has class doc.' },
+    { piece: '.openblock.cards', need: 'An ancestor has both openblock and cards.' },
+    { piece: '.exampleblock.tile', need: 'The parent has both exampleblock and tile.' },
+    { piece: '> .content', need: 'The element you picked has class content.' },
+  ];
+
+  const contentHits: NodeId[] = ['article', 'cards', 'tile', 'content'];
+
+  function tileDecl(
+    id: string,
+    property: string,
+    value: string,
+    order: number,
+    source: string,
+    label: string,
+  ): Decl {
+    return {
+      id,
+      property,
+      value,
+      important: false,
+      specificity: [0, 6, 0],
+      order,
+      source,
+      selector: '.doc .openblock.cards .exampleblock.tile > .content',
+      label,
+      hits: contentHits,
+      match: (nodeId) => nodeId === 'content',
+      anatomy: tileAnatomy,
+    };
+  }
+
+  const DECLS: Decl[] = [
+    {
+      id: 'body-color',
+      property: 'color',
+      value: 'CanvasText',
+      important: false,
+      specificity: [0, 0, 1],
+      order: 1,
+      source: 'the page',
+      selector: 'body',
+      label: 'body',
+      hits: ['body'],
+      match: (id) => id === 'body',
+      anatomy: [{ piece: 'body', need: 'This element is the body.' }],
+    },
+    {
+      id: 'body-font',
+      property: 'font-family',
+      value: 'serif',
+      important: false,
+      specificity: [0, 0, 1],
+      order: 1,
+      source: 'the page',
+      selector: 'body',
+      label: 'body',
+      hits: ['body'],
+      match: (id) => id === 'body',
+      anatomy: [{ piece: 'body', need: 'This element is the body.' }],
+    },
+    {
+      id: 'article-color',
+      property: 'color',
+      value: 'var(--valentus-ink)',
+      important: false,
+      specificity: [0, 1, 0],
+      order: 10,
+      source: 'site.visual.css',
+      selector: '.valentus-article',
+      label: 'article',
+      hits: ['article'],
+      match: (id) => id === 'article',
+      anatomy: [
+        { piece: '.valentus-article', need: 'This element has class valentus-article.' },
+      ],
+    },
+    {
+      id: 'article-font',
+      property: 'font-family',
+      value: 'Source Sans 3',
+      important: false,
+      specificity: [0, 1, 0],
+      order: 10,
+      source: 'site.visual.css',
+      selector: '.valentus-article',
+      label: 'article',
+      hits: ['article'],
+      match: (id) => id === 'article',
+      anatomy: [
+        { piece: '.valentus-article', need: 'This element has class valentus-article.' },
+      ],
+    },
+    {
+      id: 'tile-display',
+      property: 'display',
+      value: 'flex',
+      important: false,
+      specificity: [0, 5, 0],
+      order: 20,
+      source: 'valentus-chrome.css',
+      selector: '.doc .openblock.cards .exampleblock.tile',
+      label: 'tile box',
+      hits: ['article', 'cards', 'tile'],
+      match: (id) => id === 'tile',
+      anatomy: [
+        { piece: '.doc', need: 'An ancestor has class doc.' },
+        { piece: '.openblock.cards', need: 'An ancestor has both openblock and cards.' },
+        { piece: '.exampleblock.tile', need: 'This element has both exampleblock and tile.' },
+      ],
+    },
+    tileDecl('chrome-bg', 'background', 'var(--doc-tile-background)', 20, 'valentus-chrome.css', 'tile rule, earlier sheet'),
+    tileDecl('chrome-border', 'border', '1px solid var(--doc-tile-border-color)', 20, 'valentus-chrome.css', 'tile rule, earlier sheet'),
+    tileDecl('chrome-flex', 'flex', '1 1 auto', 20, 'valentus-chrome.css', 'tile rule, earlier sheet'),
+    tileDecl('chrome-pad', 'padding', '1.25rem 1.25rem 1rem', 20, 'valentus-chrome.css', 'tile rule, earlier sheet'),
+    tileDecl('chrome-display', 'display', 'flex', 20, 'valentus-chrome.css', 'tile rule, earlier sheet'),
+    tileDecl('brand-bg', 'background', 'var(--doc-tile-background, Canvas)', 30, 'devcentr-brand.css', 'tile rule, later sheet'),
+    tileDecl('brand-border', 'border', '1px solid var(--doc-tile-border-color, GrayText)', 30, 'devcentr-brand.css', 'tile rule, later sheet'),
+    tileDecl('brand-flex', 'flex', '1 1 auto', 30, 'devcentr-brand.css', 'tile rule, later sheet'),
+    tileDecl('brand-pad', 'padding', '1.25rem 1.25rem 1rem', 30, 'devcentr-brand.css', 'tile rule, later sheet'),
+    tileDecl('brand-display', 'display', 'flex', 30, 'devcentr-brand.css', 'tile rule, later sheet'),
+    {
+      id: 'example-bg',
+      property: 'background',
+      value: 'var(--valentus-elevated)',
+      important: true,
+      specificity: [0, 3, 0],
+      order: 25,
+      source: 'site.visual.css',
+      selector: '.doc .exampleblock > .content',
+      label: 'example block !important',
+      hits: ['article', 'tile', 'content'],
+      match: (id) => id === 'content',
+      anatomy: [
+        { piece: '.doc', need: 'An ancestor has class doc.' },
+        { piece: '.exampleblock', need: 'The parent has class exampleblock. cards is not required.' },
+        { piece: '> .content', need: 'The element you picked has class content.' },
+      ],
+    },
+    {
+      id: 'example-border',
+      property: 'border',
+      value: '1px solid var(--valentus-border)',
+      important: true,
+      specificity: [0, 3, 0],
+      order: 25,
+      source: 'site.visual.css',
+      selector: '.doc .exampleblock > .content',
+      label: 'example block !important',
+      hits: ['article', 'tile', 'content'],
+      match: (id) => id === 'content',
+      anatomy: [
+        { piece: '.doc', need: 'An ancestor has class doc.' },
+        { piece: '.exampleblock', need: 'The parent has class exampleblock. The tile and cards classes are irrelevant to this test.' },
+        { piece: '> .content', need: 'The element you picked has class content.' },
+      ],
+    },
+    {
+      id: 'dark-bg',
+      property: 'background',
+      value: 'var(--doc-tile-background)',
+      important: true,
+      specificity: [0, 7, 1],
+      order: 60,
+      source: 'valentus-chrome.css',
+      selector: 'html.dark-theme .doc .openblock.cards .exampleblock.tile > .content',
+      label: 'dark tile !important',
+      hits: contentHits,
+      match: (id, theme) => theme === 'dark' && id === 'content',
+      anatomy: [
+        { piece: 'html.dark-theme', need: 'The page root has class dark-theme. On a light page this whole rule is absent.' },
+        { piece: '.doc .openblock.cards .exampleblock.tile', need: 'The same ancestor path as the ordinary tile rule.' },
+        { piece: '> .content', need: 'The element you picked has class content.' },
+      ],
+    },
+  ];
+
+  const INHERITED = new Set(['color', 'font-family']);
+  const PROP_ORDER = ['background', 'border', 'flex', 'padding', 'display', 'color', 'font-family'];
+  const RELATED: Record<string, string[]> = {
+    background: [
+      'background-color',
+      'background-image',
+      'background-repeat',
+      'background-position',
+      'background-size',
+      'background-clip',
+      'background-origin',
+      'background-attachment',
+    ],
+    border: ['border-color', 'border-width', 'border-style', 'border-top', 'border-right', 'border-bottom', 'border-left'],
+    flex: ['flex-grow', 'flex-shrink', 'flex-basis'],
+    padding: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'],
+  };
+
+  let selected: NodeId = 'content';
+  let theme = 'light';
+  const inline = new Map<string, { value: string; important: boolean }>();
+  let openCrumb: string | null = 'brand-bg';
+  let subject = 'background';
+
+  function ancestors(id: NodeId): NodeId[] {
+    const list: NodeId[] = [];
+    let cur = PARENT[id];
+    while (cur) {
+      list.push(cur);
+      cur = PARENT[cur];
+    }
+    return list;
+  }
+
+  function inlineDecl(nodeId: NodeId, property: string): Decl | null {
+    const hit = inline.get(`${nodeId}:${property}`);
+    if (!hit || hit.value.trim() === '') return null;
+    return {
+      id: `inline:${nodeId}:${property}`,
+      property,
+      value: hit.value,
+      important: hit.important,
+      specificity: [1, 0, 0],
+      order: 1000,
+      source: 'element.style',
+      selector: 'inline style on this element',
+      label: hit.important ? 'your edit !important' : 'your edit',
+      hits: [nodeId],
+      inline: true,
+      match: () => true,
+      anatomy: [
+        { piece: 'style="…"', need: 'You typed this on the selected element. It is not a stylesheet rule.' },
+      ],
+    };
+  }
+
+  function matched(nodeId: NodeId, property: string): Decl[] {
+    const found = DECLS.filter((d) => d.property === property && d.match(nodeId, theme));
+    const extra = inlineDecl(nodeId, property);
+    if (extra) found.push(extra);
+    return found;
+  }
+
+  function layer(d: Decl): number {
+    if (d.inline && d.important) return 4;
+    if (d.important) return 3;
+    if (d.inline) return 2;
+    return 1;
+  }
+
+  function rank(a: Decl, b: Decl): number {
+    if (layer(a) !== layer(b)) return layer(b) - layer(a);
+    for (let i = 0; i < 3; i++) {
+      if (a.specificity[i] !== b.specificity[i]) return b.specificity[i] - a.specificity[i];
+    }
+    return b.order - a.order;
+  }
+
+  interface Crumb {
+    kind: Kind;
+    decl: Decl;
+    inheritedFrom: NodeId | null;
+  }
+
+  function chainFor(nodeId: NodeId, property: string): Crumb[] {
+    const here = matched(nodeId, property).sort(rank);
+    const crumbs: Crumb[] = [];
+    if (here.length) {
+      const winner = here[0];
+      const losers = here.slice(1);
+      for (const decl of losers.filter((d) => d.important)) {
+        crumbs.push({ kind: 'important-lost', decl, inheritedFrom: null });
+      }
+      crumbs.push({ kind: 'active', decl: winner, inheritedFrom: null });
+      for (const decl of losers.filter((d) => !d.important)) {
+        crumbs.push({ kind: 'natural-lost', decl, inheritedFrom: null });
+      }
+      if (INHERITED.has(property)) {
+        for (const anc of ancestors(nodeId)) {
+          const ancMatched = matched(anc, property).sort(rank);
+          if (!ancMatched.length) continue;
+          crumbs.push({ kind: 'natural-lost', decl: ancMatched[0], inheritedFrom: anc });
+        }
+      }
+      return crumbs;
+    }
+    if (!INHERITED.has(property)) return [];
+    let foundActive = false;
+    for (const anc of ancestors(nodeId)) {
+      const ancMatched = matched(anc, property).sort(rank);
+      if (!ancMatched.length) continue;
+      crumbs.push({
+        kind: foundActive ? 'natural-lost' : 'active',
+        decl: ancMatched[0],
+        inheritedFrom: anc,
+      });
+      foundActive = true;
+    }
+    return crumbs;
+  }
+
+  function specWords(d: Decl): string {
+    if (d.inline) return d.important ? 'inline style, !important' : 'inline style';
+    const [ids, classes, elements] = d.specificity;
+    const bits = [`${classes} ${classes === 1 ? 'class' : 'classes'}`];
+    if (elements) bits.push(`${elements} ${elements === 1 ? 'element name' : 'element names'}`);
+    if (ids) bits.unshift(`${ids} id`);
+    return `${bits.join(', ')} (${ids}, ${classes}, ${elements})`;
+  }
+
+  function reason(crumb: Crumb): string {
+    if (crumb.kind === 'active' && crumb.inheritedFrom) {
+      return `Nothing on the element you picked sets ${crumb.decl.property}. The value comes from ${NODE_LABEL[crumb.inheritedFrom]}.`;
+    }
+    if (crumb.kind === 'active' && crumb.decl.inline && crumb.decl.important) {
+      return 'Your edit is inline and !important, so it beats stylesheet !important rules.';
+    }
+    if (crumb.kind === 'active' && crumb.decl.inline) {
+      return 'Your edit is an inline style. It beats ordinary stylesheet rules and loses to !important.';
+    }
+    if (crumb.kind === 'active' && crumb.decl.important) {
+      return 'This declaration is !important, and no stronger !important matches this element. Specificity does not save the rules above it in DevTools.';
+    }
+    if (crumb.kind === 'active') {
+      return 'This is the strongest ordinary match: higher specificity, or the same specificity later in the stylesheet.';
+    }
+    if (crumb.kind === 'important-lost') {
+      return 'This declaration is !important and still lost, because another !important is more specific or is an inline style.';
+    }
+    if (crumb.inheritedFrom) {
+      return `Set on ${NODE_LABEL[crumb.inheritedFrom]}. Inheritance fills a property only when the element you picked does not set it.`;
+    }
+    if (crumb.decl.important === false) {
+      return 'An ordinary declaration on this element. A matching !important, or an equal selector later in the file, beat it. A variable in the value is not why the line is inactive.';
+    }
+    return 'This declaration lost the cascade.';
+  }
+
+  function treeHtml(id: NodeId, hits: Set<NodeId>): string {
+    const kids: NodeId[] = (Object.keys(PARENT) as NodeId[]).filter((k) => PARENT[k] === id);
+    const cls = [
+      selected === id ? 'is-selected' : '',
+      hits.has(id) ? 'is-hit' : '',
+    ].filter(Boolean).join(' ');
+    const nested = kids.map((kid) => treeHtml(kid, hits)).join('');
+    return `<li class="${cls}" role="treeitem" aria-selected="${selected === id}">
+      <button type="button" class="elem-btn" data-node="${id}">
+        <code>${NODE_LABEL[id]}</code>
+      </button>
+      ${nested ? `<ul role="group">${nested}</ul>` : ''}
+    </li>`;
+  }
+
+  function render(keepProp: string | null = null): void {
+    const body = document.getElementById('inspector-body');
+    if (!body) return;
+    const open = openCrumb ? findCrumb(openCrumb) : null;
+    const hits = new Set<NodeId>(open?.decl.hits ?? []);
+    const props = PROP_ORDER.filter((p) => chainFor(selected, p).length);
+    const rows = props.map((property) => rowHtml(property)).join('');
+    const detail = open ? detailHtml(open) : '<p class="pane-label">Click a crumb to see which elements that selector requires.</p>';
+    body.innerHTML = `
+      <div class="inspector-grid">
+        <div class="tree-pane">
+          <p class="pane-label">Elements</p>
+          <ul class="elem-tree" role="tree">${treeHtml('body', hits)}</ul>
+        </div>
+        <div>
+          <div class="prop-pane">
+            <p class="pane-label">Properties on ${NODE_LABEL[selected]}</p>
+            <p class="status-line">Classes on this element: ${OWN_CLASSES[selected]}. The chain only lists declarations that match it, plus inherited values when this element did not set the property.</p>
+            ${rows || '<p>No authored properties on this element. Pick the card content or the tile.</p>'}
+          </div>
+          <div class="crumb-detail">${detail}</div>
+        </div>
+      </div>`;
+    if (keepProp) {
+      const field = body.querySelector<HTMLInputElement>(`input[data-prop="${keepProp}"]`);
+      if (field) {
+        const pos = field.value.length;
+        field.focus();
+        field.setSelectionRange(pos, pos);
+      }
+    }
+  }
+
+  function rowHtml(property: string): string {
+    const crumbs = chainFor(selected, property);
+    const active = crumbs.find((c) => c.kind === 'active');
+    const typed = inline.get(`${selected}:${property}`);
+    const shown = typed ? typed.value : active?.decl.value ?? '';
+    const imp = typed ? typed.important : false;
+    const chain = crumbs.map((c, i) => {
+      const sep = i === 0 ? '' : '<span class="chain-sep" aria-hidden="true">›</span>';
+      const from = c.inheritedFrom ? ` · inherited from ${c.inheritedFrom}` : '';
+      return `<li>${sep}<button type="button" class="crumb crumb-${c.kind}" data-crumb="${c.decl.id}" aria-pressed="${openCrumb === c.decl.id}">
+        <span>${c.decl.label}</span>
+        <small>${c.decl.value}${from}</small>
+      </button></li>`;
+    }).join('');
+    return `<div class="prop-row${property === subject ? ' is-subject' : ''}">
+      <div class="prop-head">
+        <button type="button" class="prop-name" data-subject="${property}">${property}</button>
+        <input id="prop-${property}" data-prop="${property}" type="text" value="${escapeAttr(shown)}" aria-label="${property}" spellcheck="false" />
+        <label class="imp-toggle"><input type="checkbox" data-imp="${property}" ${imp ? 'checked' : ''} /> !important</label>
+      </div>
+      <ol class="chain">${chain}</ol>
+      ${property === subject ? relatedHtml(property) : ''}
+    </div>`;
+  }
+
+  function relatedHtml(property: string): string {
+    const names = RELATED[property];
+    if (!names?.length) return '';
+    const items = names.map((name) => `<li>${escapeHtml(name)}</li>`).join('');
+    return `<div class="related">
+      <p>Same word in the name. Not ${escapeHtml(property)}.</p>
+      <ul>${items}</ul>
+    </div>`;
+  }
+
+  function findCrumb(id: string): Crumb | null {
+    for (const property of PROP_ORDER) {
+      const hit = chainFor(selected, property).find((c) => c.decl.id === id);
+      if (hit) return hit;
+    }
+    return null;
+  }
+
+  function detailHtml(crumb: Crumb): string {
+    const lines = crumb.decl.anatomy.map((row) =>
+      `<li><code>${escapeHtml(row.piece)}</code><span>${escapeHtml(row.need)}</span></li>`,
+    ).join('');
+    const winner = chainFor(selected, crumb.decl.property).find((c) => c.kind === 'active');
+    const beaten = crumb.kind !== 'active' && winner
+      ? `<p class="beaten-by">Beaten by <button type="button" data-crumb="${escapeAttr(winner.decl.id)}">${escapeHtml(winner.decl.label)}</button></p>`
+      : '';
+    return `${beaten}<h3>${escapeHtml(crumb.decl.label)}</h3>
+      <p><code>${escapeHtml(crumb.decl.selector)}</code></p>
+      <p>${escapeHtml(specWords(crumb.decl))} · ${escapeHtml(crumb.decl.source)}</p>
+      <ol class="anatomy">${lines}</ol>
+      <p class="reason">${escapeHtml(reason(crumb))}</p>`;
+  }
+
+  function escapeHtml(s: string): string {
+    return s.replace(/[&<>]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch] ?? ch));
+  }
+
+  function escapeAttr(s: string): string {
+    return escapeHtml(s).replace(/"/g, '&quot;');
+  }
+
+  function eventElement(event: Event): HTMLElement | null {
+    const raw = event.target;
+    if (raw instanceof HTMLElement) return raw;
+    if (raw instanceof Node) return raw.parentElement;
+    return null;
+  }
+
+  function boot(): void {
+    const root = document.querySelector('.css-styles-chain-page');
+    if (!root) return;
+    root.addEventListener('change', (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.name === 'page-theme') {
+        theme = target.value;
+        if (theme === 'light' && openCrumb === 'dark-bg') openCrumb = 'example-bg';
+        render();
+      }
+      if (target.dataset.imp) {
+        const property = target.dataset.imp;
+        const field = root.querySelector<HTMLInputElement>(`input[data-prop="${property}"]`);
+        inline.set(`${selected}:${property}`, {
+          value: field?.value ?? '',
+          important: target.checked,
+        });
+        render();
+      }
+    });
+    root.addEventListener('input', (event) => {
+      const target = event.target as HTMLInputElement;
+      if (!target.dataset.prop) return;
+      const property = target.dataset.prop;
+      const imp = root.querySelector<HTMLInputElement>(`input[data-imp="${property}"]`);
+      inline.set(`${selected}:${property}`, {
+        value: target.value,
+        important: Boolean(imp?.checked),
+      });
+      openCrumb = `inline:${selected}:${property}`;
+      subject = property;
+      render(property);
+    });
+    root.addEventListener('click', (event) => {
+      const target = eventElement(event);
+      if (!target) return;
+      const nodeBtn = target.closest<HTMLElement>('[data-node]');
+      if (nodeBtn?.dataset.node) {
+        selected = nodeBtn.dataset.node as NodeId;
+        openCrumb = null;
+        render();
+        return;
+      }
+      const subjectBtn = target.closest<HTMLElement>('[data-subject]');
+      if (subjectBtn?.dataset.subject) {
+        subject = subjectBtn.dataset.subject;
+        render();
+        return;
+      }
+      const crumbBtn = target.closest<HTMLElement>('[data-crumb]');
+      if (crumbBtn?.dataset.crumb) {
+        openCrumb = openCrumb === crumbBtn.dataset.crumb ? null : crumbBtn.dataset.crumb;
+        const opened = openCrumb ? findCrumb(openCrumb) : null;
+        if (opened) subject = opened.decl.property;
+        render();
+      }
+    });
+    render();
+  }
+
+  boot();
+</script>
