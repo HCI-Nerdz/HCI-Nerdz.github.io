@@ -7,6 +7,7 @@
 * The front door opens three views: the inspector, the sample page, and the in-page layout.
 * The inspector reads `sample.html` and the stylesheets beside it. Light and dark sit in a fixed bar at the bottom of that window.
 * The in-page layout keeps the earlier fixed example.
+* The demo introduction starts from the Styles pane: struck lines that look right, no link to the winner, and the computed-value jump.
 * Catalog entry under Theming and visual contracts.
 * link:changelog-details/2026-10-27%20-%20css-styles-chain.adoc[Details]
 

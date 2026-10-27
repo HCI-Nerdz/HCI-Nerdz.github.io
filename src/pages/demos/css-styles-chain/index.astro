@@ -5,7 +5,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
 
 <BaseLayout
   title="CSS styles chain · HCI Nerdz"
-  description="Open a DevTools window that reads a real page, or open that page alone and compare it with Chrome’s Styles pane."
+  description="You click part of a page, the style list crosses out the line that looks right, and nothing points at the rule that actually won."
   active="demos"
 >
   <main class="shell page desk-page css-styles-chain-home">
@@ -23,12 +23,48 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     <header class="desk-intro">
       <p class="eyebrow">Demo · CSS styles chain</p>
       <h1>CSS styles chain</h1>
-      <p class="lede">
-        The inspector is a DevTools window. It loads a real page and reads that page’s stylesheets.
-        Each property on the element you click is a chain: important declarations that lost, the one
-        in effect, then ordinary and inherited declarations that no longer apply. A selector that
-        missed the element never appears.
-      </p>
+      <div class="intro">
+        <p>
+          You click part of a page and open the browser’s style list to find the setting that is
+          actually in force. A lot of the lines are crossed out. The crossed-out line is often the
+          one that says what you were looking for.
+        </p>
+        <p>
+          Scroll, and the next copy of that same setting is crossed out too. The docs say the winner
+          sits above the strike. On a real card, both background lines are struck, and the line that
+          paints the card is further down, on a rule whose name does not look like the thing you
+          clicked.
+        </p>
+        <p>
+          The struck line does not point at the line that beat it. If that one lost as well, there
+          is still no trail. You start to wonder if the line is crossed out because it uses a
+          variable defined further up the page. That is a bad way to draw it, and it isn’t what
+          happened. The variable is only the value. Another rule won.
+        </p>
+        <p>
+          The rule’s name makes the hunt worse.
+          <code>.doc .openblock.cards .exampleblock.tile &gt; .content</code>
+          reads as if the box you clicked carried every one of those classes, or as if each class
+          donated a property. The box only has <code>content</code>. The other words are checks on
+          the boxes around it, and every check has to pass. A comma starts a second check. The grey
+          half is the check that failed. Those grey words are not classes on your element. Hover the
+          rule and the panel shows <code>(0, 6, 0)</code>. The middle number is how many classes
+          are in the check. The panel never says so.
+        </p>
+        <p>
+          A color or a font that came from the page around the box is dropped into the same flat
+          list, as if the box had set it. Right-click a property and the last item in the menu, with
+          no icon, is “View computed value.” That opens another tab, leaves a diagram of the box up,
+          and then lists every name that contains the word you asked about. Ask about
+          <code>background</code> and <code>background-color</code>, <code>background-image</code>,
+          and the rest show up at the same size.
+        </p>
+        <p>
+          The buttons below open another way of reading that same card. One is the tool. One is the
+          card by itself, so you can open Chrome’s panel on it and compare. The third draws an
+          earlier version of the idea inside a page.
+        </p>
+      </div>
     </header>
 
     <div class="launch-row">
@@ -37,10 +73,6 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       <a class="launch" href="/demos/css-styles-chain/embedded/" target="_blank" rel="noopener">In-page layout</a>
     </div>
     <p id="launch-note" role="status"></p>
-    <p class="launch-note">
-      The sample page is the file the inspector reads. Open it when you want Chrome’s own Styles pane
-      on that same document. The in-page layout draws the chain inside a page, from a fixed example.
-    </p>
 
     <aside class="lesson">
       <h2>What the long selector is</h2>
@@ -127,8 +159,15 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     margin: 0 0 1rem;
   }
 
-  .css-styles-chain-home .lede {
-    max-width: 42rem;
+  .css-styles-chain-home .intro {
+    max-width: 40rem;
+    color: var(--paper-muted);
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  .css-styles-chain-home .intro p {
+    margin: 0 0 1rem;
   }
 
   .css-styles-chain-home .launch-row {
