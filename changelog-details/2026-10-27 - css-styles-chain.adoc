@@ -7,3 +7,4 @@
 * The inspector reads the sample page’s stylesheets. A class button opens only that rule. The triangle at the end of the line opens every class on the property.
 * Light and dark sit in a fixed bar at the bottom of the inspector. That switch changes the page being read.
 * The demo introduction starts from the Styles pane: struck lines that look right, no link to the winner, and the computed-value jump.
+* The opening names DevTools, then the CSS styles pane, before those frustrations.

@@ -5,7 +5,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
 
 <BaseLayout
   title="CSS styles chain · HCI Nerdz"
-  description="You click part of a page, the style list crosses out the line that looks right, and nothing points at the rule that actually won."
+  description="A redesign of the CSS styles pane in Chrome DevTools. The crossed-out line is often the setting you wanted, and nothing points at the rule that won."
   active="demos"
 >
   <main class="shell page desk-page css-styles-chain-home">
@@ -25,9 +25,18 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       <h1>CSS styles chain</h1>
       <div class="intro">
         <p>
-          You click part of a page and open the browser’s style list to find the setting that is
-          actually in force. A lot of the lines are crossed out. The crossed-out line is often the
-          one that says what you were looking for.
+          When someone is building a website, they often open a tool called the DOM inspector.
+          Current versions of Chrome call that tool DevTools. It is where you look when a page’s
+          design, its CSS, or its performance is off.
+        </p>
+        <p>
+          This page is a demo of a redesign of one part of that inspector: the CSS styles pane.
+          That is the list you get after you click an element and want to know which settings are
+          actually in force. The elements tree and the rest of DevTools are left alone for now.
+        </p>
+        <p>
+          In that list, a lot of the lines are crossed out. The crossed-out line is often the one
+          that says what you were looking for.
         </p>
         <p>
           Scroll, and the next copy of that same setting is crossed out too. The docs say the winner
