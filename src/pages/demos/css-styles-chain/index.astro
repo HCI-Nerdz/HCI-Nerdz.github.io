@@ -93,8 +93,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         <li>
           <strong>The chain is a number, not the selector.</strong>
           <code>class 5</code> is one stylesheet rule. The line stays short enough to scan.
-          Opening the number, or <code>&lt;|</code> at the end of that line, inserts the
-          selector under that property. The cards are indented by how far the selector
+          Opening the number inserts that one rule under the property. The triangle at the
+          end of the line is the only control that opens every class. The cards are indented by how far the selector
           reaches into the element tree. A loss says which number beat it, in that card,
           not under the rest of the list.
         </li>
@@ -519,22 +519,29 @@ import GitHubLink from '../../../components/GitHubLink.astro';
   }
 
   .css-styles-chain-page .expand-all {
-    font-family: Consolas, ui-monospace, monospace;
-    font-weight: 700;
-    font-size: 0.85rem;
-    line-height: 1;
-    border: 1px dashed #8a8478;
-    background: #f7f4ee;
-    color: #3f3b36;
-    border-radius: 4px;
-    padding: 0.18rem 0.4rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    border: 0;
+    background: transparent;
+    padding: 0;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .css-styles-chain-page .expand-all[aria-expanded='true'] {
-    background: #3f3b36;
-    color: #f7f4ee;
+  .css-styles-chain-page .expand-all::before {
+    content: "";
+    width: 0;
+    height: 0;
     border-style: solid;
+    border-width: 0.36rem 0.5rem 0.36rem 0;
+    border-color: transparent #3f3b36 transparent transparent;
+  }
+
+  .css-styles-chain-page .expand-all[aria-expanded='true']::before {
+    border-width: 0.5rem 0.36rem 0 0.36rem;
+    border-color: #3f3b36 transparent transparent transparent;
   }
 
   .css-styles-chain-page .class-stack {
@@ -898,6 +905,23 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     return `${property}:${serial}`;
   }
 
+  function clearSlots(property: string): void {
+    for (const key of [...openSlots]) {
+      if (key.startsWith(`${property}:`)) openSlots.delete(key);
+    }
+  }
+
+  function showOnly(property: string, serial: number): void {
+    const key = slotKey(property, serial);
+    const mine = [...openSlots].filter((slot) => slot.startsWith(`${property}:`));
+    const alone = !expanded.has(property) && mine.length === 1 && mine[0] === key;
+    expanded.delete(property);
+    clearSlots(property);
+    if (!alone) openSlots.add(key);
+    litSerial = serial;
+    subject = property;
+  }
+
   function prime(): void {
     if (primed) return;
     primed = true;
@@ -1079,7 +1103,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         </div>
         <div class="prop-pane">
           <p class="pane-label">Properties on ${NODE_LABEL[selected]}</p>
-          <p class="status-line">Classes on this element: ${OWN_CLASSES[selected]}. Each number is one rule. Open it under the property, or use &lt;| at the end of the line.</p>
+          <p class="status-line">Classes on this element: ${OWN_CLASSES[selected]}. Each number is one rule. A class button opens only that rule. The triangle opens every rule on the line.</p>
           ${rows || '<p>No authored properties on this element. Pick the card content or the tile.</p>'}
         </div>
       </div>`;
@@ -1113,7 +1137,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         <input id="prop-${property}" data-prop="${property}" type="text" value="${escapeAttr(shown)}" aria-label="${property}" spellcheck="false" />
         <label class="imp-toggle"><input type="checkbox" data-imp="${property}" ${imp ? 'checked' : ''} /> !important</label>
       </div>
-      <ol class="chain">${chain}<li><button type="button" class="expand-all" data-expand="${property}" aria-expanded="${allOpen}" aria-label="${allOpen ? 'Hide every class on ' + property : 'Show every class on ' + property}">${allOpen ? '|&gt;' : '&lt;|'}</button></li></ol>
+      <ol class="chain">${chain}<li><button type="button" class="expand-all" data-expand="${property}" aria-expanded="${allOpen}" aria-label="${allOpen ? 'Hide every class on ' + property : 'Show every class on ' + property}"></button></li></ol>
       ${cards ? `<div class="class-stack">${cards}</div>` : ''}
       ${property === subject ? relatedHtml(property) : ''}
     </div>`;
@@ -1123,7 +1147,7 @@ import GitHubLink from '../../../components/GitHubLink.astro';
     const indent = Math.max(0, crumb.decl.anatomy.length - 1);
     const winner = chainFor(selected, property).find((c) => c.kind === 'active');
     const beaten = crumb.kind !== 'active' && winner
-      ? `<p class="beaten-by">Beaten by <button type="button" data-open="${slotKey(property, ruleSerial(winner.decl))}">${chipText(winner.decl)}</button></p>`
+      ? `<p class="beaten-by">Beaten by <button type="button" data-slot="${slotKey(property, ruleSerial(winner.decl))}">${chipText(winner.decl)}</button></p>`
       : '';
     const lines = crumb.decl.anatomy.map((row) =>
       `<li><code>${escapeHtml(row.piece)}</code><span>${escapeHtml(row.need)}</span></li>`,
@@ -1192,6 +1216,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
         value: target.value,
         important: Boolean(imp?.checked),
       });
+      expanded.delete(property);
+      clearSlots(property);
       openSlots.add(slotKey(property, 0));
       litSerial = 0;
       subject = property;
@@ -1209,18 +1235,13 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       const expandBtn = target.closest<HTMLElement>('[data-expand]');
       if (expandBtn?.dataset.expand) {
         const property = expandBtn.dataset.expand;
-        if (expanded.has(property)) expanded.delete(property);
-        else expanded.add(property);
-        subject = property;
-        render();
-        return;
-      }
-      const openBtn = target.closest<HTMLElement>('[data-open]');
-      if (openBtn?.dataset.open) {
-        const key = openBtn.dataset.open;
-        const [property, serialText] = key.split(':');
-        openSlots.add(key);
-        litSerial = Number(serialText);
+        if (expanded.has(property)) {
+          expanded.delete(property);
+          clearSlots(property);
+        } else {
+          clearSlots(property);
+          expanded.add(property);
+        }
         subject = property;
         render();
         return;
@@ -1233,14 +1254,8 @@ import GitHubLink from '../../../components/GitHubLink.astro';
       }
       const slotBtn = target.closest<HTMLElement>('[data-slot]');
       if (slotBtn?.dataset.slot) {
-        const key = slotBtn.dataset.slot;
-        const [property, serialText] = key.split(':');
-        const serial = Number(serialText);
-        if (openSlots.has(key) && !expanded.has(property)) openSlots.delete(key);
-        else openSlots.add(key);
-        if (expanded.has(property)) expanded.delete(property);
-        litSerial = serial;
-        subject = property;
+        const [property, serialText] = slotBtn.dataset.slot.split(':');
+        showOnly(property, Number(serialText));
         render();
       }
     });

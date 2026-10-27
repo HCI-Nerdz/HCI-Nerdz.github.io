@@ -3,4 +3,4 @@
 * `/demos/css-styles-chain/` lists properties that apply to the element you pick, with an editable value for prototyping.
 * Each property is a chain: red for an `!important` declaration that lost, green for the one in effect, grey for ordinary and inherited declarations that lost.
 * The element tree is separate from that chain. Clicking a crumb lights the ancestors that selector requires.
-* A chain shows class numbers. Opening a number, or the &lt;| control at the end of the line, inserts that rule under the property. Losses name the winning number inside that card.
+* A class button opens only that rule. The triangle at the end of the line opens every class on the property.
